@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-quiz-results",
+      "settings": {
+        "eyebrow": "Your results",
+        "title": "<p>This product is <em>perfect</em> for you!</p>",
+        "paragraph": "Based on your answers, we recommend:",
+        "cta_text": "Retake Quiz",
+        "cta_url": "shopify://pages/quiz-caviar-stick-eye-color"
+      }
+    },
+    "f19c5b4b-eb52-47ea-8e23-b9a8a2f6afa7": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "You might also like",
+        "placement_id": "caviar-quiz-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "f19c5b4b-eb52-47ea-8e23-b9a8a2f6afa7"
+  ]
+}

@@ -1,0 +1,172 @@
+<script src="{{ 'component-cf-form.js' | asset_url }}" defer="defer" type="module"></script>
+
+{%- if customer -%}
+  {%- capture mod_title -%}{{ settings.account_welcome }} {{ customer.first_name }}{%- endcapture -%}
+  {%- capture mod_content -%}
+    <div class="customer-account-wrapper customer-welcome-wrapper background-color-off-white">
+      <div class="container no-padding customer-welcome-container fluid">
+        <div class="grid customer-welcome-grid customer-welcome" data-cf-view>
+          <div>
+            <div class="color-off-black s1">{{ 'customer.account.overview.name' | t }}</div>
+            <div class="color-dark-gray b1"><em>{{ customer.name }}</em></div>
+          </div>
+          <div>
+            <div class="color-off-black s1">{{ 'customer.account.overview.email' | t }}</div>
+            <div class="color-dark-gray b1">{{ customer.email }}</div>
+          </div>
+          <div>
+            <div class="color-off-black s1">{{ 'customer.account.overview.birthday' | t }}</div>
+            <div class="color-dark-gray b1 capitalize">
+              <span rv-if="customer.birthday_month">
+                {customer.birthday_month } {customer.birthday_day}
+              </span>
+              <span rv-unless="customer.birthday_month">
+                -
+              </span>
+              <button data-target="edit-birthday" class="js-open-slideout edit-cta b1 color-dark-gray">{{ 'customer.account.edit' | t }}</button>
+            </div>
+          </div>
+          <div>
+            <div class="color-off-black s1 phone-heading">
+              {{ 'customer.account.overview.phone' | t }}
+              <span>
+                <button data-target="phone-tooltip" class="js-open-tooltip-modal" aria-label="{{ 'accessibility.phone_tooltip' | t }}">
+                  {% render 'icon-help' %}
+                </button>
+              </span>
+            </div>
+            <div class="color-dark-gray b1">{{ customer.phone | default: '-' }}</div>
+          </div>
+          <div>
+            <div class="color-off-black s1">{{ 'customer.account.overview.shade_family' | t }}</div>
+            <div class="color-dark-gray b1 capitalize">
+              <span rv-if="customer.shade_family">
+                { customer.shade_family }
+              </span>
+              <span rv-unless="customer.shade_family">-</span>
+              <button data-target="edit-shade-family" class="js-open-slideout edit-cta b1 color-dark-gray">{{ 'customer.account.edit' | t }}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid customer-welcome-grid">
+          <div>
+            <a href="#account-reset-password" class="button--text-underline js-open-slideout" data-target="account-reset-password">
+              {{ 'customer.account.overview.reset_password.action' | t }}
+            </a>
+
+            {%- capture reset_password_modal_title -%}
+              {{ 'customer.account.overview.reset_password.title' | t }}
+            {%- endcapture -%}
+            {%- capture reset_password_modal_content -%}
+              <p>{{ 'customer.account.overview.reset_password.body' | t }}</p>
+              <div class="address-delete-form-buttons">
+                <button is="loading-button" onclick="this.setAttribute('loading', 'true');document.getElementById('reset-password-form').submit();" class="button fluid">
+                  <span>{{ 'customer.account.overview.reset_password.confirm' | t }}</span>
+                </button>
+                <button class="button fluid inverted js-close-slideout">{{ 'customer.account.overview.reset_password.close' | t }}</button>
+              </div>
+            {%- endcapture -%}
+            {% render "slideout", type: 'modal', title: reset_password_modal_title, slideout_id: 'account-reset-password', content: reset_password_modal_content %}
+            {%- capture return_url -%}
+              {{- pages[settings.account_overview_page].url -}}
+            {%- endcapture -%}
+            {%- form 'recover_customer_password', id: 'reset-password-form', return_to: return_url -%}
+              <input name="email" value="{{ customer.email }}" hidden class="hidden" />
+            {% endform %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="customer-quicklinks">
+      {% liquid
+        assign secret_key = settings.ordergroove_secret_key
+        assign customer_id = customer.id
+        assign timestamp = "now" | date: "%s"
+        assign signature = customer_id | append: "|" | append: timestamp | hmac_sha256: secret_key
+        assign subscription_url = "/apps/subscriptions/manage/?customer=" | append: customer.id | append: "&customer_signature=" | append: signature | append: "&customer_timestamp=" | append: timestamp
+
+        render 'customer-quicklink', mod_image: settings.saved-address_image, mod_title: settings.saved-address_title, mod_body: settings.saved-address_description, mod_link: settings.saved-address_url
+        render 'customer-quicklink', mod_image: settings.order-history_image, mod_title: settings.order-history_title, mod_body: settings.order-history_description, mod_link: settings.order-history_url, mod_classes: "js-card-order-history"
+        
+        if settings.enable_ordergroove and settings.is_subscription
+          render 'customer-quicklink', mod_image: settings.subscription_image, mod_title: settings.subscription_title, mod_body: settings.subscription_description, mod_link: subscription_url
+        else
+          render 'customer-quicklink', mod_image: settings.subscription_image, mod_title: settings.subscription_title, mod_body: settings.subscription_description, mod_link: settings.subscription_url
+        endif
+        render 'customer-quicklink', mod_image: settings.wishlist_image, mod_title: settings.wishlist_title, mod_body: settings.wishlist_description, mod_link: settings.wishlist_url
+      %}
+    </div>
+
+    {%- capture edit_birthday_modal_title -%}
+      {{ 'customer.account.overview.edit_birthday.title' | t }}
+    {%- endcapture -%}
+    {%- capture edit_birthday_modal_content -%}
+      <cf-form form-id="{{ section.settings.account_customer_birthday_form }}">
+        <form class="edit-birthday-form">
+          <div class="edit-birthday-form__main">
+            {% render 'account-birdthday-edit-fields' %}
+          </div>
+
+          <div class="new-address-form-buttons">
+            <button class="button inverted js-close-slideout" type="reset">{{ 'customer.account.overview.edit_shade.cancel' | t }}</button>
+            <button type="submit" is="loading-button" class="button"><span>{{ 'customer.account.overview.edit_shade.update' | t }}</span></button>
+          </div>
+        </form>
+      </cf-form>
+    {%- endcapture -%}
+    {% render "slideout", title: edit_birthday_modal_title, slideout_id: 'edit-birthday', content: edit_birthday_modal_content %}
+
+    {%- capture edit_shade_modal_title -%}
+      {{ 'customer.account.overview.edit_shade.title' | t }}
+    {%- endcapture -%}
+    {%- capture edit_shade_modal_content -%}
+      {%- capture input_attributes -%}
+        name="shade_family"
+        id="Customer-Shadefamily"
+      {%- endcapture -%}
+      <cf-form>
+        <form class="edit-shade-form">
+          <div>
+            {%- render 'shade-family-selector', label_t: "customer.register.shade_family", name: "shade_family", input_attributes: input_attributes -%}
+            <p class="b3 color-dark-gray">{{ 'customer.account.overview.edit_shade.copy_html' | t }}</p>
+          </div>
+
+          <div class="new-address-form-buttons">
+            <button class="button inverted js-close-slideout" type="reset">{{ 'customer.account.overview.edit_shade.cancel' | t }}</button>
+            <button type="submit" is="loading-button" class="button"><span>{{ 'customer.account.overview.edit_shade.update' | t }}</span></button>
+          </div>
+        </form>
+      </cf-form>
+    {%- endcapture -%}
+    {% render "slideout", title: edit_shade_modal_title, slideout_id: 'edit-shade-family', content: edit_shade_modal_content %}
+  {%- endcapture -%}
+  {% render 'account-content', mod_title: mod_title, mod_body: settings.account_introduction, mod_content: mod_content, mod_disable_nav: true %}
+{%- endif -%}
+
+
+{% capture phone_tooltip %}
+<p>{{ 'customer.account.phone_tooltip.body' | t }}</p>
+<p>{{ 'customer.account.phone_tooltip.hours' | t }}</p>
+<p><a href="{{ 'customer.account.phone_tooltip.tooltip_url' | t }}">{{ 'customer.account.phone_tooltip.chat_text' | t }}</a></p>
+{% endcapture %}
+
+{% render "tooltip-modal", title_t: 'customer.account.phone_tooltip.heading', slideout_id: 'phone-tooltip', content: phone_tooltip %}
+
+{% schema %}
+{
+  "name": "Account Overview",
+  "settings": [
+    {
+      "type": "text",
+      "id": "account_customer_birthday_form",
+      "label": "Birthday Manage Form ID",
+      "default": "K7t2J7",
+      "info": "copy the form ID from the customer app, if missing create a new form with support for managing accepts_sms_marketing as a whiltelisted tag."
+    }
+  ],
+  "blocks": [
+
+  ]
+}
+{% endschema %}

@@ -1,0 +1,107 @@
+{%- liquid
+  assign mod_product = mod_product
+  assign mod_heading = mod_heading | default: mod_product.title
+  assign mod_eyebrow = mod_eyebrow
+  assign mod_description = mod_description | default: mod_product.metafields.product_information.summary
+  assign size_options = mod_product.options_with_values | where: 'name', 'Size' | first
+  assign color_options = mod_product.options_with_values | where: 'name', 'Color' | first
+  assign color_option_name = 'option' | append: color_options.position
+
+  assign target_url = mod_product.url
+  assign selected_variant = mod_variant | default: mod_product.selected_or_first_available_variant
+  assign mod_using_variant = mod_using_variant
+  assign mod_variant = mod_variant
+  assign mod_image = mod_image
+  assign mod_cta_text = mod_cta_text
+  assign mod_cta_url = mod_cta_url
+-%}
+
+<div class='featured-product-grid-tile'>
+
+  <div>
+
+    {% if mod_eyebrow != blank %}
+      <p class='s1 no-margin featured-product-grid-tile__eyebrow'>{{ mod_eyebrow }}</p>
+    {% endif %}
+
+    <h3 class='h3 no-margin featured-product-grid-tile__title'>
+      {{ mod_heading }}
+    </h3>
+
+    <p class='b2 no-margin featured-product-grid-tile__description'>
+      {{ mod_description }}
+    </p>
+
+    {% if color_options %}
+      <div class="flex align-center swatch-line featured-product-grid-tile__swatch-line">
+        <span class="swatch-color-span" style="background-color: {{ selected_variant.metafields.swatch.hex_code }}"></span>
+        <span class="b2 color-dark-gray no-margin">{{ selected_variant[color_option_name] }}</span>
+      </div>
+    {% endif %}
+
+    {% if mod_product != blank %}
+      {%- render 'price', product: mod_product, use_variant: false, show_badges: false, price_class: 'price--large', mod_show_discount_description: false, mod_using_variant: mod_using_variant -%}
+    {% endif %}
+
+  </div>
+
+  <div class="featured-product-grid-tile__button-image flex flex-direction-column justify-end">
+
+    <div class="featured-product-grid-tile__button-container">
+      {%- liquid
+
+        if mod_cta_text == blank and mod_cta_url == blank and mod_product != blank
+          if settings.quick_shop == true
+            if mod_product.metafields.product_card.disable_quick_shop == true
+              render 'product-card-button', button_type: 'a', button_text_t: 'product_card.shop_now', href: target_url, mod_variant: 'text-underline'
+            elsif color_options
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_shade', product_card_product: mod_product, selected_variant: selected_variant, button_action: 'quick-shop', mod_variant: 'text-underline'
+            elsif size_options
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_size', product_card_product: mod_product, selected_variant: selected_variant, button_action: 'quick-shop', mod_variant: 'text-underline'
+            else
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: mod_product, selected_variant: selected_variant, button_action: 'add-to-cart', button_value: selected_variant.id, mod_variant: 'text-underline'
+            endif
+          else
+            if color_options
+              render 'product-card-button', button_type: 'a', mod_variant: 'text-underline', button_text_t: 'product_card.select_shade', href: target_url
+            elsif size_options
+              render 'product-card-button', mod_variant: 'text-underline', button_type: 'a', button_text_t: 'product_card.select_size', href: target_url
+            else
+              render 'product-card-button', mod_variant: 'text-underline', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url
+            endif
+          endif
+        endif
+
+        if mod_cta_text != blank and mod_cta_url != blank
+          render 'button' mod_type: "link", mod_href: mod_cta_url, mod_variant: "text-underline basic", mod_value: mod_cta_text
+        endif
+      -%}
+    </div>
+
+    <div class='featured-product-grid-tile__image-container'>
+      {%- liquid
+        assign image_to_render = null
+
+        if mod_image != blank
+          assign image_to_render = mod_image
+        elsif mod_variant != blank
+          assign image_to_render = selected_variant.image
+        elsif mod_product != blank and mod_variant == blank
+          assign image_to_render = mod_product.featured_media
+        endif
+      -%}
+
+      {% if mod_product != blank %}
+        <a href="{{ mod_product.url }}" >
+        {% endif %}
+
+      {% render 'adaptive-image', mod_image: image_to_render, mod_alt: product.title, mod_aspect_ratio: 'square' %}
+
+      {% if mod_product != blank %}
+        </a>
+      {% endif %}
+      </a>
+    </div>
+
+  </div>
+</div>

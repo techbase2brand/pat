@@ -1,0 +1,255 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-featured-products-fifty-fifty-wide.css'
+-%}
+<script src='{{ 'section-featured-products-fifty-fifty-wide.js' | asset_url }}' defer='defer' type='module'></script>
+
+<featured-products-fifty-fifty-wide
+  class='section-featured-products-fifty-fifty-wide'
+  data-length='{{ section.blocks.size }}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign _product = block.settings.product
+      assign size_options = _product.options_with_values | where: 'name', 'Size' | first
+      assign color_options = _product.options_with_values | where: 'name', 'Color' | first
+      assign color_option_name = 'option' | append: color_options.position
+      assign featured_variant = _product.selected_or_first_available_variant
+
+      if block.settings.variant_id != blank
+        assign variant_id = block.settings.variant_id | times: 1
+        for variant in _product.variants
+          if variant.id == variant_id
+            assign featured_variant = variant
+            break
+          endif
+        endfor
+      endif
+
+      assign themeClass = ' background-color-off-white'
+      if block.settings.theme == 'dark'
+        assign themeClass = ' background-color-off-black'
+      endif
+
+      assign target_url = featured_variant.url | default: _product.url
+    -%}
+    <div
+      class='featured-products-fifty-fifty-wide featured-products-fifty-fifty-wide__{{ block.settings.theme }} featured-products-fifty-fifty-wide__{{ section.settings.image_position }} {{ themeClass }} {% if forloop.first %} active{% endif %}'
+      data-index='{{ forloop.index0 }}'
+    >
+      <div class='featured-products-fifty-fifty-wide__image'>
+        {%- render 'adaptive-image', mod_image: block.settings.image, mod_alt: _product.title -%}
+      </div>
+      {%- if block.settings.shade_image != blank -%}
+        <div class='featured-products-fifty-fifty-wide__middle'>
+          {%- render 'adaptive-image', mod_image: block.settings.shade_image, mod_alt: _product.title -%}
+        </div>
+      {%- endif -%}
+      <div class='featured-products-fifty-fifty-wide__product'>
+        <div class='featured-products-fifty-fifty-wide__content'>
+          {%- if section.blocks.size > 1 -%}
+            <div class='featured-products-fifty-fifty-wide__nav flex'>
+              {%- liquid
+                assign current = forloop.index | prepend: '00' | slice: -2, 2
+                assign length = section.blocks.size | prepend: '00' | slice: -2, 2
+                render 'carousel-arrows', current: current, length: length
+              -%}
+            </div>
+          {%- endif -%}
+          {%- if block.settings.subheading != blank -%}
+            <h2 class='featured-products-fifty-fifty-wide__subheading s1 color-off-black no-margin'>
+              {{ block.settings.subheading | escape }}
+            </h2>
+          {%- endif -%}
+          <a
+            href='{{ _product.url }}?variant={{ featured_variant.id }}'
+            class='featured-products-fifty-fifty-wide__title h3 no-margin color-off-black flex no-underline'
+          >
+            {{- _product.title | escape -}}
+          </a>
+          {%- if color_options -%}
+            <div class='featured-products-fifty-fifty-wide__swatch'>
+              <div class='align-center grid product-card__details-head__details'>
+                {%- if featured_variant[color_option_name] -%}
+                  <div class='swatch-line no-margin flex align-center'>
+                    {%- render 'form-shade-selector',
+                      color: featured_variant[color_option_name],
+                      id: featured_variant.id,
+                      disabled: false,
+                      variant: featured_variant
+                    -%}
+                    <span class='b3 color-dark-gray no-margin'>{{ featured_variant[color_option_name] }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if color_options != blank -%}
+                  <span class='b2 color-dark-gray product-card__details-head__shades'>
+                    {{- 'product_card.shade_qty' | t }}
+                    {{ color_options.values | size -}}
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if block.settings.body != blank -%}
+            <p class='featured-products-fifty-fifty-wide__body b2 color-dark-gray no-margin'>
+              {{ block.settings.body | escape }}
+            </p>
+          {%- endif -%}
+          <div class='featured-products-fifty-fifty-wide__price'>
+            {% render 'price', product: _product, use_variant: true, variant: featured_variant, price_class: '' %}
+          </div>
+          {%- capture reviewsBlock -%}
+            {% render 'okendo-reviews-product-rating-summary', product: _product %}
+          {%- endcapture -%}
+          {%- if reviewsBlock != blank -%}
+            <div class='featured-products-fifty-fifty-wide__rates'>
+              <a href='{{ _product.url }}?variant={{ featured_variant.id }}#okendo-reviews'>
+                {%- render 'okendo-reviews-product-rating-summary', product: _product -%}
+              </a>
+            </div>
+          {%- endif -%}
+          {%- if block.settings.cta_title != blank and block.settings.cta_url != blank -%}
+            <div class='featured-products-fifty-fifty-wide__cta'>
+              {% render 'button',
+                mod_type: 'link',
+                mod_value: block.settings.cta_title,
+                mod_href: block.settings.cta_url,
+                mod_theme: block.settings.theme
+              %}
+            </div>
+          {%- else -%}
+            {%- liquid
+              if settings.quick_shop == true
+                if _product.metafields.product_card.disable_quick_shop == true
+                  render 'product-card-button', button_type: 'a', button_text_t: 'product_card.shop_now', href: target_url, mod_theme: block.settings.theme
+                elsif color_options and color_options.values.size > 1
+                  render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_shade', product_card_product: _product, selected_variant: featured_variant, button_action: 'quick-shop', mod_theme: block.settings.theme
+                elsif size_options
+                  render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_size', product_card_product: _product, selected_variant: featured_variant, button_action: 'quick-shop', mod_theme: block.settings.theme
+                else
+                  render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: _product, selected_variant: featured_variant, button_action: 'add-to-cart', button_value: featured_variant.id, mod_theme: block.settings.theme
+                endif
+              else
+                if color_options and color_options.values.size > 1
+                  render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_shade', href: target_url, mod_theme: block.settings.theme
+                elsif size_options
+                  render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_size', href: target_url, mod_theme: block.settings.theme
+                else
+                  render 'product-card-button', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url, mod_theme: block.settings.theme
+                endif
+              endif
+            -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+</featured-products-fifty-fifty-wide>
+
+{% schema %}
+{
+  "name": "t:sections.featured-products-fifty-fifty-wide.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-products-fifty-fifty-wide.settings.id.label",
+      "info": "t:sections.featured-products-fifty-fifty-wide.settings.id.info"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.featured-products-fifty-fifty-wide.settings.image_position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-products-fifty-fifty-wide.settings.image_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-products-fifty-fifty-wide.settings.image_position.options__2.label"
+        }
+      ],
+      "default": "right"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.featured-products-fifty-fifty-wide.blocks.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "theme",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.theme.label",
+          "options": [
+            {
+              "value": "light",
+              "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.theme.options__1.label"
+            },
+            {
+              "value": "dark",
+              "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.theme.options__2.label"
+            }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.variant_id.label",
+          "info": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.variant_id.info"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.subheading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.body.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "shade_image",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.shade_image.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "cta_title",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.cta_title.label"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "t:sections.featured-products-fifty-fifty-wide.blocks.settings.cta_url.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-products-fifty-fifty-wide.name",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,94 @@
+.product-grid-with-banner {
+  padding: calc(var(--gutter) * 2) 0px;
+}
+
+.product-grid-with-banner__banner-container {
+  margin-bottom: var(--gutter);
+}
+
+.product-grid-with-banner__banner-container .banner-container__text-container {
+  position: relative;
+}
+
+.product-grid-with-banner__banner-container
+  .product-grid-with-banner__top-title {
+  line-height: 0.8;
+}
+
+.product-grid-with-banner__banner-container
+  .banner-container__text-container--in-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.product-grid-with-banner__banner-container
+  .product-grid-with-banner__bottom-title {
+  line-height: 1.3;
+}
+
+.product-grid-with-banner__banner-container .banner-container__image-container {
+  position: relative;
+}
+
+.product-grid-with-banner__banner-container .banner-container__image {
+  height: auto;
+}
+
+.product-grid-with-banner__product-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.product-grid-with-banner__product-grid .item-container {
+  margin-bottom: calc(var(--gutter) * 2);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.product-grid-with-banner__product-grid .item-container .item__subheading {
+  margin: 0 0 calc(var(--gutter) / 4);
+}
+
+.product-grid-with-banner__product-grid .item-container .item__title {
+  margin: calc(var(--gutter) / 2) 0;
+}
+
+.product-grid-with-banner__product-grid .item-container .item__caption {
+  margin: calc(var(--gutter) / 4) 0;
+}
+
+.product-grid-with-banner__product-grid .item-container .item__image-container {
+  margin-top: var(--gutter);
+}
+
+.product-grid-with-banner__product-grid
+  .item-container
+  .item__image-container
+  .item__image {
+  max-width: 50px;
+  height: auto;
+}
+
+/* media query breakpoints */
+
+@media (min-width: 768px) {
+  .product-grid-with-banner {
+    padding: var(--gutter) 0px;
+  }
+
+  .product-grid-with-banner__product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product-grid-with-banner__product-grid .item-container {
+    margin-bottom: 0px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .product-grid-with-banner__product-grid
+    .item-container
+    .item__image-container
+    .item__image {
+    max-width: 100px;
+  }
+}

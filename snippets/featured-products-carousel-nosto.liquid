@@ -1,0 +1,18 @@
+{%- if settings.enable_nosto and placement_id != blank -%}
+  {%- render 'async-stylesheet', mod_url: 'section-featured-products-carousel.css' -%}
+  <script src="{{ 'section-featured-products-carousel-nosto.js' | asset_url }}" defer="defer" type="module"></script>
+  <div class="nosto_element hidden" id="{{ placement_id }}"></div>
+
+  <featured-products-carousel-nosto class="featured-products-carousel background-color-off-white block" data-id="{{ placement_id }}" id="{{ mod_id }}" data-section-headline="{{ mod_heading | handle }}">
+    <div class="featured-products-carousel__slider-header flex align-center justify-space-between hidden">
+      {% render 'simple-carousel-controls', mod_render_slide_status: true, mod_class: 'featured-products-carousel__slider-controls' %}
+    </div>
+    <div class="featured-products-carousel__wrapper container">
+      <h2 class='h3 no-margin featured-products-carousel__heading'></h2>
+
+      <div class="featured-products-carousel-nosto__container">
+        <div class="featured-products-carousel__products"></div>
+      </div>
+    </div>
+  </featured-products-carousel-nosto>
+{%- endif -%}

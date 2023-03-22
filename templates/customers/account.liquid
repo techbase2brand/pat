@@ -1,0 +1,32 @@
+{% comment %}
+This is the orders template
+{% endcomment %}
+
+{% render 'async-stylesheet', mod_url: 'customer.css' %}
+
+{%- capture mod_content -%}
+  <div class="account-overview js-account-overview">
+    {% section 'account-welcome' %}
+  </div>
+{%- endcapture -%}
+
+<div class="account-container ">
+  {% render 'account-content', mod_content: mod_content %}
+</div>
+
+<script>
+  const overview = document.querySelector('.js-account-overview')
+  const overviewNavItem = document.querySelector('.js-nav-item__overview a')
+  const overviewNavItemSVG = document.querySelector('.js-nav-item__overview a svg')
+  const orderHistoryNavItem = document.querySelector('.js-nav-item__order-history a')
+  const orderHistoryNavItemSVG = document.querySelector('.js-nav-item__order-history a svg')
+
+  function checkURL() {
+    overview.classList.remove('hidden')
+    orderHistoryNavItem.classList.remove("b1", "button--text-icon", "normal")
+    overviewNavItem.classList.add("b1", "button--text-icon", "normal")
+    overviewNavItemSVG.classList.remove("hidden")
+  }
+
+  checkURL();
+</script>

@@ -1,0 +1,37 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'accordion.css'
+
+  assign accordion_title = accordion_title | default: blank
+  assign accordion_content = accordion_content | default: blank
+  assign default_status_open = default_status_open | default: false
+  assign mod_prevent_translation = mod_prevent_translation | default: false
+-%}
+
+<simple-accordion
+  class='product-accordion'
+  {% if default_status_open %}
+    open
+  {% endif %}
+>
+  <button
+    class='flex align-center accordion__title'
+    {% if default_status_open %}
+      aria-label='Close {{ accordion_title | downcase }} accordion'
+    {% else %}
+      aria-label='Open {{ accordion_title | downcase }} accordion'
+    {% endif %}
+  >
+    <p class='serif h4 color-off-black no-margin normal'>{{ accordion_title }}</p>
+    <span class='accordion-toggle__icon text-right color-off-black'>{% render 'icon-plus' %}</span>
+  </button>
+  <div
+    class='product-accordion__body color-dark-gray accordion__body{% if mod_prevent_translation %} OneLinkNoTx{% endif %}'
+    {% if default_status_open %}
+      aria-hidden='false'
+    {% else %}
+      aria-hidden='true'
+    {% endif %}
+  >
+    {{ accordion_content }}
+  </div>
+</simple-accordion>

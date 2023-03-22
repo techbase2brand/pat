@@ -1,0 +1,41 @@
+{% assign mod_variant_type = mod_variant_type | default: 'none' %}
+{% assign mod_quick_view = mod_quick_view | default: false %}
+
+{%- if mod_variant_type != 'none' -%}
+  {% if product.metafields.product_information.virtual-try-on == true or product.metafields.product_information.findation == true %}
+    <ul class="additional-pdp-actions list-unstyled">
+      {% if product.metafields.product_information.virtual-try-on %}
+      <li>
+          <virtual-try-on
+              api-key="{{ settings.perfect_corp_api_key }}"
+              widget-id="{{ settings.perfect_corp_vto_widget_id }}"
+              language="{{ settings.perfect_corp_language }}"
+              privacy-policy="{{ settings.perfect_corp_privacy_policy_url }}"
+              {% if settings.perfect_corp_enable_kiss_detect %}
+              enable-kiss-detect="true"
+              {% endif %}
+              quick-view="{{ mod_quick_view }}"
+              data-url="{{ product.url }}#virtual-try-on"
+            >
+              {% render 'button' mod_variant: "text-icon", mod_class: "button--text-underline" mod_value_t: "general.shades.virtual_try_on", mod_icon: "try-on" %}
+          </virtual-try-on>
+      </li>
+      {% endif %}
+
+      {% if product.metafields.product_information.findation %}
+        <li>
+          <findation-button
+            api-key="{{ settings.findation_api_key }}"
+            {% if settings.findation_testing %}
+            mode="true"
+            {% endif %}
+            quick-view="{{ mod_quick_view }}"
+            data-url="{{ product.url }}#find-my-shade"
+          >
+            {% render 'button' mod_variant: "text-icon", mod_class: "button--text-underline button-findation-open" mod_value_t: "general.shades.find_my_shade", mod_icon: "find-shade" %}
+          </findation-button>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{%- endif -%}

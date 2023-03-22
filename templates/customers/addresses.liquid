@@ -1,0 +1,707 @@
+{% render 'async-stylesheet', mod_url: 'customer.css' %}
+<script src='{{ 'customer.js' | asset_url }}' defer></script>
+{% comment %}the two below are hosted remotely on shopify{% endcomment %}
+<script src='{{ 'shopify_common.js' | shopify_asset_url }}' async></script>
+<script src='{{ 'customer_area.js' | shopify_asset_url }}' async></script>
+
+{% liquid
+  capture mod_title
+    echo customer.addresses.title | t
+  endcapture
+%}
+{%- capture mod_content -%}
+  {% liquid
+    capture add_new_address_title
+      echo customer.addresses.add_new | t
+    endcapture
+  %}
+  {%- capture add_new_address_form -%}
+    {%- form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' -%}
+      <div class="container no-padding">
+        <div class="grid address-form-grid">
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[first_name]"
+              id="AddressFirstNameNew"
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+              autocomplete="given-name"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.first_name',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-first-name' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[last_name]"
+              id="AddressLastNameNew"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+              autocomplete="family-name"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.last_name',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-last-name' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[company]"
+              id="AddressCompanyNew"
+              {% if form.company %}value="{{ form.company }}"{% endif %}
+              autocomplete="organization"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.company',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-company' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[address1]"
+              id="AddressAddress1New"
+              {% if form.address1 %}value="{{ form.address1 }}"{% endif %}
+              autocomplete="address-line1"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.address1',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-address-1' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[address2]"
+              id="AddressAddress2New"
+              {% if form.address2 %}value="{{ form.address2 }}"{% endif %}
+              autocomplete="address-line2"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.address2',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-address-2' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[city]"
+              id="AddresscityNew"
+              {% if form.city %}value="{{ form.city }}"{% endif %}
+              autocomplete="address-level2"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.city',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-city' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            <div class="select">
+              <label for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+              <select
+                id="AddressCountryNew"
+                name="address[country]"
+                data-default="United States"
+                autocomplete="country"
+              >
+                {{ all_country_option_tags }}
+              </select>
+              <span class="select__icon">
+                {% render 'icon-arrow' %}
+              </span>
+            </div>
+          </div>
+          <div id="AddressProvinceContainerNew" style="display: none">
+            <div class="select">
+              <label for="AddressProvinceNew">{{ 'customer.addresses.province' | t }}</label>
+              <select id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+              <span class="select__icon">
+                {% render 'icon-arrow' %}
+              </span>
+            </div>
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="text"
+              name="address[zip]"
+              id="AddressZipNew"
+              {% if form.zip %}value="{{ form.zip }}"{% endif %}
+              autocomplete="zip"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.zip',
+              type: 'text',
+              input_attributes: input_attributes,
+              mod_id: 'address-zip' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            {%- capture input_attributes -%}
+              type="tel"
+              name="address[phone]"
+              pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+              id="AddressPhoneNew"
+              {% if form.phone %}value="{{ form.phone }}"{% endif %}
+              autocomplete="phone"
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.addresses.phone',
+              type: 'tel',
+              input_attributes: input_attributes,
+              mod_id: 'address-tel' -%}
+            {%- assign input_attributes = nil -%}
+          </div>
+          <div>
+            <div class="checkbox-container">
+              <label for="address_default_address_new">
+                {{ form.set_as_default_checkbox }}
+                <span class="checkmark"></span>
+                <span class="text">{{ 'customer.addresses.set_default' | t }}</span>
+              </label>
+            </div>
+          </div>
+          <div class=" new-address-form-buttons">
+            <button class="button inverted js-close-slideout" type="reset">{{ 'customer.addresses.cancel' | t }}</button>
+            <button class="button">{{ 'customer.addresses.add' | t }}</button>
+          </div>
+        </div>
+      </div>
+    {%- endform -%}
+  {%- endcapture -%}
+  {% render "slideout", title: add_new_address_title, slideout_id: 'add-new-address', content: add_new_address_form %}
+
+  {%- if customer.addresses != empty -%}
+    <div class="customer-account-wrapper customer-addresses-wrapper background-color-off-white">
+      {%- paginate customer.addresses by 20 -%}
+        {%- assign visible_count = paginate.current_offset -%}
+        <div class="customer-addresses" data-customer-addresses>
+          <div class="customer-addresses__address" data-address>
+            <div class="customer-addresses__address-main">
+              <p class="customer-addresses__address-default s1">{{ 'customer.addresses.default' | t }}</p>
+              <address class="b1 color-dark-gray">
+                {{ customer.default_address | format_address }}
+                {%- if customer.default_address.phone -%}
+                  <tel>{{ customer.default_address.phone }}</tel>
+                {%- endif -%}
+              </address>
+            </div>
+            <div class="customer-addresses__address-actions">
+              <button
+                type="button"
+                class="button inverted js-open-slideout"
+                id="EditFormButton_{{ customer.default_address.id }}"
+                aria-label="{{ 'customer.addresses.edit_address' | t }} (default))"
+                aria-controls="EditAddress_{{ customer.default_address.id }}"
+                aria-expanded="false"
+                data-target="edit-address-{{ customer.default_address.id }}"
+              >
+                {{ 'customer.addresses.edit' | t }}
+              </button>
+              <button type="button" class="button inverted js-open-slideout" data-target="address-delete-{{ customer.default_address.id }}">
+                {{ 'customer.addresses.delete' | t }}
+              </button>
+            </div>
+
+            {%- capture delete_address_form -%}
+              <form
+                class="address-delete-form"
+                method="post"
+                action="/account/addresses/{{ customer.default_address.id }}"
+              >
+                <input type="hidden" name="_method" value="delete">
+                <p class="text-center color-dark-gray">{{ 'customer.addresses.delete_confirm' | t }}</p>
+                <div class="address-delete-form-buttons">
+                  <button class="button fluid" type="submit">{{ 'customer.addresses.delete' | t }}</button>
+                  <button class="button fluid inverted js-close-slideout" type="button">{{ 'customer.addresses.cancel' | t }}</button>
+                </div>
+              </form>
+            {%- endcapture -%}
+            {%- capture delete_address_modal_title -%}
+              {{ 'customer.addresses.delete' | t }} Address
+            {%- endcapture -%}
+            {%- capture delete_slideout_id -%}address-delete-{{ address.id }}{%- endcapture -%}
+            {% render "slideout", type: 'modal', title: delete_address_modal_title, slideout_id: delete_slideout_id, content: delete_address_form %}
+
+            {%- capture edit_address_title -%}{{ 'customer.addresses.edit' | t }}{%- endcapture -%}
+            {%- capture edit_address_content -%}
+              <div id="EditAddress_{{ customer.default_address.id }}">
+                {%- form 'customer_address', customer.default_address -%}
+                  <div class="container no-padding">
+                    <div class="grid address-form-grid">
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[first_name]"
+                          id="AddressFirstName_{{ form.id }}"
+                          {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+                          autocomplete="given-name"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-first-name--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.first_name',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[last_name]"
+                          id="AddressLastName_{{ form.id }}"
+                          {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+                          autocomplete="family-name"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-last-name--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.last_name',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[company]"
+                          id="AddressCompany_{{ form.id }}"
+                          {% if form.company %}value="{{ form.company }}"{% endif %}
+                          autocomplete="organization"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-company' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.company',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[address1]"
+                          id="AddressAddress1_{{ form.id }}"
+                          {% if form.address1 %}value="{{ form.address1 }}"{% endif %}
+                          autocomplete="address-line1"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-address1--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.address1',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[address2]"
+                          id="AddressAddress2_{{ form.id }}"
+                          {% if form.address2 %}value="{{ form.address2 }}"{% endif %}
+                          autocomplete="address-line2"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-address2--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.address2',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[city]"
+                          id="AddressCity_{{ form.id }}"
+                          {% if form.city %}value="{{ form.city }}"{% endif %}
+                          autocomplete="address-level2"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-city--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.city',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        <div class="select">
+                          <label for="AddressCountry_{{ form.id }}">
+                            {{ 'customer.addresses.country' | t }}
+                          </label>
+                          <select
+                            id="AddressCountry_{{ form.id }}"
+                            name="address[country]"
+                            data-address-country-select
+                            data-default="{{ form.country }}"
+                            data-form-id="{{ form.id }}"
+                            autocomplete="country"
+                          >
+                            {{ all_country_option_tags }}
+                          </select>
+                          <span class="select__icon">
+                            {% render 'icon-arrow' %}
+                          </span>
+                        </div>
+                      </div>
+                      <div id="AddressProvinceContainer_{{ form.id }}" style="display:none;">
+                        <div class="select">
+                          <label for="AddressProvince_{{ form.id }}">
+                            {{ 'customer.addresses.province' | t }}
+                          </label>
+                          <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                          <span class="select__icon">
+                            {% render 'icon-arrow' %}
+                          </span>
+                        </div>
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="text"
+                          name="address[zip]"
+                          id="AddressZip_{{ form.id }}"
+                          {% if form.zip %}value="{{ form.zip }}"{% endif %}
+                          autocomplete="zip"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-zip--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.zip',
+                          type: 'text',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        {%- capture input_attributes -%}
+                          type="tel"
+                          name="address[phone]"
+                          id="AddressPhone_{{ form.id }}"
+                          {% if form.phone %}value="{{ form.phone }}"{% endif %}
+                          autocomplete="phone"
+                        {%- endcapture -%}
+                        {% assign id_to_use = 'edit-address-phone--' | append: customer.default_address.id %}
+                        {%- render 'form-input',
+                          label: 'customer.addresses.phone',
+                          type: 'tel',
+                          input_attributes: input_attributes,
+                          mod_id: id_to_use -%}
+                        {%- assign input_attributes = nil -%}
+                        {%- assign id_to_use = nil -%}
+                      </div>
+                      <div>
+                        <div class="checkbox-container">
+                          <label for="address_default_address_{{ form.id }}">
+                            {{ form.set_as_default_checkbox }}
+                            <span class="checkmark"></span>
+                            <span class="text">{{ 'customer.addresses.set_default' | t }}</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="new-address-form-buttons">
+                        <button class="button inverted js-close-slideout" type="reset">{{ 'customer.addresses.cancel' | t }}</button>
+                        <button class="button">{{ 'customer.addresses.update' | t }}</button>
+                      </div>
+                    </div>
+                  </div>
+                {%- endform -%}
+              </div>
+            {%- endcapture -%}
+            {%- capture edit_address_id -%}edit-address-{{ customer.default_address.id }}{%- endcapture -%}
+            {%- render "slideout",
+              title: edit_address_title,
+              slideout_id: edit_address_id,
+              content: edit_address_content
+            -%}
+          </div>
+          {%- for address in customer.addresses -%}
+            {% unless address == customer.default_address %}
+            {%- assign visible_count = visible_count | plus: 2 -%}
+              <div class="customer-addresses__address" data-address>
+                <div class="customer-addresses__address-main">
+                  {%- if address == customer.default_address -%}
+                    <p class="customer-addresses__address-default s1">{{ 'customer.addresses.default' | t }}</p>
+                  {%- endif -%}
+                  <address class="b1 color-dark-gray">
+                    {{ address | format_address }}
+                    {%- if address.phone -%}
+                      <tel>{{ address.phone }}</tel>
+                    {%- endif -%}
+                  </address>
+                </div>
+                <div class="customer-addresses__address-actions">
+                  <button
+                    type="button"
+                    class="button inverted js-open-slideout"
+                    id="EditFormButton_{{ address.id }}"
+                    aria-label="{{ 'customer.addresses.edit_address' | t }} {{ forloop.index }}"
+                    aria-controls="EditAddress_{{ address.id }}"
+                    aria-expanded="false"
+                    data-target="edit-address-{{ address.id }}"
+                  >
+                    {{ 'customer.addresses.edit' | t }}
+                  </button>
+                  <button type="button" class="button inverted js-open-slideout" data-target="address-delete-{{ address.id }}">
+                    {{ 'customer.addresses.delete' | t }}
+                  </button>
+                </div>
+
+                {%- capture delete_address_form -%}
+                  <form
+                    class="address-delete-form"
+                    method="post"
+                    action="/account/addresses/{{ address.id }}"
+                  >
+                    <input type="hidden" name="_method" value="delete">
+                    <p class="text-center color-dark-gray">Are you sure you want to delete this address?</p>
+                    <div class="address-delete-form-buttons">
+                      <button class="button fluid" type="submit">{{ 'customer.addresses.delete' | t }}</button>
+                      <button class="button fluid inverted js-close-slideout" type="button">{{ 'customer.addresses.cancel' | t }}</button>
+                    </div>
+                  </form>
+                {%- endcapture -%}
+                {%- capture delete_address_modal_title -%}
+                  {{ 'customer.addresses.delete' | t }} Address
+                {%- endcapture -%}
+                {%- capture delete_slideout_id -%}address-delete-{{ address.id }}{%- endcapture -%}
+                {% render "slideout", type: 'modal', title: delete_address_modal_title, slideout_id: delete_slideout_id, content: delete_address_form %}
+
+                {%- capture edit_address_title -%}{{ 'customer.addresses.edit' | t }}{%- endcapture -%}
+                {%- capture edit_address_content -%}
+                  <div id="EditAddress_{{ address.id }}">
+                    {%- form 'customer_address', address -%}
+                      <div class="container no-padding">
+                        <div class="grid address-form-grid">
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[first_name]"
+                              id="AddressFirstName_{{ form.id }}"
+                              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+                              autocomplete="given-name"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-first-name--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.first_name',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[last_name]"
+                              id="AddressLastName_{{ form.id }}"
+                              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+                              autocomplete="family-name"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-last-name--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.last_name',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[company]"
+                              id="AddressCompany_{{ form.id }}"
+                              {% if form.company %}value="{{ form.company }}"{% endif %}
+                              autocomplete="organization"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-company' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.company',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[address1]"
+                              id="AddressAddress1_{{ form.id }}"
+                              {% if form.address1 %}value="{{ form.address1 }}"{% endif %}
+                              autocomplete="address-line1"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-address1--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.address1',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[address2]"
+                              id="AddressAddress2_{{ form.id }}"
+                              {% if form.address2 %}value="{{ form.address2 }}"{% endif %}
+                              autocomplete="address-line2"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-address2--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.address2',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[city]"
+                              id="AddressCity_{{ form.id }}"
+                              {% if form.city %}value="{{ form.city }}"{% endif %}
+                              autocomplete="address-level2"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-city--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.city',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            <div class="select">
+                              <label for="AddressCountry_{{ form.id }}">
+                                {{ 'customer.addresses.country' | t }}
+                              </label>
+                              <select id="AddressCountry_{{ form.id }}" name="address[country]" data-address-country-select data-default="{{ form.country }}" data-form-id="{{ form.id }}" autocomplete="country">{{ all_country_option_tags }}</select>
+                              <span class="select__icon">
+                                {% render 'icon-arrow' %}
+                              </span>
+                            </div>
+                          </div>
+                          <div id="AddressProvinceContainer_{{ form.id }}" style="display:none;">
+                            <div class="select">
+                              <label for="AddressProvince_{{ form.id }}">
+                                {{ 'customer.addresses.province' | t }}
+                              </label>
+                              <select id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+                              <span class="select__icon">
+                                {% render 'icon-arrow' %}
+                              </span>
+                            </div>
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="text"
+                              name="address[zip]"
+                              id="AddressZip_{{ form.id }}"
+                              {% if form.zip %}value="{{ form.zip }}"{% endif %}
+                              autocomplete="zip"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-zip--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.zip',
+                              type: 'text',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            {%- capture input_attributes -%}
+                              type="tel"
+                              name="address[phone]"
+                              id="AddressPhone_{{ form.id }}"
+                              {% if form.phone %}value="{{ form.phone }}"{% endif %}
+                              autocomplete="phone"
+                            {%- endcapture -%}
+                            {% assign id_to_use = 'edit-address-phone--' | append: address.id %}
+                            {%- render 'form-input',
+                              label: 'customer.addresses.phone',
+                              type: 'tel',
+                              input_attributes: input_attributes,
+                              mod_id: id_to_use -%}
+                            {%- assign input_attributes = nil -%}
+                            {%- assign id_to_use = nil -%}
+                          </div>
+                          <div>
+                            <div class="checkbox-container">
+                              <label for="address_default_address_{{ form.id }}">
+                                {{ form.set_as_default_checkbox }}
+                                <span class="checkmark"></span>
+                                <span class="text">{{ 'customer.addresses.set_default' | t }}</span>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="new-address-form-buttons">
+                            <button class="button inverted js-close-slideout" type="reset">{{ 'customer.addresses.cancel' | t }}</button>
+                            <button class="button">{{ 'customer.addresses.update' | t }}</button>
+                          </div>
+                        </div>
+                      </div>
+                    {%- endform -%}
+                  </div>
+                {%- endcapture -%}
+                {%- capture edit_address_id -%}edit-address-{{ address.id }}{%- endcapture -%}
+                {%- render "slideout",
+                  title: edit_address_title,
+                  slideout_id: edit_address_id,
+                  content: edit_address_content
+                -%}
+              </div>
+            {% endunless %}
+          {%- endfor -%}
+          {%- if paginate.pages > 1 -%}
+            <div class="customer-account-footer">
+              <p class="body color-dark-gray">Showing {{ visible_count }} of {{ paginate.items }} addresses</p>
+              {%- if paginate.next -%}
+                <div>
+                  <a class="button" href="{{ paginate.next.url }}">
+                    Show More
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%%}
+        </div>
+      {%- endpaginate -%}
+    </div>
+    {%- else -%}
+    <p class="no-address-message">No saved addresses</p>
+  {%- endif -%}
+  <button type="button" class="button js-open-slideout add-new-address" data-target="add-new-address">Add New Address</button>
+{%- endcapture -%}
+
+{% render 'account-content', mod_title: mod_title, mod_content: mod_content %}
+
+<script>
+  window.onload = () => {
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses()
+  }
+</script>

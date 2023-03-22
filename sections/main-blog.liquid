@@ -1,0 +1,135 @@
+{%- liquid
+    render 'async-stylesheet', mod_url: 'blog-index.css'
+  -%}
+
+{% assign all_articles_count = blogs.news.articles.size %}
+
+{% assign makeup_article_count = 0 %}
+
+{% for article in blogs.news.articles %}
+    {% if article.tags contains "Makeup" %}
+        {% assign makeup_article_count = makeup_article_count | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+{% assign skincare_article_count = 0 %}
+
+{% for article in blogs.news.articles %}
+    {% if article.tags contains "Skincare" %}
+        {% assign skincare_article_count = skincare_article_count | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+{% assign path = request.path | split: '/' | last %}
+
+
+{%- paginate blog.articles by 1 -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+
+    <div class="blog-banner" style="background-color: {{ section.settings.blog_banner_bg_color }}">
+        <div class="blog-banner__content">
+            <div class="blog-banner__content-container ">
+                <div class="container">
+                    <div class="half">
+                        <h1 class="h2 color-off-black no-margin blog-banner__title">{{ section.settings.blog_banner_headline }}</h1>
+                        {{ section.settings.blog_banner_caption }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-banner__image">
+            {%- render 'adaptive-image',
+            mod_image: section.settings.blog_banner_image,
+            mod_alt: section.settings.blog_banner_headline,
+            mod_loading: 'eager'
+            -%}
+        </div>
+    </div>
+
+
+
+    <div class="blog-nav">
+        <div class="blog-nav__inner">
+            <ul class="list-unstyled flex container">
+
+              <li><a class="color-off-black {% if path == 'news' %}active {% endif %}" href="/blogs/news"> All ({{ all_articles_count }})</a></li>
+
+              {% for tag in blog.all_tags %}
+                  {% assign lowercaseTag = tag | downcase %}
+                  <li>
+                    <a class="{% if path == lowercaseTag %}active {% endif %}" href="{{ blog.url }}/tagged/{{ tag | handle }}">
+                      {{ tag }}
+
+                      {% if tag == "Makeup" %}
+                        ({{ makeup_article_count }})
+                        {% elsif tag == "Skincare" %}
+                        ({{ skincare_article_count }})
+                      {% endif %}
+                      </a>
+                  </li>
+              {% endfor %}
+            </ul>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="blog-articles container">
+        <div class="row">
+        {%- for article in blog.articles -%}
+            <div class="article">
+                {% render 'article-card', article: article %}
+            </div>
+        {%- endfor -%}
+
+        {%- for article in blog.articles -%}
+            <div class="article">
+                {% render 'article-card', article: article %}
+            </div>
+        {%- endfor -%}
+        </div>
+    </div>
+
+    <div class="pagination-container container">
+
+      {%- if paginate.pages > 1 -%}
+        {%- render 'blog-pagination', paginate: paginate -%}
+      {%- endif -%}
+
+    </div>
+  </div>
+{%- endpaginate -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Blog Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "blog_banner_image",
+      "label": "Blog Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "blog_banner_headline",
+      "label": "Blog Banner Headline"
+    },
+    {
+      "type": "richtext",
+      "id": "blog_banner_caption",
+      "label": "Blog Banner Caption"
+    },
+    {
+      "type": "color",
+      "id": "blog_banner_bg_color",
+      "label": "Blog Banner BG Color"
+    }
+  ]
+}
+{% endschema %}

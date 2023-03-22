@@ -1,0 +1,297 @@
+{% comment %}
+
+Megamenu component
+
+This allows for shared markup and functionality but
+infinite customizable megamenus (including mobile megamenus eg face).
+
+
+Initial structure is:
+
+- New Arrivals
+- Bestsellers
+- Makeup
+- Skin & body
+- Atelier Mercier
+
+
+Notes:
+
+- Configuration is handled on each section. Blocks should be
+configured to only allow specific types and max_blocks should be set.
+EG:
+- New Arrivals:
+   6 max blocks
+   link_with_image_col * 4
+   feature * 1
+   Menus and small feature block config removed
+
+- Remove any block types that aren't necessary for that specific megamenu
+design
+- See below for full configuration settings that should be reused and
+adjusted on each megamenu
+
+
+{% endcomment %}
+<div class="fluid flex megamenu-container" aria-hidden="true">
+  <div class="s-none megamenu__open-mobile-menu flex-direction-column">
+    <button type="button" role="button" class="js-open-mobile-menu no-styles color-off-black extra-light">
+      {%- render 'icon-arrow', direction: 'left' -%} <span class="n1">{{ section.settings.menu_title }}</span>
+    </button>
+  </div>
+  {% for block in section.blocks %}
+    {% if forloop.first %}
+      <ul class="megamenu__link-with-images--wrapper">
+    {% endif %}
+      {% case block.type %}
+        {% when 'link_with_image_col' %}
+          <li class="megamenu__link-with-images" {{ block.shopify_attributes }} tabindex='0'>
+              <a class="m-flex n1 megamenu__link-with-images__link align-center" href="{{ block.settings.link_url }}">
+                {% render 'adaptive-image', mod_image: block.settings.link_thumbnail, mod_alt: block.settings.link_thumbnail.alt, tab_index: -1 %}
+
+                {{ block.settings.link_text }}
+              </a>
+              <a class="m-none n2 extra-light megamenu__link-with-images__link flex align-center" href="{{ block.settings.link_url }}">
+                {% render 'adaptive-image', mod_image: block.settings.link_thumbnail, mod_alt: block.settings.link_thumbnail.alt %}
+                {{ block.settings.link_text }}
+              </a>
+          </li>
+      {% endcase %}
+    {% if forloop.last %}
+        {% if section.settings.cta_url != blank %}
+          {% if section.settings.cta_url contains "#cordial-popup--" %}
+            {% assign mod_class = section.settings.cta_url | replace: "#", "" %}
+          {% endif %}
+          <a href="{{ section.settings.cta_url }}" class="megamenu__link-with-images__button button--text-underline{% if mod_class %} {{mod_class}}{% endif %}">{{ section.settings.cta_text }}</a>
+        {% endif %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+  <div class="megamenu__flex-container flex align-stretch flex-direction-column">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'menu_col' %}
+          {% assign position = forloop.index0 %}
+          <div class="megamenu__block megamenu__menu" {{ block.shopify_attributes }}>
+            <ul class="list-unstyled megamenu__menu-first-level-ul">
+              {%- for link in block.settings.navigation_menu.links -%}
+                {% if link contains "#cordial-popup--" %}
+                  {% assign mod_class = link | replace: "#", "" %}
+                {% endif %}
+                <li class="megamenu__menu-first-level-li" tabindex="0">
+                  <a
+                    tabindex="0"
+                    class="{% if link.links.size > 0 %}megamenu__menu-n4 n4 color-dark-gray{% elsif link.title contains '__' %}button--text-underline{% else %}megamenu__menu-n3 n3{% endif %}{% if mod_class %} {{mod_class}}{% endif %}"
+                    href="{{ link.url }}">
+                      {{ link.title | replace: '__', '' }}
+
+                  </a>
+                  <div class="flex flex-direction-column">
+                    <div class="flex megamenu__menu-col__image">
+
+                    {%-liquid
+                      if position == 0 and section.settings.menu_1_image != blank
+                        render 'adaptive-image', mod_image: section.settings.menu_1_image, mod_alt: section.settings.menu_1_image.alt
+                      endif
+                      if position == 1 and section.settings.menu_2_image != blank
+                        render 'adaptive-image', mod_image: section.settings.menu_2_image, mod_alt: section.settings.menu_2_image.alt
+                      endif
+                      if position == 2 and section.settings.menu_3_image != blank
+                        render 'adaptive-image', mod_image: section.settings.menu_3_image, mod_alt: section.settings.menu_3_image.alt
+                      endif
+                      -%}
+                    </div>
+                    {% if link.links.size > 0 %}
+                      <ul class="menu megamenu__menu-col--dropdown-child-menu list-unstyled">
+                        {% for child_link in link.links %}
+                          <li class="flex flex-direction-column">
+                            {%- assign linkTitle = child_link.title | downcase -%}
+                            <a class="{% if child_link.links.size > 0 %}n4 color-dark-gray inline-block megamenu__menu-col--has-grandchild{% else %}flex align-center n3{% endif %}" href="{{ child_link.url }}">
+                              {%- if linkTitle contains 'virtual try on' -%}
+                                {%- render "icon-try-on" -%}
+                              {%- endif -%}
+                              {{ child_link.title }}
+                            </a>
+                            {% if child_link.links.size > 0 %}
+                            <ul class="menu list-unstyled dropdown-grand-child">
+                              {% for grand_child_link in child_link.links %}
+                                <li class="flex"><a class="n3" href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a></li>
+                              {% endfor %}
+                            </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+      {% endcase %}
+      {% case block.type %}
+        {% when 'feature_col' %}
+          <div class="megamenu__block megamenu__feature" {{ block.shopify_attributes }} tabindex="0">
+            {% if block.settings.feature_link != blank %}
+              <a href="{{ block.settings.feature_link }}">
+            {% endif %}
+            <div class="megamenu__feature-background background-color-pale-pink" {% if block.settings.feature_image != blank %}style="background-image: url('{{ block.settings.feature_image | image_url }}');"{% endif %}></div>
+            <div class="megamenu__feature-content flex flex-direction-column justify-end">
+              {% if block.settings.feature_title != blank %}
+                <div class="megamenu__feature-title n3 bold color-off-white">{{ block.settings.feature_title }}</div>
+              {% endif %}
+              {% if block.settings.feature_text != blank %}
+                <div class="megamenu__feature-text n3 color-off-white">{{ block.settings.feature_text }}</div>
+              {% endif %}
+            </div>
+            {% if block.settings.feature_link != blank %}
+              </a>
+            {% endif %}
+          </div>
+      {% endcase %}
+      {% case block.type %}
+        {% when 'small_feature_col' %}
+          <div class="megamenu__block megamenu__small-feature" {{ block.shopify_attributes }}>
+            {% if block.settings.feature_link != blank %}<a href="{{ block.settings.feature_link }}" class="megamenu__small-feature-thumb-link">{% endif %}
+            <div class="megamenu__feature-thumb">
+              {% render 'adaptive-image', mod_image: block.settings.feature_image, mod_alt: block.settings.feature_image.alt %}
+            </div>
+            <div class="megamenu__small-feature-content">
+              {% if block.settings.feature_title != blank %}
+                <div class="megamenu__small-feature-title n3 bold">{{ block.settings.feature_title }}</div>
+              {% endif %}
+              {% if block.settings.feature_text != blank %}
+                <div class="megamenu__small-feature-text n3">{{ block.settings.feature_text }}</div>
+              {% endif %}
+            </div>
+            {% if block.settings.feature_link != blank %}</a>{% endif %}
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% comment %}
+
+{
+  "name": "Megamenu - Label",
+  "tag": "section",
+  "class": "megamenu__class-label",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "default": "Menu Title",
+      "label": "Menu Title"
+    },
+    {
+      "type": "text",
+      "id": "identifier",
+      "default": "megamenu-n*",
+      "label": "Identifier"
+    }
+    ...any other megamenu specific config
+  ],
+  "blocks": [
+    {
+      "type": "link_with_image_col",
+      "name": "Link With Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "link_thumbnail",
+          "label": "Link Thumbnail"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "feature_col",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "small_feature_col",
+      "name": "Small Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "menu_col",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "navigation_menu",
+          "label": "Select Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": n*,
+  "presets": [
+    {
+      "name": "Presets name",
+      "blocks": [
+        {
+          "type": "link_with_image_col",
+          "type": "feature_col",
+          "type": "small_feature_col",
+          "type": "menu_col"
+        }
+      ]
+    }
+  ]
+}
+
+{% endcomment %}

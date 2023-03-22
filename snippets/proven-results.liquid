@@ -1,0 +1,76 @@
+<script src="{{ 'component-simple-slider.js' | asset_url }}" defer="defer" type="module"></script>
+{% render 'async-stylesheet', mod_url: 'section-proven-results.css' %}
+
+<section class="proven-results background-color-pale-pink">
+
+    <div class="proven-results__container container">
+        <simple-slider loop="true">
+
+            {% if product.metafields.proven_result.proven_result_section_title != blank %}
+                <div class="proven-results__title-container">
+                    <h2 class="proven-results__section-title subheading letter-spacing sans color-off-black uppercase">{{ product.metafields.proven_result.proven_result_section_title }}</h2>
+                    {% render 'simple-carousel-controls', mod_class: 'm-none' %}
+                </div>
+            {% endif %}
+
+            <div class="proven-results__grid hide-scrollbars" data-slider-items>
+
+                <div class="proven-results__content-block col-1" data-slider-item>
+                    <div class="proven-results__image-content ">
+                        {% for result_image in product.metafields.proven_result.image_1 %}
+                            <img src="{{ result_image.src }}" alt="{{ result_image.alt }}" loading="lazy" width="auto" height="auto">
+                        {% endfor %}
+                    </div>
+                    <div class="proven-results__text-content ">
+                        <div class="proven-results__copy">
+                            <h3 class="proven-results__title color-off-black">{{ product.metafields.proven_result.title_1 }}</h3>
+                            <p class="proven-results__caption color-dark-gray">{{ product.metafields.proven_result["description 1"] }}</p>
+                        </div>
+                        <p class="h1 proven-results__percent color-off-black">{{ product.metafields.proven_result.statistic_1 }}</p>
+                    </div>
+                </div>
+
+
+                <div class="proven-results__content-block  proven-results__inverse-grid col-3" data-slider-item>
+                    <div class="proven-results__image-content">
+                        {% for result_image in product.metafields.proven_result.image_2 %}
+                            <img src="{{ result_image.src }}" alt="{{ result_image.alt }}" loading="lazy" width="auto" height="auto">
+                        {% endfor %}
+                    </div>
+                    <div class="proven-results__text-content">
+                        <div class="proven-results__copy">
+                            <h3 class="proven-results__title color-off-black">{{ product.metafields.proven_result.title_2 }}</h3>
+                            <p class="proven-results__caption color-dark-gray">{{ product.metafields.proven_result.description_2 }}</p>
+                        </div>
+                        <p class="h1 proven-results__percent color-off-black">{{ product.metafields.proven_result.statistic_2 }}</p>
+                    </div>
+                </div>
+
+
+                <div class="proven-results__content-block col-2" data-slider-item>
+                    <div class="proven-results__image-content tall">
+                        {% for result_image in product.metafields.proven_result.image_3 %}
+                            <img src="{{ result_image.src }}" alt="{{ result_image.alt }}" loading="lazy" width="auto" height="auto">
+                        {% endfor %}
+                    </div>
+                    <div class="proven-results__text-content">
+                        <div class="proven-results__copy">
+                            <h3 class="proven-results__title color-off-black">{{ product.metafields.proven_result.title_3 }}</h3>
+                            <p class="proven-results__caption color-dark-gray">{{ product.metafields.proven_result.description_3 }}</p>
+                        </div>
+                        <p class="h1 proven-results__percent color-off-black">{{ product.metafields.proven_result.statistic_3 }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </simple-slider>
+
+    </div>
+
+
+    {% if product.metafields.proven_result.proven_result_section_note != blank %}
+    <div class="proven-results__footer-note-container">
+        <p class="proven-results__footer-note color-off-black no-margin b3">{{ product.metafields.proven_result.proven_result_section_note }}</p>
+    </div>
+    {% endif %}
+</section>

@@ -1,0 +1,81 @@
+{%- capture klevuQuickSearchBase -%}
+<div class="grid klevu-isr">
+  <% if ((data.popularSearches || []).length) { %>
+    <div class="klevu-isr__popular-searches background-color-pale-pink">
+      <div class="klevu-instant-search__form-container fluid">
+        <h5 class="uppercase klevu-instant-search__label s1 no-margin"><%=helper.translate("Popular Searches")%></h5>
+        <div class="grid kuPopularSearchTerms">
+          <% helper.each(data.popularSearches,function(key,term){ %>
+            <% if(term && term.length) { %>
+              <span class="kuPopularSearchTerm" data-value="<%= term %>">
+                <button class="no-underline b2 color-off-black" type="button" onclick="javascript:void(0);"><%= term %></button>
+              </span>
+            <% }; %>
+          <% }); %>
+          </div>
+      </div>
+    </div>
+  <% } %>
+
+  <% if (data.suggestions.autosuggestion && data.suggestions.autosuggestion.length > 0) { %>
+    <div class="klevu-isr__popular-searches background-color-pale-pink">
+      <div class="klevu-instant-search__form-container fluid">
+        <h5 class="uppercase klevu-instant-search__label s1 no-margin"><%=helper.translate("Suggestions")%></h5>
+        <div class="grid kuPopularSearchTerms">
+          <% var queryParam = klevu.getSetting(klevu, "settings.url.queryParam"); %>
+          <% helper.each(data.suggestions.autosuggestion && data.suggestions.autosuggestion.length > 0 && data.suggestions.autosuggestion, function(key,suggestion){ %>
+            <span>
+              <a target="_self"
+                href="<%=helper.buildUrl(data.settings.landingUrl, queryParam , helper.stripHtml(suggestion.suggest))%>"
+                data-content="<%=helper.stripHtml(suggestion.suggest) %>"
+                class="no-underline b2 klevu-track-click"
+              >
+                <%= suggestion.suggest %>
+              </a>
+            </span>
+          <% }); %>
+          </div>
+      </div>
+    </div>
+  <% } %>
+
+  <% if (((data.query.productList || data.query.trendingProductList).result || []).length > 0) { %>
+  <div class="background-color-off-white">
+    <simple-slider class='klevu-isr__reccs container'>
+      <div class='flex klevu-isr__reccs-header align-center'>
+        <p class='b2 no-margin color-dark-gray'><%= data.query.productList ? {{ 'general.search.search_suggesions' | t | json }} : data.modules.trendingProducts.title %></p>
+        {% render 'simple-carousel-controls', mod_class: 'klevu-isr__reccs-controls m-none' %}
+      </div>
+      <div class='flex klevu-isr__reccs-items hide-scrollbars' data-slider-items>
+        <% helper.each((data.query.productList || data.query.trendingProductList).result.slice(0, 4),function(key,product){ %>
+          <div class='grid klevu-isr__reccs-item' data-slider-item>
+            <product-card
+              class="product-card"
+              id="<%= (key + 1) %>"
+              hydrate
+              data-id="<%=product.id%>"
+              product-handle="<%= helper.getProductHandle(product) %>"
+              data-product-href="<%= product.url %>"
+              data-product-image-primary="<%= product.image %>"
+              data-product-image-secondary="<%= product.imageHover %>"
+              data-product-title="<%= product.name %>"
+              data-product-description="<%= product.shortDesc %>"
+              data-product-price="<%= product.startPrice %>"
+            ></product-card>
+          </div>
+        <% }); %>
+      </div>
+    </simple-slider>
+  </div>
+  <% } else { %>
+    <div class="klevu-isr__no-results text-center">
+      <div class="klevu-instant-search__form-container fluid">
+        <p class="klevu-instant-search__label no-margin"><%= data.noResultsFoundMsg %></p>
+      </div>
+    </div>
+  <% } %>
+</div>
+{%- endcapture -%}
+<script type="template/klevu" id="hh_klevuTemplateBase">
+  {{ klevuQuickSearchBase }}
+</script>

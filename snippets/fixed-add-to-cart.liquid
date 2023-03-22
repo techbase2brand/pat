@@ -1,0 +1,107 @@
+<script src="{{ 'component-fixed-add-to-cart.js' | asset_url }}" type="module" defer="defer"></script>
+{% render 'async-stylesheet', mod_url: 'component-fixed-add-to-cart.css' %}
+
+{% assign color_value = product.selected_or_first_available_variant.title | handle | default: blank %}
+{% assign does_product_have_color_variant = does_product_have_color_variant | default: false %}
+
+
+<fixed-atc class="background-color-pink">
+  <div class="fixed-add-to-cart__container background-color-pink">
+    <div class="container">
+      <div class="grid align-center">
+        <div class="fixed-add-to-cart__current-variant flex align-center">
+          <div class="current-variant__image">
+            {%- liquid
+              assign mod_sizes = '(max-width: 767px) 100vw, 50vw'
+              assign image = product.selected_or_first_available_variant.featured_media
+              if product.has_only_default_variant
+                assign image = product.featured_media
+              endif
+            -%}
+            {% render 'adaptive-image', mod_image: image, mod_alt: product.title, mod_loading: 'eager', mod_sizes: mod_sizes %}
+          </div>
+          <div class="current-variant__text-container">
+            <h2 class="sans b1--medium color-off-black no-margin current-variant__product-title">{{ product.title }}</h2>
+            <div class="current-variant__selector flex {% if does_product_have_color_variant %}pull-left{% endif %}">
+              {% if does_product_have_color_variant %}
+                <span class="current-shade">
+                  {%- render 'form-shade-selector', is_element_span: true, color: color_value, disabled: isVariantDisabled, size: "sm", variant: product.selected_or_first_available_variant -%}
+                </span>
+              {% endif %}
+
+              {% if product.selected_or_first_available_variant.title != 'Default Title' %}
+                <div class="current-variant__title color-dark-gray">
+                  {{ product.selected_or_first_available_variant.title }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-add-to-cart__button-container">
+          <div class="atc-container button__wrapper">
+            {% liquid
+              assign atc_url_cta = product.metafields.waitlist.cta_url_id
+            %}
+            {% if product.metafields.waitlist.enable_waitlist and product.metafields.waitlist.waitlist_visibility == 'Display Always' %}
+              <div class='atc-container mobile-sticky'>
+                <div class='sticky-container '>
+                  <div class='sticky-inner'>
+                    {% render 'button',
+                      mod_type: 'link',
+                      mod_href: atc_url_cta,
+                      mod_value_t: 'products.product.coming_soon',
+                      mod_class: 'fluid',
+                      mod_id: 'coming_soon',
+                      mod_disabled: false
+                    %}
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              {% liquid
+                assign mod_disabled = false
+                assign atc_text = 'products.product.add_to_bag'
+                if product.selected_or_first_available_variant.available == false
+                  assign mod_disabled = true
+                  assign atc_text = 'products.product.out_of_stock'
+                endif
+              %}
+              {% if product.metafields.waitlist.enable_waitlist and product.metafields.waitlist.waitlist_visibility == 'Display When OOS' %}
+                {% if product.selected_or_first_available_variant.available == false %}
+                  {% render 'button',
+                    mod_type: 'link',
+                    mod_href: atc_url_cta
+                    mod_value_t: 'products.product.get_notified',
+                    mod_class: 'fluid',
+                    mod_id: 'stock_notification',
+                    mod_disabled: false
+                  %}
+                {% else %}
+                  {% render 'button',
+                    mod_type: 'link',
+                    mod_href: atc_url_cta
+                    mod_value_t: 'products.product.get_notified',
+                    mod_class: 'fluid hidden',
+                    mod_id: 'stock_notification',
+                    mod_disabled: false
+                  %}
+                {% endif %}
+              {% endif %}
+              {% render 'button',
+                mod_type: 'submit',
+                mod_value_t: atc_text,
+                mod_class: 'fluid',
+                mod_children: 'atc-separator',
+                mod_id: 'add_to_cart',
+                mod_icon: 'icon-plus',
+                mod_loadable: true,
+                mod_disabled: mod_disabled
+              %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</fixed-atc>

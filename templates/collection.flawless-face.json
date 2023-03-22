@@ -1,0 +1,341 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "3a7706c1-dd9f-46f3-83f4-c652a1b1db61": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16684428886255__3a7706c1-dd9f-46f3-83f4-c652a1b1db61-1666267523088a46cf-0": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Prime.jpg",
+            "variant_override": "",
+            "heading": "Prime",
+            "eyebrow": "01",
+            "description": "Prep your skin with a smooth, even canvas for makeup application.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/primers"
+          }
+        },
+        "b8491ecb-b29f-442c-a7a1-6bb072ee8f1d": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Foundation.jpg",
+            "variant_override": "",
+            "heading": "Even Skintone",
+            "eyebrow": "02",
+            "description": "Elevate your natural complexion with a flawless foundation.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/foundation"
+          }
+        },
+        "f9d58cd4-d9d6-4ce1-b912-a01e4f968ca7": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Conceal.jpg",
+            "variant_override": "",
+            "heading": "Conceal",
+            "eyebrow": "03",
+            "description": "Customize your coverage, conceal discoloration and camouflage imperfections.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/concealer"
+          }
+        },
+        "b0a97a20-fc82-4ca4-bae2-2b7a4fbfc7eb": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Set.jpg",
+            "variant_override": "",
+            "heading": "Set",
+            "eyebrow": "04",
+            "description": "Perfect your look and prolong makeup wear with Laura’s bestselling setting products.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/setting-products"
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428886255__3a7706c1-dd9f-46f3-83f4-c652a1b1db61-1666267523088a46cf-0",
+        "b8491ecb-b29f-442c-a7a1-6bb072ee8f1d",
+        "f9d58cd4-d9d6-4ce1-b912-a01e4f968ca7",
+        "b0a97a20-fc82-4ca4-bae2-2b7a4fbfc7eb"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "section_cta_text": "",
+        "section_cta_url": "",
+        "show_horizontal_rule": false
+      }
+    },
+    "935a159d-b7ff-437c-a9de-eed5b1770577": {
+      "type": "section-featured-products-carousel",
+      "blocks": {
+        "template--16684428886255__935a159d-b7ff-437c-a9de-eed5b1770577-1666268079632d1180-0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "pure-canvas-primer-hydrating",
+            "variant_id": ""
+          }
+        },
+        "a4c9eec4-b4df-4013-9f69-5eb1988137e0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "pure-canvas-primer-illuminating",
+            "variant_id": ""
+          }
+        },
+        "92385a09-d6f2-4c7f-a915-e511c605f13e": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "pure-canvas-primer-blurring",
+            "variant_id": ""
+          }
+        },
+        "7bea55d0-07d4-4cc5-9865-910faf2b79ad": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "pure-canvas-primer-protecting-spf-30",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428886255__935a159d-b7ff-437c-a9de-eed5b1770577-1666268079632d1180-0",
+        "a4c9eec4-b4df-4013-9f69-5eb1988137e0",
+        "92385a09-d6f2-4c7f-a915-e511c605f13e",
+        "7bea55d0-07d4-4cc5-9865-910faf2b79ad"
+      ],
+      "settings": {
+        "heading": "Primer"
+      }
+    },
+    "ae6b5433-2499-488b-ae0f-0ea6c2fcd1a0": {
+      "type": "section-featured-products-carousel",
+      "blocks": {
+        "template--16684428886255__ae6b5433-2499-488b-ae0f-0ea6c2fcd1a0-16662682849c16b084-0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "flawless-lumiere-foundation",
+            "variant_id": "43486681727215"
+          }
+        },
+        "fcd18620-f4e7-490f-8fed-a04584043a2f": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "smooth-finish-foundation-powder",
+            "variant_id": ""
+          }
+        },
+        "70ae01a4-47ba-4465-aa0e-805a4939b818": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "flawless-fusion-ultra-longwear-foundation",
+            "variant_id": ""
+          }
+        },
+        "d32b5c17-7b12-4297-a307-a6981bec28b8": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "silk-creme-moisturizing-foundation",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428886255__ae6b5433-2499-488b-ae0f-0ea6c2fcd1a0-16662682849c16b084-0",
+        "fcd18620-f4e7-490f-8fed-a04584043a2f",
+        "70ae01a4-47ba-4465-aa0e-805a4939b818",
+        "d32b5c17-7b12-4297-a307-a6981bec28b8"
+      ],
+      "settings": {
+        "heading": "Foundation"
+      }
+    },
+    "20a747bf-e0a7-4b3b-b13e-b95a431a35ce": {
+      "type": "section-featured-products-carousel",
+      "blocks": {
+        "template--16684428886255__20a747bf-e0a7-4b3b-b13e-b95a431a35ce-16662682849c16b084-0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "secret-camouflage-concealer-duo",
+            "variant_id": ""
+          }
+        },
+        "1065548b-5677-482c-a9fb-9f2ad485b353": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "flawless-fusion-ultra-longwear-concealer",
+            "variant_id": ""
+          }
+        },
+        "764c13f8-84f4-47ca-a703-f04430347b51": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "secret-camouflage",
+            "variant_id": ""
+          }
+        },
+        "2394adcd-2f97-40f6-88a3-a1001efb17fc": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "secret-concealer",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428886255__20a747bf-e0a7-4b3b-b13e-b95a431a35ce-16662682849c16b084-0",
+        "1065548b-5677-482c-a9fb-9f2ad485b353",
+        "764c13f8-84f4-47ca-a703-f04430347b51",
+        "2394adcd-2f97-40f6-88a3-a1001efb17fc"
+      ],
+      "settings": {
+        "heading": "Concealer"
+      }
+    },
+    "371e700d-cba9-4af9-bffa-2399fad4f7df": {
+      "type": "section-featured-products-carousel",
+      "blocks": {
+        "template--16684428886255__371e700d-cba9-4af9-bffa-2399fad4f7df-16662682849c16b084-0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "translucent-loose-setting-powder",
+            "variant_id": ""
+          }
+        },
+        "fa20aaf1-97d3-40e1-b3ba-a4511c1347ee": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "translucent-loose-setting-powder-ultra-blur",
+            "variant_id": ""
+          }
+        },
+        "7bc26c86-6383-491b-843d-6d2f954c2ec0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "translucent-loose-setting-powder-light-catcher",
+            "variant_id": ""
+          }
+        },
+        "fd98d0c1-b6c2-4134-9022-6d738eeed407": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "translucent-loose-setting-powder-tone-up",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428886255__371e700d-cba9-4af9-bffa-2399fad4f7df-16662682849c16b084-0",
+        "fa20aaf1-97d3-40e1-b3ba-a4511c1347ee",
+        "7bc26c86-6383-491b-843d-6d2f954c2ec0",
+        "fd98d0c1-b6c2-4134-9022-6d738eeed407"
+      ],
+      "settings": {
+        "heading": "Setting"
+      }
+    },
+    "a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_7.jpg",
+            "eyebrow": "",
+            "heading": "Foundation",
+            "body": "Create a seamless canvas with the color, coverage and finish of your choice.",
+            "cta_url": "shopify://collections/foundation",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Primers_e1785deb-23df-470a-a2cd-6d41821c6718.jpg",
+            "eyebrow": "",
+            "heading": "Primers",
+            "body": "Prep your Flawless Face with Laura’s first step for an all-day look that lasts.",
+            "cta_url": "shopify://collections/primers",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Concealer_9e79868b-fc5e-4204-b0b0-984b1c981cb9.jpg",
+            "eyebrow": "",
+            "heading": "Concealer",
+            "body": "Erase dark circles and discoloration to give skin a flawless look.",
+            "cta_url": "shopify://collections/concealer",
+            "cta_text": "Shop Now"
+          }
+        },
+        "4b9af6b3-4bf7-4799-bf7d-6371c5e9eedb": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_4_6.jpg",
+            "eyebrow": "",
+            "heading": "Setting Powders and Sprays",
+            "body": "Lock in a look that stays put.",
+            "cta_url": "shopify://collections/setting-products",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-0",
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-1",
+        "template--16665906282735__a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b-166566829077ae01ec-2",
+        "4b9af6b3-4bf7-4799-bf7d-6371c5e9eedb"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "3a7706c1-dd9f-46f3-83f4-c652a1b1db61",
+    "935a159d-b7ff-437c-a9de-eed5b1770577",
+    "ae6b5433-2499-488b-ae0f-0ea6c2fcd1a0",
+    "20a747bf-e0a7-4b3b-b13e-b95a431a35ce",
+    "371e700d-cba9-4af9-bffa-2399fad4f7df",
+    "a7c4d2a7-b2be-4da6-9e58-cbc2e46a649b"
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-sales-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false
+      }
+    },
+    "74f40f25-4156-457b-b1bc-fc145bf0e439": {
+      "type": "section-featured-product-grid",
+      "disabled": true,
+      "blocks": {
+        "template--16729256820975__74f40f25-4156-457b-b1bc-fc145bf0e439-1669829974e8eed42b-0": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-femme-silo-3k_1.png",
+            "variant_override": "43593737011439",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "5c8ab2cf-a535-4fca-95ae-9b2c02f6703b": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-boss-silo-3k_1.png",
+            "variant_override": "43593736847599",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "2fe2e9ef-26cf-4ac2-8feb-137ef413a830": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-bring-it-silo-3k_1.png",
+            "variant_override": "43593736880367",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "44f8e0d6-144c-43b5-bb04-7c360bfecd54": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-charmeuse-silo-3k_1.png",
+            "variant_override": "43593736913135",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "5688eef3-104b-4cdb-a8bb-1a6e5230670a": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-dare-silo-3k_1.png",
+            "variant_override": "43593736978671",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "76a138ac-f354-4b83-872a-ccd39ebd3f5f": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-femme-silo-3k_1_6eebe64b-3a33-47ad-ae2b-8d2cb00976f7.png",
+            "variant_override": "43593737011439",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "1dcfb04f-419a-4a91-b117-0d379680c2af": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-goals-silo-3k_1.png",
+            "variant_override": "43593737044207",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "2ca044a7-fa53-4a9b-8392-34c3ddd12424": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-hot-silo-3k_1.png",
+            "variant_override": "43593737076975",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "4b4119d4-a6c2-410d-a4bd-de7ed58bfc8e": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-it-girl-silo-3k_1.png",
+            "variant_override": "43593737142511",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "bb3cc24a-1f1e-4f6e-afd2-2aadfb0bc6a8": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-jolie-silo-3k_1.png",
+            "variant_override": "43486659510511",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "b587d00c-c0c0-442f-be27-684e6a702a28": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-queen-silo-3k_1.png",
+            "variant_override": "43593737175279",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "04c90012-3240-4d74-a4a7-4ead58af17e3": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-rock-silo-3k_1.png",
+            "variant_override": "43593737208047",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "02e1ac32-5acc-4070-b0a8-7d53390bcab9": {
+          "type": "block",
+          "settings": {
+            "product": "velour-extreme-matte-lipstick",
+            "product_image_override": "shopify://shop_images/velour-extreme-matte-lipstick-velour-extreme-matte-lipstick-stylin-silo-3k_1.png",
+            "variant_override": "43593737240815",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "6a9c4014-8a26-49b3-943c-5c5f1e828577": {
+          "type": "block",
+          "settings": {
+            "product": "translucent-loose-setting-powder-glow",
+            "product_image_override": "shopify://shop_images/LM_FA20_TLSP_Glow_Translucent_3000x3000_R150_1.png",
+            "variant_override": "43486658920687",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "8c97393f-8323-42eb-944f-5e14cb0d58f1": {
+          "type": "block",
+          "settings": {
+            "product": "translucent-loose-setting-powder-glow",
+            "product_image_override": "shopify://shop_images/LM_FA20_TLSP_Glow_MediumDeep_Silo_3000x3000_R150_1.png",
+            "variant_override": "43486658953455",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "fb4d563c-459c-405b-bff2-1e9fa6fef269": {
+          "type": "block",
+          "settings": {
+            "product": "translucent-loose-setting-powder-glow-mini",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "a7c0e57a-6825-4764-8985-2d15c7b04b88": {
+          "type": "block",
+          "settings": {
+            "product": "invisible-loose-setting-powder",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "4fe64605-914a-471e-b1ab-e145a8b089da": {
+          "type": "block",
+          "settings": {
+            "product": "rouge-essentiel",
+            "variant_override": "43486651416815",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "3f4f2e88-3223-4df1-9796-e1b662c1ed36": {
+          "type": "block",
+          "settings": {
+            "product": "silk-creme-oil-free-foundation",
+            "variant_override": "43486654071023",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "b60c15a1-fd94-4807-bbc6-87c5ec440d4b": {
+          "type": "block",
+          "settings": {
+            "product": "lip-glace",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "ad833aa4-3e9c-44b9-8d01-dca43f9c762a": {
+          "type": "block",
+          "settings": {
+            "product": "matte-eye-shadow",
+            "product_image_override": "shopify://shop_images/LM_F15_MEC_DeepNight_3000x3000_R150_2.png",
+            "variant_override": "43486647353583",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "4672ffa4-48bc-4100-bf29-7b3246c4e9df": {
+          "type": "block",
+          "settings": {
+            "product": "caviar-stick-eye-color",
+            "variant_override": "43585669497071",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "dedd2acb-ecff-4aeb-8297-32b04f176670": {
+          "type": "block",
+          "settings": {
+            "product": "caviar-stick-eye-color",
+            "variant_override": "43585669529839",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "57fb63dc-8b68-4a06-abe8-86674fad15cc": {
+          "type": "block",
+          "settings": {
+            "product": "silk-creme-moisturizing-foundation",
+            "product_image_override": "shopify://shop_images/LM_SP19_SCPEF_M_3000x3000_R150.png",
+            "variant_override": "43486653841647",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "ffce73e0-77db-4220-9840-5c8bd75e8f65": {
+          "type": "block",
+          "settings": {
+            "product": "caviar-stick-eye-color",
+            "variant_override": "43486642143471",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "271bcae9-616f-40e2-9dcf-dae5f07ae094": {
+          "type": "block",
+          "settings": {
+            "product": "secret-blurring-powder-for-under-eyes",
+            "product_image_override": "shopify://shop_images/LM_SP19_SBLUR_02_3000x3000_R150_1.png",
+            "variant_override": "43486652072175",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "599ff52b-163b-48ea-8371-a89b5b605029": {
+          "type": "block",
+          "settings": {
+            "product": "secret-camouflage-brush-pull-apart",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "a4ed8ece-b89b-4809-abaf-c6bd75751a6b": {
+          "type": "block",
+          "settings": {
+            "product": "paint-wash-liquid-lip-color",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "0d21fbf4-b0c8-4eed-81e5-1006745e7b85": {
+          "type": "block",
+          "settings": {
+            "product": "lucky-rouge-lipstick",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256820975__74f40f25-4156-457b-b1bc-fc145bf0e439-1669829974e8eed42b-0",
+        "5c8ab2cf-a535-4fca-95ae-9b2c02f6703b",
+        "2fe2e9ef-26cf-4ac2-8feb-137ef413a830",
+        "44f8e0d6-144c-43b5-bb04-7c360bfecd54",
+        "5688eef3-104b-4cdb-a8bb-1a6e5230670a",
+        "76a138ac-f354-4b83-872a-ccd39ebd3f5f",
+        "1dcfb04f-419a-4a91-b117-0d379680c2af",
+        "2ca044a7-fa53-4a9b-8392-34c3ddd12424",
+        "4b4119d4-a6c2-410d-a4bd-de7ed58bfc8e",
+        "bb3cc24a-1f1e-4f6e-afd2-2aadfb0bc6a8",
+        "b587d00c-c0c0-442f-be27-684e6a702a28",
+        "04c90012-3240-4d74-a4a7-4ead58af17e3",
+        "02e1ac32-5acc-4070-b0a8-7d53390bcab9",
+        "6a9c4014-8a26-49b3-943c-5c5f1e828577",
+        "8c97393f-8323-42eb-944f-5e14cb0d58f1",
+        "fb4d563c-459c-405b-bff2-1e9fa6fef269",
+        "a7c0e57a-6825-4764-8985-2d15c7b04b88",
+        "4fe64605-914a-471e-b1ab-e145a8b089da",
+        "3f4f2e88-3223-4df1-9796-e1b662c1ed36",
+        "b60c15a1-fd94-4807-bbc6-87c5ec440d4b",
+        "ad833aa4-3e9c-44b9-8d01-dca43f9c762a",
+        "4672ffa4-48bc-4100-bf29-7b3246c4e9df",
+        "dedd2acb-ecff-4aeb-8297-32b04f176670",
+        "57fb63dc-8b68-4a06-abe8-86674fad15cc",
+        "ffce73e0-77db-4220-9840-5c8bd75e8f65",
+        "271bcae9-616f-40e2-9dcf-dae5f07ae094",
+        "599ff52b-163b-48ea-8371-a89b5b605029",
+        "a4ed8ece-b89b-4809-abaf-c6bd75751a6b",
+        "0d21fbf4-b0c8-4eed-81e5-1006745e7b85"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "section_cta_text": "",
+        "section_cta_url": "",
+        "show_horizontal_rule": true
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "74f40f25-4156-457b-b1bc-fc145bf0e439"
+  ]
+}

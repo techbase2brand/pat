@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "section-store-locator-content",
+      "settings": {
+        "heading": "<p>Find A <em>Store</em></p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

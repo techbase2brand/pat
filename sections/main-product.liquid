@@ -1,0 +1,564 @@
+{%- assign is_quick_view = false -%}
+{%- if template.suffix == 'quick-view' -%}
+  {%- assign is_quick_view = true -%}
+{%- endif -%}
+
+{%- liquid
+  render 'async-stylesheet', mod_url: 'component-findation-button.css'
+  render 'async-stylesheet', mod_url: 'component-virtual-try-on.css'
+  render 'async-stylesheet', mod_url: 'section-main-product.css'
+  render 'async-stylesheet', mod_url: 'component-product-variants.css'
+  render 'async-stylesheet', mod_url: 'component-product-wear-it-with.css'
+%}
+
+
+{{ 'component-product-gallery.css' | asset_url | stylesheet_tag }}
+<script src='{{ 'component-main-product.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-product-gallery.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-product-variants.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-findation-button.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-virtual-try-on.js' | asset_url }}' type='module' defer='defer'></script>
+
+{%- liquid
+  assign show_gallery_as_mobile_only = false
+  assign product_gallery_class = blank
+
+  if product.gift_card?
+    assign product_gallery_class = 'gift-card-gallery'
+  endif
+
+  assign root_url = ''
+  unless localization.language.root_url == '/'
+    assign root_url = localization.language.root_url
+  endunless
+
+  assign product_url = root_url | append: '/products/' | append: product.handle
+
+  if is_quick_view
+    assign show_gallery_as_mobile_only = true
+  endif
+-%}
+
+{%- liquid
+  assign does_product_have_color_variant = false | default: false
+  assign does_product_have_size_variant = false | default: false
+  assign first_variant_val = product.options | first
+  assign variant_type = '' | default: blank
+
+  if product.options.size > 0
+    for option in product.options
+      if option == 'Color' or option == 'Colour'
+        assign does_product_have_color_variant = true
+      endif
+      if option == 'Size'
+        assign does_product_have_size_variant = true
+      endif
+    endfor
+  endif
+
+  if does_product_have_color_variant
+    assign variant_type = 'color'
+  elsif does_product_have_size_variant
+    assign variant_type = 'size'
+  elsif product.options.size == 0 or first_variant_val == 'Title'
+    assign variant_type = 'none'
+  else
+    assign variant_type = 'other'
+  endif
+
+  assign variant_type_attr = 'none'
+  if variant_type == 'color'
+    assign variant_type_attr = 'color-variants'
+  elsif variant_type == 'size'
+    assign variant_type_attr = 'size-variants'
+  elsif variant_type == 'other'
+    assign variant_type_attr = 'general-variants'
+  endif
+  if variant_type_attr != '' and is_quick_view
+    assign variant_type_attr = variant_type_attr | append: '-quick'
+  endif
+-%}
+
+<script>
+  var variantStock{{ product.id }} = {}
+  {% for variant in product.variants %}
+    variantStock{{ product.id }}[{{- variant.id -}}] = {{ variant.inventory_quantity }};
+  {% endfor %}
+  var atcStatusTitle = {
+    outOfStock: "{{ 'products.product.out_of_stock' | t }}",
+    addToBag: "{{ 'products.product.add_to_cart' | t }}"
+  }
+</script>
+
+<main-product order-groove="{{ settings.enable_ordergroove }}" {% if product.metafields.waitlist.enable_waitlist and product.metafields.waitlist.waitlist_visibility == 'Display When OOS' %} stock-notification="true" {% endif %} currency="{{ shop.currency }}" variant-type="{{ variant_type_attr }}" with-history="{%- unless is_quick_view -%}true{%- else -%}false{%- endunless -%}" product-id="{{ product.id }}">
+  <div id="main-product-data-{{ product.id }}" class="hidden">
+    {{- product | json | base64_encode -}}
+  </div>
+  <section class='single-product-page {% unless is_quick_view %} single-product-spacing {% else %} single-product-page--mobile-only {% endunless %}'>
+    <div class='{% unless is_quick_view %} container relative {% endunless %}'>
+      <a
+        id='skip-nav'
+        class='screenreader-text skip-nav background-color-off-black color-off-white'
+        href='#product-details'
+      >
+        {{ 'accessibility.skip_gallery' | t }}
+      </a>
+
+      <div class='single-product-wrapper single-product__details {% unless is_quick_view %} single-product__details--grid {% endunless %}'>
+        {% unless is_quick_view %}
+          <div class='product-media__container relative m-block'>
+            {% render 'product-gallery', variant_type: variant_type, mod_class: product_gallery_class %}
+          </div>
+        {% endunless %}
+
+        <div id='product-details' class='product-details__container'>
+          <div class='product-details__inner'>
+            {% render 'product-badge', product: product %}
+
+            {%- render 'product-title-with-description', is_quick_view: is_quick_view -%}
+
+            {% render 'okendo-reviews-product-rating-summary', product: product, type: 'pdp' %}
+
+            {%- render 'price',
+              product: product,
+              use_variant: true,
+              show_badges: true,
+              price_class: 'price--large',
+              mod_show_discount_description: true
+            -%}
+
+            <div class='product-media__container relative {% unless is_quick_view %}m-none{% endunless %} {% if product.media.size == 1 %} single-item-gallery {% endif %}'>
+              {% render 'product-gallery',
+                variant_type: variant_type,
+                is_quick_view: is_quick_view,
+                show_gallery_as_mobile_only: show_gallery_as_mobile_only
+              %}
+            </div>
+
+            {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
+              {% if variant_type != 'none' %}
+                {% render 'product-variants',
+                  product: product,
+                  swatch_size: 'lg',
+                  variant_type: variant_type,
+                  mod_selector_id: variant_type_attr,
+                  mod_quick_view: is_quick_view
+                %}
+              {% else %}
+                <product-variants></product-variants>
+              {% endif %}
+
+              {%- liquid
+                render 'pdp-additional-actions', mod_variant_type: variant_type, mod_quick_view: is_quick_view
+
+                if settings.enable_ordergroove
+                  render 'ordergroove_offer', product: product.selected_or_first_available_variant, location: 'test'
+                endif
+              -%}
+
+              <input
+                type='hidden'
+                name='id'
+                class='selected-variant js-selected-variant'
+                value='{{ product.selected_or_first_available_variant.id }}'
+              >
+
+              {% if does_product_have_color_variant %}
+                <input
+                  type='hidden'
+                  class='js-selected-variant-hex'
+                  name='properties[hex]'
+                  value='{{ product.selected_or_first_available_variant.metafields.swatch.hex_code }}'
+                >
+              {% endif %}
+                <div class='atc-container mobile-sticky'>
+                  <div class='sticky-container '>
+                    <div class='sticky-inner'>
+                      {% liquid
+                          assign atc_url_cta = product.metafields.waitlist.cta_url_id
+                      %}
+                      {% if product.metafields.waitlist.enable_waitlist and product.metafields.waitlist.waitlist_visibility == 'Display Always' %}
+                        <div class='atc-container mobile-sticky'>
+                          <div class='sticky-container '>
+                            <div class='sticky-inner'>
+                              {% render 'button',
+                                mod_type: 'link',
+                                mod_href: atc_url_cta,
+                                mod_value_t: 'products.product.coming_soon',
+                                mod_class: 'fluid',
+                                mod_id: 'coming_soon',
+                                mod_disabled: false
+                              %}
+                            </div>
+                          </div>
+                        </div>
+                      {% else %}
+                        {% liquid
+                          assign mod_disabled = false
+                          assign atc_text = 'products.product.add_to_bag'
+                          if product.selected_or_first_available_variant.available == false
+                            assign mod_disabled = true
+                            assign atc_text = 'products.product.out_of_stock'
+                          endif
+                        %}
+                        {% if product.metafields.waitlist.enable_waitlist and product.metafields.waitlist.waitlist_visibility == 'Display When OOS' %}
+                          {% if product.selected_or_first_available_variant.available == false %}
+                            {% render 'button',
+                              mod_type: 'link',
+                              mod_href: atc_url_cta
+                              mod_value_t: 'products.product.get_notified',
+                              mod_class: 'fluid',
+                              mod_id: 'stock_notification',
+                              mod_disabled: false
+                            %}
+                          {% else %}
+                            {% render 'button',
+                              mod_type: 'link',
+                              mod_href: atc_url_cta
+                              mod_value_t: 'products.product.get_notified',
+                              mod_class: 'fluid hidden',
+                              mod_id: 'stock_notification',
+                              mod_disabled: false
+                            %}
+                          {% endif %}
+                        {% endif %}
+                        {% render 'button',
+                          mod_type: 'submit',
+                          mod_value_t: atc_text,
+                          mod_class: 'fluid',
+                          mod_children: 'atc-separator',
+                          mod_id: 'add_to_cart',
+                          mod_icon: 'icon-plus',
+                          mod_loadable: true,
+                          mod_disabled: mod_disabled
+                        %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+            {%- endform -%}
+
+            {%- liquid
+              if is_quick_view == false
+                render 'product-accordions', product: product
+                render 'fixed-add-to-cart', does_product_have_color_variant: does_product_have_color_variant
+                render 'product-wear-it-with'
+              endif
+            -%}
+
+            {% if is_quick_view == true %}
+              <div class='view-full-details-link'>
+                {% render 'button',
+                  mod_type: 'link',
+                  mod_href: product_url,
+                  mod_variant: 'text-underline',
+                  mod_value_t: 'slideout.view_full_details'
+                %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%- liquid
+      if product.metafields.proven_result.enable_proven_results and is_quick_view == false
+        render 'proven-results'
+      endif
+
+      if product.metafields.ingredients_usage.enable_ingredients_usage and is_quick_view == false
+        render 'lauras-skin-perfection'
+      endif
+
+      if is_quick_view == false
+        render 'see-the-difference', product: product
+      endif
+    -%}
+  </section>
+</main-product>
+
+{% schema %}
+{
+  "name": "t:sections.main-product.name",
+  "tag": "section",
+  "class": "product-section spaced-section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "t:sections.main-product.blocks.text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Text block",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "quantity_selector",
+      "name": "t:sections.main-product.blocks.quantity_selector.name",
+      "limit": 1
+    },
+    {
+      "type": "variant_picker",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "t:sections.main-product.blocks.description.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-product.blocks.share.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-product.blocks.share.settings.title_info.content"
+        }
+      ]
+    },
+    {
+      "type": "collapsible_tab",
+      "name": "t:sections.main-product.blocks.collapsible_tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Collapsible tab",
+          "info": "t:sections.main-product.blocks.collapsible_tab.settings.heading.info",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__1.label"
+            },
+            {
+              "value": "box",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__2.label"
+            },
+            {
+              "value": "chat_bubble",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__3.label"
+            },
+            {
+              "value": "check_mark",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__4.label"
+            },
+            {
+              "value": "dryer",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__5.label"
+            },
+            {
+              "value": "eye",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__6.label"
+            },
+            {
+              "value": "heart",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__7.label"
+            },
+            {
+              "value": "iron",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__8.label"
+            },
+            {
+              "value": "leaf",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__9.label"
+            },
+            {
+              "value": "leather",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__10.label"
+            },
+            {
+              "value": "lock",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__11.label"
+            },
+            {
+              "value": "map_pin",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__12.label"
+            },
+            {
+              "value": "pants",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__13.label"
+            },
+            {
+              "value": "plane",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__14.label"
+            },
+            {
+              "value": "price_tag",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__15.label"
+            },
+            {
+              "value": "question_mark",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__16.label"
+            },
+            {
+              "value": "return",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__17.label"
+            },
+            {
+              "value": "ruler",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__18.label"
+            },
+            {
+              "value": "shirt",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__19.label"
+            },
+            {
+              "value": "shoe",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__20.label"
+            },
+            {
+              "value": "silhouette",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__21.label"
+            },
+            {
+              "value": "star",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__22.label"
+            },
+            {
+              "value": "truck",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__23.label"
+            },
+            {
+              "value": "washing",
+              "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.options__24.label"
+            }
+          ],
+          "default": "check_mark",
+          "label": "t:sections.main-product.blocks.collapsible_tab.settings.icon.label"
+        }
+      ]
+    },
+    {
+      "type": "popup",
+      "name": "t:sections.main-product.blocks.popup.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_label",
+          "default": "Pop-up link text",
+          "label": "t:sections.main-product.blocks.popup.settings.link_label.label"
+        },
+        {
+          "id": "page",
+          "type": "page",
+          "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-product.settings.header.content",
+      "info": "t:sections.main-product.settings.header.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": true,
+      "label": "Show Vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "default": false,
+      "label": "t:sections.main-product.settings.enable_video_looping.label"
+    }
+  ]
+}
+{% endschema %}

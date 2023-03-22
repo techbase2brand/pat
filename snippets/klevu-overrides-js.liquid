@@ -1,0 +1,212 @@
+<script type="text/javascript">
+  klevu.interactive(function () {
+    var searchBoxSelector = 'input.search-form__input';
+    var searchBoxSelectorDawn = 'input.search__input';
+    if (null !== document.querySelector(searchBoxSelectorDawn)) {
+        searchBoxSelector = searchBoxSelectorDawn;
+    }
+
+    var options = {
+      url : {
+        landing: '{{- shop.url -}}/pages/search-results', // your Shopify Search Results Page
+        search: klevu.settings.url.protocol + '//{{- settings.klevu_api_base -}}' // your Klevu APIv2 Search URL
+      },
+      search: {
+        minChars: 0,
+        searchBoxSelector: searchBoxSelector + ',.kuSearchInput', // your Shopify Search Input,
+        searchBoxTarget: document.querySelector('klevu-instant-search-popup .klevu-results'),
+        apiKey: {{ settings.klevu_api_key | json }} // your Klevu JS API Key
+      },
+      analytics: {
+        apiKey: {{ settings.klevu_api_key | json }} // your Klevu JS API Key
+      }
+    };
+
+    var documentClickPreventSelectors = [];
+    if (document.querySelector('.modal-overlay')) {
+        documentClickPreventSelectors.push('.modal-overlay');
+    }
+    if (document.querySelector('.modal__toggle-open')) {
+        documentClickPreventSelectors.push('.modal__toggle-open');
+    }
+    if (documentClickPreventSelectors.length > 0) {
+        options.search.documentClickPreventSelector = documentClickPreventSelectors.join(',');
+    }
+
+    klevu(options);
+  });
+  // Delay powerUp
+  klevu({
+    powerUp: {
+      quick: false,
+      landing: false
+    },
+    theme: {
+      landing: {
+        loadDefaultStyles: false
+      },
+      quickSearch: {
+        loadDefaultStyles: false
+      },
+      modules: {
+        resultInfiniteScroll: {
+          searchResultsPage: {
+            enable: true
+          }
+        }
+      }
+    },
+
+  });
+
+  klevu.extensions.theme.module.attach("setRemoteConfigLanding", {
+    name: "searchBoxSelectorUpdate",
+    fire: function () {
+      klevu.setSetting(klevu.search.landing.getScope().settings, "settings.search.searchBoxTarget", null)
+    }
+  })
+
+  // Define a new custom event, which will fire after SRLP has initialised
+  klevu.coreEvent.build({
+    name: "setRemoteConfigQuickOverride",
+    fire: function () {
+      if (klevu.getGlobalSetting("flags.setRemoteConfigQuick.build", false)) {
+        return true;
+      }
+      return false;
+    },
+    maxCount: 150,
+    delay: 100
+  });
+
+  const _getProductHandle = (product) => {
+    const url = product.url.split('/');
+    return url[url.length - 1];
+  }
+  // Listen in to our custom event, to make our overrides
+  klevu.coreEvent.attach("setRemoteConfigQuickOverride", {
+      name: "attachRemoteConfigQuickOverride",
+      fire: function () {
+        // Setup Custom Template Helpers
+        klevu.search.quick.getScope().template.setHelper('getProductHandle',_getProductHandle);
+        klevu.search.landing.getScope().template.setHelper('getProductHandle', _getProductHandle);
+
+        klevu.each(klevu.search.extraSearchBox, function (key, box) {
+          box.getScope().template.setTemplate(klevu.dom.helpers.getHTML("#hh_klevuTemplateBase"), "klevuTemplateBase", true);
+        });
+
+        klevu({
+          powerUp: {
+            quick: true,
+            landing: true
+          },
+        });
+      }
+  });
+
+
+   /**
+     * Function to attach event on facet items
+     * @param {*} scope
+     */
+     function attachFacetItemsClickEvent(scope) {
+      var target = klevu.getSetting(scope.settings, "settings.search.searchBoxTarget");
+      klevu.each(klevu.dom.find(".klevuFilterOption", target), function (key, value) {
+          klevu.event.attach(value, "click", function (event) {
+              event = event || window.event;
+              event.preventDefault();
+
+              var parentElem = klevu.dom.helpers.getClosest(this, ".klevuFilter");
+              if (parentElem !== null && (parentElem.dataset.singleselect === 'true') && !this.classList.contains("klevuFilterOptionActive")) {
+                  var listSingleSelect = klevu.dom.find(".klevuFilterOptionActive", parentElem);
+                  klevu.each(listSingleSelect, function (key, value) {
+                      value.classList.remove("klevuFilterOptionActive");
+                  });
+              }
+
+              const itemsToDisable = document.querySelectorAll(`[data-filter="${this.dataset.filter}"][data-value="${this.dataset.value}"]`)
+              console.log(itemsToDisable, this)
+              Array.from(itemsToDisable).forEach((item) => item.classList.toggle("klevuFilterOptionActive"))
+
+              //getScope
+              var target = klevu.dom.helpers.getClosest(this, ".klevuTarget");
+              if (target === null) {
+                  return;
+              }
+
+
+
+              var elScope = target.kElem;
+              elScope.kScope.data = elScope.kObject.resetData(elScope.kElem);
+              elScope.kScope.data.context.keyCode = 0;
+              elScope.kScope.data.context.eventObject = event;
+              elScope.kScope.data.context.event = "keyUp";
+              elScope.kScope.data.context.preventDefault = false;
+
+              //override local variables
+
+              var options = klevu.dom.helpers.getClosest(this, ".klevuMeta");
+              if (options === null) {
+                  return;
+              }
+              //calculate new filters
+              //getAllActiveFilters
+
+              var filterList = [];
+              var listActive = klevu.dom.find(".klevuFilterOptionActive", options);
+              if (listActive.length > 0) {
+                  klevu.each(listActive, function (key, value) {
+                      var filter = klevu.dom.helpers.getClosest(value, ".klevuFilter");
+                      if (filter !== null) {
+                          var objectToChange = filterList.filter(function (element) {
+                              return element.key == filter.dataset.filter;
+                          });
+                          if (objectToChange.length === 0) {
+                              filterList.push({
+                                  key: filter.dataset.filter,
+                                  settings: {
+                                      singleSelect: (klevu.isUndefined(filter.dataset.singleselect) ? false : filter.dataset.singleselect)
+                                  },
+                                  values: [(klevu.isUndefined(value.dataset.value) ? false : value.dataset.value)]
+                              });
+                          } else {
+                              objectToChange[0].values.push((klevu.isUndefined(value.dataset.value) ? false : value.dataset.value));
+                          }
+                      }
+                  });
+              }
+
+              var rangeFilterSettings = klevu.search.modules.kmcInputs.base.getFacetRangeFilterSettings();
+              var existingSelectedFilterList = klevu.getObjectPath(elScope.kScope.data, "localOverrides.query." + options.dataset.section + ".filters.applyFilters.filters");
+              if (rangeFilterSettings && rangeFilterSettings.minMax == "true" && existingSelectedFilterList) {
+                  klevu.each(existingSelectedFilterList, function (key, selectedFilter) {
+                      if (selectedFilter.key == rangeFilterSettings.key) {
+                          filterList.push(selectedFilter);
+                      }
+                  });
+              }
+
+              if (filterList.length) {
+                  klevu.setObjectPath(elScope.kScope.data, "localOverrides.query." + options.dataset.section + ".filters.applyFilters.filters", filterList);
+              } else {
+                  klevu.setObjectPath(elScope.kScope.data, "localOverrides.query." + options.dataset.section + ".filters.applyFilters", {});
+              }
+
+              //reset offset after filter change
+              klevu.setObjectPath(elScope.kScope.data, "localOverrides.query." + options.dataset.section + ".settings.offset", 0);
+              klevu.event.fireChain(elScope.kScope, "chains.events.keyUp", elScope, elScope.kScope.data, event);
+          }, true);
+      });
+  }
+
+  var facets = {
+      attachFacetItemsClickEvent: attachFacetItemsClickEvent
+  };
+
+  klevu.extend(true, klevu.search.modules, {
+      facets: {
+          base: facets,
+          build: true
+      }
+  });
+</script>

@@ -1,0 +1,183 @@
+.featured-products-tall-with-swatches {
+  display: none;
+  position: relative;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
+
+.featured-products-tall-with-swatches.active {
+  display: flex;
+}
+
+.featured-products-tall-with-swatches__image {
+  height: 117.86vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.featured-products-tall-with-swatches__image-box {
+  width: 60vw;
+  max-width: 430px;
+  padding: 2.8rem 0;
+  animation: fadeIn ease var(--duration-xlong);
+  -webkit-animation: fadeIn ease var(--duration-xlong);
+  -moz-animation: fadeIn ease var(--duration-xlong);
+  -o-animation: fadeIn ease var(--duration-xlong);
+  -ms-animation: fadeIn ease var(--duration-xlong);
+}
+
+.featured-products-tall-with-swatches__image adaptive-image {
+  mix-blend-mode: multiply;
+}
+
+.featured-products-tall-with-swatches__product {
+  padding: var(--gutter) var(--gutter) 4rem;
+  animation: fadeIn ease var(--duration-long);
+  -webkit-animation: fadeIn ease var(--duration-long);
+  -moz-animation: fadeIn ease var(--duration-long);
+  -o-animation: fadeIn ease var(--duration-long);
+  -ms-animation: fadeIn ease var(--duration-long);
+}
+
+.featured-products-tall-with-swatches__content {
+  max-width: 44rem;
+}
+
+.featured-products-tall-with-swatches__items {
+  column-gap: 1.3rem;
+  padding-top: 1rem;
+  padding-bottom: 1.6rem;
+}
+
+.featured-products-tall-with-swatches__items .swatch-element {
+  margin-bottom: 0;
+  flex: 0 0 24px;
+}
+
+.featured-products-tall-with-swatches__items
+  .color-select-container.lg
+  .color-select-inner,
+.featured-products-tall-with-swatches__items
+  .color-select-container.lg.selected
+  .color-select-inner {
+  width: 24px;
+  height: 24px;
+}
+
+.featured-products-tall-with-swatches__dark
+  .color-select-container.selected
+  .color-select-inner {
+  border: 1.5px solid var(--color-off-white) !important;
+}
+
+.featured-products-tall-with-swatches__items
+  .color-select-container
+  .color-select-inner {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+}
+
+.featured-products-tall-with-swatches__items
+  .color-select-container.lg
+  .color-select-inner
+  button,
+.featured-products-tall-with-swatches__items
+  .color-select-container.lg
+  .color-select-inner
+  span {
+  width: 24px;
+  height: 24px;
+}
+
+.featured-products-tall-with-swatches__items
+  .color-select-container.selected
+  .color-select-inner
+  button {
+  width: 18px;
+  height: 18px;
+}
+
+.featured-products-tall-with-swatches__items
+  .color-select-container.disabled
+  .color-select-inner
+  .disabled-line {
+  top: 53%;
+  left: 1px;
+}
+
+.featured-products-tall-with-swatches__heading,
+.featured-products-tall-with-swatches__body {
+  padding-bottom: 0.8rem;
+}
+
+.featured-products-tall-with-swatches__price {
+  padding-bottom: 1.6rem;
+}
+
+.featured-products-tall-with-swatches__title {
+  justify-content: center;
+}
+
+.featured-products-tall-with-swatches__price .price {
+  justify-content: center;
+}
+
+.featured-products-tall-with-swatches__price .sale__message {
+  display: none;
+}
+
+.featured-products-tall-with-swatches__dark
+  .featured-products-tall-with-swatches__price
+  .price
+  span {
+  color: var(--color-off-white);
+}
+
+.featured-products-tall-with-swatches__content .product-card__button {
+  opacity: 1 !important;
+}
+
+@media (min-width: 992px) {
+  .featured-products-tall-with-swatches {
+    height: 59vw;
+    max-height: 1000px;
+    flex-direction: row;
+    margin-bottom: 6rem;
+  }
+
+  .featured-products-tall-with-swatches__image {
+    order: 1;
+    width: 50%;
+    height: auto;
+  }
+
+  .featured-products-tall-with-swatches__image-box {
+    padding: 5.4rem 0;
+  }
+
+  .featured-products-tall-with-swatches__right
+    .featured-products-tall-with-swatches__image {
+    order: 3;
+  }
+
+  .featured-products-tall-with-swatches__product {
+    order: 2;
+    padding: var(--gutter);
+    width: 50%;
+  }
+
+  .featured-products-tall-with-swatches__items {
+    padding-top: 1.2rem;
+    padding-bottom: 4rem;
+  }
+
+  .featured-products-tall-with-swatches__heading,
+  .featured-products-tall-with-swatches__body {
+    padding-bottom: 3rem;
+  }
+
+  .featured-products-tall-with-swatches__price {
+    padding-bottom: 4rem;
+  }
+}

@@ -1,0 +1,63 @@
+{%- liquid
+  assign button_type = button_type | default: 'a'
+  assign href = href | default: '#'
+  assign product_card_product = product_card_product | default: blank
+
+  assign button_text = button_text | default: 'product_card.shop_now'
+  assign button_text_t = button_text_t | default: blank
+  assign button_action_class = '' | default: blank
+  assign button_action = button_action | default: blank
+  assign button_value = button_value | default: false, allow_false: true
+  assign mod_button_class = mod_button_class | default: blank
+  assign mod_variant = mod_variant | default: blank
+
+  assign selected_variant = selected_variant | default: blank
+
+  case button_action
+    when 'quick-shop'
+      assign button_action_class = 'js-toggle-quick-shop'
+    when 'add-to-cart'
+      assign button_action_class = 'js-quick-shop-atc'
+  endcase
+
+  assign theme_modifier = 'button-light-tan'
+  if mod_theme
+    case mod_theme
+      when 'light'
+        assign theme_modifier = 'button--dark'
+      else
+        assign theme_modifier = 'button--light'
+    endcase
+  endif
+-%}
+
+<{{ button_type }}
+  class='{% if mod_variant == 'text-underline' %}a1 no-styles button--text-underline{% else %}button {{ theme_modifier }} product-card__button bold{% endif %} {{ button_action_class }}'
+  {% if button_type == 'a' %}
+    href='{{ href }}'
+  {% endif %}
+  {% if button_type == 'button' %}
+    type='button'
+    data-product-handle='{{ product_card_product.handle }}'
+    data-variant-id='{{ selected_variant.id }}'
+    data-target='quick-shop'
+    is="loading-button"
+    {% if selected_variant.available == false and selected_variant.product.has_only_default_variant == true %}
+        disabled
+    {% endif %}
+  {% endif %}
+  {% if button_value %}
+    data-value='{{ button_value }}'
+    atc-button
+  {% endif %}
+>
+  <span>
+  {% if selected_variant.available == false and selected_variant.product.has_only_default_variant == true %}
+        {{ 'products.product.out_of_stock' | t }}
+  {% elsif button_text_t != blank %}
+    {{ button_text_t | t }}
+  {% else %}
+    {{ button_text }}
+  {% endif %}
+  </span>
+</{{ button_type }}>

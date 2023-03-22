@@ -1,0 +1,61 @@
+{%- if product.metafields.wear_it_with.upsell != blank -%}
+<div class="product-wear-it-with">
+  <h2 class="h4 no-margin color-off-black">{{ 'products.product.wear_it_with' | t }}</h2>
+  <div class="product-wear-it-with__items flex flex-direction-column">
+    {%- for item in product.metafields.wear_it_with.upsell.value -%}
+      {%- liquid
+        assign imgObj = item.product.featured_image
+        if item.image
+          assign imgObj = item.image
+        endif
+
+        assign color_options = item.product.options_with_values | where: 'name', 'Color' | first
+        assign size_options = item.product.options_with_values | where: 'name', 'Size' | first
+        assign color_option_name = 'option' | append: color_options.position
+        assign size_option_name = 'option' | append: size_options.position
+      -%}
+      <product-card class="product-card-small background-color-light-tan">
+        <div class="product-card-small__top flex">
+          <a href="{{ item.product.url }}" class="product-card-small__image flex" aria-labelledby="wear-it-with--{{ product.id }}">
+            {% render 'adaptive-image', mod_image: imgObj, mod_alt: item.product.title, mod_loading: "lazy" , mod_aspect_ratio: 1 %}
+          </a>
+          <div class="product-card-small__info">
+            <div class="product-card-small__info-wrapper">
+              <a href="{{ item.product.url }}" class="b2 bold no-underline product-card-small__title inline-block" id="wear-it-with--{{ product.id }}">{{ item.product.title | escape }}</a>
+              <div class="product-card-small__variant">
+                {%- if item[color_option_name] -%}
+                  <div class='swatch-line no-margin flex align-center'>
+                    {%- render 'form-shade-selector',
+                      color: item[color_option_name],
+                      id: item.id,
+                      disabled: false,
+                      variant: item
+                    -%}
+                    <span class='b3 color-dark-gray no-margin'>{{ item[color_option_name] }}</span>
+                  </div>
+                {%- elsif size_options -%}
+                  <span class='b3 color-dark-gray no-margin'>{{ item[size_option_name] }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-card-small__bottom flex justify-space-between align-center">
+          {% render 'product-card-button',
+            button_type: 'button',
+            button_text_t: 'products.product.add_to_bag',
+            product_card_product: item.product,
+            selected_variant: item,
+            button_action: 'add-to-cart',
+            button_value: item.id,
+            mod_variant: 'text-underline'
+          %}
+          <div class="product-card-small__price">
+            {% render 'price', product: item.product, price_class: '', use_variant: true, variant: item %}
+          </div>
+        </div>
+      </product-card>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}

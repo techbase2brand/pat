@@ -1,0 +1,32 @@
+.plp-seo-block {
+  padding: calc(var(--gutter) * 2) 0;
+}
+.plp-seo-block .container {
+  padding: calc(var(--gutter) * 2) var(--gutter);
+}
+
+.plp-seo-block .plp__title {
+  margin: 0 0 var(--gutter);
+}
+
+.plp-seo-block .plp__description {
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .plp-seo-block {
+    padding: var(--gutter) 0;
+  }
+
+  .plp-seo-block .container {
+    padding: var(--gutter);
+  }
+
+  .plp-seo-block .plp__title {
+    margin: 0 0 calc(var(--gutter) / 3);
+  }
+
+  .plp-seo-block .plp__description {
+    max-width: 940px;
+  }
+}

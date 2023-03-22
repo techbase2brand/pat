@@ -1,0 +1,33 @@
+virtual-try-on {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.ymk-module {
+  aspect-ratio: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  display: grid !important;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s ease all;
+  z-index: calc(var(--z-index-flyout) + 1);
+  min-height: 100%;
+  align-items: flex-start;
+}
+
+.ymk-module.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media (min-width: 768px) {
+  .ymk-module {
+    padding-top: var(--gutter);
+  }
+}

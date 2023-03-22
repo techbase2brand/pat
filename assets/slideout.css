@@ -1,0 +1,118 @@
+.slideout-email-form__title {
+  margin: 0 0 calc(var(--gutter) / 4);
+}
+
+.slideout-email-form__caption {
+  margin: 0 0 calc(var(--gutter) / 4);
+}
+
+.email-container__form-container {
+  gap: calc(var(--gutter) * 1.25);
+}
+
+.email-container__form-container .checkbox-container {
+  margin-bottom: 0;
+}
+
+.email-container__form-container form .opt-in {
+  font-size: 1.2rem;
+  margin: 0 0 calc(var(--gutter) / 4);
+}
+
+.slideout-email-form__actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slideout-email-form__actions li {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.slideout-email-form__actions li:last-child {
+  margin-right: 0px;
+}
+
+.slideout-content--stick-actions {
+  min-height: 100%;
+  padding: calc(var(--gutter) / 2) var(--gutter) 0;
+}
+
+.slideout-content--stick-actions .slideout-content__actions {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-index-modal);
+  padding: calc(var(--gutter)) 0;
+  background-color: var(--color-off-white);
+}
+
+.email-container__inner {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+  transition-property: opacity, visibility;
+  height: 0;
+}
+.email-container--active {
+  visibility: visible;
+  pointer-events: unset;
+  transition-delay: 0s;
+  transition-duration: 0.25s;
+  opacity: 1;
+  transform: none;
+  height: unset;
+}
+
+.slideout__support-menu-link {
+  margin-bottom: 2.4rem;
+  display: block;
+  text-decoration: none;
+}
+.slideout__support-menu-link_first {
+  margin-top: 4.8rem;
+}
+.slideout__support-menu-container adaptive-image {
+  margin-left: -25px;
+  width: calc(100% + 50px);
+  margin-top: -15px;
+}
+
+.slideout__support-menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .email-container__form-container {
+    gap: calc(var(--gutter) / 2);
+  }
+
+  .slideout-content--stick-actions .slideout-content__actions {
+    padding: calc(var(--gutter) / 2) 0;
+  }
+
+  .slideout__support-menu-container {
+    display: grid;
+  }
+  .slideout__support-menu-container adaptive-image {
+    margin-left: -6rem;
+    width: calc(100% + 12rem);
+    margin-top: 3rem;
+    order: 2;
+    margin-bottom: -3rem;
+  }
+  .slideout__support-menu-link_first {
+    margin-top: 3rem;
+  }
+  .slideout__support-menu-link {
+    margin-bottom: 4.8rem;
+  }
+
+  .slideout-content--stick-actions .slideout-content__actions {
+    padding-bottom: calc(var(--gutter) / 2);
+  }
+}

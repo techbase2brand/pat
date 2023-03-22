@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "subheading": "Oops",
+        "heading": "Page Not <em>Found</em>",
+        "banner_image": "shopify://shop_images/Rectangle_4086-min.jpg",
+        "banner_description": "<p>The page you are looking for may have been removed or is temporarily unavailable.</p>",
+        "banner_button_text": "Continue Shopping",
+        "banner_button_url": "shopify://collections/bestsellers"
+      }
+    },
+    "16635941876a19c7bc": {
+      "type": "section-featured-categories-4up",
+      "blocks": {
+        "166359418768246057-0": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Face_a4bb3f77-411c-4071-83d4-296e69822c90.jpg",
+            "eyebrow": "Shop",
+            "heading": "Face",
+            "category_link": "shopify://collections/face"
+          }
+        },
+        "166359418768246057-1": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Lip_94addf2a-7afa-4d06-aa95-a79a2f7b9b33.jpg",
+            "eyebrow": "Shop",
+            "heading": "Lip",
+            "category_link": "shopify://collections/all-lips"
+          }
+        },
+        "166359418768246057-2": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Eye_e3cf1bc6-3e98-412f-a90f-8c094771e84a.jpg",
+            "eyebrow": "Shop",
+            "heading": "Eye",
+            "category_link": "shopify://collections/all-eyes"
+          }
+        },
+        "166359418768246057-3": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Body_ec5f141c-2459-4881-acf8-f1c284f7b294.jpg",
+            "eyebrow": "Shop",
+            "heading": "Body",
+            "category_link": "shopify://collections/all-body"
+          }
+        }
+      },
+      "block_order": [
+        "166359418768246057-0",
+        "166359418768246057-1",
+        "166359418768246057-2",
+        "166359418768246057-3"
+      ],
+      "settings": {
+        "section_heading": "",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16635941876a19c7bc"
+  ]
+}

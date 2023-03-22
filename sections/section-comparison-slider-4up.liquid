@@ -1,0 +1,194 @@
+<script src='{{ 'component-simple-slider.js' | asset_url }}' defer='defer' type='module'></script>
+
+{{ 'section-comparison-slider-4up.css' | asset_url | stylesheet_tag }}
+{{ 'section-comparison-slider-3-4up-block.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign show_slider_controls_mobile = true
+  assign show_slider_controls_desktop = true
+
+  if section.blocks.size < 5
+    assign show_slider_controls_desktop = false
+  endif
+
+  if section.blocks.size < 2
+    assign show_slider_controls_desktop = false
+    assign show_slider_controls_mobile = false
+  endif
+-%}
+
+<section
+  class='comparison-slider-4up container'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='comparison-slider-4up__text-container flex justify-center flex-direction-column'>
+    {% if section.settings.subheading %}
+      <p class='s1 no-margin'>{{ section.settings.subheading }}</p>
+    {% endif %}
+    {% if section.settings.heading %}
+      <h2 class='comparison-slider-4up__headline h2 no-margin'>{{ section.settings.heading }}</h2>
+    {% endif %}
+    {% if section.settings.body %}
+      <p class='b1 no-margin comparison-slider-4up__body'>{{ section.settings.body }}</p>
+    {% endif %}
+
+    {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+      <div class='comparison-slider-4up__button-container'>
+        {% render 'button',
+          mod_type: 'link',
+          mod_variant: 'text-underline',
+          mod_value: section.settings.cta_text,
+          mod_href: section.settings.cta_url
+        %}
+      </div>
+    {% endif %}
+  </div>
+
+  <simple-slider class='relative'>
+    <div class='slider-controls-container {% if show_slider_controls_mobile %} slider-controls-container__show-mobile {% endif %} {% if show_slider_controls_desktop %} slider-controls-container__show-desktop {% endif %}'>
+      {% render 'simple-carousel-controls', mod_render_slide_status: true %}
+    </div>
+
+    <div
+      class='hide-scrollbars flex'
+      data-slider-items
+    >
+      {% for block in section.blocks %}
+        {%- liquid
+          assign _product = block.settings.product
+          assign tile_image = null
+          assign title = null
+          assign description = null
+          assign has_variant_override = false
+
+          if block.settings.variant_override != blank
+            for variant in block.settings.product.variants
+              assign variant_id = variant.id | append: ''
+
+              if variant_id == block.settings.variant_override
+                assign has_variant_override = true
+                assign _product = variant
+              endif
+            endfor
+          endif
+
+          if block.settings.product_image_override != blank
+            assign tile_image = block.settings.product_image_override
+          else
+            comment
+              use the first image from the product OR variant override
+            endcomment
+            assign tile_image = _product.featured_image
+          endif
+
+          if block.settings.product_title_override != blank
+            assign title = block.settings.product_title_override
+          else
+            assign title = block.settings.product.title
+          endif
+
+          if block.settings.product_description_override != blank
+            assign description = block.settings.product_description_override
+          else
+            assign description = block.settings.product.metafields.product_information.summary
+          endif
+        -%}
+
+        {% render 'comparison-slider-3-4up-block',
+          mod_tile_image: tile_image,
+          mod_title: title,
+          mod_description: description,
+          mod_product: _product,
+          mod_has_variant_override: has_variant_override
+        %}
+      {% endfor %}
+    </div>
+  </simple-slider>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.comparison-slider-4up.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.comparison-slider-3-4up.settings.id.label",
+      "info": "t:sections.comparison-slider-3-4up.settings.id.info"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:sections.comparison-slider-3-4up.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.comparison-slider-3-4up.settings.subheading.label"
+    },
+    {
+      "type": "text",
+      "id": "body",
+      "label": "t:sections.comparison-slider-3-4up.settings.body.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "t:sections.comparison-slider-3-4up.settings.cta-text.label",
+      "info": "t:sections.comparison-slider-3-4up.settings.cta-text.info"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.comparison-slider-3-4up.settings.cta-url.label",
+      "info": "t:sections.comparison-slider-3-4up.settings.cta-text.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.comparison-slider-3-4up.blocks.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "variant_override",
+          "label": "t:sections.comparison-slider-3-4up.blocks.settings.variant-override.label",
+          "info": "t:sections.comparison-slider-3-4up.blocks.settings.variant-override.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image_override",
+          "label": "t:sections.comparison-slider-3-4up.blocks.settings.product-image-override.label"
+        },
+        {
+          "type": "text",
+          "id": "product_title_override",
+          "label": "t:sections.comparison-slider-3-4up.blocks.settings.product-title-override.label"
+        },
+        {
+          "type": "textarea",
+          "id": "product_description_override",
+          "label": "t:sections.comparison-slider-3-4up.blocks.settings.product-description-override.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.comparison-slider-4up.name",
+      "blocks": [
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

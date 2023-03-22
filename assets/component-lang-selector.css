@@ -1,0 +1,34 @@
+.lang-selector__title {
+  color: var(--color-off-black);
+  text-align: center;
+}
+
+.lang-selector__dropdown {
+  display: block;
+  margin-bottom: 32px;
+}
+
+.lang-selector__content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  height: 100%;
+}
+
+.lang-selector__bottom {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  padding: 30px 60px;
+  position: absolute;
+  right: 0;
+}
+
+.lang-selector__button {
+  flex: 1;
+}
+
+.lang-selecor__label::after {
+  content: "*";
+  color: var(--color-red);
+}

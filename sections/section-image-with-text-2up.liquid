@@ -1,0 +1,163 @@
+{% render 'async-stylesheet', mod_url: 'section-image-with-text-2up.css' %}
+
+<section class="inset-two-up-module-with-image {% if section.settings.color_theme == 'dark' %}background-color-off-black color-off-white {% else %}background-color-off-white color-off-black{% endif %}" {% if section.settings.id != blank %} id='{{ section.settings.id }}' {% endif %}>
+
+  <div class="container">
+    <div class="inset-two-up-module-with-image__grid grid">
+      {% if section.settings.heading != blank %}
+        <h2 class="h3 no-margin inset-two-up-module-with-image__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% for block in section.blocks %}
+        <div class='inset-2up-img__block flex'>
+
+            <div class="inset-2up-img__block-image-container {% if block.settings.image == blank %}inset-2up-img__block-image-container--no-image {% endif %}">
+              {% if block.settings.block_button_url != blank and block.settings.block_button_title != blank %}
+                <a class="fluid full-unstyled-link" href="{{ block.settings.block_button_url }}">
+              {% endif %}
+              {%- liquid
+                if block.settings.image != blank
+                  render 'adaptive-image', mod_image: block.settings.image, mod_alt: block.settings.image.alt, mod_aspect_ratio: 'square'
+                endif
+              -%}
+              {% if block.settings.block_button_url != blank and block.settings.block_button_title != blank %}
+                </a>
+              {% endif %}
+            </div>
+
+
+            <div class="inset-2up-img__block-text-container flex justify-space-between align-start flex-direction-column">
+              <div>
+                {% if block.settings.eyebrow != blank %}
+                  <p class="s1">{{ block.settings.eyebrow }}</p>
+                {% endif %}
+
+                {% if block.settings.heading != blank %}
+                  {% if section.settings.heading == blank %}
+                    <h2 class="light h4">{{ block.settings.heading }}</h3>
+                    {% else %}
+                    <h3 class="light h4">{{ block.settings.heading }}</h3>
+                  {% endif %}
+                {% endif %}
+
+                {% if block.settings.body != blank %}
+                  <p class="inset-2up-img__block-text b2">
+                    {{ block.settings.body }}
+                  </p>
+                {% endif %}
+              </div>
+
+              {% if block.settings.block_button_url != blank and block.settings.block_button_title != blank %}
+
+                {% render 'button' mod_type: "link", mod_value: block.settings.block_button_title, mod_href: block.settings.block_button_url, mod_theme: section.settings.color_theme, mod_variant: "text-underline", mod_class: "inset-2up-img__block-button" %}
+
+              {% endif %}
+            </div>
+          </div>
+      {% endfor %}
+
+    </div>
+    {%- liquid
+      if section.settings.button_link != blank and section.settings.button_title != blank
+        render 'button' mod_type: "link", mod_value: section.settings.button_title, mod_href: section.settings.button_link, mod_theme: section.settings.color_theme, mod_class: "inset-two-up-module-with-image__cta"
+      endif
+    -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.inset-two-up-module-with-image.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.inset-two-up-module-with-image.settings.id.label",
+      "info": "t:sections.inset-two-up-module-with-image.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.inset-two-up-module-with-image.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "button_title",
+      "label": "t:sections.inset-two-up-module-with-image.settings.button-title.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.inset-two-up-module-with-image.settings.button-url.label"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.inset-two-up-module-with-image.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:settings_schema.color-themes.light.label"
+        },
+        {
+          "value": "dark",
+          "label": "t:settings_schema.color-themes.dark.label"
+        }
+      ],
+      "default": "light"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.eyebrow.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.heading.label",
+          "default": "Heading  lorem ipsum dolor"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.body.label"
+        },
+        {
+          "type": "url",
+          "id": "block_button_url",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.button-url.label"
+        },
+        {
+          "type": "text",
+          "id": "block_button_title",
+          "label": "t:sections.inset-two-up-module-with-image.blocks.settings.button-cta.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.inset-two-up-module-with-image.name",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

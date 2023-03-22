@@ -1,0 +1,79 @@
+.quiz-results {
+  color: var(--color-off-black);
+  margin: 24px;
+  padding: 60px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.quiz-results__title {
+  margin: 0;
+}
+
+.quiz-results__title p {
+  font-size: 24px;
+  line-height: 41px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product-card__quiz
+  .product-card__details
+  [data-oke-star-rating].oke-star-rating__card {
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 992px) {
+  .quiz-results {
+    border: 10px solid;
+    border-image: var(--quiz-results-border-image);
+    border-image-slice: fill 10;
+    margin: 60px;
+    max-width: var(--container-width);
+    padding: 45px 0;
+  }
+
+  .quiz-results__title p {
+    font-size: 64px;
+    line-height: 67px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.quiz-results__paragraph {
+  color: var(--color-dark-gray);
+  line-height: 20px;
+}
+
+.quiz-results__product {
+  margin: 0 auto 40px;
+  max-width: 285px;
+}
+
+@media screen and (min-width: 768px) {
+  .quiz-results__product .product-card__button {
+    opacity: 1;
+  }
+}
+
+.quiz-results__product .price {
+  justify-content: center;
+}
+
+.quiz-results__border-mobile {
+  left: var(--gutter);
+  right: var(--gutter);
+  padding-top: 4rem;
+}
+
+.quiz-results__border-mobile svg {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .quiz-results__border-mobile {
+    display: none;
+  }
+}

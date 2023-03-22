@@ -1,0 +1,89 @@
+.pro-artist-form__intro {
+  gap: calc(var(--gutter) * 0.5);
+  margin-bottom: calc(var(--gutter) * 0.75);
+}
+
+.pro-artist-form__content ul {
+  margin-left: 0;
+  padding-left: 32px;
+}
+
+.artist-form__group .cf-fields-container {
+  gap: 40px;
+}
+
+.artist-form .cf-form-inner .cf-fields-container {
+  gap: 32px;
+}
+
+.artist-form
+  .cf-form-inner
+  .cf-fields-container
+  [data-cf-field-type='heading'] {
+  margin-bottom: -8px;
+}
+
+.artist-form__group .cf-field {
+  margin: 0;
+  display: grid;
+  overflow: visible;
+  border: 0;
+}
+
+.artist-form .cf-field input[type='text'],
+.cf-field input[type='email'],
+.cf-field input[type='password'],
+.cf-field input[type='phone'],
+.cf-field input[type='tel'],
+.cf-field input[type='file'],
+.cf-field select {
+  border: 1px solid var(--color-light-tan) !important;
+  height: 58px !important;
+  padding-top: 20px !important;
+  margin: 0;
+  text-align: left;
+}
+
+.cf-field input[type='file'] {
+  padding-left: 20px;
+  color: var(--color-off-black);
+}
+
+.artist-form [data-cf-field-type='date'] .cf-select-wrap:nth-child(3) {
+  display: none;
+}
+
+.artist-form .cf-form-actions {
+  display: grid;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  margin: 0 !important;
+  z-index: var(--z-index-modal);
+  padding: calc(var(--gutter) / 2) 0;
+  background-color: var(--color-off-white);
+}
+
+.artist-form .cf-cancel {
+  display: none !important;
+}
+
+.artist-form .cf-form-inner .cf-fields-container {
+  margin: 0 !important;
+}
+
+.artist-form
+  .cf-form-inner
+  .cf-form-actions
+  .cf-step-invalid
+  .cf-error-message {
+  width: 100%;
+}
+
+.artist-form .cf-form-inner .cf-form-actions .cf-step-invalid {
+  margin-top: 0;
+}
+
+.artist-form .cf-form-inner .cf-form-actions button {
+  margin: 0;
+}

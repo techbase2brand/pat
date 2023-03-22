@@ -1,0 +1,111 @@
+.combo {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.combo-input {
+  display: block;
+  padding: 24px 16px 8px;
+  text-align: left;
+  width: 100%;
+}
+
+.open .combo-input {
+  border-radius: 4px 4px 0 0;
+}
+
+.combo-label {
+  font-weight: 400;
+  left: 16px;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.combo-menu {
+  background-color: var(--color-off-white);
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgb(62 43 46 / 16%);
+  display: none;
+  overflow-y: scroll;
+  left: 0;
+  padding: 15px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 100;
+}
+
+.open .combo-menu {
+  display: block;
+}
+
+.combo-option {
+  align-items: center;
+  border-radius: 130px;
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px 12px;
+}
+
+.combo-option:hover {
+  background-color: var(--color-pale-pink);
+  box-shadow: 4px 4px 12px rgba(210, 178, 154, 0.4), -4px -4px 12px #fffbf7;
+}
+
+.combo-option.option-current {
+  background-color: var(--color-light-tan); 
+}
+
+.combo-option[aria-selected="true"] {
+  padding-right: 30px;
+  position: relative;
+}
+
+.combo-option[aria-selected="true"]::after {
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  content: "";
+  height: 16px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translate(0, -50%) rotate(45deg);
+  width: 8px;
+}
+
+.combo-container {
+  align-items: center;
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: var(--color-gradient-pewter-outline);
+  color: var(--color-off-black);
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  height: 60px;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  position: relative;
+  transition: 0.25s;
+  width: 100%;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+}
+
+.combo-container:hover,
+.combo-input:focus {
+  border-image: none;
+  background-color: var(--color-light-tan);
+  outline: none;
+}
+
+.combo-icon {
+  position: absolute;
+  right: 16px;
+  transform: rotate(90deg);
+  width: 7px;
+}

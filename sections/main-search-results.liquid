@@ -1,0 +1,13 @@
+
+{%- if settings.enable_klevu -%}
+  <script src="{{ 'component-collection-filter-dropdown.js' | asset_url }}" type="module" defer="defer"></script>
+  <script src='{{ 'component-klevu-landing.js' | asset_url }}' defer='defer' type='module'></script>
+  {%- liquid
+    render 'async-stylesheet', mod_url: 'component-main-collection-product-grid.css'
+    render 'async-stylesheet', mod_url: 'component-collection-filters.css'
+    render 'async-stylesheet', mod_url: 'component-collection-editorial-block.css'
+    render 'async-stylesheet', mod_url: 'component-main-search-results.css'
+  -%}
+  <div class="klevu-landing klevuLanding"></div>
+  {% render 'klevu-landing-overrides' %}
+{%- endif -%}

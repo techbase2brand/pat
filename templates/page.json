@@ -1,0 +1,157 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_sidebar": false,
+        "menu_title": "Customer service",
+        "menu": "page-sidebar"
+      }
+    },
+    "4c21d0cb-3655-4d5e-bd01-b966919dd3ce": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/Hero_Short_Full-Width_6e85822b-502c-4e63-82b8-1dcd26b12d5a.jpg",
+        "mobile_image": "shopify://shop_images/Hero_Short_Full-Width_1_2d14e997-baeb-42d5-9eb3-9125f8b10891.jpg",
+        "eyebrow": "",
+        "heading": "Current Offers",
+        "body": "",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "dark",
+        "bg_color": ""
+      }
+    },
+    "ba6d595d-d8bc-447f-8061-016f5d7e5f44": {
+      "type": "section-image-with-text-2up",
+      "blocks": {
+        "template--16710760857839__ba6d595d-d8bc-447f-8061-016f5d7e5f44-1668175964c2ced6de-0": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Free_Shipping.jpg",
+            "eyebrow": "",
+            "heading": " Free Shipping And Returns",
+            "body": "Enjoy free standard shipping when you spend $35+*. If you’re not happy with your order, we’ll take care of your return for free, too.**",
+            "block_button_url": "shopify://collections/bestsellers",
+            "block_button_title": "Shop Now"
+          }
+        },
+        "template--16710760857839__ba6d595d-d8bc-447f-8061-016f5d7e5f44-1668175964c2ced6de-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/LM_Texts.jpg",
+            "eyebrow": "",
+            "heading": "Get on Laura’s List",
+            "body": "Text JOIN to 80290 to sign up for texts and be the first to know about exclusive offers, product launches and more. Plus, we’ll send you 15% off your next order.***",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "ce9d5577-4091-477a-8d07-e72508a519a0": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Two_Samples.jpg",
+            "eyebrow": "",
+            "heading": "Two Free Samples",
+            "body": "Discover fresh favorites and receive two free samples every time you order.****",
+            "block_button_url": "shopify://collections/bestsellers",
+            "block_button_title": "Shop Now"
+          }
+        },
+        "36834d7f-88ef-42a0-9ce7-34ca4c243405": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Live_Chat.jpg",
+            "eyebrow": "",
+            "heading": "Live Chat",
+            "body": "Have questions about your recent order? Need product or shade recommendations? Speak with our Live Chat agents now and get your questions answered immediately. *****",
+            "block_button_url": "shopify://pages/live-chat",
+            "block_button_title": "Chat Now"
+          }
+        },
+        "8c2b6c44-366e-4026-ba71-3e58271ac7a7": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Birthday_Gift.jpg",
+            "eyebrow": "",
+            "heading": "A Birthday Gift From Us to You",
+            "body": "Create an account and get a just-for-you offer to celebrate your birthday.*****",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "0a094a13-d068-45b4-9554-603c73339999": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Welcome_Offer.jpg",
+            "eyebrow": "",
+            "heading": "Welcome Offer",
+            "body": "Enjoy 15% off your first purchase on LauraMercier.com when you join our mailing list. *******",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "0b8a35b2-01b8-452c-b325-40a71b027efb": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Virtual_Makeup.jpg",
+            "eyebrow": "",
+            "heading": "Virtual Consultation",
+            "body": "Find your perfect shade in real time.",
+            "block_button_url": "shopify://collections/discover-virtual-try-on",
+            "block_button_title": "Try On Now"
+          }
+        },
+        "c332dd19-4ecd-4f43-a2a0-f5b1103394c6": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Give15_Get15.jpg",
+            "eyebrow": "",
+            "heading": "Give 15%, Get 15%",
+            "body": "Refer a friend and you’ll both get 15% off your next orders.",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16710760857839__ba6d595d-d8bc-447f-8061-016f5d7e5f44-1668175964c2ced6de-0",
+        "template--16710760857839__ba6d595d-d8bc-447f-8061-016f5d7e5f44-1668175964c2ced6de-1",
+        "ce9d5577-4091-477a-8d07-e72508a519a0",
+        "36834d7f-88ef-42a0-9ce7-34ca4c243405",
+        "8c2b6c44-366e-4026-ba71-3e58271ac7a7",
+        "0a094a13-d068-45b4-9554-603c73339999",
+        "0b8a35b2-01b8-452c-b325-40a71b027efb",
+        "c332dd19-4ecd-4f43-a2a0-f5b1103394c6"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Every Order, Every Day",
+        "button_title": "",
+        "button_link": "",
+        "color_theme": "light"
+      }
+    },
+    "b2322e47-1ce8-463d-91c0-17fff592b781": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "",
+        "body": "<p>*Receive free ground shipping with any $35+ purchase. Orders are processed within 48 hours Monday through Friday. Some methods may not be applicable to your shipping area. At this time, we do not ship to multiple addresses in one order. We do not ship orders outside of the U.S.</p>\n\n<p>**We are committed to providing quality products to our customers. If you receive products from lauramercier.com that do not meet your expectations, simply return the gently used products with the receipt within 30 days of purchase. Please notate on the front side of your receipt the reason for your return and send the product(s) back to us using pre-paid and insured shipping methods. Empty containers will not be accepted for refund. Processing time for returns takes up to 10 business days from the return is received.</p>\n\n<p>***By texting JOIN to 80290, you consent to receive marketing texts to your mobile number from Laura Mercier via an autodialer up to 2 times per week. Consent not required to purchase. Msg/Data rates may apply. Reply STOP to cancel or reply HELP for information. I agree that the collection and processing of my personal data will be in compliance with the Laura Mercier Privacy Policy and I agree to Laura Mercier SMS Terms and Conditions. </p>\n\n<p>****Select two samples at checkout with purchase. Assortment will vary and is subject to change without notice. Only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.</p>\n\n<p>*****Our Live Chat agents are available from 9am–11pm ET Monday–Saturday. If you have inquiries after these hours, please email Customer Care at contact_us@lauramericer.com and we will respond as quick possible.</p>\n\n<p>******Use code at checkout to receive 15% off on your first purchase. Offer only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.</p>\n\n<p>*******Must use unique code delivered via email at checkout to receive 15% off your first purchase. Offer only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.</p>",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "4c21d0cb-3655-4d5e-bd01-b966919dd3ce",
+    "ba6d595d-d8bc-447f-8061-016f5d7e5f44",
+    "b2322e47-1ce8-463d-91c0-17fff592b781"
+  ]
+}

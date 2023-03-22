@@ -1,0 +1,66 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'page-quiz.css'
+-%}
+
+<section class='quiz-page container'>
+  <div class='quiz-page__container flex justify-content-center align-items-center flex-direction-column'>
+    <h1 class='quiz-page__title visually-hidden'>{{ page.title | escape }}</h1>
+    <div class='quiz-page__quiz-container'>
+      <div class='{{ section.settings.cordial_quiz_div_class }}'></div>
+    </div>
+  </div>
+  <div class='quiz-page__container--mobile'>
+    {% render 'svg-mobile-quiz-border' %}
+  </div>
+</section>
+
+{% if section.settings.enable_cordial_quiz %}
+  <!-- START Lightbox Javascript -->
+  <script type='text/javascript'>
+    ;(function () {
+      window.setTimeout(function () {
+        var e = document.createElement('script')
+        e.type = 'text/javascript'
+        e.async = true
+        e.src =
+          ('https:' == document.location.protocol ? 'https://' : 'http://') +
+          'www.lightboxcdn.com/vendor/e430ea64-87a8-48e8-b1eb-507811708678/lightbox_speed.js?mb=' +
+          new Date().getTime()
+        var s = document.getElementsByTagName('script')[0]
+        s.parentNode.insertBefore(e, s)
+      }, 500)
+    })()
+  </script>
+  <!-- END Lightbox Javascript -->
+{% endif %}
+
+<style>
+  .quiz-page {
+    --quiz-results-border-image: url({{ 'svg-quiz-border.svg' | asset_url }});
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.main-quiz.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-quiz.settings.cordial-heading.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_cordial_quiz",
+      "label": "t:sections.main-quiz.settings.enable-cordial-quiz.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cordial_quiz_div_class",
+      "label": "t:sections.main-quiz.settings.enable-cordial-quiz.label",
+      "default": "js-cordial-quiz-inject"
+    }
+  ]
+}
+{% endschema %}

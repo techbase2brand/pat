@@ -1,0 +1,526 @@
+<script src="{{ 'component-simple-slider.js' | asset_url }}" defer="defer" type="module"></script>
+<script src="{{ 'component-full-width-slideshow.js' | asset_url }}" defer="defer" type="module"></script>
+
+{% render 'async-stylesheet', mod_url: 'section-full-width-slideshow.css' %}
+
+<fullscreen-slider
+  class='fullscreen-slider'
+  aria-roledescription='{{ section.settings.slideshow_description }}'
+  aria-label='{{ section.settings.slideshow_description }}'
+  {% if section.settings.id != blank %} id='{{ section.settings.id }}' {% endif %}
+>
+  <div
+    class='slider-config hidden'
+    data-autorotate='{%- if section.settings.autorotate -%}true{%- else -%}false{%- endif -%}'
+    data-autorotate-interval='{{ section.settings.autorotate_interval }}'
+  ></div>
+
+<simple-slider loop="true"
+  class="fullscreen-slider"
+  aria-roledescription="{{ section.settings.slideshow_description }}"
+  aria-label="{{ section.settings.slideshow_description }}"
+  autorotate="{%- if section.settings.autorotate == true -%}true{%- else -%}false{%- endif -%}"
+  autorotate-interval="{{ section.settings.autorotate_interval }}"
+  >
+  <div class="slider-config hidden" data-autorotate="{%- if section.settings.autorotate -%}true{%- else -%}false{%- endif -%}" data-autorotate-interval="{{ section.settings.autorotate_interval }}" ></div>
+
+  {% if section.blocks.size > 1 %}
+    <div class="fullscreen-slider__slider-arrows-container flex container fluid init-hidden">
+      <div class="grid sm-grid">
+        <div class="fullscreen-slider__arrow prev col">
+          <button data-slider-back class="background-color-off-white" aria-label="{{ 'accessibility.scroll_previous' | t }}">
+            {% render "icon-arrow" %}
+          </button>
+        </div>
+        <div class="fullscreen-slider__arrow next col text-right">
+          <button data-slider-next class="background-color-off-white" aria-label="{{ 'accessibility.scroll_next' | t }}">
+            {% render "icon-arrow" %}
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="js-slider fullscreen-slider__slider-container flex hide-scrollbars" data-slider-items>
+    {%- for block in section.blocks -%}
+
+    <div data-slider-item class="{% if block.type == 'image_slide' %}fullscreen-slider__slide-container--image  {%- elsif block.type == 'video_slide' -%}fullscreen-slider__slide-container--video flex {%- endif -%}">
+
+        <!-- Image Slide -->
+          {% if block.type == 'image_slide' %}
+
+          <div class="fullscreen-slider__image-wrapper {% if block.settings.second_desktop_image %}split-slide{% endif %}">
+            <div class="image-one slide__image">
+              <div class="fullscreen-slide__image--desktop m-block">
+                {%- render 'adaptive-image', mod_image: block.settings.first_desktop_image, mod_alt: block.settings.first_desktop_image.alt, mod_loading: 'eager' -%}
+              </div>
+              <div class="fullscreen-slide__image--mobile m-none {% if block.settings.second_desktop_image %}stacked-mobile-image{% endif %}">
+                {%- render 'adaptive-image', mod_image: block.settings.first_mobile_image, mod_alt: block.settings.first_mobile_image.alt, mod_loading: 'eager' -%}
+              </div>
+            </div>
+
+            {% if block.settings.second_desktop_image %}
+            <div class="image-two slide__image">
+              <div class="fullscreen-slide__image--desktop m-block">
+                {%- render 'adaptive-image', mod_image: block.settings.second_desktop_image, mod_alt: block.settings.second_desktop_image.alt, mod_loading: 'eager', mod_object_fit: "cover" -%}
+              </div>
+              <div class="fullscreen-slide__image--mobile m-none {% if block.settings.second_desktop_image %}stacked-mobile-image{% endif %}">
+                {%- render 'adaptive-image', mod_image: block.settings.second_mobile_image, mod_alt: block.settings.second_mobile_image.alt, mod_loading: 'eager', mod_object_fit: "cover" -%}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        {% elsif block.type == 'video_slide' %}
+          <div class='fullscreen-slide__video desktop m-block'>
+
+            {% assign desktop_fallback_image = block.settings.desktop_fallback_image | image_url %}
+            {% assign desktop_id = block.settings.slide_heading | handleize | append: '-desktop' %}
+
+              {% render 'adaptive-video',
+                mod_type: 'video',
+                mod_video: block.settings.desktop_background_video,
+                mod_caption_src: block.settings.desktop_caption_src,
+                mod_caption_srclang: block.settings.desktop_caption_srclang,
+                mod_caption_label: block.settings.desktop_caption_label,
+                mod_alt: block.settings.slide_heading,
+                mod_component_controls: true,
+                mod_autoplay: true,
+                mod_loop: true,
+                mod_plays_inline: true,
+                mod_poster_image: desktop_fallback_image,
+                mod_disabled_controls: true,
+                mod_id: desktop_id,
+                mod_encode: true
+              %}
+
+              <ul class="slide-controls top-right">
+                <li class="hidden">
+                  <button class="play-video" aria-label="{{ 'accessibility.play_video' | t }}">
+                    {% render "icon-play" %}
+                  </button>
+                </li>
+
+                <li>
+                  <button class="pause-video" aria-label="{{ 'accessibility.pause_video' | t }}">
+                    {% render "icon-pause" %}
+                  </button>
+                </li>
+              </ul>
+
+          </div>
+          <div class='fullscreen-slide__video mobile m-none'>
+
+          {% assign mobile_fallback_image = block.settings.mobile_fallback_image | image_url %}
+
+            {% render 'adaptive-video',
+              mod_type: 'video',
+              mod_video: block.settings.mobile_background_video,
+              mod_caption_src: block.settings.mobile_caption_src,
+              mod_caption_srclang: block.settings.mobile_caption_srclang,
+              mod_caption_label: block.settings.mobile_caption_label,
+              mod_alt: block.settings.slide_heading,
+              mod_component_controls: true,
+              mod_autoplay: true,
+              mod_loop: true,
+              mod_plays_inline: true,
+              mod_poster_image: mobile_fallback_image,
+              mod_disabled_controls: true,
+              mod_custom_controls: false,
+              mod_id: mobile_fallback_image,
+              mod_encode: true
+            %}
+
+            <ul class="slide-controls bottom-center">
+              <li class="hidden">
+                <button class="play-video"  aria-label="{{ 'accessibility.play_video' | t }}">{% render "icon-play" %}</button>
+              </li>
+              <li>
+                <button class="pause-video" aria-label="{{ 'accessibility.pause_video' | t }}">{% render "icon-pause" %}</button>
+              </li>
+            </ul>
+
+          </div>
+        {% endif %}
+
+          {% liquid
+            assign inverse_color_scheme = ''
+
+            if block.settings.color_scheme == 'light'
+              assign inverse_color_scheme = 'dark'
+            else
+              assign inverse_color_scheme = 'light'
+            endif
+          %}
+
+
+          <div class="fullscreen-slide__content-outer-container init-hidden align-center flex justify-center {% if block.settings.desktop_text_alignment == 'left' %} text-left-m text-center {%- else -%} text-center {%- endif -%}">
+            <div class="fullscreen-slide-content__container container">
+              <div class="fullscreen-slide-content__inner {% if block.settings.desktop_text_alignment == 'left' %} fullscreen-slide-content--left-aligned {%- else -%} fullscreen-slide-content--center-aligned {%- endif -%}">
+
+              {% if block.settings.slide_subheading %}
+                <p class="fullscreen-slide__subheading subheading letter-spacing uppercase {% if block.settings.color_scheme == 'light' %} color-off-white {% else %}color-off-black{% endif %}">{{ block.settings.slide_subheading }}</p>
+              {% endif %}
+
+              <h1 class="fullscreen-slide__heading uppercase {% if block.settings.headline_style == 'h2' %} h2{% else %} h1{% endif %} {% if block.settings.color_scheme == 'light' %} color-off-white {% else %}color-off-black{% endif %}">{{ block.settings.slide_heading }}</h1>
+
+              {% if block.settings.slide_description != blank %}
+                <p class="fullscreen-slide__description {% if block.settings.color_scheme == 'light' %} color-off-white {% else %}color-off-black{% endif %}">{{ block.settings.slide_description }}</p>
+              {% endif %}
+            </ul>
+
+              <ul class="fullscreen-slide__button-list no-margin no-padding flex {% if block.settings.desktop_text_alignment == 'left' %} justify-start-m justify-center {%- else -%} justify-center {%- endif -%}">
+
+                {% if block.settings.button_1_label != blank %}
+                {% if block.settings.button_1_link contains "#cordial-popup--" %}
+                  {% assign mod_class = block.settings.button_1_link | replace: "#", "" %}
+                {% endif %}
+                <li class="fullscreen-slide__button">
+                  {% render 'button', mod_value: block.settings.button_1_label, mod_type: "link", mod_href: block.settings.button_1_link, mod_theme: inverse_color_scheme, mod_class: mod_class %}
+                </li>
+                {% endif %}
+
+                {% if block.settings.button_2_label != blank %}
+                  {% if block.settings.button_1_link contains "#cordial-popup--" %}
+                    {% assign mod_class = block.settings.button_1_link | replace: "#", "" %}
+                  {% endif %}
+                  <li class="fullscreen-slide__button">
+                    {% render 'button', mod_value: block.settings.button_2_label, mod_type: "link", mod_href: block.settings.button_2_link, mod_theme: inverse_color_scheme, mod_class: mod_class %}
+                  </li>
+                {% endif %}
+              </ul>
+
+
+              {%- if block.settings.enable_arrow -%}
+              <div class="fullscreen-slider__scroll-to-container {% if block.settings.color_scheme == 'dark' %} fullscreen-slider__scroll-to-container--dark {% else %} fullscreen-slider__scroll-to-container--light {% endif %}">
+                <button class="fullscreen-slider__scroll-to-button no-styles">{% render 'icon-arrow' %}</button>
+              </div>
+            {%- endif -%}
+          </div>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+</simple-slider>
+
+</fullscreen-slider>
+
+
+
+{% schema %}
+{
+  "name": "t:sections.full-width-slideshow.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.full-width-slideshow.settings.section-label.label"
+    },
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.full-width-slideshow.settings.id.label",
+      "info": "t:sections.full-width-slideshow.settings.id.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "autorotate",
+      "label": "t:sections.full-width-slideshow.settings.autorotate.label"
+    },
+    {
+      "type": "range",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "id": "autorotate_interval",
+      "label": "t:sections.full-width-slideshow.settings.autorotate-interval.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.full-width-slideshow.settings.section-label-2.label"
+    },
+    {
+      "type": "text",
+      "id": "slideshow_description",
+      "label": "t:sections.full-width-slideshow.settings.slideshow-description.label",
+      "info": "t:sections.full-width-slideshow.settings.slideshow-description.info",
+      "placeholder": "A slideshow of products."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_slide",
+      "name": "Image Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "first_desktop_image",
+          "label": "t:sections.full-width-slideshow.settings.image-slide-desktop-image-1.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "first_mobile_image",
+          "label": "t:sections.full-width-slideshow.settings.image-slide-mobile-image-1.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "second_desktop_image",
+          "label": "t:sections.full-width-slideshow.settings.image-slide-desktop-image-2.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "second_mobile_image",
+          "label": "t:sections.full-width-slideshow.settings.image-slide-mobile-image-2.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.full-width-slideshow.settings.overlay-label.label"
+        },
+        {
+          "type": "html",
+          "id": "slide_heading",
+          "default": "Welcome to our store",
+          "label": "t:sections.full-width-slideshow.settings.slide-heading.label"
+        },
+        {
+          "type": "html",
+          "id": "slide_subheading",
+          "label": "t:sections.full-width-slideshow.settings.slide-subheading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "slide_description",
+          "label": "t:sections.full-width-slideshow.settings.slide-description.label"
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-1-label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-1-url.label"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-2-label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-2-url.label"
+        },
+        {
+          "type": "radio",
+          "id": "desktop_text_alignment",
+          "label": "t:sections.full-width-slideshow.settings.desktop-text-alignment.label",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "radio",
+          "id": "color_scheme",
+          "label": "t:sections.full-width-slideshow.settings.color-scheme.label",
+          "options": [
+            {
+              "value": "light",
+              "label": "Light"
+            },
+            {
+              "value": "dark",
+              "label": "Dark"
+            }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "radio",
+          "id": "headline_style",
+          "label": "t:sections.full-width-slideshow.settings.headline-style.label",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            }
+          ],
+          "default": "h1"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_arrow",
+          "label": "t:sections.full-width-slideshow.settings.enable-arrow.label",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "video_slide",
+      "name": "Video Slide",
+      "settings": [
+        {
+          "type": "video",
+          "id": "desktop_background_video",
+          "label": "t:sections.full-width-slideshow.settings.video-slide-desktop.label"
+        },
+        {
+          "type": "text",
+          "id": "desktop_caption_src",
+          "label": "t:sections.full-width-slideshow.settings.desktop-caption-src.label",
+          "info": "t:sections.full-width-slideshow.settings.desktop-caption-src.info"
+        },
+        {
+          "type": "text",
+          "id": "desktop_caption_srclang",
+          "label": "t:sections.full-width-slideshow.settings.desktop-caption-srclang.label",
+          "info": "t:sections.full-width-slideshow.settings.desktop-caption-srclang.info",
+          "default": "en"
+        },
+        {
+          "type": "text",
+          "id": "desktop_caption_label",
+          "label": "t:sections.full-width-slideshow.settings.desktop-caption-label.label",
+          "info": "t:sections.full-width-slideshow.settings.desktop-caption-label.info",
+          "default": "english_captions"
+        },
+        {
+          "type": "image_picker",
+          "id": "desktop_fallback_image",
+          "label": "t:sections.full-width-slideshow.settings.video-slide-desktop-fallback.label"
+        },
+        {
+          "type": "video",
+          "id": "mobile_background_video",
+          "label": "t:sections.full-width-slideshow.settings.video-slide-mobile.label"
+        },
+        {
+          "type": "text",
+          "id": "mobile_caption_src",
+          "label": "t:sections.full-width-slideshow.settings.mobile-caption-src.label"
+        },
+        {
+          "type": "text",
+          "id": "mobile_caption_srclang",
+          "label": "t:sections.full-width-slideshow.settings.mobile-caption-srclang.label",
+          "default": "en"
+        },
+        {
+          "type": "text",
+          "id": "mobile_caption_label",
+          "label": "t:sections.full-width-slideshow.settings.mobile-caption-label.label",
+          "default": "english_captions"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_fallback_image",
+          "label": "t:sections.full-width-slideshow.settings.video-slide-mobile-fallback.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.full-width-slideshow.settings.overlay-label.label"
+        },
+        {
+          "type": "html",
+          "id": "slide_heading",
+          "default": "Welcome to our store",
+          "label": "t:sections.full-width-slideshow.settings.slide-heading.label"
+        },
+        {
+          "type": "html",
+          "id": "slide_subheading",
+          "label": "t:sections.full-width-slideshow.settings.slide-subheading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "slide_description",
+          "label": "t:sections.full-width-slideshow.settings.slide-description.label"
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-1-label.label"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-1-url.label"
+        },
+        {
+          "type": "text",
+          "id": "button_2_label",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-2-url.label"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "t:sections.full-width-slideshow.settings.slide-button-2-url.label"
+        },
+        {
+          "type": "radio",
+          "id": "desktop_text_alignment",
+          "label": "t:sections.full-width-slideshow.settings.desktop-text-alignment.label",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "radio",
+          "id": "color_scheme",
+          "label": "t:sections.full-width-slideshow.settings.color-scheme.label",
+          "options": [
+            {
+              "value": "light",
+              "label": "Light"
+            },
+            {
+              "value": "dark",
+              "label": "Dark"
+            }
+          ],
+          "default": "light"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_arrow",
+          "label": "Enable Slide Arrow",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.full-width-slideshow.name",
+      "blocks": [
+        {
+          "type": "image_slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

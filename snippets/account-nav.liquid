@@ -1,0 +1,25 @@
+{% assign orders_url = routes.account_url | append: "?view=orders" %}
+
+<div class="account-nav background-color-pink">
+  <nav class="account-nav-main account-nav-list" aria-label="{{ 'accessibility.account_menu' | t }}">
+    <h2 class="account-nav__title s1 color-off-black">{{ "customer.account.title" | t }}</h2>
+    <ul class="account-nav-items">
+      {% liquid
+        assign secret_key = settings.ordergroove_secret_key
+        assign customer_id = customer.id
+        assign timestamp = "now" | date: "%s"
+        assign signature = customer_id | append: "|" | append: timestamp | hmac_sha256: secret_key
+        assign subscription_url = "/apps/subscriptions/manage/?customer=" | append: customer.id | append: "&customer_signature=" | append: signature | append: "&customer_timestamp=" | append: timestamp
+
+        render 'account-nav-item', mod_label_t: 'customer.account.nav.overview', mod_href: routes.account_url, mod_class: "nav-item__overview js-nav-item__overview"
+        render 'account-nav-item', mod_label_t: 'customer.account.nav.saved-addresses', mod_href: routes.account_addresses_url
+        render 'account-nav-item', mod_label_t: 'customer.account.nav.order-history', mod_href: orders_url, mod_class: "nav-item__order-history js-nav-item__order-history"
+        if settings.enable_ordergroove
+          render 'account-nav-item', mod_label_t: 'customer.account.nav.subscriptions', mod_href: subscription_url, mod_class: 'subscriptions-link'
+        endif
+        render 'account-nav-item', mod_label_t: 'customer.account.nav.logout_html', mod_href: routes.account_logout_url
+      %}
+    </ul>
+  </nav>
+  {%- render 'account-nav-secondary' -%}
+</div>

@@ -1,0 +1,190 @@
+{% render 'async-stylesheet', mod_url: 'section-banner-artistry.css' %}
+
+<section
+  class='banner-artistry flex align-center justify-center {% if section.settings.color_theme == 'dark' %}background-color-off-black {% else %}background-color-off-white{% endif %}'
+  style="background-image: url('{{ section.settings.background_image.src | image_url }}');"
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  {%- liquid
+    if section.settings.image_1 != blank
+      render 'adaptive-image', mod_image: section.settings.image_1, mod_alt: section.settings.image_1.alt, bg: 'banner-artistry__image-1'
+    endif
+
+    if section.settings.image_2 != blank
+      render 'adaptive-image', mod_image: section.settings.image_2, mod_alt: section.settings.image_2.alt, bg: 'banner-artistry__image-2'
+    endif
+
+    if section.settings.image_3 != blank
+      render 'adaptive-image', mod_image: section.settings.image_3, mod_alt: section.settings.image_3.alt, bg: 'banner-artistry__image-3'
+    endif
+
+    if section.settings.image_4 != blank
+      render 'adaptive-image', mod_image: section.settings.image_4, mod_alt: section.settings.image_4.alt, bg: 'banner-artistry__image-4'
+    endif
+  -%}
+
+  <div class='banner-artistry__text-container {% if section.settings.color_theme == 'dark' %}color-off-white {% else %}color-off-black{% endif %}'>
+    <div>
+      {% if section.settings.eyebrow != blank %}
+        <p class='s1 text-center no-margin '>{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h3 class='h3 text-center no-margin'>{{ section.settings.heading }}</h3>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <p class='banner-artistry__body b2 text-center no-margin'>{{ section.settings.body }}</p>
+      {% endif %}
+      {% if section.settings.cta_url != blank %}
+        <div class='flex justify-center align-center'>
+          {% if section.settings.cta_url contains "#cordial-popup--" %}
+            {% assign mod_class = section.settings.cta_url | replace: "#", "" %}
+          {% endif %}
+          {% render 'button',
+            mod_type: 'link',
+            mod_value: section.settings.cta_text,
+            mod_variant: 'text-underline',
+            mod_href: section.settings.cta_url,
+            mod_theme: section.settings.color_theme,
+            mod_class: mod_class
+          %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {%- liquid
+    if section.settings.image_5 != blank
+      render 'adaptive-image', mod_image: section.settings.image_5, mod_alt: section.settings.image_5.alt, bg: 'banner-artistry__image-5'
+    endif
+
+    if section.settings.image_6 != blank
+      render 'adaptive-image', mod_image: section.settings.image_6, mod_alt: section.settings.image_6.alt, bg: 'banner-artistry__image-6'
+    endif
+
+    if section.settings.image_7 != blank
+      render 'adaptive-image', mod_image: section.settings.image_7, mod_alt: section.settings.image_7.alt, bg: 'banner-artistry__image-7'
+    endif
+
+    if section.settings.image_8 != blank
+      render 'adaptive-image', mod_image: section.settings.image_8, mod_alt: section.settings.image_8.alt, bg: 'banner-artistry__image-8'
+    endif
+
+    if section.settings.image_9 != blank
+      render 'adaptive-image', mod_image: section.settings.image_9, mod_alt: section.settings.image_9.alt, bg: 'banner-artistry__image-9 desktop-block'
+    endif
+  -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.banner-artistry.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.banner-artistry.settings.id.label",
+      "info": "t:sections.banner-artistry.settings.id.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "t:sections.banner-artistry.settings.background-image.label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.banner-artistry.settings.eyebrow.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.banner-artistry.settings.heading.label",
+      "default": "Artistry Banner"
+    },
+    {
+      "type": "text",
+      "id": "body",
+      "label": "t:sections.banner-artistry.settings.body.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "t:sections.banner-artistry.settings.cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.banner-artistry.settings.cta-url.label"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.banner-artistry.settings.color-themes.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.banner-artistry.settings.color-themes.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.banner-artistry.settings.color-themes.options.dark"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "t:sections.banner-artistry.settings.image-1.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "t:sections.banner-artistry.settings.image-2.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "t:sections.banner-artistry.settings.image-3.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "t:sections.banner-artistry.settings.image-4.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "t:sections.banner-artistry.settings.image-5.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "t:sections.banner-artistry.settings.image-6.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "t:sections.banner-artistry.settings.image-7.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "t:sections.banner-artistry.settings.image-8.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "t:sections.banner-artistry.settings.image-9.label",
+      "info": "t:sections.banner-artistry.settings.image-9.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner-artistry.name"
+    }
+  ]
+}
+{% endschema %}

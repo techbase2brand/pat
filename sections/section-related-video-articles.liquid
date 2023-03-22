@@ -1,0 +1,61 @@
+{% render 'async-stylesheet', mod_url: 'section-image-with-text-2up.css' %}
+
+<section
+  class='container background-color-off-white color-off-black related-video-articles flex flex-direction-column'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  {% if section.settings.heading != blank %}
+    <h3 class='h3 no-margin inset-two-up-module-with-image__heading'>{{ section.settings.heading }}</h3>
+  {% endif %}
+
+  <div class='grid inset-two-up-module-with-image__grid'>
+    {%- for _article in blogs['video-gallery'].articles -%}
+      {%- if _article.tags contains article.title -%}
+        {%- render 'article-video-card', _article: _article -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {% if section.settings.cta_url != blank and section.settings.cta_title != blank %}
+    {% render 'button',
+      mod_type: 'link',
+      mod_value: section.settings.cta_title,
+      mod_href: section.settings.cta_url,
+      mod_theme: section.settings.color_theme,
+      mod_class: 'inset-two-up-module-with-image__cta'
+    %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Related Video Articles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.related-video-articles.settings.id.label",
+      "info": "t:sections.related-video-articles.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.related-video-articles.settings.heading.label",
+      "default": "Related Looks"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "t:sections.related-video-articles.settings.button-title.label",
+      "default": "Explore Video Gallery"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.related-video-articles.settings.button-url.label"
+    }
+  ]
+}
+{% endschema %}

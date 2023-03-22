@@ -1,0 +1,51 @@
+{% comment %}
+    Renders Support links and the help chat widget start button.
+
+    Parameters:
+      - mod_class: addon classes to add to the wrapper
+      - mod_addons:
+        Content/HTML slotted in near the end of the section
+{% endcomment %}
+
+{% render 'async-stylesheet', mod_url: 'component-support-links.css' %}
+
+{%- assign mod_class = mod_class | default: '' -%}
+<div class="{{ mod_class }} support-links grid">
+  <div class="grid support-links-links">
+    {%- unless customer -%}
+      <div class="support-links__row support-links__row-account grid align-center">
+        <span class="b2 bold color-off-black">{{ settings.customer_service_login_text }}</span>
+        <span class="b2 text-right color-off-black">
+          <a href="{{ settings.customer_service_login_url }}" class="color-dark-gray">{{ settings.customer_service_login_url_text }}</a>
+        </span>
+      </div>
+    {%- endunless -%}
+    {% if settings.customer_service_contact_us_url != blank %}
+      <div class="support-links__row grid align-center">
+        <span class="flex align-center color-off-black support-links__icon-link b2">
+          {% render 'icon-help' %}
+          <span>{{ settings.customer_service_contact_us_text }}</span>
+        </span>
+        <span class="b3 text-right">
+          <a href="{{ settings.customer_service_contact_us_url }}" class="color-dark-gray">{{ settings.customer_service_contact_us_url_text }}</a>
+        </span>
+      </div>
+    {% endif %}
+    {% if settings.customer_service_live_chat_url != blank %}
+      <div class="support-links__row grid">
+        <div class="b2">
+          <span class="flex align-center color-off-black support-links__icon-link">
+            {% render 'icon-chat' %}
+            <span>{{ settings.customer_service_live_chat_text }}</span>
+          </span>
+          <div class="color-dark-gray">{{ settings.customer_service_live_chat_timing }}</div>
+        </div>
+        <span class="b3 text-right ">
+          <a href="{{ settings.customer_service_live_chat_url }}" class="color-dark-gray">{{ settings.customer_service_live_chat_url_text }}</a>
+        </span>
+      </div>
+    {% endif %}
+  </div>
+  <p class="b2 no-margin color-dark-gray support-links__row-desc">{{ 'sections.cart.terms_conditions_html' | t }}</p>
+  {{ mod_addons }}
+</div>

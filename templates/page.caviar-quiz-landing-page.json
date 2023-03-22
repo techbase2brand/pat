@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_sidebar": false,
+        "menu_title": "Customer service",
+        "menu": "page-sidebar"
+      }
+    },
+    "a18aa155-11b0-4bb7-b076-a81502d8d15d": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/Caviar_Desktop.jpg",
+        "mobile_main_image": "shopify://shop_images/Caviar_Mobile.jpg",
+        "eyebrow": "",
+        "heading": "Which Caviar Stick Eye Color<br>Is Right For <em>You?</em>",
+        "body": "Find the perfect fit, our Caviar Sticks can be used for all eye colors and come in finishes from chrome-to-matte.",
+        "section_link_text": "Find your Fit",
+        "section_link_url": "shopify://pages/quiz-caviar-stick-eye-color",
+        "section_bg_override": "",
+        "image_orientation": "right",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "a18aa155-11b0-4bb7-b076-a81502d8d15d"
+  ]
+}

@@ -1,0 +1,228 @@
+<div class="collection-filters">
+  <div class="collection-filters__main container grid align-center">
+    <div class="collection-filters__list align-center">
+      <% if(data.query[{{ mod_type | json }}].filters.length > 0 ) { %>
+        <span class="s1">{{ 'sections.collection_template.filter_by_label' | t }}:</span>
+
+        <% helper.each(data.query[{{ mod_type | json }}].filters,function(key,filter){ %>
+          <% if(filter.type == "OPTIONS"){ %>
+            <div class="kuFilterBox klevuFilter <%=(filter.multiselect)?'kuMulticheck':''%>" data-filter="<%=filter.key%>" <% if(filter.multiselect){ %> data-singleselect="false" <% } else { %> data-singleselect="true"<% } %>>
+              <collection-filter-dropdown class="collection-filters__list-item relative">
+                <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex capitalize">
+                  <span class="a1">
+                    <% var filter_label = (filter.label=="klevu_price") ? "price" : filter.label; %> <%=helper.translate(filter_label)%>
+                  </span>
+                  {% render 'icon-arrow', direction: "down" %}
+                </button>
+                <div class="collection-filters__list-item__dropdown background-color-pale-pink grid kuFilterNames" data-optionCount="<%= filter.options.length %>">
+                  <% helper.each(filter.options,function(key,filterOption){ %>
+                    <div <% if(filterOption.selected ==true) { %> class="kuSelected"<% } %>>
+                      <div
+                        class="klevuFilterOption<% if(filterOption.selected ==true) { %> klevuFilterOptionActive<% } %>"
+                        data-value="<%=helper.escapeHTML(filterOption.value)%>"
+                        data-name="<%=helper.escapeHTML(filterOption.name)%>"
+                        data-filter="<%= filter.key %>"
+                      >
+                        {%-
+                          render 'form-radio-checkbox',
+                            type: 'checkbox',
+                            id: 'klevu-filter--<%=filterOption.value%>',
+                            label: '<%= filterOption.name %>',
+                            name: '<%=helper.escapeHTML(filterOption.name)%>',
+                            value: '<%=filterOption.value%>',
+                            input_attributes: '<% if (filterOption.selected ==true) { %>checked<% } %>'
+                        -%}
+                      </div>
+                    </div>
+                  <% }); %>
+                </div>
+              </collection-filter-dropdown>
+            </div>
+          <% } %>
+        <% }); %>
+      <% } %>
+    </div>
+    <div class="collection-filters__aside align-center">
+      <span class="b2 color-dark-gray">
+        {%- capture single_count_translation -%}templates.klevu_search.{{ mod_type }}.one{%- endcapture -%}
+        {%- capture multiple_count_translation -%}templates.klevu_search.{{ mod_type }}.other{%- endcapture -%}
+        <% if(data.query[{{ mod_type | json }}].meta.totalResultsFound == 1) { %>
+          <%= helper.translate({{ single_count_translation | t | json }}, data.query[{{ mod_type | json }}].meta.totalResultsFound) %>
+        <% } else if (data.query[{{ mod_type | json }}].meta.totalResultsFound > 1) { %>
+          <%= helper.translate({{ multiple_count_translation | t | json }}, data.query[{{ mod_type | json }}].meta.totalResultsFound) %>
+        <% } %>
+      </span>
+      <div class="collection-filters__filter-toggle justify-end">
+        {% render 'button' mod_type: "link", mod_value_t: "sections.collection_template.filter_and_sort", mod_href: '#mobile-filters', mod_class: 'inverted fluid button--icon-reverse cursor-pointer', mod_icon: "filter", mod_attr: 'data-target="mobile-filters"' %}
+      </div>
+      {% if mod_type == 'productList' %}
+        <div class="collection-filters__sortby-wrapper align-center color-off-black">
+          <span class="s1">{{ 'sections.collection_template.sort_by_label' | t }}:</span>
+
+          <collection-filter-dropdown class="collection-filters__list-item relative">
+            <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex capitalize">
+              <span class="a1">
+                <%=helper.translate(helper.getSortBy({{ mod_type | json }}))%>
+              </span>
+              {% render 'icon-arrow', direction: "down" %}
+            </button>
+            <div class="collection-filters__list-item__dropdown background-color-pale-pink grid kuDropdown">
+              <% var currentSort = helper.getSortBy({{ mod_type | json }});  %>
+              <div class="kuDropOption kuSort" data-value="RELEVANCE" role="option">
+                {%-
+                  render 'form-radio-checkbox',
+                    type: 'radio',
+                    id: 'klevu-filter--RELEVANCE',
+                    label: '<%= helper.translate("Relevance") %>',
+                    name: 'sort_by',
+                    value: 'RELEVANCE',
+                    input_attributes: '<% if (currentSort === "Relevance") { %>checked<% } %>'
+                -%}
+              </div>
+
+              <div class="kuDropOption kuSort" data-value="PRICE_ASC" role="option">
+                {%-
+                  render 'form-radio-checkbox',
+                    type: 'radio',
+                    id: 'klevu-filter--PRICE_ASC',
+                    label: '<%= helper.translate("Price: Low to high") %>',
+                    name: 'sort_by',
+                    value: 'PRICE_ASC',
+                    input_attributes: '<% if (currentSort === "Price: Low to high") { %>checked<% } %>'
+                -%}
+              </div>
+
+              <div class="kuDropOption kuSort" data-value="PRICE_DESC" role="option">
+                {%-
+                  render 'form-radio-checkbox',
+                    type: 'radio',
+                    id: 'klevu-filter--PRICE_DESC',
+                    label: '<%= helper.translate("Price: High to low") %>',
+                    name: 'sort_by',
+                    value: 'PRICE_DESC',
+                    input_attributes: '<% if (currentSort === "Price: High to low") { %>checked<% } %>'
+                -%}
+              </div>
+            </div>
+          </collection-filter-dropdown>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+    <%
+      var filterTagsModule = data.filterTags; var filterTagsData = [];
+      var filterTagsData = filterTagsModule.query[{{ mod_type | json }}].tags;
+    %>
+    <% if(filterTagsData.length) { %>
+      <div class="container">
+        <div class="collection-filters__active flex-wrap">
+          <% helper.each(filterTagsData, function(key,item) { %>
+            <% var filterTagItemKey = helper.escapeHTML(item.key); var filterTagItemLabel = helper.escapeHTML(helper.translate(item.label)); %>
+            <span class="kuFilterTag" data-key="<%= filterTagItemKey %>" data-type="<%= helper.escapeHTML(item.type) %>" >
+              <span title="<%= filterTagItemLabel %>" data-value="<%= filterTagItemLabel %>" class="kuFilterTagKey hidden" > <%= helper.translate(item.label) %> </span>
+              <% helper.each(item.values, function(key,option) { %>
+                <% if(item.type !== "RATING") { %>
+                  <span title="<%= helper.escapeHTML(helper.translate(option)) %>" data-value="<%= helper.escapeHTML(helper.translate(option)) %>" class="kuFilterTagValue collection-filters__filter-tag cursor-pointer inline-flex align-center justify-center background-color-light-tan coloe-off-black no-underline b3 no-margin">
+                    <%= helper.translate(option) %>
+                    {% render 'icon-close' %}
+                  </span>
+                <% } %>
+              <% }); %>
+            </span>
+          <% }); %>
+          <a title="<%= helper.translate("Clear all") %>" class="kuFilterTagClearAll collection-filters__clear inline-flex align-center justify-center no-underline border-pewter-gradient-outline cursor-pointer">{{ 'sections.collection_template.clear_all' | t }}</a>
+        </div>
+      </div>
+    <% } %>
+</div>
+{%- capture collection_filter_mobile_content -%}
+  <div class="flex collection-filters__slideout">
+    <div class="collection-filters__accordions">
+      <collection-filter-dropdown accordion class="collection-filters__list-item relative">
+        <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex capitalize">
+          <span class="a1">{{ 'sections.collection_template.sort_by_label' | t }}</span>
+          {% render 'icon-arrow', direction: "down" %}
+        </button>
+        <div class="collection-filters__list-item__dropdown grid kuDropdown">
+          <% var currentSort = helper.getSortBy({{ mod_type | json }});  %>
+          <div class="kuDropOption kuSort" data-value="RELEVANCE" role="option">
+            {%-
+              render 'form-radio-checkbox',
+                type: 'radio',
+                id: 'klevu-filter--RELEVANCE',
+                label: '<%= helper.translate("Relevance") %>',
+                name: 'sort_by',
+                value: 'RELEVANCE',
+                input_attributes: '<% if (currentSort === "Relevance") { %>checked<% } %>'
+            -%}
+          </div>
+
+          <div class="kuDropOption kuSort" data-value="PRICE_ASC" role="option">
+            {%-
+              render 'form-radio-checkbox',
+                type: 'radio',
+                id: 'klevu-filter--PRICE_ASC',
+                label: '<%= helper.translate("Price: Low to high") %>',
+                name: 'sort_by',
+                value: 'PRICE_ASC',
+                input_attributes: '<% if (currentSort === "Price: Low to high") { %>checked<% } %>'
+            -%}
+          </div>
+
+          <div class="kuDropOption kuSort" data-value="PRICE_DESC" role="option">
+            {%-
+              render 'form-radio-checkbox',
+                type: 'radio',
+                id: 'klevu-filter--PRICE_DESC',
+                label: '<%= helper.translate("Price: High to low") %>',
+                name: 'sort_by',
+                value: 'PRICE_DESC',
+                input_attributes: '<% if (currentSort === "Price: High to low") { %>checked<% } %>'
+            -%}
+          </div>
+        </div>
+      </collection-filter-dropdown>
+
+      <% helper.each(data.query[{{ mod_type | json }}].filters,function(key,filter){ %>
+        <% if(filter.type == "OPTIONS"){ %>
+            <collection-filter-dropdown <% if (filter.options.some(option => option.selected)) { %> open="true" <% } %>" accordion class="collection-filters__list-item relative kuFilterBox klevuFilter <%=(filter.multiselect)?'kuMulticheck':''%>" data-filter="<%=filter.key%>" <% if(filter.multiselect){ %> data-singleselect="false" <% } else { %> data-singleselect="true"<% } %>>
+              <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex capitalize">
+                <span class="a1">
+                  <% var filter_label = (filter.label=="klevu_price") ? "price" : filter.label; %> <%=helper.translate(filter_label)%>
+                </span>
+                {% render 'icon-arrow', direction: "down" %}
+              </button>
+              <div class="collection-filters__list-item__dropdown grid kuFilterNames" data-optionCount="<%= filter.options.length %>">
+                <% helper.each(filter.options,function(key,filterOption){ %>
+                  <div <% if(filterOption.selected ==true) { %> class="kuSelected"<% } %>>
+                    <div
+                      class="klevuFilterOption<% if(filterOption.selected ==true) { %> klevuFilterOptionActive<% } %>"
+                      data-value="<%=helper.escapeHTML(filterOption.value)%>"
+                      data-name="<%=helper.escapeHTML(filterOption.name)%>"
+                      data-filter="<%= filter.key %>"
+                    >
+                      {%-
+                        render 'form-radio-checkbox',
+                          type: 'checkbox',
+                          id: 'klevu-filter--<%=filterOption.value%>',
+                          label: '<%= filterOption.name %>',
+                          name: '<%=helper.escapeHTML(filterOption.name)%>',
+                          value: '<%=filterOption.value%>',
+                          input_attributes: '<% if (filterOption.selected ==true) { %>checked<% } %>'
+                      -%}
+                    </div>
+                  </div>
+                <% }); %>
+              </div>
+            </collection-filter-dropdown>
+        <% } %>
+      <% }); %>
+    </div>
+    <div class="collection-filters__actions slideout-content__actions background-color-off-white grid">
+      {%- capture clear_all_href -%}{{ collection.url }}?sort_by={{ collection.sort_by }}{%- endcapture -%}
+      {% render 'button' mod_type: "button", mod_attr: 'title="<%= helper.translate("Clear all") %>"', mod_href: clear_all_href, mod_value_t: "sections.collection_template.clear_all", mod_class: 'inverted fluid kuFilterTagClearAll js-close-slideout' %}
+      {% render 'button' mod_type: "button", mod_value_t: "sections.collection_template.apply", mod_class: 'fluid js-close-slideout' %}
+    </div>
+  </div>
+{%- endcapture -%}
+{% render "slideout", title_t: 'sections.collection_template.filter_and_sort', slideout_id: 'mobile-filters', content: collection_filter_mobile_content, mod_content_class: 'grid slideout-content--stick-actions collection-filters__slideout-content inset' %}

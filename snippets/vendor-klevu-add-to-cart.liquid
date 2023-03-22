@@ -1,0 +1,13 @@
+<script type="text/javascript">
+  if ('undefined' === typeof klevu_addtocart) {
+    function klevu_addtocart(id, url, qty) {
+      if ('undefined' !== typeof klevu_customAddToCart) {
+        klevu_customAddToCart(id, url, 1);
+      } else {
+        var urlProtocol = ("https:" === document.location.protocol ? "https://" : "http://");
+        var url = urlProtocol + window.location.hostname + '/cart/add?id=' + id + '&quantity=1';
+        window.location.assign(url);
+      }
+    }
+  }
+</script>

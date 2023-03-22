@@ -1,0 +1,55 @@
+{
+  "sections": {
+    "form": {
+      "type": "section-register-form",
+      "settings": {
+      }
+    },
+    "benefits": {
+      "type": "section-account-benefits",
+      "blocks": {
+        "9c48c815-d09e-46b5-8f30-f246bce66a93": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/fast-checkout.png",
+            "text": "<p><strong>Check out faster</strong> by keeping your shipping, billing, and payment details handy.</p>"
+          }
+        },
+        "61917946-e6ae-4535-8a4c-4fe7f14f36aa": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/beauty-advice.png",
+            "text": "<p><strong>Get expert advice</strong> on products and daily regimen according to your skin & lifestyle.</p>"
+          }
+        },
+        "efeaa439-d4c8-4690-9a1b-7e6a7af667b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/beauty-boards.png",
+            "text": "<p><strong>Create boards</strong> to share your perfect product matches for any special moment.</p>"
+          }
+        },
+        "df81a5c1-bed5-41a1-863d-423f5dd8811f": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/discounts.png",
+            "text": "<p><strong>Embrace our gift of beauty</strong> with exclusive Laura Mercier access and special redemptions.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "9c48c815-d09e-46b5-8f30-f246bce66a93",
+        "61917946-e6ae-4535-8a4c-4fe7f14f36aa",
+        "efeaa439-d4c8-4690-9a1b-7e6a7af667b1",
+        "df81a5c1-bed5-41a1-863d-423f5dd8811f"
+      ],
+      "settings": {
+        "title": "UNLOCK YOUR BEAUTY STATION"
+      }
+    }
+  },
+  "order": [
+    "form",
+    "benefits"
+  ]
+}

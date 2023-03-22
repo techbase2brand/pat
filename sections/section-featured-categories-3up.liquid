@@ -1,0 +1,117 @@
+<script src='{{ 'component-simple-slider.js' | asset_url }}' defer='defer' type='module'></script>
+
+{% render 'async-stylesheet', mod_url: 'section-featured-categories-3up.css' %}
+
+<section
+  class='featured-collection-three-up container'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='featured-collection-three-up__content background-color-light-tan'>
+    {% if section.settings.heading != blank %}
+      <h2 class='featured-collection-three-up__heading s1 text-center no-margin'>{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class='featured-collection-three-up__blocks justify-center'>
+      {% for block in section.blocks %}
+        {% render 'featured-categories-3up-block', mod_block: block, mod_section_heading: section.settings.heading, %}
+      {% endfor %}
+    </div>
+
+    <simple-slider class='js-featured-collection-slider mobile-block'>
+      <div class='hide-scrollbars flex' data-slider-items>
+        {% for block in section.blocks %}
+          {% render 'featured-categories-3up-block',
+            mod_section_heading: section.settings.heading,
+            mod_block: block,
+            mod_class: 'slider_block',
+            mod_attr: 'data-slider-item'
+          %}
+          {% if forloop.last %}
+            {% assign end = forloop.index %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class='js-slider-controls-wrapper slider-controls-wrapper flex align-center justify-center'>
+        {% render 'simple-carousel-controls',
+          mod_class: '',
+          mod_button_bg_color: 'background-color-off-white',
+          mod_loop_length: end,
+          mod_render_slide_status: false
+        %}
+      </div>
+    </simple-slider>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.featured-categories-3up.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-categories-3up.settings.id.label",
+      "info": "t:sections.featured-categories-3up.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.featured-categories-3up.settings.heading.label"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.featured-categories-3up.blocks.settings.image.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.featured-categories-3up.blocks.settings.heading.label",
+          "default": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "t:sections.featured-categories-3up.blocks.settings.body.label"
+        },
+        {
+          "type": "url",
+          "id": "collection_link",
+          "label": "t:sections.featured-categories-3up.blocks.settings.collection_link.label"
+        },
+        {
+          "type": "text",
+          "id": "collection_link_cta",
+          "label": "t:sections.featured-categories-3up.blocks.settings.collection_link_cta.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-categories-3up.name",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

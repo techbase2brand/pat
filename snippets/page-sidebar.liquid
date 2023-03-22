@@ -1,0 +1,36 @@
+{%- liquid
+  assign title = title | default: blank
+  assign menu = menu | default: blank
+-%}
+<div class="page-sidebar background-color-pink">
+  <nav class="page-sidebar-nav">
+    {%- if title != blank -%}
+      <h1 class="page-sidebar-title s1">{{ title | escape }}</h1>
+    {%- endif -%}
+
+    <ul class="page-sidebar-nav-items">
+      {%- for link in menu.links -%}
+        {%- liquid
+          assign mod_is_active = false
+          if request.path == link.url
+            assign mod_is_active = true
+          endif
+        -%}
+        <li class="page-sidebar-nav-item">
+          {%- if mod_is_active -%}
+            <a href="{{ link.url }}" class="b1 button--text-icon page-sidebar-nav-item__button">
+              <span>{{ link.title | escape }}</span>
+              {%- render 'icon-menu-caret' -%}
+            </a>
+          {%- elsif link.title contains '__' -%}
+            <hr />
+          {%- else -%}
+            <a class="b1 color-dark-gray page-sidebar-nav-item__link" href="{{ link.url }}">{{ link.title | escape }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  {%- render 'support-links', mod_class: 'page-sidebar-support' -%}
+</div>

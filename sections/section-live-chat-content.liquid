@@ -1,0 +1,120 @@
+{{ 'section-live-chat-content.css' | asset_url | stylesheet_tag }}
+
+<section class='live-chat-content'>
+  <div class='live-chat-content__content-container flex'>
+    <div class='live-chat-content__container'>
+      <div>
+        <h3 class='h3 no-margin'>{{ section.settings.first_heading }}</h3>
+        <p class='b1 no-margin live-chat-content__subheading'>
+          {{ section.settings.first_subheading }}
+        </p>
+        <p class='b1 no-margin live-chat-content__description'>
+          {{ section.settings.first_description }}
+        </p>
+      </div>
+
+      <div>
+        {% render 'button',
+          mod_type: 'button',
+          mod_type: 'link',
+          mod_value: section.settings.first_link_cta,
+          mod_href: section.settings.first_link_url,
+          mod_theme: 'light',
+          mod_class: 'live-chat-content__button',
+          mod_icon_position: 'left',
+          mod_icon: 'live-chat'
+        %}
+      </div>
+    </div>
+
+    <div class='live-chat-content__container'>
+      <div>
+        <h3 class='h3 no-margin'>{{ section.settings.second_heading }}</h3>
+        <p class='b1 no-margin live-chat-content__subheading'>
+          {{ section.settings.second_subheading }}
+        </p>
+        <p class='b1 no-margin live-chat-content__description'>
+          {{ section.settings.second_description }}
+        </p>
+      </div>
+
+      <div>
+        {% render 'button',
+          mod_type: 'button',
+          mod_value: section.settings.second_link_cta,
+          mod_href: section.settings.second_link_url,
+          mod_theme: 'light',
+          mod_type: 'link',
+          mod_class: 'live-chat-content__button',
+          mod_icon_position: 'left',
+          mod_icon: 'email'
+        %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.live-chat-content.name",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "first_heading",
+      "label": "t:sections.live-chat-content.settings.first-heading.label"
+    },
+    {
+      "type": "text",
+      "id": "first_subheading",
+      "label": "t:sections.live-chat-content.settings.first-subheading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "first_description",
+      "label": "t:sections.live-chat-content.settings.first-description.label"
+    },
+    {
+      "type": "text",
+      "id": "first_link_cta",
+      "label": "t:sections.live-chat-content.settings.first-link-cta.label"
+    },
+    {
+      "type": "text",
+      "id": "first_link_url",
+      "label": "t:sections.live-chat-content.settings.first-link-url.label"
+    },
+    {
+      "type": "richtext",
+      "id": "second_heading",
+      "label": "t:sections.live-chat-content.settings.second-heading.label"
+    },
+    {
+      "type": "text",
+      "id": "second_subheading",
+      "label": "t:sections.live-chat-content.settings.second-subheading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "second_description",
+      "label": "t:sections.live-chat-content.settings.second-description.label"
+    },
+    {
+      "type": "text",
+      "id": "second_link_cta",
+      "label": "t:sections.live-chat-content.settings.second-link-cta.label"
+    },
+    {
+      "type": "text",
+      "id": "second_link_url",
+      "label": "t:sections.live-chat-content.settings.second-link-url.label",
+      "info": "t:sections.live-chat-content.settings.second-link-url.info",
+      "default": "mailto:contact_us@lauramercier.com"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.live-chat-content.name"
+    }
+  ]
+}
+{% endschema %}

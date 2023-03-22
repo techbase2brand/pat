@@ -1,0 +1,193 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_sidebar": false,
+        "menu_title": "Customer service",
+        "menu": "page-sidebar"
+      }
+    },
+    "d5b54fec-7241-4ade-9314-8dac45084bd3": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/Hero_Short_Full-Width_17.jpg",
+        "mobile_image": "shopify://shop_images/Hero_Short_Full-Width_18.jpg",
+        "eyebrow": "",
+        "heading": "Current Offers",
+        "body": "",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "dark",
+        "bg_color": ""
+      }
+    },
+    "eff317e9-a85e-458c-99ff-b7701dfd3dd5": {
+      "type": "section-featured-products-fifty-fifty-wide",
+      "disabled": true,
+      "blocks": {
+        "template--16757413708015__eff317e9-a85e-458c-99ff-b7701dfd3dd5-167201829824d02a76-0": {
+          "type": "product",
+          "settings": {
+            "theme": "light",
+            "product": "caviar-stick-eye-color",
+            "variant_id": "42118254101",
+            "subheading": "",
+            "body": "",
+            "cta_title": "",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16757413708015__eff317e9-a85e-458c-99ff-b7701dfd3dd5-167201829824d02a76-0"
+      ],
+      "settings": {
+        "id": "",
+        "image_position": "right"
+      }
+    },
+    "48286aed-aee0-45fb-9f46-e09a5adc9b0b": {
+      "type": "section-image-with-text-2up",
+      "blocks": {
+        "template--16729257443567__48286aed-aee0-45fb-9f46-e09a5adc9b0b-16702674494068af09-0": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Free_Shipping_1.jpg",
+            "eyebrow": "",
+            "heading": "Free Shipping And Returns",
+            "body": "Enjoy free standard shipping when you spend $35+*. If you’re not happy with your order, we’ll take care of your return for free, too.**",
+            "block_button_url": "shopify://collections/bestsellers",
+            "block_button_title": "Shop Now"
+          }
+        },
+        "template--16729257443567__48286aed-aee0-45fb-9f46-e09a5adc9b0b-16702674494068af09-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/LM_Texts_1.jpg",
+            "eyebrow": "",
+            "heading": "Get on Laura’s List",
+            "body": "Text JOIN to 80290 to sign up for texts and be the first to know about exclusive offers, product launches and more. Plus, we’ll send you 15% off your next order.***",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "bd3b4a70-9591-4304-b825-f497874621d7": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Two_Samples_1.jpg",
+            "eyebrow": "",
+            "heading": "Sample Something New",
+            "body": "Discover fresh favorites and receive 1 free sample every time you order.****",
+            "block_button_url": "shopify://collections/bestsellers",
+            "block_button_title": "Shop Now"
+          }
+        },
+        "1d03158f-918c-4e34-bb0b-e7ec36ec1819": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Birthday_Gift_1.jpg",
+            "eyebrow": "",
+            "heading": "A Birthday Gift From Us to You",
+            "body": "Create an account and get a just-for-you offer to celebrate your birthday.*****",
+            "block_button_url": "/account/login",
+            "block_button_title": "Create Account"
+          }
+        },
+        "697ae3a8-572e-413f-9242-c089334f93eb": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Copy_of_Live_Chat_2.jpg",
+            "eyebrow": "",
+            "heading": "Live Chat",
+            "body": "Have questions about your recent order? Need product or shade recommendations? Speak with our Live Chat agents now and get your questions answered immediately. *****",
+            "block_button_url": "shopify://pages/live-chat",
+            "block_button_title": "Chat Now"
+          }
+        },
+        "3e1707b7-043f-40af-ad84-9c5ef644e06b": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Copy_of_Welcome_Offer_1.jpg",
+            "eyebrow": "",
+            "heading": "Welcome Offer",
+            "body": "Enjoy 15% off your first purchase on LauraMercier.com when you join our mailing list. *******",
+            "block_button_url": "shopify://collections/bestsellers",
+            "block_button_title": "Shop Now"
+          }
+        },
+        "dc91bfb0-abbc-4357-839e-bc555927327f": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "eyebrow": "",
+            "heading": "Heading  lorem ipsum dolor",
+            "body": "",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "e6a6c029-bf42-4d62-a6d6-b9bd15db7146": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "eyebrow": "",
+            "heading": "Heading  lorem ipsum dolor",
+            "body": "",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        },
+        "5ec8525e-a318-4a1f-8098-ba4233dd8e9d": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "eyebrow": "",
+            "heading": "Heading  lorem ipsum dolor",
+            "body": "",
+            "block_button_url": "",
+            "block_button_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729257443567__48286aed-aee0-45fb-9f46-e09a5adc9b0b-16702674494068af09-0",
+        "template--16729257443567__48286aed-aee0-45fb-9f46-e09a5adc9b0b-16702674494068af09-1",
+        "bd3b4a70-9591-4304-b825-f497874621d7",
+        "1d03158f-918c-4e34-bb0b-e7ec36ec1819",
+        "697ae3a8-572e-413f-9242-c089334f93eb",
+        "3e1707b7-043f-40af-ad84-9c5ef644e06b",
+        "dc91bfb0-abbc-4357-839e-bc555927327f",
+        "e6a6c029-bf42-4d62-a6d6-b9bd15db7146",
+        "5ec8525e-a318-4a1f-8098-ba4233dd8e9d"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Every Order, Every Day",
+        "button_title": "",
+        "button_link": "",
+        "color_theme": "light"
+      }
+    },
+    "b22ec1fb-b427-4036-8a3b-491e466607ff": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "",
+        "body": "Prices as marked. Offer ends 1/2/2023. Only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.\n\n*Receive free ground shipping with any $35+ purchase. Orders are processed within 48 hours Monday through Friday. Some methods may not be applicable to your shipping area. At this time, we do not ship to multiple addresses in one order. We do not ship orders outside of the U.S.<br><br>\n\n**We are committed to providing quality products to our customers. If you receive products from lauramercier.com that do not meet your expectations, simply return the gently used products with the receipt within 30 days of purchase. Please notate on the front side of your receipt the reason for your return and send the product(s) back to us using pre-paid and insured shipping methods. Empty containers will not be accepted for refund. Processing time for returns takes up to 10 business days from the return is received.<br><br>\n\n***By texting JOIN to 80290, you consent to receive marketing texts to your mobile number from Laura Mercier via an autodialer up to 2 times per week. Consent not required to purchase. Msg/Data rates may apply. Reply STOP to cancel or reply HELP for information. I agree that the collection and processing of my personal data will be in compliance with the Laura Mercier Privacy Policy and I agree to Laura Mercier SMS Terms and Conditions.\n<br><br>\n****Select one sample at checkout with purchase. Assortment will vary and is subject to change without notice. Only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.\n<br><br>\n*****Our Live Chat agents are available from 9am–11pm ET Monday–Saturday. If you have inquiries after these hours, please email Customer Care at contact_us@lauramericer.com and we will respond as quick possible.\n<br><br>\n******Use code at checkout to receive 15% off on your first purchase. Offer only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.\n<br><br>\n*******Must use unique code delivered via email at checkout to receive 15% off your first purchase. Offer only valid for orders placed on www.lauramercier.com, while supplies last, and does not apply to previous purchases placed online. Applies only to in-stock items. Applicable purchase amount does not include donations, gift box charges, sales tax or shipping and handling charges. Offers are subject to change without notice. Cannot be combined with other offers.",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "d5b54fec-7241-4ade-9314-8dac45084bd3",
+    "eff317e9-a85e-458c-99ff-b7701dfd3dd5",
+    "48286aed-aee0-45fb-9f46-e09a5adc9b0b",
+    "b22ec1fb-b427-4036-8a3b-491e466607ff"
+  ]
+}

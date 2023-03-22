@@ -1,0 +1,254 @@
+{% comment %}
+  Renders a product card
+
+  Accepts:
+  - product_card_product: {Object} Product Liquid object
+  - product_card_variant: {Object} Product Variant Liquid object (optional)
+  - use_variant: {Boolean} If true, show variant as product
+
+  Usage:
+  {% render 'product-card', product_card_product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign use_variant = use_variant | default: false
+  assign quiz_results = quiz_results | default: false
+  assign global_selling_fast_threshold = shop.metafields.globals.sku_inventory_threshold | times: 1
+  assign is_new = false
+  assign is_bestseller = false
+  assign is_virtual_try = product_card_product.metafields.product_information['virtual-try-on'] | default: false, allow_false: true
+  assign is_autodelivery = product_card_product.metafields.product_information['autodelivery'] | default: false, allow_false: true
+  assign hide_selling_fast = product_card_product.metafields.product_card.hide_selling_fast | default: null
+  assign featured_variant = blank
+  assign enable_waitlist = product_card_product.metafields.waitlist.enable_waitlist
+  assign waitlist_visibility = product_card_product.metafields.waitlist.waitlist_visibility
+  assign waitlist_atc_url_cta = product_card_product.metafields.waitlist.cta_url_id
+
+  for tag in product_card_product.tags
+    if tag == '__New'
+      assign is_new = true
+    elsif tag == '__Bestseller'
+      assign is_bestseller = true
+    endif
+  endfor
+
+  assign color_options = product_card_product.options_with_values | where: 'name', 'Color' | first
+  assign size_options = product_card_product.options_with_values | where: 'name', 'Size' | first
+  assign other_options = product_card_product.options_with_values
+
+  assign other_quickable = false
+  if product_card_product.metafields.swatch.selected_shade_label != blank
+    assign first_option = product_card_product.metafields.swatch.selected_shade_label
+    assign first_option_handle = first_option | handleize
+    if first_option_handle contains 'select'
+      assign other_quickable = true
+    endif
+  else
+    assign first_option = product_card_product.options_with_values | first
+    assign first_option = first_option.name
+
+    if first_option == 'Title'
+      assign first_option = 'product_card.add_to_bag' | t
+    else
+      assign first_option = first_option | prepend: 'Select '
+      assign other_quickable = true
+    endif
+  endif
+
+  assign color_option_name = 'option' | append: color_options.position
+  assign size_option_name = 'option' | append: size_options.position
+  assign wrapper_element = 'a'
+  assign is_selling_fast = null
+  assign hydrate = false | default: false, allow_false: true
+  assign selected_variant = product_card_variant | default: product_card_product.selected_or_first_available_variant
+  assign target_url = product_card_variant.url | default: product_card_product.url
+
+  unless hide_selling_fast
+    if selected_variant.inventory_quantity < global_selling_fast_threshold
+      assign is_selling_fast = true
+    endif
+  endunless
+
+  if selectable
+    assign wrapper_element = 'div'
+  endif
+
+  if use_variant
+    assign featured_variant = product_card_variant
+  else
+    for variant in product_card_product.variants
+      if variant.metafields.product_card.featured_variant == true
+        assign featured_variant = variant
+        assign selected_variant = variant
+        assign product_card_variant = variant
+      endif
+    endfor
+  endif
+-%}
+
+<product-card
+  class='product-card{% if quiz_results %} product-card__quiz{% endif %}'
+  {%- if hydrate -%}
+    hydrate
+  {%- endif -%}
+  product-handle='{{ product_card_product.handle }}'
+>
+  <{{ wrapper_element }}
+    type='button'
+    href='{{ target_url | default: '#' }}'
+    class='full-unstyled-link product-card__wrapper flex flex-direction-column js-product-card-link'
+  >
+    <div class='product-card__head flex align-center justify-space-between'>
+      {%- if is_new -%}
+        <span class='b2 bold color-off-black'>{{ 'product_card.is_new' | t }}</span>
+      {%- elsif is_bestseller -%}
+        <span class='b2 bold color-off-black'>{{ 'product_card.bestseller' | t }}</span>
+      {%- endif -%}
+      {%- if is_autodelivery -%}
+        {% render 'icon-auto-delivery' | mod_class: 'icon-auto-delivery hidden js-product-card-badge' %}
+      {%- elsif is_virtual_try -%}
+        {% render 'icon-virtual-tryon' | mod_class: 'icon-virtual-tryon hidden js-product-card-badge' %}
+      {%- endif -%}
+    </div>
+    <div class='product-card__media'>
+      {%- liquid
+        assign featured_image = product_card_product.featured_image
+        assign secondary_featured_image = product_card_product.images[1] | default: null
+
+        if product_card_variant and product_card_variant.featured_image
+          assign featured_image = product_card_variant.featured_image
+
+          if featured_image.position != null
+            assign variantImages = product_card_product.images | where: 'alt', product_card_variant[color_option_name]
+            if variantImages.size > 1
+              assign secondary_featured_image = variantImages[1]
+            else
+              assign next_position = featured_image.position | plus: 1
+              if product_card_product.images[next_position]
+                assign secondary_featured_image = product_card_product.images[next_position]
+              endif
+            endif
+          endif
+        endif
+
+        render 'adaptive-image', mod_object_fit: 'contain', bg: 'product-card__media--primary', mod_aspect_ratio: 1, mod_image: featured_image, mod_alt: product_card_product.title, mod_loading: 'lazy', mod_sizes: '416px, (min-width: 768px) 650px'
+        if secondary_featured_image != blank
+          render 'adaptive-image', mod_object_fit: 'contain', bg: 'product-card__media--secondary', mod_aspect_ratio: 1, mod_image: secondary_featured_image, mod_alt: product_card_product.title, mod_loading: 'lazy', mod_sizes: '416px, (min-width: 768px) 650px'
+        endif
+      -%}
+
+      {%- if is_selling_fast -%}
+        <span class='product-card__tag'>{%- render 'selling-fast', position: 'relative' -%}</span>
+      {%- endif -%}
+    </div>
+
+    <div class='product-card__details flex flex-direction-column justify-space-between {% if enable_waitlist %} waitlist-enabled {% endif %}'>
+      <div class='product-card__details-top'>
+        <div class='product-card__details-head'>
+          <div class='align-center grid product-card__details-head__details'>
+            {%- if product_card_variant and product_card_variant[color_option_name] -%}
+              <div class='swatch-line no-margin flex align-center'>
+                {%- render 'form-shade-selector',
+                  color: product_card_variant[color_option_name],
+                  id: product_card_variant.id,
+                  disabled: false,
+                  variant: product_card_variant
+                -%}
+                <span class='b3 color-dark-gray no-margin'>{{ product_card_variant[color_option_name] }}</span>
+              </div>
+            {%- elsif size_options -%}
+              <span class='b3 color-dark-gray no-margin'>{{ product_card_variant[size_option_name] }}</span>
+            {%- else -%}
+              <span class='b3 color-dark-gray no-margin'></span>
+            {%- endif -%}
+
+            {%- if color_options != blank -%}
+              <span class='b2 color-dark-gray product-card__details-head__shades'>
+                {{- color_options.values | size }}
+                {{- 'product_card.shade_qty' | t }}
+              </span>
+            {%- endif -%}
+            {%- if size_options != blank -%}
+              <span class='b2 color-dark-gray product-card__details-head__shades'>
+                {{- size_options.values | size }}
+                {{- 'product_card.sizes_qty' | t -}}
+              </span>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class='product-card__border border-pewter-gradient-outline'></div>
+        {% render 'okendo-reviews-product-rating-summary', product: product_card_product %}
+        <div class='product-card__details-main'>
+          <span class='h4 color-off-black js-product-card-title'>
+            {{ product_card_product.title | strip_html }}
+          </span>
+          {% if quiz_results %}
+            <div class='product-card__details-head-quiz'>
+              <div class='align-center grid product-card__details-head__details'>
+                {%- if product_card_variant and product_card_variant[color_option_name] -%}
+                  <div class='swatch-line no-margin flex align-center'>
+                    {%- render 'form-shade-selector',
+                      color: product_card_variant[color_option_name],
+                      id: product_card_variant.id,
+                      disabled: false,
+                      variant: product_card_variant
+                    -%}
+                    <span class='b3 color-dark-gray no-margin'>{{ product_card_variant[color_option_name] }}</span>
+                  </div>
+                {%- elsif size_options -%}
+                  <span class='b3 color-dark-gray no-margin'>{{ product_card_variant[size_option_name] }}</span>
+                {%- else -%}
+                  <span class='b3 color-dark-gray no-margin'></span>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endif %}
+          <p class='no-margin b2 color-dark-gray'>
+            {{ product_card_product.metafields.product_information.summary }}
+          </p>
+        </div>
+        {% if featured_variant == blank %}
+          {% render 'price', product: product_card_product, price_class: '', grid_view: true %}
+        {% else %}
+          {% render 'price', product: featured_variant, mod_using_variant: true, price_class: '', grid_view: false %}
+        {% endif %}
+      </div>
+      <div class='product-card__details-actions flex flex-direction-column'>
+        {%- liquid
+          if quiz_results == true
+            render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'add-to-cart', button_value: selected_variant.id
+          elsif settings.quick_shop == true
+            if product_card_product.metafields.product_card.disable_quick_shop == true
+              render 'product-card-button', button_type: 'a', button_text_t: 'product_card.shop_now', href: target_url
+            elsif color_options
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_shade', product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'quick-shop'
+            elsif size_options
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_size', product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'quick-shop'
+            elsif other_options.size > 0
+              if other_quickable
+                render 'product-card-button', button_type: 'button', button_text: first_option, product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'quick-shop'
+              elsif enable_waitlist and waitlist_visibility == 'Display Always'
+                render 'product-card-button', button_type: 'a', button_text_t: 'products.product.coming_soon', href: waitlist_atc_url_cta
+              elsif enable_waitlist and waitlist_visibility == 'Display When OOS' and selected_variant.available == false
+                render 'product-card-button', button_type: 'a', button_text_t: 'products.product.get_notified', href: waitlist_atc_url_cta
+              else
+                render 'product-card-button', button_type: 'button', button_text: first_option, product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'add-to-cart', button_value: selected_variant.id
+              endif
+            else
+              render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: product_card_product, selected_variant: selected_variant, button_action: 'add-to-cart', button_value: selected_variant.id
+            endif
+          else
+            if color_options
+              render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_shade', href: target_url
+            elsif size_options
+              render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_size', href: target_url
+            else
+              render 'product-card-button', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url
+            endif
+          endif
+        -%}
+      </div>
+      
+    </div>
+  </{{ wrapper_element }}>
+</product-card>

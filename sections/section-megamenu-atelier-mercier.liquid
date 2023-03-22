@@ -1,0 +1,48 @@
+<section-megamenu id="megamenu-5" class="megamenu background-color-pale-pink">
+  {% render 'megamenu-component' %}
+</section-megamenu>
+
+{% schema %}
+{
+  "name": "Megamenu - Atelier",
+  "tag": "section",
+  "class": "megamenu-section megamenu__atelier-mercier",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "default": "Atelier Mercier",
+      "label": "Menu Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "menu_1_image",
+      "label": "Menu 1 Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "menu_2_image",
+      "label": "Menu 2 Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "menu_3_image",
+      "label": "Menu 3 Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_col",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "navigation_menu",
+          "label": "Select Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}

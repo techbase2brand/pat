@@ -1,0 +1,732 @@
+{% assign shop_name = shop.name | split: '-' | first | strip %}
+{% capture email_title %}
+  Enjoy your E-<em>Gift</em> Card!
+{% endcapture %}
+{% capture email_body %}
+  {% if gift_card.expires_on %}
+    Your {{ gift_card.balance | money_without_trailing_zeros }} gift card for {{ shop_name }} is here! Save this email to view and write down your gift card number. This gift card expires on {{ gift_card.expires_on }}.
+  {% else %}
+    Your {{ gift_card.balance | money_without_trailing_zeros }} gift card for {{ shop_name }} is here! Save this email to view and write down your gift card number.
+  {% endif %}
+{% endcapture %}
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <title>{{ email_title }}</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <style>
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 200;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+          U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+          U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+          U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+          U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F,
+          U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+          U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* ------------------------------------------------------------ *\
+        Custom Fonts
+    \* ------------------------------------------------------------ */
+
+      @font-face {
+        font-family: 'Canela';
+        src: url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-LightItalic-Web.woff2')
+            format('woff2'),
+          url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-LightItalic-Web.woff')
+            format('woff');
+        font-weight: 300;
+        font-style: italic;
+        font-stretch: normal;
+      }
+
+      @font-face {
+        font-family: 'Canela';
+        src: url('ttps://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-Light-Web.woff2') format('woff2'),
+          url('ttps://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-Light-Web.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+      }
+
+      @font-face {
+        font-family: 'Canela';
+        src: url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-ThinItalic-Web.woff2')
+            format('woff2'),
+          url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-ThinItalic-Web.woff')
+            format('woff');
+        font-weight: 100;
+        font-style: italic;
+        font-stretch: normal;
+      }
+
+      @font-face {
+        font-family: 'Canela';
+        src: url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-Thin-Web.woff2') format('woff2'),
+          url('https://cdn.shopify.com/s/files/1/0615/5265/6623/t/1258/assets/Canela-Thin-Web.woff') format('woff');
+        font-weight: 100;
+        font-style: normal;
+        font-stretch: normal;
+      }
+
+      body {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+        letter-spacing: -0.32px;
+        color: #78696a;
+        margin: 0;
+        background-color: #fffbf7;
+      }
+
+      h1 {
+        font-family: 'Canela', serif;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 50px;
+        line-height: 56px;
+        color: #3e2b2e;
+        letter-spacing: unset;
+        margin: 0;
+      }
+
+      h3 {
+        font-family: 'Canela', serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 28.8272px;
+        line-height: 38px;
+        color: #3e2b2e;
+        letter-spacing: unset;
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .bg-light-tan {
+        background-color: #f3e9e2;
+      }
+
+      .w-full {
+        width: 100%;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .img-wrapper {
+        padding: 120px 50px;
+      }
+
+      .img-gift-card {
+        width: 100%;
+        height: auto;
+      }
+
+      .content-title {
+        margin: 58px 31px 0;
+      }
+
+      .content-body {
+        margin: 20px auto 0;
+        max-width: 244px;
+      }
+
+      .button {
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        text-decoration: none;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: -0.32px;
+        font-weight: 600;
+        border: double 1px transparent;
+        box-sizing: border-box;
+        color: #fffbf7;
+        background-color: #3e2b2e;
+        transition: all 100ms ease-out;
+      }
+
+      .button:hover,
+      .button:focus {
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        box-shadow: 4px 4px 12px #d2b29a66, -4px -4px 12px #fffbf7;
+        background-image: linear-gradient(#e4cebe, #e4cebe),
+          linear-gradient(90deg, #d3cba1 0%, #777467 25.92%, #dcd9ca 58.98%, #ada791 100%);
+        color: #3e2b2e;
+      }
+
+      .button.fluid {
+        width: 100%;
+      }
+
+      .actions__cell {
+        padding-top: 40px;
+      }
+
+      .button__large {
+        max-width: 552px;
+        margin: auto;
+        height: 51px;
+      }
+
+      .footer__logo {
+        padding-top: 99px;
+        padding-bottom: 1.49px;
+      }
+
+      .footer__logo-wrapper {
+        position: relative;
+      }
+
+      .footer__logo-wrapper::before {
+        content: ' ';
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        height: 70%;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(250, 244, 239, 0) 0%, #faf4ef 100%);
+      }
+
+      .footer__logo-wrapper img {
+        width: 100%;
+        height: auto;
+      }
+
+      .footer {
+        background-color: #faf4ef;
+        padding-bottom: 83.13px;
+      }
+
+      .footer * {
+        color: #3e2b2e;
+      }
+
+      .footer__cell a {
+        color: #3e2b2e;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .footer__cell-links {
+        padding-top: 8px;
+        padding-left: 39.04px;
+      }
+
+      .footer__cell-links a {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 19.2182px;
+        line-height: 26px;
+        letter-spacing: 2.56px;
+        text-transform: uppercase;
+      }
+
+      .footer__cell-links td {
+        padding-top: 48.05px;
+      }
+
+      .footer__cell-orveon h3 {
+        margin-top: 65.44px;
+        margin-bottom: 19.22px;
+      }
+
+      .footer__cell-orveon a {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19.2182px;
+        line-height: 30px;
+        letter-spacing: -0.32px;
+        display: inline-block;
+        text-transform: capitalize;
+      }
+
+      .ml-38 {
+        margin-left: 38.03px;
+      }
+
+      .ml-48 {
+        margin-left: 48.05px;
+      }
+
+      .footer__cell-socials,
+      .footer__cell-bottom {
+        padding-top: 48.05px;
+      }
+
+      .footer__cell-socials a {
+        display: inline-block;
+      }
+
+      .footer__cell-bottom a,
+      .footer__cell-bottom span {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        letter-spacing: -0.32px;
+        text-transform: capitalize;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table class='body w-full' cellspacing='0' cellpadding='0'>
+      <tr>
+        <td>
+          <table class='row content w-full bg-light-tan' cellspacing='0' cellpadding='0'>
+            <tr>
+              <td class='content__cell'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td class='img-wrapper'>
+                        <img
+                          loading='lazy'
+                          class='img-gift-card'
+                          src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/gift-card.png?v=1670520420'
+                          alt='Gift card image'
+                          height='400'
+                          width='582'
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table class='row content w-full' cellspacing='0' cellpadding='0'>
+            <tr>
+              <td class='content__cell'>
+                <center>
+                  <table class='container text-center' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td>
+                        <h1 class='content-title'>{{ email_title }}</h1>
+                        <p class='content-body'>{{ email_body }}</p>
+
+                        <table class='row actions w-full' cellspacing='0' cellpadding='0'>
+                          <tr>
+                            <td class='actions__cell'>
+                              <table class='main-action-cell w-full'>
+                                <tr>
+                                  <td class='button__cell'>
+                                    <a href='{{ gift_card.url }}' class='button fluid button__large'>View Gift Card</a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+
+                        {% if gift_card.pass_url %}
+                          <br>
+                          <a href='{{ gift_card.pass_url }}' class='apple-wallet-button'>
+                            <img
+                              loading='lazy'
+                              src='{{ 'gift-card/add-to-apple-wallet.png' | shopify_asset_url }}'
+                              alt='Add to Apple Wallet'
+                              width='120'
+                              height='40'
+                            >
+                          </a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table class='row footer__logo w-full' cellspacing='0' cellpadding='0'>
+            <tr>
+              <td class='footer__logo-wrapper'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td>
+                        <img
+                          loading='lazy'
+                          src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/email-footer-logo.png?v=1670531637'
+                          alt='{{ shop_name }}'
+                          height='54'
+                          width='600'
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+
+          <table class='row footer w-full' cellspacing='0' cellpadding='0'>
+            <tr>
+              <td class='footer__cell footer__cell-links'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td>
+                        <a href=''>Refer a friend</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href=''>Customer service</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href=''>Explore our offers</a>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+            <tr>
+              <td class='footer__cell footer__cell-orveon'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td class='text-center'>
+                        <h3>Explore Orveon</h3>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class='text-center'>
+                        <a href=''>Bare Minerals</a>
+                        <a href='' class='ml-38'>Buxom</a>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+            <tr>
+              <td class='footer__cell footer__cell-socials'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td class='text-center'>
+                        <a href='https://www.instagram.com/lauramercier' target='_blank'>
+                          <img
+                            loading='lazy'
+                            src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/Instagram.png?v=1670533537'
+                            alt='{{ shop_name }}'
+                            height='33'
+                            width='33'
+                          >
+                        </a>
+                        <a class='ml-48' href='https://www.tiktok.com/@lauramercier' target='_blank'>
+                          <img
+                            loading='lazy'
+                            src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/TikTok.png?v=1670533555'
+                            alt='{{ shop_name }}'
+                            height='33'
+                            width='33'
+                          >
+                        </a>
+                        <a class='ml-48' href='https://www.facebook.com/lauramerciercosmetics' target='_blank'>
+                          <img
+                            loading='lazy'
+                            src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/Facebook.png?v=1670533566'
+                            alt='{{ shop_name }}'
+                            height='33'
+                            width='33'
+                          >
+                        </a>
+                        <a class='ml-48' href='https://twitter.com/LauraMercier' target='_blank'>
+                          <img
+                            loading='lazy'
+                            src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/Twitter.png?v=1670533572'
+                            alt='{{ shop_name }}'
+                            height='33'
+                            width='33'
+                          >
+                        </a>
+                        <a class='ml-48' href='https://www.youtube.com/user/LauraMercierCosmetic' target='_blank'>
+                          <img
+                            loading='lazy'
+                            src='https://cdn.shopify.com/s/files/1/0615/5265/6623/files/YouTube.png?v=1670533578'
+                            alt='{{ shop_name }}'
+                            height='33'
+                            width='33'
+                          >
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+            <tr>
+              <td class='footer__cell footer__cell-bottom'>
+                <center>
+                  <table class='container' cellspacing='0' cellpadding='0'>
+                    <tr>
+                      <td class='text-center'>
+                        <span class='disclaimer__subtext'
+                          >&copy; {{ shop_name }}
+                          {{ 'now' | date: '%Y' -}}
+                        </span>
+                        <a href='' class='ml-38'>Manage Preferences</a>
+                        <a href='' class='ml-38'>Unsubscribe</a>
+                      </td>
+                    </tr>
+                  </table>
+                </center>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

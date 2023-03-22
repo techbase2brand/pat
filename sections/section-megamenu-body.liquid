@@ -1,0 +1,85 @@
+<section-megamenu id="megamenu-10" class="megamenu background-color-pale-pink">
+  {% render 'megamenu-component' %}
+</section-megamenu>
+
+{% schema %}
+{
+  "name": "Megamenu - Body",
+  "tag": "section",
+  "class": "megamenu-section megamenu__body",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "default": "Body",
+      "label": "Menu Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_col",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "navigation_menu",
+          "label": "Select Menu"
+        }
+      ]
+    },
+    {
+      "type": "small_feature_col",
+      "name": "Small Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "feature_col",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}

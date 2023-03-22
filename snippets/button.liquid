@@ -1,0 +1,239 @@
+{% comment %}
+  @param {String} mod_value The button text
+  @param {String} mod_type Is this a block style button or a link styled as a button? (value: "link" or "button")
+  @param {String} mod_name The button's "name" attribute
+  @param {String} mod_id The button's "id" attribute
+  @param {String} mod_class A string of classes to attach to the button
+  @param {String} mod_attr A flexible way to attach addition attributes
+  @param {String} mod_href The button's "href" attribute
+  @param {String} mod_icon Add icon snippet from name
+  @param {String} mod_form If the button is included as part of a form, this attribute should be the same string as the ID attribute of the form
+  @param {String} mod_theme
+  @param {Boolean} mod_disabled
+  @param {Boolean} mod_loadable Render the button as loadable, where when attribute loading is set it shows a loader
+  @param {String} mod_aria_label when the button has no visible text
+
+  Examples:
+  {%- render 'button',
+    mod_value: 'Shop now',
+    mod_class: 'button' -%}
+
+  {%- render 'button',
+    mod_type: 'link',
+    mod_href: '#',
+    mod_value: 'Shop now',
+    mod_class: 'button--text-underline' -%}
+{% endcomment %}
+
+{%- liquid
+  assign mod_value = mod_value | default: blank
+  assign mod_value_t = mod_value_t | default: blank
+  assign mod_type = mod_type | default: 'button'
+  assign mod_name = mod_name | default: false
+  assign mod_id = mod_id | default: false
+  assign mod_class = mod_class | default: ''
+  assign mod_attr = mod_attr | default: false
+  assign mod_href = mod_href | default: false
+  assign mod_icon = mod_icon | default: false
+  assign mod_variant = mod_variant | default: ''
+  assign mod_render_type = mod_render_type | default: true
+  assign mod_disabled = mod_disabled | default: false
+  assign mod_children = mod_children | default: ''
+  assign mod_css = mod_class
+  assign mod_icon_position = mod_icon_position | default: 'right'
+  assign mod_tab_index = mod_tab_index | default: blank
+  assign mod_loadable = mod_loadable | default: false
+  assign mod_is_external = mod_is_external | default: false
+-%}
+
+{% unless mod_render_type %}
+  {% assign mod_type = mod_type | default: 'button' %}
+{% endunless %}
+
+{% comment %} control flow to handle themeing {% endcomment %}
+{%- liquid
+  if mod_theme
+    if mod_variant contains 'text-underline'
+      case mod_theme
+        when 'dark'
+          assign theme_modifier = 'light'
+      endcase
+    else
+      case mod_theme
+        when 'light'
+          assign theme_modifier = 'button--dark'
+        else
+          assign theme_modifier = 'button--light'
+      endcase
+    endif
+
+    assign mod_css = mod_css | append: ' ' | append: theme_modifier
+  endif
+-%}
+
+{% comment %} control flow to handle variants {% endcomment %}
+{%- liquid
+  assign variant_enum = ''
+  if mod_variant contains 'secondary'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--secondary'
+  endif
+
+  if mod_variant contains 'text-underline'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--text-underline'
+  endif
+
+  if mod_icon_position contains 'left'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--icon-reverse'
+  endif
+
+  if mod_variant contains 'paginate'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--paginate'
+  endif
+
+  if mod_variant contains 'basic'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--text-basic'
+  endif
+
+  if mod_variant contains 'text-icon'
+    assign variant_enum = variant_enum | append: ' ' | append: 'button--text-icon'
+  endif
+-%}
+
+{% comment %} if no variant render defualt button {% endcomment %}
+
+{%- liquid
+  if mod_variant != '' or mod_class contains 'no-styles'
+    assign mod_css = mod_css | append: ' ' | append: variant_enum
+  else
+    assign mod_css = mod_css | append: ' ' | append: 'button'
+  endif
+-%}
+
+{%- case mod_type -%}
+  {%- when 'link' -%}
+    <a
+      class='{{- mod_css | strip -}} {% if mod_disabled %} disabled {% endif %}'
+      {% if mod_href and mod_disabled != true %}
+        href='{{- mod_href -}}'
+      {% endif %}
+      {% if mod_id %}
+        id='{{- mod_id -}}'
+      {% endif %}
+      {% if mod_attr %}
+        {{ mod_attr }}
+      {% endif %}
+      {% if mod_value != blank %}
+        title='{{- mod_value -}}'
+      {% endif %}
+      {% if mod_aria_label != blank %}
+        aria-label='{{ mod_aria_label }}'
+      {% endif %}
+      {% if mod_is_external %}
+        target="_blank" rel="noreferrer"
+      {% endif %}
+    >
+      {%- liquid
+        if mod_icon
+          case mod_icon
+            when 'arrow'
+              render 'icon-button-arrow'
+            when 'try-on'
+              render 'icon-try-on'
+            when 'find-shade'
+              render 'icon-find-shade'
+            when 'filter'
+              render 'icon-filter'
+            when 'email'
+              render 'icon-email'
+            when 'live-chat'
+              render 'icon-live-chat'
+            when 'icon-flag-ca'
+              render 'icon-flag-ca'
+            when 'icon-flag-us'
+              render 'icon-flag-us'
+          endcase
+        endif
+      -%}
+
+      <span>
+        {%- if mod_value_t != blank -%}
+          {{ mod_value_t | t }}
+        {%- else -%}
+          {{ mod_value }}
+        {%- endif -%}
+      </span>
+    </a>
+  {%- else -%}
+    <button
+      class='{{- mod_css | strip -}}'
+      {% if mod_loadable %}
+        is="loading-button"
+      {% endif %}
+      {% if mod_render_type %}
+        type='{{- mod_type -}}'
+      {% endif %}
+      {% if mod_id %}
+        id='{{- mod_id -}}'
+      {% endif %}
+      {% if mod_name %}
+        name='{{- mod_name -}}'
+      {% endif %}
+      {% if mod_form %}
+        form='{{- mod_form -}}'
+      {% endif %}
+      {% if mod_attr %}
+        {{ mod_attr }}
+      {% endif %}
+      {% if mod_disabled %}
+        disabled
+      {% endif %}
+      {% if mod_tab_index %}
+        tabindex='{{ mod_tab_index }}'
+      {% endif %}
+      {% if mod_aria_label != blank %}
+        aria-label='{{ mod_aria_label }}'
+      {% endif %}
+    >
+      <span>
+        {%- if mod_value_t != blank -%}
+          {{ mod_value_t | t }}
+        {%- else -%}
+          {{ mod_value }}
+        {%- endif -%}
+      </span>
+
+      {%- liquid
+        if mod_children
+          case mod_children
+            when 'atc-separator'
+              render 'atc-separator'
+          endcase
+        endif
+
+        if mod_icon
+          case mod_icon
+            when 'arrow'
+              render 'icon-button-arrow'
+            when 'try-on'
+              render 'icon-try-on'
+            when 'find-shade'
+              render 'icon-find-shade'
+            when 'arrow-left'
+              render 'icon-arrow', direction: 'left'
+            when 'arrow-down'
+              render 'icon-arrow', direction: 'down'
+            when 'icon-sort'
+              render 'icon-sort'
+            when 'icon-plus'
+              render 'icon-plus'
+            when 'filter'
+              render 'icon-filter'
+            when 'icon-flag-ca'
+              render 'icon-flag-ca'
+            when 'icon-flag-us'
+              render 'icon-flag-us'
+          endcase
+        endif
+      -%}
+    </button>
+{%- endcase -%}

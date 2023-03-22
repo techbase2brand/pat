@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-quiz-results",
+      "settings": {
+        "eyebrow": "Your results",
+        "title": "<p>This product is <em>perfect</em> for you!</p>",
+        "paragraph": "Based on your answers, we recommend:",
+        "cta_text": "Retake Quiz",
+        "cta_url": "shopify://pages/quiz-tinted-moisturizer"
+      }
+    },
+    "a4719ad0-1c3f-4d25-8fd1-854a405f835b": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "results-nosto-section",
+        "heading": "You Might Also Like",
+        "placement_id": "tm-quiz-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "a4719ad0-1c3f-4d25-8fd1-854a405f835b"
+  ]
+}

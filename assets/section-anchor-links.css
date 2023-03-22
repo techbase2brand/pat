@@ -1,0 +1,21 @@
+.section-anchor-links {
+  padding: 2.4rem 0;
+}
+.section-anchor-links__div {
+  column-gap: 5rem;
+  overflow-x: scroll;
+  margin-left: var(--gutter);
+  margin-right: var(--gutter);
+  justify-content: flex-start;
+}
+
+.section-anchor-links__a {
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .section-anchor-links__div {
+    padding: 0;
+    justify-content: center;
+  }
+}

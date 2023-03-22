@@ -1,0 +1,330 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-footer.css'
+-%}
+
+<footer
+  class='background-color-pale-pink'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='container footer__container '>
+    <div class='grid footer__top-nav-wrapper'>
+      <div class='footer__col newsletter__col'>
+        <div class='newsletter__col__inner'>
+          <h3 class='newsletter__title serif color-off-black no-margin'>{{ section.settings.newsletter_title }}</h3>
+          <p class='newsletter__description color-off-black'>{{ section.settings.newsletter_description }}</p>
+          {% if section.settings.newsletter_enabled == true and settings.enable_cordial %}
+            {%- if settings.use_cordial_popup and settings.codial_popup_link != blank -%}
+              {% render 'button',
+                mod_type: 'link',
+                mod_value_t: 'newsletter.sign_up_text',
+                mod_variant: 'secondary',
+                mod_href: settings.codial_popup_link
+              %}
+            {%- else -%}
+              {% render 'button',
+                mod_type: 'button',
+                mod_value_t: 'newsletter.sign_up_text',
+                mod_variant: 'secondary',
+                mod_class: 'js-open-slideout',
+                mod_attr: "data-target='email-opt-in'"
+              %}
+            {%- endif -%}
+          {% endif %}
+        </div>
+      </div>
+      <div class='footer__col solo'></div>
+      <!-- Main Navigation -->
+      {% if section.settings.main_navigation != blank %}
+        {%- for link in section.settings.main_navigation.links -%}
+          <div class='footer__col'>
+            <div class='footer__col__inner'>
+              <!-- Desktop -->
+              <div class='footer__linklist--desktop m-block'>
+                <p class='n4 nav__title color-off-black extra-bold sans uppercase'>
+                  {{- link.title | escape -}}
+                </p>
+                {% if link.links.size > 0 %}
+                  <ul class='footer-block__details-content list-unstyled'>
+                    {%- for child_link in link.links -%}
+                      <li>
+                        <a
+                          href='{{ child_link.url }}'
+                          class='n4 normal  link link--text list-menu__item list-menu__item--link{% if child_link.active %} list-menu__item--active{% endif %}'
+                        >
+                          {{ child_link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+
+              <!-- Mobile -->
+              <div class='footer__linklist--mobile m-none'>
+                <div class='accordion' {{ block.shopify_attributes }}>
+                  <details>
+                    <summary class='flex align-center'>
+                      <h3 class='s1 footer__linklist-mobile-title color-off-black'>{{ link.title | escape }}</h3>
+                      <span class='text-right'>{% render 'icon-plus' %}</span>
+                    </summary>
+                    {% if link.links.size > 0 %}
+                      <ul class='footer-block__details-content list-unstyled'>
+                        {%- for child_link in link.links -%}
+                          <li>
+                            <a
+                              href='{{ child_link.url }}'
+                              class='n4 normal link link--text list-menu__item list-menu__item--link{% if child_link.active %} list-menu__item--active{% endif %}'
+                            >
+                              {{ child_link.title }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  </details>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {% endif %}
+    </div>
+    <div class='grid footer__bottom-nav-wrapper text-center'>
+      <div class='bottom-nav__left'>
+        <h3 class='h4 light serif color-off-black explore__title'>{{ section.settings.copyright_left_title }}</h3>
+        <ul>
+          {%- for link in section.settings.copyright_left.links -%}
+            <li class='color-off-black'>
+              <a
+                href='{{ link.url }}'
+                target='_blank'
+                rel='noopener'
+                class='link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}'
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div class='bottom-nav__right'>
+        <ul class='list-unstyled bottom-nav__social'>
+          {% if settings.social_instagram_link != '' %}
+            <li class='color-off-black'>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_instagram_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.instagram' | t }}'
+              >
+                {%- render 'icon-instagram' -%}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if settings.social_facebook_link != '' %}
+            <li class='color-off-black'>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_facebook_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.facebook' | t }}'
+              >
+                {%- render 'icon-facebook' -%}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if settings.social_tiktok_link != '' %}
+            <li class='tiktok color-off-black'>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_tiktok_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.tiktok' | t }}'
+              >
+                {%- render 'icon-tiktok' -%}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if settings.social_twitter_link != '' %}
+            <li class='color-off-black'>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_twitter_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.twitter' | t }}'
+              >
+                {%- render 'icon-twitter' -%}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if settings.social_youtube_link != '' %}
+            <li>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_youtube_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.youtube' | t }}'
+              >
+                {%- render 'icon-youtube' -%}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if settings.social_pinterest_link != '' %}
+            <li>
+              <a
+                class='bottom-nav__social-link'
+                rel='noopener'
+                href='{{ settings.social_pinterest_link }}'
+                target='_blank'
+                aria-label='{{ 'general.social.links.pinterest' | t }}'
+              >
+                {%- render 'icon-pinterest' -%}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class='bottom-nav__center text-center'>
+        <ul>
+          {%- for link in section.settings.copyright_center.links -%}
+            <li>
+              <a
+                href='{{ link.url }}'
+                class='link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}'
+              >
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+        <p class='copyright__text--mobile m-none color-off-black'>
+          {{ 'sections.footer.copyright_text' | t }}
+          {{ 'now' | date: '%Y' }}
+        </p>
+      </div>
+    </div>
+
+    <div class='footer__copyright-wrapper m-block'>
+      <p class='copyright__text--desktop color-off-black'>
+        {{ 'sections.footer.copyright_text' | t }}
+        {{ 'now' | date: '%Y' }}
+      </p>
+    </div>
+
+    <div class='footer__logo-wrapper'>
+      {%- render 'footer-logo' -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.footer.settings.id.label",
+      "info": "t:sections.footer.settings.id.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.sign_up_heading.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enabled",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enabled.label"
+    },
+    {
+      "type": "html",
+      "id": "newsletter_title",
+      "label": "t:sections.footer.settings.newsletter_title.label",
+      "info": "t:sections.footer.settings.newsletter_title.info",
+      "default": "<em>Bonjour!</em><br>Let's Be In Touch"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_description",
+      "label": "t:sections.footer.settings.newsletter_title.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.menus_heading.label"
+    },
+    {
+      "type": "link_list",
+      "id": "main_navigation",
+      "label": "t:sections.footer.settings.main_navigation.label"
+    },
+    {
+      "type": "text",
+      "id": "copyright_left_title",
+      "label": "t:sections.footer.settings.copyright_left_title.label"
+    },
+    {
+      "type": "link_list",
+      "id": "copyright_left",
+      "label": "t:sections.footer.settings.copyright_left.label"
+    },
+    {
+      "type": "link_list",
+      "id": "copyright_center",
+      "label": "t:sections.footer.settings.copyright_center.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.beauty_station.label"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "UNLOCK YOUR BEAUTY STATION"
+    },
+    {
+      "type": "textarea",
+      "id": "signup_thank_you_heading",
+      "label": "t:sections.footer.settings.best_sellers.title",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "text",
+      "id": "signup_thank_you_placement_id",
+      "label": "t:sections.footer.settings.best_sellers.placement_id",
+      "default": "testing-nosto-1"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Benefit",
+      "type": "benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

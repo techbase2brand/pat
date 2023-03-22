@@ -1,0 +1,11 @@
+{
+  "layout": false,
+  "sections": {
+    "cart-popup": {
+      "type": "cart-popup"
+    }
+  },
+  "order": [
+    "cart-popup"
+  ]
+}

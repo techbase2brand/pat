@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet">
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'checkout.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'checkout.js' | asset_url }}" defer="defer" type="module"></script>
+
+    {% render 'vendor-gtm-tag' %}
+
+  </head>
+  <body>
+    {%- if settings.enable_nosto -%}
+      {% render 'nosto-tagging' %}
+    {%- endif -%}
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {% comment %} POC to add a gift note into the checkout, right before the footer {% endcomment %}
+            {% if content_for_layout contains 'data-step="contact_information"' and settings.enable_ordernote %}
+              {% capture gift_note_input %}
+                <div class="hh-order-note__label">
+                  <input id="hh-order-note-checkbox" class="input-checkbox js-toggle-order-note" type="checkbox">
+                  <label for="hh-order-note-checkbox" class="checkbox__label">Include a Personal Message With Your Gift</label>
+                </div>
+                <div class="relative">
+                  <label for="hh-order-note" class="visually-hidden">Enter your personal message here</label>
+                  <textarea aria-label="Gift Note"
+                    id="hh-order-note"
+                    placeholder="Add your message"
+                    name="checkout[note]"
+                    maxlength="200"
+                    rows="5"
+                    class="hh-order-note js-order-note hidden">
+                      {{- gift_note -}}
+                  </textarea>
+                </div>
+                <div class="step__footer" data-step-footer>
+              {% endcapture %}
+              {% capture _content_for_layout %}
+                {{ content_for_layout }}
+              {% endcapture %}
+              {{ _content_for_layout | replace: '<div class="step__footer" data-step-footer>', gift_note_input }}
+            {% else %}
+                {{ content_for_layout }}
+            {% endif %}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+
+            {% comment %}Contact us, livechat {% endcomment %}
+            <div class="hh-contact-us grid support-links-links">
+              {% if settings.customer_service_contact_us_url != blank %}
+              <div class="support-links__row grid align-center">
+                <span class="flex align-center color-off-black support-links__icon-link b2">
+                  {% render 'icon-help' %}
+                  <span>{{ settings.customer_service_contact_us_text }}</span>
+                </span>
+                <span class="b3 text-right">
+                  <a href="{{ settings.customer_service_contact_us_url }}" class="color-dark-gray underline">{{ settings.customer_service_contact_us_url_text }}</a>
+                </span>
+              </div>
+              {% endif %}
+              {% if settings.customer_service_live_chat_url != blank %}
+                <div class="support-links__row grid">
+                  <div class="b2">
+                    <span class="flex align-center color-off-black support-links__icon-link">
+                      {% render 'icon-chat' %}
+                      <span>{{ settings.customer_service_live_chat_text }}</span>
+                    </span>
+                    <div class="color-dark-gray">{{ settings.customer_service_live_chat_timing }}</div>
+                  </div>
+                  <span class="b3 text-right ">
+                    <a href="{{ settings.customer_service_live_chat_url }}" class="color-dark-gray underline">{{ settings.customer_service_live_chat_url_text }}</a>
+                  </span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+</html>

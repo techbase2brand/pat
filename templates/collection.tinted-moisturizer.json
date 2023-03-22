@@ -1,0 +1,192 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "45ead75d-1285-4d89-be76-205ed253a517": {
+      "type": "section-comparison-slider-3up",
+      "blocks": {
+        "template--16729256886511__45ead75d-1285-4d89-be76-205ed253a517-167042492609912035-0": {
+          "type": "category",
+          "settings": {
+            "product": "tinted-moisturizer-natural-skin-perfector-spf-30",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "43e9bf5a-ca8b-458f-9541-fdb2780290a5": {
+          "type": "category",
+          "settings": {
+            "product": "tinted-moisturizer-oil-free-natural-skin-perfector-spf-20",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "4c345606-631d-44a8-a852-ce258de2fddd": {
+          "type": "category",
+          "settings": {
+            "product": "tinted-moisturizer-light-revealer-natural-skin-illuminator",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256886511__45ead75d-1285-4d89-be76-205ed253a517-167042492609912035-0",
+        "43e9bf5a-ca8b-458f-9541-fdb2780290a5",
+        "4c345606-631d-44a8-a852-ce258de2fddd"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Meet Our Tinted Moisturizers</p>",
+        "subheading": "",
+        "body": "Discover true-to-you tints with skin-enhancing coverage for a naturally flawless look.",
+        "cta_text": "",
+        "cta_url": ""
+      }
+    },
+    "a6a64b99-033f-4844-92be-ee0261df4d3e": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "template--16665910640879__a6a64b99-033f-4844-92be-ee0261df4d3e-1665488410fde8e37b-0": {
+          "type": "product",
+          "settings": {
+            "product": "tinted-moisturizer-natural-skin-perfector-mini-spf-30",
+            "variant_id": ""
+          }
+        },
+        "template--16665910640879__a6a64b99-033f-4844-92be-ee0261df4d3e-1665488410fde8e37b-1": {
+          "type": "product",
+          "settings": {
+            "product": "tinted-moisturizer-oil-free-natural-skin-perfector-mini-spf-20",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910640879__a6a64b99-033f-4844-92be-ee0261df4d3e-1665488410fde8e37b-0",
+        "template--16665910640879__a6a64b99-033f-4844-92be-ee0261df4d3e-1665488410fde8e37b-1"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Mini Tinted Moisturizers",
+        "subheading": "",
+        "body": "Take your favorite tinted moisturizers on-the-go in must-have minis.",
+        "cta_text": "",
+        "cta_url": "",
+        "image": "shopify://shop_images/LM_HO22_CLP_MiniTM_690x900_84a2ac3f-fa4d-4267-bfcf-aa63e254a6a1.jpg",
+        "image_mobile": "shopify://shop_images/LM_HO22_CLP_MiniTM_690x900_84a2ac3f-fa4d-4267-bfcf-aa63e254a6a1.jpg",
+        "image_position": "left"
+      }
+    },
+    "a2b68828-c823-412a-bba6-3ee06cbbeb36": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "",
+        "id": "",
+        "bottom_heading": "Tinted Moisturizer Blush",
+        "desktop_banner_image": "shopify://shop_images/Video_Banner_2_971ae620-0cc4-49cd-a91c-cc8d39e144fd.jpg",
+        "mobile_banner_image": "shopify://shop_images/Video_1_70fdf0bc-43cb-4739-a1be-b8b5b37c793d.jpg",
+        "desktop_background_video": "shopify://files/videos/LM_SP22_TMB_PDP_MACRO_10s_1920x1080_H264.mp4",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "desktop_fallback_image": "shopify://shop_images/Video_Banner_3_785c91e9-4de1-47b6-a0f5-10ae6fb21a96.jpg",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "mobile_fallback_image": "shopify://shop_images/Video_1_70fdf0bc-43cb-4739-a1be-b8b5b37c793d.jpg",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "Watch Now",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "64491828-6dcd-4871-aaa1-38a68937cba8": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_4.jpg",
+            "eyebrow": "",
+            "heading": "Foundation",
+            "body": "Create a seamless canvas with the color, coverage and finish of your choice.",
+            "cta_url": "shopify://collections/foundation",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_4.jpg",
+            "eyebrow": "",
+            "heading": "Translucent Loose Setting Powder",
+            "body": "Set your makeup with this cult-favorite powder featuring 16-hour staying power.",
+            "cta_url": "shopify://collections/translucent-setting-powder",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_3_4.jpg",
+            "eyebrow": "",
+            "heading": "Lipstick",
+            "body": "Elevate your lip looks with long-lasting shades for every occasion.",
+            "cta_url": "shopify://collections/lipstick",
+            "cta_text": "Shop Now"
+          }
+        },
+        "dc37ae9c-94b0-4745-b2e2-842beca10e90": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Primers_e1785deb-23df-470a-a2cd-6d41821c6718.jpg",
+            "eyebrow": "",
+            "heading": "Primers",
+            "body": "Prep your Flawless Face with Laura’s first step for an all-day look that lasts.",
+            "cta_url": "shopify://collections/primers",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-0",
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-1",
+        "template--16665910640879__64491828-6dcd-4871-aaa1-38a68937cba8-166566242393d3c51f-2",
+        "dc37ae9c-94b0-4745-b2e2-842beca10e90"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "45ead75d-1285-4d89-be76-205ed253a517",
+    "a6a64b99-033f-4844-92be-ee0261df4d3e",
+    "a2b68828-c823-412a-bba6-3ee06cbbeb36",
+    "64491828-6dcd-4871-aaa1-38a68937cba8"
+  ]
+}

@@ -1,0 +1,123 @@
+{%- liquid
+  assign show_samples = true
+  if cart == empty
+    assign show_samples = false
+  else
+    assign gift_card_items_count = cart.items | map: 'product' | where: 'gift_card?' | size
+    if gift_card_items_count == cart.items.size
+      assign show_samples = false
+    endif
+  endif
+-%}
+{%- capture atc_labels -%}
+{
+  "add": "{{ 'product_card.add' | t }}",
+  "remove": "{{ 'product_card.remove' | t }}"
+}
+{%- endcapture -%}
+
+{%- if settings.free_samples_enable == true and settings.free_samples_collection != blank -%}
+  {%- assign products = settings.free_samples_collection.products | where: 'available' -%}
+  {%- if products.size > 0 -%}
+    <script src="{{ 'component-simple-slider.js' | asset_url }}" defer="defer" type="module"></script>
+
+    <cart-free-samples
+      class="main-cart__free js-main-cart__free{% if show_samples == false %} hidden{% endif %}"
+      data-limits="{{ settings.free_samples_limit }}"
+      data-atc-labels="{{ atc_labels | strip_newlines | base64_encode }}">
+      {% if settings.free_samples_limit > 0 %}
+        <h2 class="s1 no-margin color-off-black">{{ 'templates.cart.free_samples' | t: count: settings.free_samples_limit }}</h2>
+        <p class="b3 no-margin color-dark-gray main-cart__free-body">{{ 'templates.cart.free_samples_body' | t: count: settings.free_samples_limit }}</p>
+      {% else %}
+        <h2 class="s1 no-margin color-off-black">{{ 'templates.cart.free_samples_no_limits' | t }}</h2>
+      {% endif %}
+
+      <simple-slider loop="false" class="s-none">
+        {%- if products.size > 1 -%}
+          {% render 'simple-carousel-controls', mod_render_slide_status: true, mod_slide_status_class: 'mobile-block' %}
+        {%- endif -%}
+        <div class="main-cart__free-samples fluid hide-scrollbars flex no-margin" data-slider-items>
+          {%- assign endClosed = false -%}
+          {%- for _product in products -%}
+            {%- liquid
+              assign addedClass = ''
+              assign btnLabel = 'product_card.add' | t
+              if cart.items != empty
+                for item in cart.items
+                  if item.variant_id == _product.selected_or_first_available_variant.id
+                    assign addedClass = ' added'
+                    assign btnLabel = 'product_card.remove' | t
+                  endif
+                endfor
+              endif
+            -%}
+            {%- assign modulo = forloop.index0 | modulo: 3 -%}
+            {%- if modulo == 0 -%}
+              {%- assign endClosed = false -%}
+              <div class="main-cart__free-items flex flex-direction-column" data-slider-item>
+            {%- endif -%}
+            <div class="main-cart__free-sample{{ addedClass }}">
+              <div class="main-cart__free-sample-wrapper flex background-color-off-white">
+                <div class="main-cart__free-sample-image">
+                  <img src="{{ _product.featured_image | image_url: width: 160 }}" alt="{{ _product.title | escape }}" width="160" height="auto" loading="lazy" >
+                </div>
+                <div class="main-cart__free-sample-info flex">
+                  <div>
+                    <h2 class="b3 color-off-black bold no-margin">{{ _product.title | escape }}</h2>
+                  </div>
+                  <div class="main-cart__free-sample-action">
+                    {%- assign dataAttr = 'data-variant-id="' | append: _product.selected_or_first_available_variant.id | append: '"' -%}
+                    {% render 'button' mod_variant: "text-icon text-underline", mod_class: "js-free-smaple-action", mod_value: btnLabel, mod_attr: dataAttr %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%- if modulo == 2 -%}
+              {%- assign endClosed = true -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if endClosed == false -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </simple-slider>
+
+      <simple-slider loop="false" class="s-block free-samples-count-{{ products.size }}">
+        {% render 'simple-carousel-controls', mod_render_slide_status: true, mod_slide_status_class: 'mobile-block' %}
+        <div class="main-cart__free-samples fluid hide-scrollbars flex no-margin" data-slider-items>
+          {%- for _product in products -%}
+            {%- liquid
+              assign addedClass = ''
+              assign btnLabel = 'product_card.add' | t
+              if cart.items != empty
+                for item in cart.items
+                  if item.variant_id == _product.selected_or_first_available_variant.id
+                    assign addedClass = ' added'
+                    assign btnLabel = 'product_card.remove' | t
+                  endif
+                endfor
+              endif
+            -%}
+            <div class="main-cart__free-sample{{ addedClass }}" data-slider-item>
+              <div class="main-cart__free-sample-wrapper flex background-color-off-white">
+                <div class="main-cart__free-sample-image">
+                  <img src="{{ _product.featured_image | image_url: width: 160 }}" alt="{{ _product.title | escape }}" width="160" height="auto" loading="lazy" >
+                </div>
+                <div class="main-cart__free-sample-info flex">
+                  <div>
+                    <h2 class="b3 color-off-black bold no-margin">{{ _product.title | escape }}</h2>
+                  </div>
+                  <div class="main-cart__free-sample-action">
+                    {%- assign dataAttr = 'data-variant-id="' | append: _product.selected_or_first_available_variant.id | append: '"' -%}
+                    {% render 'button' mod_variant: "text-icon text-underline", mod_class: "js-free-smaple-action", mod_value: btnLabel, mod_attr: dataAttr %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </simple-slider>
+    </cart-free-samples>
+  {%- endif -%}
+{%- endif -%}

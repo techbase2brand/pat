@@ -1,0 +1,6 @@
+{% assign global_selling_fast_threshold = shop.metafields.globals.sku_inventory_threshold | times: 1 %}
+{% assign position = position | default: "absolute" %}
+
+<div class="selling-fast-container {% if position == 'absolute' %} absolute hidden {% endif %}" data-threshold="{{ global_selling_fast_threshold }}">
+  <p>{{ 'products.product.selling_fast' | t | split: " " | first }} <em>{{ 'products.product.selling_fast' | t | split: " " | last }}</em></p>
+</div>

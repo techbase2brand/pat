@@ -1,0 +1,274 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-featured-products-tall-with-swatches.css'
+  render 'async-stylesheet', mod_url: 'component-product-variants.css'
+-%}
+<script src='{{ "section-featured-products-tall-with-swatches.js" | asset_url }}' defer='defer' type='module'></script>
+<featured-products-tall-with-swatches
+  class='section-featured-products-tall-with-swatches'
+  data-length='{{ section.blocks.size }}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  {%- for block in section.blocks -%}
+    {%- liquid
+      assign _product = block.settings.product
+      assign size_options = _product.options_with_values | where: 'name', 'Size' | first
+      assign color_options = _product.options_with_values | where: 'name', 'Color' | first
+      assign featured_variant = _product.selected_or_first_available_variant
+      assign mod_dark_theme = false
+      assign mod_outer_loop_index = forloop.index0
+      assign has_dark_bg = false
+
+      if block.settings.variant_id != blank
+        assign variant_id = block.settings.variant_id | times: 1
+        for variant in _product.variants
+          if variant.id == variant_id
+            assign featured_variant = variant
+            break
+          endif
+        endfor
+      endif
+
+      assign themeClass = ' background-color-off-white'
+      assign txtColor = ' color-off-black'
+      if block.settings.theme == 'dark'
+        assign mod_dark_theme = true
+        assign has_dark_bg = true
+        assign themeClass = ' background-color-off-black'
+        assign txtColor = ' color-off-white'
+      endif
+      if block.settings.shade_complimentary_color != blank
+        assign themeClass = ''
+      endif
+      assign themeClass = themeClass | append: txtColor
+
+      assign target_url = featured_variant.url | default: _product.url
+
+      assign productImage = featured_variant.image
+      if productImage != blank
+        assign productImage = _product.featured_image
+      endif
+      if block.settings.image != blank
+        assign productImage = block.settings.image
+      endif
+
+      assign productName = _product.title
+      if block.settings.product_name != blank
+        assign productName = block.settings.product_name
+      endif
+
+      assign shadeName = featured_variant.title
+      if block.settings.shade_name != blank
+        assign shadeName = block.settings.shade_name
+      endif
+      assign downcase_shadeName = shadeName | downcase
+      if downcase_shadeName == 'default title'
+        assign shadeName = ''
+      endif
+    -%}
+    <div
+      class='featured-products-tall-with-swatches flex featured-products-tall-with-swatches__{{ block.settings.theme }} featured-products-tall-with-swatches__{{ section.settings.image_position }} {{ themeClass }} {% if forloop.first %} active{% endif %}'
+      data-index='{{ forloop.index0 }}'
+      {% if block.settings.shade_complimentary_color != blank %}
+        style='background-color: {{ block.settings.shade_complimentary_color }};'
+      {% endif %}
+    >
+      <div
+        class='featured-products-tall-with-swatches__image flex align-center justify-center'
+        {% if section.settings.bg_image != blank %}
+          style='background-image: url({{ section.settings.bg_image | image_url: width: 1024 }});'
+        {% endif %}
+      >
+        <div class='featured-products-tall-with-swatches__image-box background-color-off-white'>
+          {%- render 'adaptive-image', mod_image: productImage, mod_alt: productName -%}
+        </div>
+      </div>
+      <div class='featured-products-tall-with-swatches__product flex align-center justify-center'>
+        <div class='featured-products-tall-with-swatches__content text-center'>
+          <div class='featured-products-tall-with-swatches__title'>
+            <a
+              href='{{ _product.url }}?variant={{ featured_variant.id }}'
+              class='b2 bold inline-block no-margin no-underline{{ txtColor }}'
+            >
+              {{- productName | escape -}}
+            </a>
+          </div>
+          {%- if shadeName != '' -%}
+            <div class='featured-products-tall-with-swatches__title'>
+              <a
+                href='{{ _product.url }}?variant={{ featured_variant.id }}'
+                class='b2 inline-block no-margin no-underline{{ txtColor }}'
+              >
+                {{- 'sections.featured-products-tall-with-swatches.shade_name' | t: shade_name: shadeName -}}
+              </a>
+            </div>
+          {%- endif -%}
+          <div class='featured-products-tall-with-swatches__items flex justify-center'>
+            {% comment %}
+              this loop within a loop was cuasing accessibility issues with duplodate id attributes. changing these swatch lines to a snippet that can know which loop they are in based on inner and outer loop indexes fixes the issue
+            {% endcomment %}
+            {% for block in section.blocks %}
+              {%
+                render 'section-featured-products-tall-with-swatches-swatch-line',
+                mod_outer_loop_index: mod_outer_loop_index,
+                mod_inner_loop_index: forloop.index0,
+                mod_product: block.settings.product,
+                mod_variant_id: block.settings.variant_id,
+                mod_inner_loop_first: forloop.first,
+                mod_inner_loop_index_prime: forloop.index,
+              %}
+            {% endfor %}
+          </div>
+          {%- if section.settings.heading != blank -%}
+            <h2 class='featured-products-tall-with-swatches__heading h2 no-margin'>{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.body != blank -%}
+            <p class='featured-products-tall-with-swatches__body b2 no-margin'>{{ section.settings.body | escape }}</p>
+          {%- endif -%}
+          <div class='featured-products-tall-with-swatches__price'>
+            {% render 'price',
+              product: _product,
+              use_variant: true,
+              variant: featured_variant,
+              price_class: '',
+              mod_dark_theme: mod_dark_theme,
+              mod_has_dark_bg: has_dark_bg
+            %}
+          </div>
+          {%- liquid
+            if settings.quick_shop == true
+              if _product.metafields.product_card.disable_quick_shop == true
+                render 'product-card-button', button_type: 'a', button_text_t: 'product_card.shop_now', href: target_url, mod_theme: block.settings.theme
+              elsif color_options and color_options.values.size > 1
+                render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_shade', product_card_product: _product, selected_variant: featured_variant, button_action: 'quick-shop', mod_theme: block.settings.theme
+              elsif size_options
+                render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_size', product_card_product: _product, selected_variant: featured_variant, button_action: 'quick-shop', mod_theme: block.settings.theme
+              else
+                render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: _product, selected_variant: featured_variant, button_action: 'add-to-cart', button_value: featured_variant.id, mod_theme: block.settings.theme
+              endif
+            else
+              if color_options and color_options.values.size > 1
+                render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_shade', href: target_url, mod_theme: block.settings.theme
+              elsif size_options
+                render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_size', href: target_url, mod_theme: block.settings.theme
+              else
+                render 'product-card-button', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url, mod_theme: block.settings.theme
+              endif
+            endif
+          -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+</featured-products-tall-with-swatches>
+
+{% schema %}
+{
+  "name": "t:sections.featured-products-tall-with-swatches.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-products-tall-with-swatches.settings.id.label",
+      "info": "t:sections.featured-products-tall-with-swatches.settings.id.info"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.featured-products-tall-with-swatches.settings.image_position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-products-tall-with-swatches.settings.image_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-products-tall-with-swatches.settings.image_position.options__2.label"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "t:sections.featured-products-tall-with-swatches.settings.bg_image.label"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.featured-products-tall-with-swatches.settings.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.featured-products-tall-with-swatches.settings.body.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.featured-products-tall-with-swatches.blocks.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "theme",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.theme.label",
+          "options": [
+            {
+              "value": "light",
+              "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.theme.options__1.label"
+            },
+            {
+              "value": "dark",
+              "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.theme.options__2.label"
+            }
+          ],
+          "default": "dark"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.variant_id.label",
+          "info": "t:sections.featured-products-tall-with-swatches.blocks.settings.variant_id.info"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.product_name.label"
+        },
+        {
+          "type": "text",
+          "id": "shade_name",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.shade_name.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.image.label"
+        },
+        {
+          "type": "color",
+          "id": "shade_complimentary_color",
+          "label": "t:sections.featured-products-tall-with-swatches.blocks.settings.shade_complimentary_color.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-products-tall-with-swatches.name",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

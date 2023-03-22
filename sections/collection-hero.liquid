@@ -1,0 +1,11 @@
+{% render 'hero-banner-snippet',
+  mod_hero_image_override: collection.metafields.plp.hero_image,
+  mod_mobile_hero_image_override: collection.metafields.plp.mobile_hero_image,
+  mod_heading_override: collection.title,
+  mod_eyebrow_override: collection.metafields.plp.subtitle,
+  mod_body_override: collection.metafields.plp.short_description,
+  mod_desktop_align_override: collection.metafields.plp.desktop_horizontal_alignment,
+  mod_mobile_align_override: collection.metafields.plp.mobile_vertical_alignment,
+  mod_text_color: collection.metafields.plp.text_color,
+  mod_bg_color: collection.metafields.hero_banner.background_color_override
+%}

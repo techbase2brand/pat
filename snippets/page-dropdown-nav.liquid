@@ -1,0 +1,41 @@
+{%- liquid
+  assign active_value = nil
+  for link in menu.links
+    if request.path == link.url
+      assign active_value = link.title
+    endif
+  endfor
+-%}
+
+{%- capture menu_labels -%}
+{%- for link in menu.links -%}
+{%- unless link.title contains '__' -%}{{- link.title -}},{%- endunless -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign menu_labels = menu_labels | split: ',' -%}
+
+{%- capture menu_json -%}{
+{%- for link in menu.links -%}
+{%- unless link.title contains '__' -%}"{{- link.title | handleize -}}": "{{- link.url -}}",{%- endunless -%}
+{%- endfor -%}}
+{%- endcapture -%}
+
+<div class="page-dropdown-nav">
+  {%- render 'form-dropdown', name: 'page_dropdown_nav', label: title, options: menu_labels, value: active_value -%}
+</div>
+
+<script>
+  const pageDropdownNav = {{ menu_json }};
+
+  Array.from(document.querySelectorAll('simple-dropdown[name="page_dropdown_nav"]')).forEach((el) => {
+    el.addEventListener('change', function(e) {
+      var value = e.target.value;
+      const nextPath = pageDropdownNav[value]
+      if (nextPath === window.location.pathname) {
+        return
+      }
+
+      window.location.href = nextPath
+    });
+  })
+</script>

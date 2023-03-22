@@ -1,0 +1,111 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-product-grid-with-banner.css'
+-%}
+
+<section class='product-grid-with-banner background-color-light-tan'>
+  <div class='container product-grid-with-banner__banner-container'>
+    <div class='text-center banner-container__text-container'>
+      <h2 class='uppercase h1 product-grid-with-banner__top-title no-margin color-off-black'>
+        {{ section.settings.section_title_top }}
+      </h2>
+    </div>
+    <div class='banner-container__image-container'>
+      <div class='text-center banner-container__text-container--in-image'>
+        <h2 class='uppercase h1 no-margin color-off-white product-grid-with-banner__bottom-title'>
+          {{ section.settings.section_title_bottom }}
+        </h2>
+      </div>
+      <img
+        class='banner-container__image'
+        src='{{ section.settings.section_banner | image_url }}'
+        alt='{{ section.settings.section_banner.alt }}'
+        loading='lazy'
+        height='900'
+        width='690'
+      >
+    </div>
+  </div>
+
+  <div class='container grid product-grid-with-banner__product-grid'>
+    {% for block in section.blocks %}
+      <div class='grid item-container'>
+        <div class='item-container__inner'>
+          <p class='item__subheading color-off-black bold'>0{{ forloop.index }}</p>
+          <h3 class='item__title color-off-black'>{{ block.settings.item_title }}</h3>
+          <p class='item__caption'>{{ block.settings.item_caption }}</p>
+          <div class='item__link'>
+            <a class='button--text-underline' href='{{ block.settings.item_link }}'>
+              {{- block.settings.item_link_text -}}
+            </a>
+          </div>
+          <div class='item__image-container'>
+            <img
+              class='item__image'
+              src='{{ block.settings.item_image | image_url }}'
+              alt='{{ block.settings.item_image.alt }}'
+              loading='lazy'
+              width='285'
+              height='285'
+            >
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid With Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title_top",
+      "label": "Section Title (On top of image)"
+    },
+    {
+      "type": "text",
+      "id": "section_title_bottom",
+      "label": "Section Title (On image)"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_banner",
+      "label": "Section Banner"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item_title",
+          "label": "Item Title"
+        },
+        {
+          "type": "text",
+          "id": "item_caption",
+          "label": "Item Caption"
+        },
+        {
+          "type": "url",
+          "id": "item_link",
+          "label": "Item URL"
+        },
+        {
+          "type": "text",
+          "id": "item_link_text",
+          "label": "Item URL Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "item_image",
+          "label": "Item Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

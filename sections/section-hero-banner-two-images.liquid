@@ -1,0 +1,143 @@
+{% render 'async-stylesheet', mod_url: 'section-hero-banner-two-images.css' %}
+
+<section
+  class=' {% if section.settings.color_theme == 'dark' %}background-color-off-black {% else %} background-color-off-white {% endif %}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='container grid hero-banner-two-images'>
+    <div class='hero-banner-two-images__image-col'>
+      {% if section.settings.first_image != blank %}
+        {%- render 'adaptive-image',
+          mod_image: section.settings.first_image,
+          mod_alt: section.settings.first_image.alt,
+          mod_aspect_ratio: 'square'
+        -%}
+      {% endif %}
+    </div>
+
+    <div class='hero-banner-two-images__text-col'>
+      {%- if section.settings.eyebrow != blank -%}
+        <div class='s1 hero-banner-two-images__eyebrow text-center {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+          {{ section.settings.eyebrow }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class='h1 hero-banner-two-images__heading text-center no-margin uppercase {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {%- if section.settings.body != blank -%}
+        <div class='b1 text-center hero-banner-two-images__body text-center {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+          {{ section.settings.body }}
+        </div>
+      {% endif %}
+
+      <div class='hero-banner-two-images__cta-container flex align-center justify-center'>
+        {%- liquid
+          if section.settings.primary_cta_text != blank and section.settings.primary_cta_url != blank
+            render 'button', mod_type: 'link', mod_value: section.settings.primary_cta_text, mod_href: section.settings.primary_cta_url, mod_theme: section.settings.color_theme
+          endif
+
+          if section.settings.secondary_cta_text != blank and section.settings.secondary_cta_url != blank
+            render 'button', mod_type: 'link', mod_value: section.settings.secondary_cta_text, mod_href: section.settings.secondary_cta_url, mod_theme: section.settings.color_theme, mod_variant: 'text-underline'
+          endif
+        %}
+      </div>
+    </div>
+
+    <div class='hero-banner-two-images__image-col'>
+      {% if section.settings.second_image != blank %}
+        {%- render 'adaptive-image',
+          mod_image: section.settings.second_image,
+          mod_alt: section.settings.second_image.alt,
+          mod_aspect_ratio: 'square'
+        -%}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.hero-banner-two-images.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.hero-banner-two-images.settings.id.label",
+      "info": "t:sections.hero-banner-two-images.settings.id.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "first_image",
+      "label": "t:sections.hero-banner-two-images.settings.first-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_image",
+      "label": "t:sections.hero-banner-two-images.settings.second-image.label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.hero-banner-two-images.settings.eyebrow.label"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.hero-banner-two-images.settings.heading.label",
+      "default": "Heading Lorem Ipsum"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:sections.hero-banner-two-images.settings.body.label"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "t:sections.hero-banner-two-images.settings.primary-cta-url.label"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "t:sections.hero-banner-two-images.settings.primary-cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "t:sections.hero-banner-two-images.settings.secondary-cta-url.label"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "t:sections.hero-banner-two-images.settings.secondary-cta-text.label"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.hero-banner-two-images.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "Light"
+        },
+        {
+          "value": "dark",
+          "label": "Dark"
+        }
+      ],
+      "default": "light"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero-banner-two-images.name"
+    }
+  ]
+}
+{% endschema %}

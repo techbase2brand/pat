@@ -1,0 +1,178 @@
+{% render 'async-stylesheet', mod_url: 'component-cart-popup.css' %}
+{% render 'async-stylesheet', mod_url: 'component-simple-slider.css' %}
+
+<script src='{{ 'component-simple-slider.js' | asset_url }}' defer='defer' type='module'></script>
+<script src='{{ 'component-price-progress.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-cart-popup.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-cart-you-might-like.js' | asset_url }}' type='module' defer='defer'></script>
+
+{%- assign cart_item = cart.items | first -%}
+
+<cart-popup cloak class='background-color-off-white' anchor='[data-cart-popup-anchor]'>
+  <form action='{{ routes.cart_url }}' method='post'>
+    <div class='flex cart-popup__notice cart-popup__section align-center justify-space-between'>
+      <p class='b2 no-margin color-dark-gray'>{{ 'cart.popup.added_to_cart' | t }}</p>
+      <button
+        type='button'
+        class='flex justify-center cursor-pointer cart-popup__close color-off-black align-center'
+        data-cart-close
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {%- render 'icon-close' -%}
+      </button>
+    </div>
+    {%- if section.settings.gwp_notice and settings.gwp_progress -%}
+      <div class='cart-popup__section cart-popup__promo background-color-light-tan b2 color-off-black'>
+        {{ section.settings.gwp_promo }}
+      </div>
+    {%- endif -%}
+    {%- if settings.gwp_progress -%}
+      <div class='cart-popup__section cart-popup__gwp' data-cart-gwp>
+        <price-progress
+          value='{{ cart.items_subtotal_price }}'
+          limit='{{ settings.gwp_progress_limit }}'
+          complete-label='{{ settings.gwp_complete_message }}'
+          label='{{ settings.gwp_message }}'
+        ></price-progress>
+      </div>
+    {%- endif -%}
+    <div class='grid cart-popup__content cart-popup__section' data-cart-content>
+      {%- for cart_item in cart.items -%}
+        <div class='flex cart-popup__item align-start' line-item-id="{{ cart_item.id }}">
+          <a href="{{ cart_item.product.url }}" class='cart-popup__item-image'>
+            {%- liquid
+              assign featured_media = cart_item.variant.featured_media
+              unless featured_media
+                assign color_options = cart_item.product.options_with_values | where: 'name', 'Color' | first
+                assign color_option_name = 'option' | append: color_options.position
+                assign featured_media = cart_item.product.images | where: 'alt', cart_item.variant[color_option_name] | first
+              endunless
+              unless featured_media
+                assign featured_media = cart_item.product.images | where: 'alt', '' | first
+              endunless
+            -%}
+            {%- render 'adaptive-image',
+              mod_image: featured_media,
+              mod_alt: cart_item.product.title,
+              mod_loading: 'eager',
+              mod_sizes: '100px'
+            -%}
+            </a>
+          <div class='cart-popup__item-details'>
+            <p class='b2 color-off-black bold no-margin'>
+              <a href="{{ cart_item.product.url }}" class="no-underline color-off-black">
+                {{ cart_item.title }}
+              </a>
+            </p>
+            {%- assign color_option = cart_item.options_with_values | where: 'name', 'Color' | first -%}
+            {%- for option in cart_item.options_with_values -%}
+              {%- if option.name == 'Color' -%}
+                <div class='flex swatch-line no-margin align-center'>
+                  {%- render 'form-shade-selector',
+                    color: color_option.value,
+                    id: cart_item.variant.id,
+                    disabled: false,
+                    variant: cart_item.variant
+                  -%}
+                  <span class='b3 color-dark-gray no-margin'>{{ option.value }}</span>
+                </div>
+              {% elsif option.value != 'Default Title' %}
+                <p class='b3 color-dark-gray no-margin'>
+                  {{ option.value }}
+                </p>
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if cart_item.product.metafields.discounts.discount_description != blank -%}
+              <p class='b2 color-off-black no-margin bold'>
+                {{ cart_item.product.metafields.discounts.discount_description }}
+              </p>
+            {%- endif -%}
+
+            <div class='flex cart-popup__item-price-line align-center justify-space-between'>
+              <span class='b3 color-dark-gray no-margin'>{{ 'cart.label.qty' | t }} {{ cart_item.quantity }}</span>
+              <div class='flex cart-popup__item-price'>
+                {%- if cart_item.variant.compare_at_price > cart_item.original_price -%}
+                  <del class='color-dark-gray no-margin b2'>{{ cart_item.variant.compare_at_price | money }}</del>
+                {%- endif -%}
+                <ins class='color-off-black no-margin b2'>{{ cart_item.original_price | money }}</ins>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if settings.cart_nosto_placement_id != blank -%}
+      <div class="nosto_element" id="{{ settings.cart_nosto_placement_id }}"></div>
+      <cart-you-might-like data-id="{{ settings.cart_nosto_placement_id }}">
+        <div class='flex cart-popup__upsell-header align-center justify-space-between cart-popup__section hidden'>
+          <p class='h4 no-margin'>{{ 'cart.popup.upsell_title' | t }}</p>
+          {% render 'simple-carousel-controls', mod_render_slide_status: true, mod_class: 'cart-popup__upsell-controls' %}
+        </div>
+        <div class="cart-popup__upsell-container"></div>
+      </cart-you-might-like>
+    {%- endif -%}
+    <div class='grid cart-popup__footer cart-popup__section background-color-off-white' data-cart-footer>
+      <div class='grid cart-popup__footer-row'>
+        <div class='color-dark-gray b2'>
+          {{ 'cart.popup.subtotal' | t }}
+          <span data-cart-items-count data-count="{{ cart.item_count }}"> ({{ cart.item_count }}) {{ 'cart.popup.items' | t }} </span>
+        </div>
+
+        <div class='text-right color-off-black b2 bold' data-cart-subtotal>
+          {{ cart.items_subtotal_price | money }}
+        </div>
+      </div>
+      <div class='grid cart-popup__footer-row'>
+        {%
+          render 'button',
+          mod_type: 'link',
+          mod_href: routes.cart_url,
+          mod_class: 'inverted',
+          mod_value_t: 'cart.popup.view_cart',
+        %}
+        {%- liquid
+          assign root_url = ''
+          unless localization.language.root_url == '/'
+            assign root_url = localization.language.root_url
+          endunless
+          assign checkout_url = root_url | append: '/checkout'
+        -%}
+        {%
+          render 'button',
+          mod_type: 'link',
+          mod_href: checkout_url
+          mod_value_t: 'cart.popup.checkout',
+        %}
+      </div>
+      <div>
+        <a
+          class='b2 no-margin color-dark-gray'
+          href='{{ settings.continue_shopping_url | default: routes.all_products_collection_url }}'
+        >
+          {{ 'cart.popup.continue' | t }}
+        </a>
+      </div>
+    </div>
+  </form>
+</cart-popup>
+
+{% schema %}
+{
+  "name": "Cart: Popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "gwp_notice",
+      "label": "Show GWP Promo",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gwp_promo",
+      "label": "GWP Promo",
+      "default": "Optional promo banner or GWP callout!"
+    }
+  ]
+}
+{% endschema %}

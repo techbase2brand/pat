@@ -1,0 +1,44 @@
+{% render 'async-stylesheet', mod_url: 'section-main-page.css' %}
+
+<section class="default-page background-color-pale-pink">
+  {%- if section.settings.enable_sidebar -%}
+    <div class="page-grid">
+      {%- liquid
+        render 'page-dropdown-nav', title: section.settings.menu_title, menu: section.settings.menu
+        render 'page-sidebar', title: section.settings.menu_title, menu: section.settings.menu
+        render 'page-content', sidebar: true
+      -%}
+    </div>
+  {%- else -%}
+    {%- render 'page-content' -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-page.settings.menu.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sidebar",
+      "label": "t:sections.main-page.settings.menu.enable_sidebar.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "menu_title",
+      "label": "t:sections.main-page.settings.menu.menu_title.label"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:sections.main-page.settings.menu.menu_primary.label"
+    }
+  ]
+}
+{% endschema %}

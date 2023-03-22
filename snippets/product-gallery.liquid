@@ -1,0 +1,353 @@
+{% comment %}
+  Renders the gallery on the main product page
+  Accepts:
+  - product: {Object} Product Liquid object
+  - section: {Object} Section Liquid object
+  - form_id: {String} The ID for the associated product form, enabling this form to interact with the gallery
+  Usage:
+  {%- render 'product-gallery',
+    mod_product: product,
+    mod_section: section,
+    mod_form_id: mod_product_form_id
+  -%}
+{% endcomment %}
+
+<script src='{{ 'component-simple-slider.js' | asset_url }}' defer='defer' type='module'></script>
+<script src='{{ 'component-product-gallery.js' | asset_url }}' defer='defer' type='module'></script>
+<script src='{{ 'component-adaptive-image.js' | asset_url }}' defer='defer' type='module'></script>
+<script src='{{ 'component-adaptive-video.js' | asset_url }}' defer='defer' type='module'></script>
+
+{%- liquid
+  render 'async-stylesheet', mod_url: 'component-product-gallery.css'
+  render 'async-stylesheet', mod_url: 'component-simple-slider.css'
+
+  assign mod_product = mod_product | default: product
+  assign mod_class = mod_class | default: blank
+  assign mod_section = mod_section | default: section
+  assign mod_form_id = mod_form_id | default: 'product-form-' | append: mod_section.id
+  assign mod_first_media = mod_product.media[0] | default: false
+  assign mod_first_variant = mod_product.selected_or_first_available_variant
+  assign mod_first_variant_image_url = mod_first_variant | image_url
+  assign variant_type = variant_type | default: 'size'
+  assign show_gallery_as_mobile_only = show_gallery_as_mobile_only | default: false, allow_false: true
+-%}
+
+<product-gallery
+  class='{{ mod_class }} {% if is_quick_view %}product-gallery--mobile-only{% else %} product-gallery--sticky {% endif %}'
+  data-form-id='{{ mod_form_id }}'
+  tabindex='0'
+  galleryType='{{ variant_type }}'
+  product-id='{{ product.id }}'
+  data-is-quickview='{{ is_quick_view }}'
+>
+  {% unless show_gallery_as_mobile_only == true %}
+    <div class='product-gallery__thumbs m-flex'>
+      <button
+        class='product-gallery__thumbs__scroll product-gallery__thumbs__scroll--up fade-default js-scroll-up'
+        aria-label='{{ 'accessibility.scroll_previous' | t }}'
+      >
+        {% render 'icon-arrow', direction: 'up' %}
+      </button>
+      <div class='flex-container'>
+        <ul class='product-gallery__thumb-items list-unstyled js-thumbnail-container init-hidden'>
+          {%- assign mod_alt = 'products.product.media.open_media' | t: index: mod_index -%}
+          {%- assign mod_index = 1 -%}
+          {%- if mod_first_variant.featured_media -%}
+            {%- liquid
+              if mod_first_variant.featured_media.alt contains '__'
+                assign variant_alt = mod_first_variant.featured_media.alt | split: '__' | first
+                assign img_alt = mod_first_variant.featured_media.alt | split: '__' | last
+              else
+                assign variant_alt = mod_first_variant.featured_media.alt
+                assign img_alt = mod_first_variant.featured_media.alt
+              endif
+            -%}
+
+            <li
+              class='product-gallery__thumb-item active js-thumbnail'
+              data-variant-alt='{% if product.title != mod_first_variant.featured_media.alt %}{{ variant_alt }} {% endif %}'
+            >
+              <button
+                class='product-gallery__thumb-item__button {% unless is_quick_view %}js-thumbnail-button{% endunless %} background-color-off-white'
+                data-aspect-ratio='{{ mod_first_variant.featured_media.preview_image.aspect_ratio }}'
+                data-preview-image-url='{{ mod_first_variant.featured_media | image_url }}'
+                data-alt='{{ img_alt }}'
+                {%- if mod_first_variant.featured_media.media_type == 'image' -%}
+                  data-src='{{ mod_first_variant_image_url }}'
+                  data-width='{{ mod_first_variant.featured_media.preview_image.width }}'
+                  data-loading='eager'
+                {%- elsif mod_first_variant.featured_media.media_type == 'video'
+                  or mod_first_variant.featured_media.media_type == 'external_video'
+                -%}
+                  data-video='{{ mod_first_variant.featured_media | json | base64_encode }}'
+                  data-poster-image='{{ mod_first_variant.featured_media.preview_image | image_url }}'
+                  data-type='{{ mod_first_variant.featured_media.media_type }}'
+                {%- elsif mod_first_variant.featured_media.media_type == 'model' -%}
+                  data-src='{{ mod_first_variant.featured_media.sources[0].url }}'
+                  data-ios-src='{{ mod_first_variant.featured_media.sources[1].url }}'
+                  data-poster='{{ mod_first_variant.featured_media.preview_image | image_url }}'
+                {%- endif -%}
+                aria-label='{{ img_alt }}'
+              >
+                <img
+                  alt='{{ mod_alt }}'
+                  data-src='{{ mod_first_variant.featured_media | image_url: width: 110 }}'
+                  srcset='
+                    {{ mod_first_variant.featured_media | image_url: width: 55 }} 1x,
+                    {{ mod_first_variant.featured_media | image_url: width: 110 }} 2x
+                  '
+                  width='55'
+                  height='{{ 55 | divided_by: mod_first_variant.featured_media.aspect_ratio }}'
+                  loading='eager'
+                >
+              </button>
+            </li>
+            {%- assign mod_index = 2 -%}
+          {%- endif -%}
+          {%- for mod_media in mod_product.media -%}
+            {%- liquid
+              assign mod_media_url = mod_media | image_url
+              assign mod_active = false
+              if mod_first_variant.featured_media == null and forloop.first
+                assign mod_active = true
+              endif
+
+              if mod_product.media[forloop.index0].alt contains '__'
+                assign variant_alt = mod_product.media[forloop.index0].alt | split: '__' | first
+                assign img_alt = mod_product.media[forloop.index0].alt | split: '__' | last
+              else
+                assign variant_alt = mod_product.media[forloop.index0].alt
+                assign img_alt = mod_product.media[forloop.index0].alt
+              endif
+            -%}
+            {%- unless mod_media_url == mod_first_variant_image_url -%}
+              {%- liquid
+                if mod_product.media[forloop.index0].alt contains '__'
+                  assign variant_alt = mod_product.media[forloop.index0].alt | split: '__' | first
+                  assign img_alt = mod_product.media[forloop.index0].alt | split: '__' | last
+                else
+                  assign variant_alt = mod_product.media[forloop.index0].alt
+                  assign img_alt = mod_product.media[forloop.index0].alt
+                endif
+              -%}
+
+              <li
+                class='product-gallery__thumb-item{% if mod_active %} active{% endif %} relative js-thumbnail'
+                data-variant-alt='{% if product.title != mod_product.media[forloop.index0].alt %}{{ variant_alt }}{% endif %}'
+              >
+                <button
+                  class='product-gallery__thumb-item__button js-thumbnail-button background-color-off-white'
+                  data-preview-image-url='{{ mod_media.preview_image | image_url }}'
+                  data-alt='{{ img_alt }}'
+                  data-aspect-ratio='{{ mod_media.preview_image.aspect_ratio }}'
+                  {%- if mod_media.media_type == 'image' -%}
+                    data-src='{{ mod_media_url }}'
+                    data-width='{{ mod_media.preview_image.width }}'
+                    data-loading='eager'
+                  {%- elsif mod_media.media_type == 'video' or mod_media.media_type == 'external_video' -%}
+                    data-video='{{ mod_media | json | base64_encode }}'
+                    data-poster-image='{{ mod_media.preview_image | image_url }}'
+                    data-type='{{ mod_media.media_type }}'
+                  {%- elsif mod_media.media_type == 'model' -%}
+                    data-src='{{ mod_media.sources[0].url }}'
+                    data-ios-src='{{ mod_media.sources[1].url }}'
+                    data-poster='{{ mod_media.preview_image | image_url }}'
+                  {%- endif -%}
+                  aria-label='{{ img_alt }}'
+                >
+                  <img
+                    alt='{{ mod_alt }}'
+                    srcset='
+                      {{ mod_media.preview_image | image_url: width: 55 }} 1x,
+                      {{ mod_media.preview_image | image_url: width: 110 }} 2x
+                    '
+                    data-src='{{ mod_media.preview_image | image_url: width: 110 }}'
+                    width='55'
+                    height='{{ 55 | divided_by: mod_media.preview_image.aspect_ratio }}'
+                    loading='eager'
+                  >
+                </button>
+              </li>
+            {%- endunless -%}
+            {%- assign mod_index = mod_index | plus: 1 -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      <button
+        class='product-gallery__thumbs__scroll product-gallery__thumbs__scroll--down fade-default js-scroll-down'
+        aria-label='{{ 'accessibility.scroll_next' | t }}'
+      >
+        {% render 'icon-arrow', direction: 'down' %}
+      </button>
+    </div>
+  {% endunless %}
+
+  <div class='product-gallery__active-media m-block background-color-off-white'>
+    <button
+      class='product-gallery-modal__close js-close-zoom color-off-white'
+      aria-label='{{ 'accessibility.close' | t }}'
+    >
+      {%- render 'icon-close' -%}
+    </button>
+    <div class='product-gallery__active-media__content js-active-media' tabindex='0'>
+      {%- liquid
+        assign mod_sizes = '(max-width: 767px) 100vw, 50vw'
+        if mod_first_variant.featured_media
+          render 'adaptive-image', mod_image: mod_first_variant.featured_media, mod_alt: mod_product.title, mod_loading: 'eager', mod_sizes: mod_sizes
+        else
+          case mod_first_media.media_type
+            when 'image'
+              render 'adaptive-image', mod_image: mod_first_media, mod_alt: mod_product.title, mod_loading: 'eager', mod_sizes: mod_sizes
+            when 'video'
+              render 'adaptive-video', mod_type: 'video', mod_video: mod_first_media, mod_alt: mod_product.title, mod_id: mod_first_media.id
+            when 'external_video'
+              render 'adaptive-video', mod_type: 'external_video', mod_video: mod_first_media, mod_alt: mod_product.title, mod_encode: true, mod_id: mod_first_media.id
+          endcase
+        endif
+      -%}
+
+      {% unless mod_product.gift_card? %}
+        <div class='product-gallery__additional js-gallery-additional'>
+          <span class='adaptive-image__icon flex align-center justify-center'>
+            {%- render 'icon-plus-magnifying-glass' -%}
+          </span>
+          {% unless product.metafields.product_card.hide_selling_fast %}
+            {%- render 'selling-fast' -%}
+          {% endunless %}
+        </div>
+      {% endunless %}
+    </div>
+  </div>
+
+  <simple-slider
+    loop='true'
+    class='product-gallery__mobile-slider-container {% unless show_gallery_as_mobile_only == true %}m-none{% endunless %} {% if mod_product.media.size == 1 %} single-item-slider {% endif %}'
+  >
+    {% unless mod_product.media.size == 1 %}
+      <button
+        data-slider-back
+        class='product-gallery__mobile-arrow product-gallery__mobile-arrow--scroll-left fade-default js-scroll-left background-color-off-white'
+        aria-label='{{ 'accessibility.scroll_previous' | t }}'
+      >
+        {% render 'icon-arrow', direction: 'left' %}
+      </button>
+    {% endunless %}
+    <ul
+      class='product-gallery__mobile-slider js-mobile-slider list-unstyled hide-scrollbars'
+      data-scroll-index='1'
+      data-slider-items
+    >
+      {%- for mod_media in mod_product.media -%}
+        {%- liquid
+          assign mod_media_url = mod_media | image_url
+          assign mod_active = false
+          if mod_first_variant.featured_media == null and forloop.first
+            assign mod_active = true
+          endif
+
+          if mod_product.media[forloop.index0].alt contains '__'
+            assign variant_alt = mod_product.media[forloop.index0].alt | split: '__' | first
+            assign img_alt = mod_product.media[forloop.index0].alt | split: '__' | last
+          else
+            assign variant_alt = mod_product.media[forloop.index0].alt
+            assign img_alt = mod_product.media[forloop.index0].alt
+          endif
+        -%}
+
+        <li
+          data-slider-item
+          class='product-gallery__media-slide flex align-center {% if mod_active %} active{% endif %} relative js-mobile-slide'
+          data-variant-alt='{% if product.title != mod_product.media[forloop.index0].alt %}{{ variant_alt }} {% endif %}'
+        >
+          <button
+            class='no-styles'
+            data-thumbnail-index='{{ forloop.index }}'
+            data-preview-image-url='{{ mod_media.preview_image | image_url }}'
+            data-alt='{{ img_alt }}'
+            aria-label='{{ img_alt }}'
+            data-aspect-ratio='{{ mod_media.preview_image.aspect_ratio }}'
+            data-thumb-src='{{ mod_media.preview_image | image_url: width: 110 }}'
+            {%- if mod_media.media_type == 'image' -%}
+              data-src='{{ mod_media_url }}'
+              data-width='{{ mod_media.preview_image.width }}'
+              data-loading='eager'
+            {%- elsif mod_media.media_type == 'video' or mod_media.media_type == 'external_video' -%}
+              data-video='{{ mod_media | json | base64_encode }}'
+              data-poster-image='{{ mod_media.preview_image | image_url }}'
+              data-type='{{ mod_media.media_type }}'
+            {%- elsif mod_media.media_type == 'model' -%}
+              data-src='{{ mod_media.sources[0].url }}'
+              data-ios-src='{{ mod_media.sources[1].url }}'
+              data-poster='{{ mod_media.preview_image | image_url }}'
+            {%- endif -%}
+          >
+            {%- liquid
+              assign posterImage = mod_media.preview_image | image_url
+              assign mod_sizes = '(max-width: 767px) 100vw, 50vw'
+              case mod_media.media_type
+                when 'image'
+                  render 'adaptive-image', mod_image: mod_product.media[forloop.index0], mod_alt: img_alt, mod_loading: 'eager', mod_sizes: mod_sizes, bg: 'background-color-pale-pink', icon: 'plus-mag', tab_index: '-1'
+                when 'video'
+                  render 'adaptive-video', mod_type: 'video', mod_video: mod_product.media[forloop.index0], mod_alt: mod_product.title
+                when 'external_video'
+                  render 'adaptive-video', mod_type: 'external_video', mod_video: mod_product.media[forloop.index0], mod_alt: mod_product.title, mod_poster_image: posterImage, mod_encode: true, mod_id: mod_product.media[forloop.index0].id
+              endcase
+            -%}
+          </button>
+        </li>
+        {%- assign mod_index = mod_index | plus: 1 -%}
+      {%- endfor -%}
+    </ul>
+    {% unless mod_product.media.size == 1 %}
+      <button
+        data-slider-next
+        class='product-gallery__mobile-arrow product-gallery__mobile-arrow--scroll-right fade-default js-scroll-right background-color-pale-pink'
+        aria-label='{{ 'accessibility.scroll_next' | t }}'
+      >
+        {% render 'icon-arrow', direction: 'right' %}
+      </button>
+    {% endunless %}
+    {% unless product.metafields.product_card.hide_selling_fast %}
+      {%- render 'selling-fast' -%}
+    {% endunless %}
+  </simple-slider>
+
+  {% unless is_quick_view or mod_product.gift_card? %}
+    <div class='product-gallery-modal js-gallery-modal'>
+      <button
+        class='product-gallery-modal__close js-close-zoom flex align-center justify-center background-color-off-white color-off-black'
+        tabindex='0'
+        aria-label='{{ 'accessibility.close' | t }}'
+      >
+        {%- render 'icon-close' -%}
+      </button>
+      <ul
+        class='product-gallery-modal__thumbnails background-color-off-white flex flex-direction-column js-gallery-modal-thumbs'
+      ></ul>
+      <div class='product-gallery-modal__images js-gallery-modal-images background-color-off-white'></div>
+    </div>
+
+    <div class='product-gallery-modal-mobile js-gallery-modal-mobile m-none'>
+      <div class='product-gallery-modal-mobile__bg js-close-zoom-mobile'></div>
+      <div class='product-gallery-modal-mobile__container background-color-off-white'>
+        <button
+          class='product-gallery-modal-mobile__close js-close-zoom-mobile flex align-center justify-center background-color-off-white color-off-black'
+          tabindex='0'
+          aria-label='{{ 'accessibility.close' | t }}'
+        >
+          {%- render 'icon-close' -%}
+        </button>
+        <h2 class='product-gallery-modal-mobile__header h4 color-off-black no-margin text-center background-color-off-white'>
+          Zoom
+        </h2>
+        <div class='product-gallery-modal-mobile__items hide-scrollbars'>
+          <ul class='product-gallery-modal-mobile__images flex js-gallery-modal-images-mobile hide-scrollbars'></ul>
+          <ul class='product-gallery-modal-mobile__thumbnails flex js-gallery-modal-thumbs-mobile hide-scrollbars'></ul>
+          <div class='product-gallery-modal-mobile__action flex justify-center'>
+            {%- render 'button', mod_value: 'Close', mod_class: 'button button--light inverted js-close-zoom-mobile' -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+</product-gallery>

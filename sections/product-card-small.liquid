@@ -1,0 +1,11 @@
+{%- liquid
+  assign featured_variant = product.selected_or_first_available_variant
+  for variant in product.variants
+    if variant.metafields.product_card.featured_variant
+      assign featured_variant = variant
+      break
+    endif
+  endfor
+
+  render 'product-card-small', product_card_product: product, product_card_variant: featured_variant
+-%}

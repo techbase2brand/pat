@@ -1,0 +1,226 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-image-with-text-wide.css'
+
+  if section.settings.mobile_main_image == blank
+    assign mobile_image = section.settings.desktop_main_image
+  else
+    assign mobile_image = section.settings.mobile_main_image
+  endif
+-%}
+
+<div
+  class='wide-split-section {% if section.settings.image_orientation == 'left' %}wide-split-section--orientation-left{% else %}wide-split-section--orientation-right{% endif %} {% if section.settings.color_theme == 'dark' %}wide-split-section--theme-dark{% else %}wide-split-section--theme-light{% endif %} {% if section.settings.color_theme == 'dark' %}background-color-off-black{% else %}background-color-off-white{% endif %}'
+  style='{% if section.settings.section_bg_override and section.settings.section_bg_override != 'rgba(0,0,0,0)' %}background-color: {{section.settings.section_bg_override}} {% endif %}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='wide-split-section__container'>
+    <div class='wide-split-section__image-container no-padding'>
+      <div class='desktop-image m-block'>
+        {%- liquid
+          if section.settings.desktop_main_image != blank
+            render 'adaptive-image', mod_image: section.settings.desktop_main_image, mod_alt: section.settings.desktop_main_image.alt, mod_loading: 'lazy'
+          endif
+        %}
+      </div>
+      <div class='mobile-image m-none'>
+        {% render 'adaptive-image', mod_image: mobile_image, mod_alt: mobile_image.alt, mod_loading: 'lazy' %}
+      </div>
+    </div>
+    {% if section.settings.complimentary_image %}
+      <div class='wide-split-section__detail-image-container background-color-off-tan'>
+        {%- render 'adaptive-image',
+          mod_image: section.settings.complimentary_image,
+          mod_alt: section.settings.complimentary_image.alt,
+          bg: 'detail-image__image'
+        -%}
+      </div>
+    {% endif %}
+
+    <div class='wide-split-section__content-container flex align-center no-padding {% if section.settings.desktop_text_alignment == 'left' %} text-left-m text-center {%- else -%} text-center {%- endif -%}'>
+      <div class='content-container__inner'>
+        {% if section.settings.eyebrow != blank %}
+          <p class='wide-split-section__subheading s1  no-margin uppercase {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+            {{ section.settings.eyebrow }}
+          </p>
+        {% endif %}
+
+        <div class='wide-split-section__text-container'>
+          <div class='wide-split-section__title-container'>
+            <h2 class='h3 wide-split-section__title no-margin {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+              {{ section.settings.heading }}
+            </h2>
+          </div>
+
+          {% if section.settings.body != blank %}
+            <p class='wide-split-section__description {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+              {{ section.settings.body }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.section_link_text != blank %}
+            {%- liquid
+              assign mod_value_handle = section.settings.section_link_text | handleize
+              assign mod_class = ''
+              assign mod_attr = ''
+              assign mod_type = 'link'
+              if mod_value_handle == 'get-matched'
+                assign mod_class = 'js-open-slideout'
+                assign mod_attr = 'data-target="foundation-finder"'
+                assign mod_type = 'button'
+              endif
+            -%}
+            <div class=' wide-split-section__primary-link'>
+              {% render 'button',
+                mod_type: mod_type,
+                mod_value: section.settings.section_link_text,
+                mod_href: section.settings.section_link_url,
+                mod_theme: section.settings.color_theme,
+                mod_class: mod_class,
+                mod_attr: mod_attr
+              %}
+            </div>
+          {% endif %}
+
+          {% if section.settings.section_link_2_text != blank %}
+            <div class=' wide-split-section__secondary-link'>
+              {% render 'button',
+                mod_type: 'link',
+                mod_value: section.settings.section_link_2_text,
+                mod_href: section.settings.section_link_2_url,
+                mod_theme: section.settings.color_theme,
+                mod_variant: 'text-underline'
+              %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.image-with-text-wide.name",
+  "tag": "section",
+  "class": "wide-split-section__section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.image-with-text-wide.settings.id.label",
+      "info": "t:sections.image-with-text-wide.settings.id.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_main_image",
+      "label": "t:sections.image-with-text-wide.settings.desktop-main-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_main_image",
+      "label": "t:sections.image-with-text-wide.settings.mobile-main-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "complimentary_image",
+      "label": "t:sections.image-with-text-wide.settings.complimentary-image.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-with-text-wide.settings.text-settings.label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.image-with-text-wide.settings.eyebrow.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.image-with-text-wide.settings.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.image-with-text-wide.settings.body.label"
+    },
+    {
+      "type": "text",
+      "id": "section_link_text",
+      "label": "t:sections.image-with-text-wide.settings.primary-cta-title.label"
+    },
+    {
+      "type": "url",
+      "id": "section_link_url",
+      "label": "t:sections.image-with-text-wide.settings.primary-cta-url.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-with-text-wide.settings.layout-settings.label"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_override",
+      "label": "t:sections.image-with-text-wide.settings.background-color-override.label"
+    },
+    {
+      "type": "radio",
+      "id": "image_orientation",
+      "label": "t:sections.image-with-text-wide.settings.image-position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-with-text-wide.settings.image-position.options.left"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-with-text-wide.settings.image-position.options.right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.image-with-text-wide.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.image-with-text-wide.settings.color-theme.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.image-with-text-wide.settings.color-theme.options.dark"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "radio",
+      "id": "desktop_text_alignment",
+      "label": "Desktop Text Alignment",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-with-text-wide.name",
+      "settings": {
+        "heading": "Heading Lorem Ipsum Dolor Sit Amet"
+      }
+    }
+  ]
+}
+{% endschema %}

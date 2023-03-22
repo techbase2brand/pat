@@ -1,0 +1,62 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-laura-skin-perfection.css'
+-%}
+
+<section class='laura-skin-perfection background-color-light-tan'>
+  {%- if product.metafields.ingredients_usage.title != blank -%}
+    <div class='laura-skin-perfection__title-container'>
+      <h2 class='h1 uppercase serif color-off-black text-center no-margin'>
+        {{ product.metafields.ingredients_usage.title }}
+      </h2>
+    </div>
+  {%- endif -%}
+
+  <div class='container'>
+    <div class='laura-skin-perfection__content-grid grid align-center text-center {% if product.metafields.ingredients_usage.title == blank %}no-section-title{% endif %} {% unless product.metafields.ingredients_usage.usage_image == blank or product.metafields.ingredients_usage.ingredients_image == blank or product.metafields.ingredients_usage.title == blank %} with-images {% endunless %} '>
+      <div class='skin-perfection-content-grid__col-left color-off-black skin-perfection_side-image'>
+        {% for image in product.metafields.ingredients_usage.ingredients_image %}
+          <div class='adaptive-image-container'>
+            {%- render 'adaptive-image',
+              mod_image: image,
+              mod_alt: image.alt,
+              mod_loading: 'eager',
+              mod_object_fit: 'contain'
+            -%}
+          </div>
+        {% endfor %}
+
+        {%- if product.metafields.ingredients_usage.ingredients_title != blank -%}
+          <p class='h4 no-margin'>{{ product.metafields.ingredients_usage.ingredients_title }}</p>
+        {%- endif -%}
+
+        {%- if product.metafields.ingredients_usage.ingredients_body != blank -%}
+          {{ product.metafields.ingredients_usage.ingredients_body }}
+        {%- endif -%}
+      </div>
+      <div class='skin-perfection-content__center-image skin-perfection-content-grid__col-center skin-perfection__rounded-edges'>
+        {% for image in product.metafields.ingredients_usage.image %}
+          {%- render 'adaptive-image', mod_image: image, mod_alt: image.alt, mod_loading: 'eager' -%}
+        {% endfor %}
+      </div>
+      <div class='skin-perfection-content__text skin-perfection-content-grid__col-right color-off-black skin-perfection_side-image'>
+        {% for image in product.metafields.ingredients_usage.usage_image %}
+          <div class='adaptive-image-container'>
+            {%- render 'adaptive-image',
+              mod_image: image,
+              mod_alt: image.alt,
+              mod_loading: 'eager',
+              mod_object_fit: 'contain'
+            -%}
+          </div>
+        {% endfor %}
+        {%- if product.metafields.ingredients_usage.usage_title != blank -%}
+          <h4 class='no-margin'>{{ product.metafields.ingredients_usage.usage_title }}</h4>
+        {%- endif -%}
+
+        {%- if product.metafields.ingredients_usage.usage_body != blank -%}
+          {{ product.metafields.ingredients_usage.usage_body }}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>

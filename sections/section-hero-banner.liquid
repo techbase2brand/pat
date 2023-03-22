@@ -1,0 +1,103 @@
+{% render 'async-stylesheet', mod_url: 'section-hero-banner.css' %}
+
+{% render 'hero-banner-snippet' %}
+
+{% schema %}
+{
+  "name": "t:sections.hero-banner.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.hero-banner.settings.id.label",
+      "info": "t:sections.hero-banner.settings.id.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "t:sections.hero-banner.settings.desktop-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:sections.hero-banner.settings.mobile-image.label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.hero-banner.settings.eyebrow.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.hero-banner.settings.heading.label",
+      "default": "Heading Lorem Ipsum Dolor"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.hero-banner.settings.body.label"
+    },
+    {
+      "type": "radio",
+      "id": "desktop_text_alignment",
+      "label": "t:sections.hero-banner.settings.desktop-text-alignment.label",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.hero-banner.settings.desktop-text-alignment.options.center"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.hero-banner.settings.desktop-text-alignment.options.left"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "radio",
+      "id": "mobile_text_alignment",
+      "label": "t:sections.hero-banner.settings.mobile-text-alignment.label",
+      "info": "t:sections.hero-banner.settings.mobile-text-alignment.info",
+      "options": [
+        {
+          "value": "top",
+          "label": "t:sections.hero-banner.settings.desktop-text-alignment.options.top"
+        },
+        {
+          "value": "bottom",
+          "label": "t:sections.hero-banner.settings.desktop-text-alignment.options.bottom"
+        }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.hero-banner.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.hero-banner.settings.color-theme.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.hero-banner.settings.color-theme.options.dark"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "t:sections.hero-banner.settings.bg-color.label",
+      "info": "t:sections.hero-banner.settings.bg-color.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero-banner.name"
+    }
+  ]
+}
+{% endschema %}

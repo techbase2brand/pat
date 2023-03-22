@@ -1,0 +1,52 @@
+{%- if settings.enable_klevu -%}
+  {{ 'component-klevu-instant-search.css' | asset_url | stylesheet_tag }}
+  <script src='{{ 'component-klevu-instant-search.js' | asset_url }}' defer='defer' type='module'></script> 
+
+
+  <klevu-instant-search-popup class='background-color-pale-pink'>
+    <div class='klevu-instant-search__form flex align-center'>
+      <div class='klevu-instant-search__form-container fluid'>
+        <form method='get' role='search' action='/pages/search-results'>
+          <div class='flex fluid input-container'>
+            <div class='klevu-instant-search__form-search-icon color-off-black'>{% render 'icon-search' %}</div>
+            <input
+              required
+              type='text'
+              id='ku-search-field'
+              name='q'
+              class='kuSearchInput'
+              placeholder='{{ settings.search_button_text }}'
+            >
+            <div class='klevu-instant-search__form-action s-block'>
+              {%- render 'button',
+                mod_value: 'Submit',
+                mod_variant: 'secondary',
+                mod_class: 'button fluid klevu-instant-search__submit',
+                mod_disabled: true,
+                mod_type: 'submit'
+              -%}
+            </div>
+          </div>
+          <div class='klevu-instant-search__form-action s-none'>
+            {%- render 'button',
+              mod_value: 'Submit',
+              mod_variant: 'secondary',
+              mod_class: 'button fluid klevu-instant-search__submit',
+              mod_disabled: true,
+              mod_type: 'submit'
+            -%}
+          </div>
+        </form>
+      </div>
+      <button
+        data-instant-search-close
+        type='button'
+        class='flex justify-center focus-inset align-center background-color-off-black color-off-white'
+      >
+        {%- render 'icon-close' -%}
+      </button>
+    </div>
+    <div class='klevu-results'></div>
+  </klevu-instant-search-popup>
+  {% render 'vendor-klevu-quick-search-overrides' %}
+{%- endif -%}

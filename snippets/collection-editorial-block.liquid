@@ -1,0 +1,23 @@
+{% liquid
+  assign mod_blocks = mod_blocks | default: nil
+  assign mod_data_index = mod_data_index
+%}
+
+{%- if mod_blocks.title[mod_data_index] != blank -%}
+  {%- assign media = mod_blocks.image[mod_data_index] | first -%}
+  {%- assign media_mobile = mod_blocks.image_mobile[mod_data_index] | first | default: media -%}
+
+  {%-
+    render 'render-collection-editorial-block',
+      mod_title: mod_blocks.title[mod_data_index],
+      mod_subtitle: mod_blocks.subtitle[mod_data_index],
+      mod_body: mod_blocks.body[mod_data_index],
+      mod_cta: mod_blocks.cta[mod_data_index],
+      mod_link: mod_blocks.link[mod_data_index],
+      mod_image: media,
+      mod_mobile_image: media_mobile,
+      mod_layout: mod_blocks.layout[mod_data_index],
+      mod_column_span: mod_blocks.column_span[mod_data_index],
+      mod_color_scheme: mod_blocks.color_scheme[mod_data_index]
+  -%}
+{%- endif -%}

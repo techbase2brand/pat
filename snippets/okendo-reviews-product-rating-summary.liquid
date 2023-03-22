@@ -1,0 +1,15 @@
+{%- unless product.metafields.reviews.display -%}
+  {%- assign reviewCount = product.metafields.okendo.summaryData.reviewCount | default: 0 -%}
+  {%- if reviewCount > 0 -%}
+    {%- liquid
+      assign cls = 'oke-star-rating__card'
+      if type == 'pdp'
+        assign cls = 'oke-star-rating__pdp'
+      endif
+    -%}
+    {% if product != blank %}
+      {% capture product_data_attribute %}data-oke-reviews-product-id="shopify-{{ product.id }}"{% endcapture %}
+    {% endif %}
+    <div data-oke-star-rating {{ product_data_attribute }} class="{{ cls }}">{{ product.metafields.okendo.StarRatingSnippet }}</div>
+  {%- endif -%}
+{%- endunless -%}

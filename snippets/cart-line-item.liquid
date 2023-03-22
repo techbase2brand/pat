@@ -1,0 +1,133 @@
+{% comment %}
+  Renders a given cart line item with quantity editor.
+
+  Parameters:
+    - item: Cart Line Item ##https://shopify.dev/api/liquid/objects#line_item
+{% endcomment %}
+
+{%- liquid
+  assign isFreeSample = false
+  assign itemImage = item.variant.featured_media
+  if itemImage == blank
+    assign itemImage = item.image
+  endif
+  assign property_size = item.properties | size
+  if property_size > 0
+    for p in item.properties
+      if p.first == '_free-sample'
+        assign isFreeSample = true
+        assign itemImage = item.product.featured_image
+      endif
+    endfor
+  endif
+-%}
+
+<cart-line-item class="relative grid main-cart__line-item background-color-off-white" line-item-id="{{ item.id }}" line-item-index="{{ item.index | plus: 1 }}" line-item-key="{{ item.key }}" line-item-quantity="{{ item.quantity }}">
+  {% if isFreeSample == false %}<a href="{{ item.variant.url }}" class="main-cart__line-item__media">{% else %}<div class="main-cart__line-item__media">{% endif %}
+    {% if item.image %}
+      {%- render 'adaptive-image', mod_aspect_ratio: 1, mod_image: itemImage, mod_alt: item.product.title, mod_loading: 'lazy', mod_sizes: '100px' -%}
+    {% endif %}
+  {% if isFreeSample == false %}</a>{% else %}</div>{% endif %}
+
+  <span class="grid main-cart__line-item__details">
+    <p class="b2 color-off-black bold no-margin main-cart__line-item__details-title">{{ item.title }}</p>
+    {%- unless item.product.has_only_default_variant -%}
+      <div class="flex main-cart__line-item__options">
+        {%- assign color_option = item.options_with_values | where: 'name', 'Color' | first -%}
+        {%- for option in item.options_with_values -%}
+          {%- if option.name == 'Color' -%}
+            <div class="flex swatch-line no-margin align-center">
+              {%- render 'form-shade-selector', color: color_option.value, id: item.variant.id, disabled: false, size: swatch_size, variant: item.variant -%}
+              <span class="b3 color-dark-gray no-margin">{{ option.value }}</span>
+            </div>
+          {% else %}
+            <p class="b3 color-dark-gray no-margin">
+              {{ option.value }}
+            </p>
+          {%- endif -%}
+        {%- endfor -%}
+        <button type="button" data-edit-line-item-quantity="{{ item.quantity }}" data-edit-line-item-key="{{ item.key }}" data-product-handle="{{ item.product.handle }}" data-variant-id="{{ item.variant.id }}" class="underline cursor-pointer main-cart__line-item__edit js-toggle-quick-shop b3 color-dark-gray no-margin">Edit</button>
+      </div>
+    {%- endunless -%}
+
+    {%- if item.product.metafields.discounts.discount_description != blank -%}
+      <p class='b2 color-off-black no-margin bold'>
+        {{ item.product.metafields.discounts.discount_description }}
+      </p>
+    {%- endif -%}
+
+    {%- if item.discounts != blank -%}
+      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+        {%- for discount in item.discounts -%}
+          <li class="b3 color-dark-gray no-margin">
+            {{ discount.title }}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <p id="Line-item-error-{{ item.index | plus: 1 }}">
+      <span class="js-main-cart__line-item__error-text color-error-red"></span>
+    </p>
+  </span>
+
+  {% if settings.enable_ordergroove %}
+    {%- render 'ordergroove_offer' cart_type: true product: item location: 'cart' -%}
+  {% endif %}
+  <span class="flex main-cart__line-item__price-line align-center {% if isFreeSample == false %}justify-space-between{% else %}justify-end{% endif %}">
+    {% if isFreeSample == false %}
+      <span class="main-cart__line-item__quantity right">
+        <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
+          {{ 'products.product.quantity.label' | t }}
+        </label>
+        {% render 'quantity-input', item: item %}
+      </span>
+      <div class="main-cart__line-item__price-wrapper">
+        {%- if item.variant.compare_at_price != item.final_price -%}
+          <dl class="flex main-cart__line-item__discounted-prices align-center">
+            <dt class="visually-hidden">
+              {{ 'products.product.price.regular_price' | t }}
+            </dt>
+            <dd>
+              <s class="main-cart__line-item__old-price color-dark-gray no-margin b2">
+                {{ item.variant.compare_at_price | money }}
+              </s>
+            </dd>
+            <dt class="visually-hidden">
+              {{ 'products.product.price.sale_price' | t }}
+            </dt>
+            <dd class="color-off-black no-margin b2">
+              {{ item.final_price | money }}
+            </dd>
+          </dl>
+
+          {%- if item.variant.available and item.unit_price_measurement -%}
+            <div class="unit-price caption">
+              <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+              {{ item.variant.unit_price | money }}
+              <span aria-hidden="true">/</span>
+              <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+              {%- if item.variant.unit_price_measurement.reference_value != 1 -%}
+                {{- item.variant.unit_price_measurement.reference_value -}}
+              {%- endif -%}
+              {{ item.variant.unit_price_measurement.reference_unit }}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <span class="color-dark-gray no-margin b2">
+            {{ item.original_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+    {% else %}
+      <div class="main-cart__line-item__price-wrapper text-right b2 uppercase color-off-black">
+        {{ 'templates.cart.free' | t }}
+      </div>
+    {% endif %}
+  </span>
+
+  <a href="{{ item.url_to_remove }}" class="flex justify-center cursor-pointer main-cart__line-item__remove align-center" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+    <span class="visually-hidden">{{ 'sections.cart.remove' | t }}</span>
+    {% render 'icon-close' %}
+  </a>
+</cart-line-item>

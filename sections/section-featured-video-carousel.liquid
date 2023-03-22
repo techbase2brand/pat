@@ -1,0 +1,167 @@
+<script src='{{ 'component-simple-slider.js' | asset_url }}' defer='defer' type='module'></script>
+<script src="{{ 'component-slideout.js' | asset_url }}" defer="defer" type="module"></script>
+<script src='{{ 'component-adaptive-image.js' | asset_url }}' defer='defer' type='module'></script>
+
+{{ 'section-featured-video-carousel.css' | asset_url | stylesheet_tag }}
+
+{% assign slideout_id = 'featured-video-carousel-modal' | append: section.id %}
+{% assign target = 'data-target="' | append: slideout_id | append: '" ' %}
+
+
+{%- capture video_modal_content -%}
+  <p class="h4 no-margin featured-video-carousel__mobile-content-headline">Watch</p>
+
+
+  {% comment %}
+    the data-ot-ignore attribute is used to prevent the OneTrust cookie settings function from blocking the src attr update in this iframe
+
+    documentation on this can be found under development notes in the OneTrust page in Notion
+  {% endcomment %}
+  <iframe title="YouTube video player" class="optanon-category-C0004" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen {{ target }} data-ot-ignore></iframe>
+
+  <div class="featured-video-carousel__mobile-button-container">
+    {% render 'button' mod_type: "button", mod_value: "Close", mod_theme: 'light', mod_class: "js-close-slideout inverted" %}
+  </div>
+{%- endcapture -%}
+
+<section class='featured-video-carousel relative' {% if section.settings.id != blank %} id='{{ section.settings.id }}' {% endif %}>
+
+  {% render "slideout", type: 'modal', css_target: "featured-video-carousel-modal" slideout_id: slideout_id, content: video_modal_content, mod_content_class: "featured-video-carousel__iframe-container" %}
+
+  <h2 class='h2 no-margin text-center'>{{ section.settings.heading }}</h2>
+
+  <simple-slider class='slider' loop='true' infinite="true" data-first-slide="2">
+
+    {% if section.blocks.size > 1 %}
+      {% render 'simple-carousel-controls',
+        mod_render_slide_status: false,
+        mod_class: 'featured-video-carousel__controls justify-center'
+      %}
+    {% endif %}
+
+    <div class='fluid hide-scrollbars flex no-margin align-start' data-slider-items>
+
+      {% for block in section.blocks %}
+
+        {% if block.settings.video_link != blank %}
+          {% assign target = 'data-target="' | append: slideout_id | append: '" ' %}
+
+          {% assign attr = target | append: "data-videolink=" | append: block.settings.video_link %}
+        {% endif %}
+
+        <button class='featured-video-carousel__slider-block  {% if block.settings.video_link != blank %} js-video-thumbnail js-open-slideout featured-video-carousel__slider-block--pointer {% endif %} {% if block.settings.color_theme == 'light' %} featured-video-carousel--dark {% else %} featured-video-carousel--light {% endif %}' data-slider-item {{ attr }} >
+
+          <div class='relative'>
+              {% if block.settings.video_link == blank %}
+                <a href="{{ block.settings.url }}">
+              {% endif %}
+
+                {% render 'adaptive-image',
+                  mod_image: block.settings.video_thumbnail,
+                  mod_alt: section.settings.video_thumnail.alt,
+                %}
+
+              {% if block.settings.video_link == blank %}
+                </a>
+              {% endif %}
+
+            {% if block.settings.video_link != blank %}
+              <div class='featured-video-carousel__icon'>
+                {% render 'icon-youtube' %}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.video_description != blank %}
+            <div class='flex justify-center container'>
+              <p class='featured-video-carousel__video-decription b1 no-margin color-off-black text-center'>
+                {{ block.settings.video_description }}
+              </p>
+            </div>
+          {% endif %}
+        </button>
+      {% endfor %}
+    </div>
+  </simple-slider>
+</section>
+
+
+{% schema %}
+{
+  "name": "t:sections.featured-video-carousel.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-video-carousel.settings.id.label",
+      "info": "t:sections.featured-video-carousel.settings.id.info"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:sections.featured-video-carousel.settings.heading.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "video_thumbnail",
+          "label": "t:sections.featured-video-carousel.blocks.settings.video-thumbnail.label"
+        },
+        {
+          "type": "text",
+          "id": "video_link",
+          "label": "t:sections.featured-video-carousel.blocks.settings.video-link.label",
+          "info": "Must be a youtube video embed URL, not the standard video URL"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:sections.featured-video-carousel.blocks.settings.destination-url.label"
+        },
+        {
+          "type": "textarea",
+          "id": "video_description",
+          "label": "t:sections.featured-video-carousel.blocks.settings.video-description.label"
+        },
+        {
+          "type": "radio",
+          "id": "color_theme",
+          "label": "t:sections.featured-video-carousel.blocks.settings.color-theme.label",
+          "options": [
+            {
+              "value": "light",
+              "label": "t:sections.featured-video-carousel.blocks.settings.color-theme.options.light"
+            },
+            {
+              "value": "dark",
+              "label": "t:sections.featured-video-carousel.blocks.settings.color-theme.options.dark"
+            }
+          ],
+          "default": "light"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-video-carousel.name",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

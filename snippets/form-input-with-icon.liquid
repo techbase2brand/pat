@@ -1,0 +1,11 @@
+{%- liquid
+  assign type = type | default: 'text' 
+  assign background = background | default: false 
+-%}
+
+<div class="js-input-container input-container with-icon {% if background == true %} with-icon-bg {% endif %} ">
+  <input type="{{ type }}" required placeholder="Phone Number" />
+    <div class="input-container submit no-border">
+      <button class="button--icon-only">{%- render "icon-form-arrow" -%}</button>
+  </div> 
+</div>

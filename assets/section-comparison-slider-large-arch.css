@@ -1,0 +1,129 @@
+.section-model-comparison {
+  margin-bottom: 5rem;
+  overflow: hidden;
+}
+
+.section-model-comparison__title-container .h2 {
+  margin: 1.6rem 0 2.3rem 0;
+}
+
+.section-model-comparison__title-container--no-button {
+  width: 75%;
+}
+
+.section-model-comparison__slider-container {
+  margin-left: -2.25rem;
+  margin-right: -4.5rem;
+  margin-top: 5.1rem;
+}
+
+.section-model-comparision__slide-tile {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: column;
+  width: 75%;
+  min-height: 100%;
+}
+
+.section-model-comparison-slide__inner {
+  margin: 0 2.25rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.section-model-comparison__slide-headline {
+  margin-top: 1.5rem;
+  max-width: 80%;
+}
+
+.section-model-comparison__slide-headline--long {
+  max-width: 75%;
+}
+
+.section-model-comparison__slide-p {
+  margin-top: 5px;
+  max-width: 80%;
+}
+
+.section-model-comparison__slide-product-image {
+  position: absolute;
+  top: -6.2rem;
+  width: 15.7rem;
+  right: 0;
+  transform: translateX(30%);
+}
+
+.section-model-comparision__slide-image {
+  height: 29.8rem;
+  border-radius: 40rem 40rem 0 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.section-model-comparison__slide-button-container {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+.section-model-comparision__slider-controls-container {
+  position: absolute;
+  top: -8rem;
+  right: 3.25rem;
+}
+
+.section-model-comparison__slide-relative-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* media query breakpoints */
+
+@media (min-width: 768px) {
+  .section-model-comparision__slide-tile {
+    width: 50%;
+  }
+  .section-model-comparision__slide-image {
+    height: 46rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section-model-comparison {
+    margin-bottom: 6rem;
+  }
+
+  .section-model-comparison__slider-container {
+    margin-left: -7.1rem;
+    margin-right: -7.1rem;
+  }
+  .section-model-comparison [data-slider-status] {
+    display: none;
+  }
+
+  .section-model-comparision__slide-tile {
+    width: 33.2%;
+  }
+
+  .section-model-comparison-slide__inner {
+    margin: 0 7.1rem;
+    height: 100%;
+  }
+
+  .section-model-comparision__slider-controls-container {
+    right: 7.1rem;
+  }
+
+  .section-model-comparison__slide-headline {
+    margin-top: 3rem;
+  }
+
+  .section-model-comparison__slide-p {
+    margin-top: 8px;
+  }
+}

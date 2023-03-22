@@ -1,0 +1,147 @@
+<script src="{{ 'component-collection-products-grid.js' | asset_url }}" type="module" defer="defer"></script>
+
+{% comment %}needs to be rendered synchronously so as to not break safari{% endcomment %}
+{{ 'component-main-collection-product-grid.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  render 'async-stylesheet', mod_url: 'component-collection-editorial-block.css'
+  assign page_size = section.settings.page_size | times: 1
+
+  assign _current_page = current_page
+  assign current_page = 1
+  assign total_count = collection.products_count
+  assign current_page = _current_page
+-%}
+
+{%- paginate collection.products by page_size -%}
+  {%- capture wrapper_attr -%}
+    {% if paginate.next.url != blank %}
+      data-paginate-next="{{ paginate.next.url }}"
+    {% endif %}
+
+    {% if paginate.previous.url != blank %}
+      data-paginate-previous="{{ paginate.previous.url }}"
+    {% endif %}
+  {%- endcapture -%}
+  <collection-products-grid {{ wrapper_attr }}>
+    <div class="backdrop js-backdrop"></div>
+
+    {%- unless collection.metafields.plp.disable_filter or section.settings.hide_filters == true -%}
+      {% render 'collection-filters' %}
+    {%- endunless -%}
+
+    {% unless section.settings.hide_collection_grid == true %}
+    <div id="collection-products-grid" class="grid container collection-grid">
+      {%- if collection.products.size == 0 -%}
+        <div class="collection-grid__empty color-off-black">
+          <h2 class="h1 no-margin uppercase">{{ 'sections.collection_template.no_results.title' | t }}</h2>
+          {%- assign no_results_body = 'sections.collection_template.no_results.title' | t -%}
+          {%- if no_results_body -%}
+            <p class="b2 no-margin color-dark-gray">{{ no_results_body }}</p>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        {%- liquid
+          assign editorial_blocks = collection.metafields.editorial_block
+          for position_index in editorial_blocks.position_index
+            assign editorial_block_index = position_index | times: 1
+            if editorial_block_index == 0
+              render 'collection-editorial-block', mod_blocks: editorial_blocks, mod_data_index: forloop.index0
+            endif
+          endfor
+
+          for product in collection.products
+            assign featured_variant = nil
+            for variant in product.variants
+              if variant.metafields.product_card.featured_variant
+                assign featured_variant = variant
+                break
+              endif
+            endfor
+
+            if featured_variant
+              render 'product-card', product_card_product: product, product_card_variant: featured_variant, use_variant: true
+            else
+              render 'product-card', product_card_product: product, product_card_variant: product.selected_or_first_available_variant
+            endif
+            assign product_loop_index = forloop.index
+            for position_index in editorial_blocks.position_index
+              assign editorial_block_index = position_index | times: 1
+              if editorial_block_index == product_loop_index
+                render 'collection-editorial-block', mod_blocks: editorial_blocks, mod_data_index: forloop.index0
+              endif
+            endfor
+          endfor
+
+          for position_index in editorial_blocks.position_index
+            assign editorial_block_index = position_index | times: 1
+            if editorial_block_index == -1
+              render 'collection-editorial-block', mod_blocks: editorial_blocks, mod_data_index: forloop.index0
+            endif
+          endfor
+        -%}
+
+        <div class="collection-grid__load-more text-center{% if total_count <= page_size %} hidden{% endif %}">
+          <div class="b1 text-center color-dark-gray collection-grid__load-more-count">
+            {%- assign current_count = paginate.current_offset | plus: collection.products.size -%}
+            {{ 'templates.collection.pagination_status' | t: showing: current_count, total_count: total_count }}
+          </div>
+          {%- if paginate.next.url != blank -%}
+            {%- capture load_more_label -%}
+              {{ 'templates.collection.load_more' | t }}
+            {%- endcapture -%}
+            {% render 'button', mod_type: "link", mod_value: load_more_label, mod_href: paginate.next.url, mod_theme: "light", mod_attr: 'data-load-more' %}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    {% endunless %}
+  </collection-products-grid>
+{%- endpaginate -%}
+
+
+{% if collection.metafields.seo_block.enable_seo_block == true %}
+  <div class="container">
+    {% render 'plp-seo-block' %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "page_size",
+      "label": "t:sections.main-collection-product-grid.settings.page_size.label",
+      "options": [
+        {
+          "value": "16",
+          "label": "16"
+        },
+        {
+          "value": "24",
+          "label": "24"
+        },
+        {
+          "value": "36",
+          "label": "36"
+        }
+      ],
+      "default": "16"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_filters",
+      "label": "t:sections.main-collection-product-grid.settings.grid.hide_filters.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_collection_grid",
+      "label": "t:sections.main-collection-product-grid.settings.grid.hide_collection_grid.label",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,257 @@
+<!doctype html>
+<html class='no-js' lang='{{ request.locale.iso_code }}'>
+  <head>
+    <!-- Meta -->
+
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta name='theme-color' content=''>
+
+    {%- if customer -%}
+      {%- if template.name == 'register' or template.name == 'login' -%}
+        <script>
+          window.location = {{ routes.account_url | json }};
+        </script>
+      {%- endif -%}
+    {%- endif -%}
+
+    <link rel='canonical' href='{{ canonical_url }}'>
+    <link
+      rel='preconnect'
+      href='https://cdn.shopify.com'
+      crossorigin>
+    <title>{{ page_title }}</title>
+
+    {%- if settings.favicon != blank -%}
+      <link
+        rel='icon'
+        type='image/png'
+        href='{{ settings.favicon | image_url: width: 32, height: 32 }}'>
+    {%- endif -%}
+
+    {% if page_description %}
+      <meta name='description' content='{{ page_description | escape }}'>
+    {% endif %}
+
+    {%- render 'meta-tags' -%}
+    {%- render 'seo-schema' -%}
+
+    {% comment %} According to the docs, hreflang manager sippets should be excluded on non-primary stores {% endcomment %}
+    {% if shop.domain != "lauramercier.myshopify.com" %}
+      {% render 'gwa-hreflang' %}
+    {% endif %}
+
+    {{ content_for_header }}
+
+    <!-- Styles -->
+
+    <!-- inline critical css -->
+    <style>.megamenu{display:none;}</style>
+
+    {%- render 'base-style-settings' -%}
+
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    {% # theme-check-disable %}
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    {% # theme-check-enable %}
+    <noscript>
+      <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap"
+          rel="stylesheet"
+          type="text/css"
+      />
+    </noscript>
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'dropdown.css' | asset_url | stylesheet_tag }}
+    {{ 'slideout.css' | asset_url | stylesheet_tag }}
+    {% comment %}
+      Refer to https://web.dev/defer-non-critical-css/ for defering non-critical css resources
+    {% endcomment %}
+    {% # theme-check-disable %}
+    <link rel="preload" href="{{ 'section-megamenu-v2.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ 'section-megamenu-v2.css' | asset_url }}"></noscript>
+    {% # theme-check-enable %}
+
+    {%- if product -%}
+      {{ 'component-product-gallery.css' | asset_url | preload_tag: as: 'style' }}
+    {%- endif -%}
+
+    <script src='{{ "component-base.js" | asset_url }}' defer='defer'></script>
+    {%- if settings.enable_nosto -%}
+      <!-- Global nosto -->
+      <script type='text/javascript'>
+        ;(() => {
+        window.nostojs =
+                            window.nostojs ||
+                            ((cb) => {
+                              ;(window.nostojs.q = window.nostojs.q || []).push(cb)
+                            })
+                        })()
+      </script>
+      <script src='{{ "nosto-recommendation.js" | asset_url }}' defer></script>
+    {%- endif -%}
+
+    <!-- JS helpers / vars -->
+    {%- render 'javascript-globals' -%}
+    <script
+      src='{{ 'option_selection.js' | shopify_asset_url }}'
+      id='option-selector'
+      defer></script>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js')
+    </script>
+
+    {%- render 'header-integration-styles' -%}
+    {%- render 'header-integration-scripts' -%}
+    {%- render 'customer-fields', customer_api: true, version: '4.11.4' -%}
+
+    {% comment %} TODO: find a better long term solution... {% endcomment %}
+    {% comment %} We might need to ask Shopify to look into this. We shouldn't have to change the `money_format` property ourselves {% endcomment %}
+    <script>
+      Shopify.money_format = {% raw %}'£{{amount}}'{% endraw %}
+      document.addEventListener('DOMContentLoaded', () => {
+        if (Shopify.currency.active == "GBP") {
+          Shopify.money_format = {% raw %}'£{{amount}}'{% endraw %}
+        }
+      })
+    </script>
+  </head>
+
+  <body class='template-{{- template -}}' data-template='{{ template }}'>
+    {%- if settings.enable_nosto -%}
+      {% render 'nosto-tagging' %}
+    {%- endif -%}
+
+    <a class='skip-to-content-link button visually-hidden' href='#MainContent'>
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    <!-- A new section for each megamenu, globally include the stylesheet in header above -->
+    {%- liquid
+      render 'main-header'
+      render 'klevu-overrides-js'
+      render 'klevu-instant-search-popup'
+    -%}
+
+    <main
+      id='MainContent'
+      class='content-for-layout focus-none'
+      role='main'
+      tabindex='-1'>
+      {%- liquid
+        if template == blank and settings.enable_ordergroove
+          capture current_content
+           echo content_for_layout
+          endcapture
+          if current_content contains 'ordergroove'
+            render 'ordergroove-customer-console', mod_proxy_content: current_content
+          else
+          echo content_for_layout
+          endif
+        else
+        echo content_for_layout
+        endif
+      -%}
+
+      {% if settings.enable_ordergroove %}
+        {%- render 'ordergroove_global' -%}
+      {% endif %}
+    </main>
+
+    {% section 'section-footer' %}
+    {% section 'cart-popup' %}
+
+    <ul hidden>
+      <li id='a11y-refresh-page-message'>{{ 'accessibility.refresh_page' | t }}</li>
+    </ul>
+
+    <!-- JS helpers / Scripts -->
+    <script>
+      window.routes = {
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}'
+      };
+
+      window.cartStrings = {
+        error: `{{ 'sections.cart.cart_error' | t }}`,
+        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t }}`,
+        failedToRemove: `{{ 'accessibility.cart_remove_fail' | t }}`,
+        failedQuantity: `{{ 'accessibility.cart_quantity_fail' | t }}`
+      }
+
+      window.variantStrings = {
+        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        unavailable: `{{ 'products.product.unavailable' | t }}`
+      }
+
+      window.localeStrings = {
+        openAccordion: `{{ 'accessibility.open_accordion' | t }}`,
+        closeAccordion: `{{ 'accessibility.close_accordion' | t }}`,
+        somethingWentWrong: `{{ 'accessibility.something_went_wrong' | t }}`,
+        itemsContainer: `{{ 'accessibility.items_container' | t }}`,
+        carousel: `{{ 'accessibility.carousel' | t }}`,
+        close: `{{ 'accessibility.close' | t }}`
+      }
+
+      window.__CART__ = {{ cart | json }};
+    </script>
+    <quick-shop>
+      {% render 'slideout', title_t: 'slideout.quick_shop', slideout_id: 'quick-shop', content: '###PLACEHOLDER###' %}
+    </quick-shop>
+    <script defer='defer' src='{{ "custom-elements.js" | asset_url }}'></script>
+    <script src='{{ "global.js" | asset_url }}' defer></script>
+    <script src='{{ "component-dropdown.js" | asset_url }}' defer></script>
+    <script src='{{ "component-variant-dropdown.js" | asset_url }}' defer></script>
+    <script src='{{ "component-accordion.js" | asset_url }}' defer></script>
+    <script
+      src='{{ "component-tooltip-modal.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    <script
+      src='{{ "component-adaptive-image.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    <script
+      src='{{ "component-quick-shop.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    <script
+      src='{{ "component-loading-button.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    <script
+      src='{{ "component-floating-input.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    <script
+      type='text/javascript'
+      src='https://assets.findation.com/javascripts/w-adv-10.min.js'
+      defer='defer'></script>
+    <script
+      src='{{ "component-quantity-input.js" | asset_url }}'
+      type='module'
+      defer='defer'></script>
+
+    {% render 'async-stylesheet', mod_url: 'component-product-card.css' %}
+    {% render 'async-stylesheet', mod_url: 'component-loading-button.css' %}
+    {% render 'async-stylesheet', mod_url: 'component-price.css' %}
+    <script
+      src='{{ "component-product-card.js" | asset_url }}'
+      defer='defer'
+      type='module'></script>
+    {%- render 'footer-integration-scripts' -%}
+
+    {% render 'skeleton-product-card' %}
+  </body>
+</html>

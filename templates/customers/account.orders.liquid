@@ -1,0 +1,145 @@
+{% comment %}
+This is the orders template
+{% endcomment %}
+
+{% render 'async-stylesheet', mod_url: 'customer.css' %}
+{%- capture mod_title -%}{{ 'customer.orders.title' | t }}{%- endcapture -%}
+
+{%- liquid
+  assign total_count = customer.orders.size
+  assign total_pages = total_count | divided_by: 5.0 | ceil
+-%}
+
+{%- capture mod_content -%}
+  <div class="customer-account-wrapper background-color-off-white order-history js-order-history">
+    {% paginate customer.orders by 5 %}
+      {%- assign visible_count = paginate.current_offset -%}
+      {%- if customer.orders.size > 0 -%}
+        <table role="table" class="order-history">
+          <thead class="visually-hidden">
+            <th id="ColumnOrder">{{ 'customer.orders.order_number_title' | t }}</th>
+            <th id="ColumnDate">{{ 'customer.orders.date' | t }}</th>
+            <th id="ColumnTotal">{{ 'customer.orders.total' | t }}</th>
+            <th id="ColumnFulfillment">{{ 'customer.orders.fulfillment_status' | t }}</th>
+            <th id="ColumnLink">{{ 'customer.orders.link' | t }}</th>
+          </thead>
+          <tbody role="rowgroup">
+            {%- for order in customer.orders -%}
+              {%- assign visible_count = visible_count | plus: 1 -%}
+              <tr role="row" class="order-history-row">
+                <td
+                  id="RowOrder--{{ order.id }}"
+                  role="cell"
+                  headers="ColumnOrder"
+                  data-label="{{ 'customer.orders.order_number' | t }}"
+                  class="order-history-cell b1--medium color-off-black"
+                >
+                {{ 'customer.orders.order_with_number' | t: number: order.name }}
+                </td>
+                <td headers="RowOrder--{{ order.id }} ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}" class="order-history-cell b1 color-dark-gray">
+                  {{ order.created_at | time_tag: '%m/%d/%Y' }}
+                </td>
+                <td headers="RowOrder--{{ order.id }} ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}" class="order-history-cell b1 color-dark-gray">
+                  {{ order.item_count }} {{ order.item_count | pluralize: 'item', 'items' }} | {{ order.total_price | money }}
+                </td>
+                <td headers="RowOrder--{{ order.id }} ColumnFulfillment" role="cell" data-label="{{ 'customer.orders.fulfillment_status' | t }}" class="order-history-cell b1 color-dark-gray">
+                  {% if order.cancelled == false %}
+                    {{ order.fulfillment_status_label }}
+                  {% else %}
+                    {{ "customer.order.cancelled" | t }}
+                  {% endif %}
+                </td>
+                <td headers="RowOrder--{{ order.id }} ColumnLink" role="cell" align="right" class="order-history-cell">
+                  <a href="{{ order.customer_url }}" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}" class="inline button--text-icon">
+                    <span>{{ 'customer.orders.view_details' | t }}</span>
+                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0L3 5L0.5 10L1.7729 8.51743C2.5896 7.56621 3.47164 6.69426 4.41022 5.91028L5.5 5L4.41022 4.08972C3.47164 3.30574 2.5896 2.43379 1.7729 1.48257L0.5 0Z" fill="#3E2B2E"></path>
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        <div class="customer-account-footer">
+
+          <p class="color-dark-gray">{{ 'customer.orders.pagination' | t: visible_count: visible_count, items: total_count }}</p>
+
+          <div class="customer-account__controls flex align-center">
+            {%- if paginate.previous -%}
+              {% assign prev_url = paginate.previous.url %}
+              <div class="customer-account__control-prev">
+                {% render 'button', mod_type: "link", mod_href: prev_url, mod_variant: "text-icon", mod_value: "Previous", mod_icon: "arrow", mod_icon_position: 'left' %}
+              </div>
+            {%- endif -%}
+
+            <ul class="paginate-numbers list-unstyled flex">
+              {%- liquid
+                assign current_page_link = "/account?view=orders&page=" | append: paginate.current_page
+                assign current_page_plus_one = paginate.current_page | plus: 1
+                assign current_page_plus_two = paginate.current_page | plus: 2
+                assign first_page_link = "/account?view=orders&page=" | append: "1"
+                assign last_page_link = "/account?view=orders&page=" | append: total_pages
+              -%}
+
+              {% if paginate.current_page >= 3 %}
+                <li>{% render 'button', mod_type: "link", mod_href: first_page_link, mod_variant: "paginate", mod_value: "1" %}</li>
+              {% endif %}
+              {% if paginate.current_page > 3 %}
+                <li>...</li>
+              {% endif %}
+
+              {% if paginate.current_page == total_pages and total_pages > 3 %}
+                {% assign page_item = paginate.current_page | minus: 2 %}
+                {% assign page_item_url = "/account?view=orders&page=" | append: page_item %}
+                <li class="first">{% render 'button', mod_type: "link", mod_href: page_item_url, mod_class: , mod_variant: "paginate", mod_value: page_item %}</li>
+              {% endif %}
+
+              {% if paginate.current_page != 1 and paginate.current_page == total_pages or current_page_plus_one >= total_pages %}
+                {% assign page_item = paginate.current_page | minus: 1 %}
+                {% assign page_item_url = "/account?view=orders&page=" | append: page_item %}
+                <li class="second">{% render 'button', mod_type: "link", mod_href: page_item_url, mod_class: , mod_variant: "paginate", mod_value: page_item %}</li>
+              {% endif %}
+
+              {% assign page_numbers = paginate.current_page | minus: paginate.page_size %}
+              {% unless page_numbers > total_pages or page_numbers > 2 or page_numbers < 0 %}
+                {% assign page_item = paginate.current_page | minus: 1 %}
+                {% assign page_item_url = "/account?view=orders&page=" | append: page_item %}
+                <li class="third">{% render 'button', mod_type: "link", mod_href: page_item_url, mod_class: , mod_variant: "paginate", mod_value: page_item %}</li>
+              {% endunless %}
+
+              <li class="fourth">{% render 'button', mod_type: "link", mod_href: current_page_link, mod_class: "active", mod_variant: "paginate", mod_value: paginate.current_page %}</li>
+              {% assign page_number = paginate.current_page | plus: 1 %}
+              {% unless page_number >= total_pages %}
+                {% assign page_item_url = "/account?view=orders&page=" | append: page_number %}
+                <li>{% render 'button', mod_type: "link", mod_href: page_item_url, mod_class: , mod_variant: "paginate", mod_value: page_number %}</li>
+              {% endunless %}
+
+              {% unless current_page_plus_two >= total_pages %}
+                <li>...</li>
+              {% endunless %}
+
+              {% unless paginate.current_page == total_pages %}
+                <li class="last">{% render 'button', mod_type: "link", mod_href: last_page_link, mod_variant: "paginate", mod_value: total_pages %}</li>
+              {% endunless %}
+            </ul>
+
+            {%- unless paginate.current_page == total_pages -%}
+              {% assign index = paginate.current_page | plus: 1 %}
+              {% assign next_url = "/account?view=orders&page=" | append: index %}
+              <div class="customer-account__control-next">
+                {% render 'button', mod_type: "link", mod_href: next_url, mod_variant: "text-icon", mod_value: "Next", mod_icon: "arrow" %}
+              </div>
+            {%- endunless -%}
+          </div>
+        </div>
+      {%- else -%}
+        <p>{{ 'customer.orders.none' | t }}</p>
+      {%- endif -%}
+    {% endpaginate %}
+  </div>
+{%- endcapture -%}
+
+<div class="account-container ">
+  {% render 'account-content', mod_title: mod_title, mod_content: mod_content, mod_class: "account-orders" %}
+</div>

@@ -1,0 +1,25 @@
+{%- liquid 
+  assign color = color
+  assign disabled = disabled | default: false
+  assign tooltip = tooltip
+  assign size = size | default: blank
+  assign variant = variant | default: blank
+  assign is_element_span = is_element_span | default: false
+-%}
+
+<div class="color-select-container {{ size }} {% if disabled == true %} disabled {% endif %} {% if product.selected_or_first_available_variant.id == variant.id %}selected{% endif %}">
+  <div class="color-select-inner">
+
+    {% if is_element_span %}
+    <span class="swatch-color-span" value="{{ color }}" {% if disabled == true %} disabled="disabled" {% endif %} style="background-color: {{ variant.metafields.swatch.hex_code }}">
+      {% if disabled == true %} <div class="disabled-line"></div> {% endif %}
+    </span>
+    {% else %}
+    {% if tooltip != blank %}<span data-tooltip="{{ tooltip }}">{% endif %}
+      <button type="button" value="{{ color }}" aria-label="{{ color }}" data-variant-id="{{ variant.id }}"  style="background-color: {{ variant.metafields.swatch.hex_code }}">
+        {% if disabled == true %} <div class="disabled-line"></div> {% endif %}
+      </button>
+      {% if tooltip != blank %}</span>{% endif %}
+    {% endif %}
+  </div>
+</div>

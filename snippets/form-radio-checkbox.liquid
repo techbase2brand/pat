@@ -1,0 +1,43 @@
+{%- liquid
+  assign type = type | default: 'radio'
+  assign label = label
+  assign label_t = label_t
+  assign name = name
+  assign value = value | default: blank
+  assign disabled = disabled | default: false, allow_false: true
+  assign id = id
+  assign checked = checked | default: false, allow_false: true
+  assign input_attributes = input_attributes | default: ''
+-%}
+
+{% if type == 'radio' %}
+  <div class="text-left radio-container {% if disabled %}disabled{% endif %}">
+    <label for="{{ id }}">
+      <input {% if disabled %}disabled{% endif %} id="{{ id }}" name="{{ name }}" type="radio" value="{{ value }}" {% if checked %}checked{% endif %} {{ input_attributes }} />
+      <span class="checkmark"></span>
+      <span class="text {{ label_class }}">
+        {%- if label_t != blank -%}
+          {{ label_t | t }}
+        {%- else -%}
+          {{ label }}
+        {%- endif -%}
+      </span>
+    </label>
+  </div>
+
+{% else %}
+  <div class="text-left checkbox-container {% if disabled %}disabled{% endif %}">
+    <label for="{{ id }}">
+      <input {% if disabled %}disabled{% endif %} id="{{ id }}" name="{{ name }}" type="checkbox" value="{{ value }}" {% if checked %}checked{% endif %} {{ input_attributes }}>
+      <span class="checkmark"></span>
+      <span class="text {{ label_class }}">
+        {%- if label_t != blank -%}
+          {{ label_t | t }}
+        {%- else -%}
+          {{ label }}
+        {%- endif -%}
+      </span>
+    </label>
+  </div>
+
+{% endif %}

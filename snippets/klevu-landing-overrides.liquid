@@ -1,0 +1,241 @@
+{%- capture klevuLandingTemplateResults -%}
+  <div class="kuResultsListing">
+    <div class="productList klevuMeta <%= helper.hasResults(data,"productList") ? 'is-active' : '' %>" data-tab data-section="productList">
+      <div ku-container data-container-id="ku_landing_main_content_container" data-container-role="content">
+          {% render 'klevu-landing-header', mod_type: 'productList' %}
+          <section ku-container data-container-id="ku_landing_main_content_center" data-container-position="center" data-container-role="center">
+
+            <div ku-block data-block-id="ku_landing_result_items">
+                <div class="kuResults grid container collection-grid">
+                  <% if(helper.hasResults(data,"productList")) { %>
+                    <% helper.each(data.query.productList.result,function(key,item){ %>
+                      <% if(item.typeOfRecord == "KLEVU_PRODUCT") { %>
+                        <%=helper.render('productBlock',scope,data,item) %>
+                      <% } %>
+                    <% }); %>
+                  <% } else { %>
+                    <div class="text-center collection-grid__no-results-search">
+                      <h3><%= helper.translate("No records found for your selection") %></h3>
+                    </div>
+                  <% } %>
+                </div>
+            </div>
+            <%=helper.render('klevuLandingTemplateInfiniteScrollDown',scope,data, "productList") %>
+          </section>
+          <section ku-container data-container-id="ku_landing_main_content_right" data-container-position="right" data-container-role="right">
+            <div ku-block data-block-id="ku_landing_right_facets"></div>
+            <div ku-block data-block-id="ku_landing_right_call_outs"></div>
+            <div ku-block data-block-id="ku_landing_right_banner"></div>
+          </section>
+      </div>
+    </div>
+    <% if(data.query.contentList) { %>
+    <div class="contentList klevuMeta <%= !helper.hasResults(data,"productList") ? 'is-active' : '' %>" data-tab data-section="contentList" data-result-view="list">
+      <div ku-container data-container-id="ku_landing_main_content_container" data-container-role="content">
+        <section ku-container data-container-id="ku_landing_main_content_center" data-container-position="center" data-container-role="center">
+          <div ku-block data-block-id="ku_landing_result_items">
+              <div class="kuResults grid content-cards-grid container">
+                <% if(helper.hasResults(data,"contentList")) { %>
+                  <% helper.each(data.query.contentList.result,function(key,item){ %> <% if(item.typeOfRecord == "KLEVU_CMS") { %> <%=helper.render('contentBlock',scope,data,item) %> <% }%> <% }); %>
+                <% } else { %>
+                  <div class="text-center content-cards-grid__no-results-search">
+                    <h3><%= helper.translate("No records found for your selection") %></h3>
+                  </div>
+                <% } %>
+              </div>
+          </div>
+          <%=helper.render('klevuLandingTemplateInfiniteScrollDown',scope,data, "contentList") %>
+        </section>
+      </div>
+    </div>
+    <% } %>
+  </div>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateProductBlock -%}
+  <product-card
+    ku-product-block
+    class="product-card klevuProduct"
+    id="<%= dataLocal.id %>"
+    hydrate
+    data-id="<%=dataLocal.id%>"
+    product-handle="<%= helper.getProductHandle(dataLocal) %>"
+    data-product-href="<%= dataLocal.url %>"
+    data-product-image-primary="<%= dataLocal.image %>"
+    data-product-image-secondary="<%= dataLocal.imageHover %>"
+    data-product-title="<%= dataLocal.name %>"
+    data-product-description="<%= dataLocal.shortDesc %>"
+    data-product-price="<%= dataLocal.startPrice %>"
+  ></product-card>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateNoResultFound -%}
+  <div class="background-color-pale-pink klevu-landing__no-results">
+    <div class="container">
+      <h3 class="text-center kuLandingNoResultsMessage no-margin">
+        <%= helper.translate(data.noResultsFoundMsg) %>
+      </h3>
+    {% comment %} <%=helper.render('noResultsLandingPopularProductsTemplate', scope, data) %>
+    <%=helper.render('landingNoResultsFoundBanners', scope, data) %>
+    <%=helper.render('noResultsLandingPopularSearches', scope, data) %> {% endcomment %}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateContentBlock -%}
+  <%
+    var updatedProductName = dataLocal.name;
+
+    if(klevu.search.modules.kmcInputs.base.getSkuOnPageEnableValue()) {
+      if(klevu.dom.helpers.cleanUpSku(dataLocal.sku)) {
+        updatedProductName += klevu.dom.helpers.cleanUpSku(dataLocal.sku);
+      }
+    }
+
+    var hasImageFound = (dataLocal.image && dataLocal.image != "") ? true : false;
+    if(!hasImageFound){
+      hasImageFound = (dataLocal.imageUrl && dataLocal.imageUrl != "") ? true : false;
+    }
+  %>
+  <a ku-block class="klevuProduct content-card grid klevuProductClick no-underline" title="<%= updatedProductName %>" target="_self" href="<%=dataLocal.url%>" data-id="<%=dataLocal.id%>">
+    <% if(hasImageFound) { %>
+    <div class="content-card__image">
+      <adaptive-image onerror="klevu.dom.helpers.cleanUpProductImage(this)" tabindex="0" data-image="<%=dataLocal.image%>" data-aspect-ratio="1.52" data-loading="lazy" data-sizes="416px, (min-width: 767px) 650px" data-object-fit="cover"></adaptive-image>
+    </div>
+    <% } %>
+    <div class="content-card__main grid" ku-block="" data-block-id="ku_landing_result_item_footer">
+      <div class="h4 color-off-black no-margin"><%= updatedProductName %></div>
+      <p class="no-margin color-dark-gray"> <%=dataLocal.shortDesc%> </p>
+    </div>
+    <div>
+      {% render 'button', mod_variant: "text-underline basic", mod_value: "Shop now", mod_class: 'cursor-pointer' %}
+    </div>
+  </a>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateSearchBar -%}
+  <section class="background-color-pale-pink klevu-landing__form">
+    <% var queryParam = klevu.getGlobalSetting("url.queryParam"); %>
+    <div class="klevu-instant-search__form-container fluid">
+      <form action="/" method="get">
+        <div class="flex fluid input-container">
+          <div class="klevu-instant-search__form-search-icon color-off-black">{% render 'icon-search' %}</div>
+          <input required type="text" name="<%= queryParam %>" id="search" class="kuSearchInput f1" placeholder="{{ settings.search_button_text }}" />
+          <div class="klevu-instant-search__form-action s-block">
+            {%- render 'button',
+              mod_type: 'submit',
+              mod_value: 'Submit',
+              mod_variant: 'secondary',
+              mod_class: 'button fluid klevu-instant-search__submit',
+              mod_disabled: false -%}
+          </div>
+        </div>
+        <div class="klevu-instant-search__form-action s-none">
+          {%- render 'button',
+            mod_type: 'submit',
+            mod_value: 'Submit',
+            mod_variant: 'secondary',
+            mod_class: 'button fluid klevu-instant-search__submit',
+            mod_disabled: false -%}
+        </div>
+      </form>
+    </div>
+  </section>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateBase -%}
+<klevu-landing>
+  <div ku-container data-container-id="ku_landing_main_container" data-container-role="main">
+    <header ku-container data-container-id="ku_landing_main_header_container" data-container-role="header">
+      <section ku-block data-block-id="ku_landing_main_header_sub_panel"></section>
+      <section ku-block data-block-id="ku_landing_main_header_banner"> <%=helper.render('klevuLandingPromotionBanner',scope,data,"top") %> <%=helper.render('klevuLandingPromotionBanner',scope,data,"bottom") %> </section>
+      <section ku-block data-block-id="ku_landing_main_header_site_navigation"></section>
+    </header>
+    <div class="kuContainer">
+      <% if(!helper.hasResults(data,"productList") && !helper.hasFilters(data,"productList")) { %>
+          <%= helper.render('klevuLandingTemplateSearchBar', scope) %>
+          <%=helper.render('noResultsFoundLanding',scope) %>
+        <% } else { %>
+          <%= helper.render('klevuLandingTemplateSearchBar', scope) %>
+          <%=helper.render('klevuLandingImageSearchUploadBanner',scope,data) %>
+          <%= helper.render('tab-results', scope) %>
+          <%= helper.render('results',scope) %>
+        <% } %>
+    </div>
+    <footer ku-container data-container-id="ku_landing_main_footer_container" data-container-role="footer">
+      <section ku-block data-block-id="ku_landing_main_footer_sub_panel"></section>
+      <section ku-block data-block-id="ku_landing_main_footer_banner"> </section>
+    </footer>
+  </div>
+</klevu-landing>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateTabResults -%}
+<% var isCmsEnabled = klevu.search.modules.kmcInputs.base.getCmsEnabledValue(); %>
+  <div class="background-color-pale-pink">
+    <div class="kuTabs klevu-landing__tabs container flex justify-center" role="tablist" style="display:<%= isCmsEnabled ? '' : 'none' %>">
+      <% var selectedTab = false; %>
+        <% helper.each(data.query,function(key,query){ %>
+        <% if(query.tab == true) { %>
+          <% if(helper.hasResults(data,query.id) || helper.hasFilters(data,query.id)) { %>
+            <a target="_self" class="a1 relative cursor-pointer kuTab<% if(!selectedTab){ selectedTab = true; %> kuTabSelected<% } %>" data-tab-toggle data-section="<%=query.id%>" role="tab" tabindex="0" aria-selected="" area-label="Products tab">
+              <%= query.id === 'productList' ? 'Products' : 'Content' %>
+              (<%= data.query[query.id].meta.totalResultsFound %>)
+            </a>
+          <% } else { %>
+            <a target="_self" class="a1 kuTabDeactive relative" data-tab-toggle data-section="<%=query.id%>" role="tab" tabindex="0" aria-selected="" area-label="Products tab">
+            <%= query.id === 'productList' ? 'Products' : 'Content' %>
+              (0)
+            </a>
+          <% } %>
+        <% } %>
+      <% }); %>
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- capture klevuLandingTemplateInfiniteScrollDown -%}
+  {%- capture load_more_label -%}
+    {{ 'templates.collection.load_more' | t }}
+  {%- endcapture -%}
+  <div class="kuInfiniteScrollContainer text-center klevu-landing__load-more">
+    <div class="b1 text-center color-dark-gray collection-grid__load-more-count">
+      <%= helper.translate({{ 'templates.klevu_search.pagination_status' | t | json }}, data.query[dataLocal].result.length, data.query[dataLocal].meta.totalResultsFound) %>
+    </div>
+    <% if(data.query[dataLocal].result.length != data.query[dataLocal].meta.totalResultsFound) { %>
+      {% render 'button', mod_value: load_more_label, mod_theme: "light", mod_class: 'kuLoadMoreBtn' %}
+    <% } %>
+  </div>
+{%- endcapture -%}
+
+<script type="template/klevu" id="klevuLandingTemplateProductBlock">
+  {{ klevuLandingTemplateProductBlock }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateResults">
+  {{ klevuLandingTemplateResults }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateNoResultFound">
+  {{ klevuLandingTemplateNoResultFound }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateContentBlock">
+  {{ klevuLandingTemplateContentBlock }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateSearchBar">
+  {{ klevuLandingTemplateSearchBar }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateBase">
+  {{ klevuLandingTemplateBase }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateTabResults">
+  {{ klevuLandingTemplateTabResults }}
+</script>
+
+<script type="template/klevu" id="klevuLandingTemplateInfiniteScrollDown">
+  {{ klevuLandingTemplateInfiniteScrollDown }}
+</script>

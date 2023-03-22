@@ -1,0 +1,182 @@
+{% comment %}
+  Renders a responsive video, encompassing all possible ways of retrieving a video from Shopify
+  The following input sources are supported:
+  - hosted_url: theme setting field with input type of video_url
+  - url: plain text URL to a single video file (e.g. a theme setting text field)
+  - external_video: Shopify external_video object (e.g. external media attached to a Shopify Product object)
+  - video: Shopify video object (e.g. internal media attached to a Shopify Product object, or a file_reference metafield)
+  Parameters:
+  If using video_url field output:
+  - type: must be "hosted_url"
+  - id: should be the "id" property from the output
+  - host: should be the "type" property from the output
+  - aspect_ratio: needs to be specified manually (e.g. theme setting dropdown field). Can be "wide" (16/9), "full" (4:3), or a decimal number
+  - alt: needs to be specified manually (e.g. theme setting text field)
+  - poster_image: should be a plain text URL (e.g. retrieve a URL from a Shopify Image object)
+  If using a plain text URL:
+  - type: must be "url"
+  - url: the URL pointing to the source video file e.g. mydomain.com/video.mp4
+  - aspect_ratio: this needs to be specified manually (e.g. theme setting dropdown field). Can be "wide" (16/9), "full" (4:3), or a decimal number
+  - alt: needs to be specified manually (e.g. theme setting text field)
+  - poster_image: should be a plain text URL (e.g. retrieve a URL from a Shopify Image object)
+  If using external_video object:
+  - type: must be "external_video"
+  - video: should pass the entire Shopify video object as JSON and encoded in base64 e.g. {{ mod_video | json | base64_encode }}
+  - alt: should be a custom string, if excluded then the alt property from the video object will be used
+  - poster_image: can pass a custom image URL, if excluded then the preview_image property from the video object will be used
+  If using video object:
+  - type: must be "video"
+  - video: should pass the entire Shopify video object as JSON and encoded in base64 e.g. {{ mod_video | json | base64_encode }}
+  - alt: should be a custom string, if excluded then the alt property from the video object will be used
+  - poster_image: can pass a custom image URL, if excluded then the preview_image property from the video object will be used
+  Example Usage (with Shopify Video object):
+  {%- render 'adaptive-video',
+  mod_type: 'video',
+  mod_video: settings.video,
+  mod_alt: 'Description of the video',
+  mod_poster_image: 'https://path.to.image.jpg'
+  -%}
+{% endcomment %}
+
+{%- liquid
+  assign mod_type = mod_type | default: 'video'
+  assign mod_id = mod_id
+  assign mod_host = mod_host | default: blank
+  assign mod_aspect_ratio = mod_aspect_ratio | default: blank
+  assign mod_alt = mod_alt | default: blank
+  assign mod_poster_image = mod_poster_image | default: blank
+  assign mod_url = mod_url | default: blank
+  assign mod_video = mod_video | default: blank
+  assign mod_autoplay = mod_autoplay | default: false
+  assign mod_custom_controls = mod_custom_controls
+  assign mod_loop = mod_loop | default: false
+  assign mod_plays_inline = mod_plays_inline | default: false
+  assign mod_controls_position = mod_controls_position | default: blank
+  assign mod_disabled_controls = mod_disabled_controls | default: false
+  assign mod_border_radius = mod_border_radius
+  assign mod_play_video = 'accessibility.play_video' | t
+  assign mod_pause_video = 'accessibility.pause_video' | t
+  assign mod_caption_src = mod_caption_src
+  assign mod_caption_srclang = mod_caption_srclang
+  assign mod_caption_label = mod_caption_label
+  assign mod_encode = mod_encode
+
+  render 'async-stylesheet', mod_url: 'component-adaptive-video.css'
+-%}
+
+<script src='{{ 'component-adaptive-video.js' | asset_url }}' defer='defer' type='module'></script>
+
+{%- case mod_type -%}
+  {%- when 'hosted_url' -%}
+    {%- if mod_id != blank -%}
+      <adaptive-video
+        id='{{ mod_id }}'
+        data-type='hosted_url'
+        data-id='{{ mod_id }}'
+        data-host='{{ mod_host }}'
+        data-autoplay='{{ mod_autoplay }}'
+        data-aspect-ratio='{{ mod_aspect_ratio }}'
+        data-alt='{{ mod_alt }}'
+        data-encode='{{ mod_encode }}'
+        data-poster-image='{{ mod_poster_image }}'
+      ></adaptive-video>
+    {%- endif -%}
+  {%- when 'url' -%}
+    {%- if mod_url != blank -%}
+      <adaptive-video
+        data-id='{{ mod_id }}'
+        id='{{ mod_id }}'
+        data-type='url'
+        data-url='{{ mod_url }}'
+        data-play-video='{{ mod_play_video }}'
+        data-pause-video='{{ mod_pause_video }}'
+        data-caption-src='{{ mod_caption_src }}'
+        data-caption-srclang='{{ mod_caption_srclang }}'
+        data-caption-label='{{ mod_caption_label }}'
+        data-autoplay='{{ mod_autoplay }}'
+        data-aspect-ratio='{{ mod_aspect_ratio }}'
+        data-alt='{{ mod_alt }}'
+        data-poster-image='{{ mod_poster_image }}'
+        data-encode='{{ mod_encode }}'
+        shadowStylesheet='{{ 'component-adaptive-video.css' | asset_url }}'
+        {% if mod_custom_controls == true %}
+          data-custom-controls='true'
+        {% endif %}
+        {% if mod_controls_position != blank %}
+          data-controls-position='{{ mod_controls_position }}'
+        {% endif %}
+        {% if mod_loop == true %}
+          loop='true'
+        {% endif %}
+        {% if mod_disabled_controls == true %}
+          data-controls-disabled='true'
+        {% endif %}
+        {% if mod_plays_inline == true %}
+          data-plays-inline='true'
+        {% endif %}
+      >
+        ></adaptive-video
+      >
+    {%- endif -%}
+  {%- when 'external_video' -%}
+    {%- if mod_video != blank -%}
+      <adaptive-video
+        data-id='{{ mod_id }}'
+        id='{{ mod_id }}'
+        data-type='external_video'
+        {% if mod_encode == true %}
+          data-video='{{ mod_video | json | base64_encode }}'
+        {% else %}
+          data-video='{{ mod_video }}'
+        {% endif %}
+        data-encode='{{ mod_encode }}'
+        data-aspect-ratio='{{ mod_aspect_ratio }}'
+        data-autoplay='{{ mod_autoplay }}'
+        data-alt='{{ mod_alt }}'
+        data-poster-image='{{ mod_poster_image }}'
+        data-play-video='{{ mod_play_video }}'
+        data-pause-video='{{ mod_pause_video }}'
+      ></adaptive-video>
+    {%- endif -%}
+  {%- when 'video' -%}
+    {%- if mod_video != blank -%}
+      <adaptive-video
+        data-id='{{ mod_id }}'
+        id='{{ mod_id }}'
+        data-type='video'
+        data-play-video='{{ mod_play_video }}'
+        data-pause-video='{{ mod_pause_video }}'
+        {% if mod_encode == true %}
+          data-video='{{ mod_video | json | base64_encode }}'
+        {% else %}
+          data-video='{{ mod_video }}'
+        {% endif %}
+        data-encode='{{ mod_encode }}'
+        data-aspect-ratio='{{ mod_aspect_ratio }}'
+        data-autoplay='{{ mod_autoplay }}'
+        data-alt='{{ mod_alt }}'
+        data-poster-image='{{ mod_poster_image }}'
+        {% if mod_border_radius == true %}
+          data-with-border-radius='true'
+        {% endif %}
+        {% if mod_loop == true %}
+          loop='true'
+        {% endif %}
+        {% if mod_custom_controls == true %}
+          data-custom-controls='true'
+        {% else %}
+          data-custom-controls='false'
+        {% endif %}
+        {% if mod_disabled_controls == true %}
+          data-controls-disabled='true'
+        {% else %}
+          data-controls-disabled='false'
+        {% endif %}
+        {% if mod_plays_inline == true %}
+          data-plays-inline='true'
+        {% else %}
+          data-plays-inline='false'
+        {% endif %}
+      ></adaptive-video>
+    {%- endif -%}
+{%- endcase -%}

@@ -1,0 +1,123 @@
+.featured-content-carousel {
+  padding-right: 0;
+}
+
+.slider {
+  padding: var(--gutter) 0;
+  display: block;
+}
+
+.featured-content-carousel .slider__title-container {
+  margin-bottom: 4rem;
+  padding-right: var(--gutter);
+  height: 100%;
+}
+
+.featured-content-carousel .info-container {
+  margin-top: 2rem;
+}
+
+.slide__heading {
+  margin-bottom: 1.2rem;
+  margin-top: 0;
+}
+
+.slide__subheading {
+  margin-bottom: 1.2rem;
+}
+
+.featured-content-carousel--slide__image-container.no-image {
+  height: 100%;
+}
+
+.slide__text-container {
+  height: 100%;
+  max-width: 16.8rem;
+}
+
+.button-container {
+  margin-top: 4rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.featured-content-carousel--slide__image-container {
+  aspect-ratio: 1;
+  min-width: 20rem;
+}
+
+.featured-content-carousel--slider_block {
+  flex-direction: column;
+  scroll-snap-align: start;
+  width: 23rem;
+  flex-shrink: 0;
+}
+
+.featured-content-carousel [data-slider-items] {
+  column-gap: 5.6rem;
+}
+
+.featured-content-carousel--slider_block:last-of-type {
+  margin-right: calc(5.6rem * 3);
+}
+
+/* media query breakpoints */
+@media (min-width: 768px) {
+  .slider__title-container {
+    padding-right: unset;
+  }
+  .featured-content-carousel .slider__title-container [data-slider-status] {
+    display: none;
+  }
+
+  .featured-content-carousel {
+    padding-right: var(--gutter);
+  }
+
+  .slide__subtitle {
+    margin-top: 0;
+  }
+
+  .featured-content-carousel--slide__image-container {
+    margin-right: 6rem;
+    max-width: 28.5rem;
+  }
+
+  .featured-content-carousel--slide__image-container.no-image {
+    aspect-ratio: 1;
+  }
+
+  .slide__text-container {
+    max-width: 17rem;
+  }
+
+  .featured-content-carousel .info-container {
+    margin-top: 3.8rem;
+  }
+
+  .button-container {
+    margin-top: 2rem;
+    margin-bottom: 3.8rem;
+
+    display: block;
+    flex-grow: unset;
+    align-items: unset;
+  }
+
+  .featured-content-carousel--slider_block {
+    flex-direction: row;
+    min-width: 54.5rem;
+    align-items: center;
+    margin-right: 6rem;
+  }
+
+  .featured-content-carousel--slider_block:last-of-type {
+    margin-right: 18rem;
+  }
+
+  .featured-content-carousel--slide__image {
+    max-height: 28.5rem;
+    min-width: 28.5rem;
+  }
+}

@@ -1,0 +1,34 @@
+{%- liquid
+  assign mod_title = mod_title | default: nil
+  assign mod_body = mod_body | default: nil
+  assign mod_content = mod_content | default: nil
+  assign name = mod_title | split: " " | last
+  assign mod_class = mod_class | default: ""
+-%}
+
+<div class="account-main {{ mod_class }}">
+  {% if mod_title != blank %}
+    <div class="account-main-header {{ mod_class }}-header">
+      <div class="account-main-header-main">
+        {%- if mod_title -%}
+          <h1 class="account-main-title color-off-black h2">{{ mod_title | replace: name, "" }} <span>{{ mod_title | split: " " | last }}</span></h1>
+        {%- endif -%}
+
+        {%- if mod_body -%}
+          <div class="account-main-subtext color-off-black">{{ mod_body }}</div>
+        {%- endif -%}
+      </div>
+      <div class="account-main-header-side">
+        {%- if mod_title_aside -%}
+          {{ mod_title_aside }}
+        {%- endif -%}
+      </div>
+    </div>
+  {% endif %}
+
+  {%- if mod_content -%}
+    <div class="account-main-content">
+      {{ mod_content }}
+    </div>
+  {%- endif -%}
+</div>

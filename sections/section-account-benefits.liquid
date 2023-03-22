@@ -1,0 +1,34 @@
+{% render 'section-account-benefits', mod_section: section %}
+
+{% schema %}
+{
+  "name": "Account Benefits",
+  "class": "container fluid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "UNLOCK YOUR BEAUTY STATION"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Benefit",
+      "type": "benefit",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

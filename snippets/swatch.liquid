@@ -1,0 +1,94 @@
+
+
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+{% assign swatch_size = swatch_size | default: blank %}
+{% assign mod_quick_view = mod_quick_view | default: false %}
+
+{% if swatch == blank %}
+<div class="swatch error">
+  <p>You must include the snippet swatch.liquid with the name of a product option.</p>
+  <p>Use: <code>{% raw %}{% render 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% render 'swatch' with 'Color' %}{% endraw %}</code></p>
+</div>
+{% else %}
+
+  {%- liquid
+    assign found_option = false
+    assign is_color = false
+    assign option_index = 0
+  -%}
+
+{% for option in product.options %}
+  {% if option == swatch %}
+    {% assign found_option = true %}
+    {% assign option_index = forloop.index0 %}
+    <style>
+      label[for="product-select-option-{{ option_index }}"] { display: none; }
+      #product-select-option-{{ option_index }} { display: none; }
+      #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+    </style>
+
+    {% assign downcased_option = swatch | downcase %}
+    {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+      {% assign is_color = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% unless found_option %}
+<div class="swatch error">
+  <p>You included the snippet swatch.liquid with the name of a product option — <code>'{{ swatch }}'</code> — that does not belong to your product.</p>
+  <p>Use <code>{% raw %}{% render 'swatch' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% render 'swatch' with 'Color' %}{% endraw %}</code></p>
+  <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+</div>
+{% else %}
+<div class="swatch clearfix" data-option-index="{{ option_index }}">
+  <div class="options-wrapper color-variants" id="color-variants{% if mod_quick_view %}-quick{% endif %}">
+  {% assign values = '' %}
+  {% for variant in product.variants %}
+    {%- liquid
+      assign isVariantDisabled = false | default: false
+      if variant.available != true
+        assign isVariantDisabled = true
+      endif
+      assign value = variant.options[option_index]
+    -%}
+
+    {% unless values contains value %}
+      {%- liquid
+        assign values = values | join: ','
+        assign values = values | append: ',' | append: value
+        assign values = values | split: ','
+        assign hasNoShadeGroup = ''
+      -%}
+      {% if variant.metafields.swatch.group1 == blank and variant.metafields.swatch.group2 == blank %}
+        {% assign hasNoShadeGroup = 'products.product.not_in_a_group' | t %}
+      {% endif %}
+      <div data-value="{{ value | escape }}" class="swatch-element {% if is_color %}color {% endif %}{{ value | handle }} {{ variant.metafields.swatch.group1 | handle }} {{ variant.metafields.swatch.group2 | handle }} {{ hasNoShadeGroup | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
+        {% if is_color %}
+          <label for="swatch-{{ option_index }}-{{ value | handle }}">
+            {%- render 'form-shade-selector', color: value, id: variant.id, disabled: isVariantDisabled, tooltip: value, size: swatch_size, variant: variant -%}
+            <input id="swatch-{{ option_index }}-{{ value | handle }}" class="visually-hidden swatch-radio {{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} {% unless variant.available %}disabled{% endunless %} />
+          </label>
+        {% endif %}
+        {% if is_color %}
+          <!-- <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" /> -->
+        {% else %}
+        <label for="swatch-{{ option_index }}-{{ value | handle }}">
+          {{ value }}
+          <!-- <img class="crossed-out" src="{{ 'soldout.png' | asset_url }}" /> -->
+        </label>
+        {% endif %}
+      </div>
+    {% endunless %}
+
+  {% endfor %}
+    </div>
+</div>
+
+{% endunless %}
+
+{% endif %}

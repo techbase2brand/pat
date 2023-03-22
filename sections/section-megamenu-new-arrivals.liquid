@@ -1,0 +1,80 @@
+<section-megamenu id="megamenu-1" class="megamenu background-color-pale-pink">
+  {% render 'megamenu-component' %}
+</section-megamenu>
+
+{% schema %}
+{
+  "name": "Megamenu - New Arrivals",
+  "tag": "section",
+  "class": "megamenu-section megamenu__new-arrivals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "default": "New Arrivals",
+      "label": "Menu Title"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "default": "Shop All",
+      "label": "CTA Text"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_with_image_col",
+      "name": "Link With Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "link_thumbnail",
+          "label": "Link Thumbnail"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "feature_col",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5
+}
+{% endschema %}

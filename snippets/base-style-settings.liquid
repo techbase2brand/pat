@@ -1,0 +1,185 @@
+{% style %}
+{% liquid 
+    echo settings.main_font | font_face: font_display: 'swap'
+    echo settings.secondary_font | font_face: font_display: 'swap'
+
+    assign main_font_bold = settings.main_font | font_modify: 'weight', 'bolder'
+    assign main_font_italic = settings.main_font | font_modify: 'style', 'italic'
+
+    echo main_font_bold | font_face
+    echo main_font_italic | font_face
+
+    assign secondary_font_bold = settings.secondary_font | font_modify: 'weight', 'bolder'
+    assign secondary_font_italic = settings.secondary_font | font_modify: 'style', 'italic'
+
+    echo secondary_font_bold | font_face
+    echo secondary_font_italic | font_face
+  %}
+
+  :root {
+    /* ------------------------------------------------------------ *\
+        Typography Settings
+    \* ------------------------------------------------------------ */
+
+    /* This is the amount by which to magnify the REM-defined heading scale */
+    --heading-scale-coefficient: {{ settings.heading_scale }};
+
+    /* Base font size by which others are calculated */
+    --font-basis: {{ settings.font_basis }};
+
+    /* Main (primary) font (used for headings) */
+    --font-family-main: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-main: {{ settings.main_font.style }};
+    --font-weight-main: {{ settings.main_font.weight }};
+
+    /* Secondary font (used for body text) */
+    --font-family-secondary: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-secondary: {{ settings.secondary_font.style }};
+    --font-weight-secondary: {{ settings.secondary_font.weight }};
+
+    /* Headings */
+    {% if settings.heading_1_family == 'main' %}
+    --font-family-h1: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h1: {{ settings.main_font.style }};
+    --font-weight-h1: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h1: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h1: {{ settings.secondary_font.style }};
+    --font-weight-h1: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_1_uppercase %}
+    --text-transform-h1: uppercase;
+    {% else %}
+    --text-transform-h1: none;
+    {% endif %}
+
+    {% if settings.heading_2_family == 'main' %}
+    --font-family-h2: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h2: {{ settings.main_font.style }};
+    --font-weight-h2: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h2: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h2: {{ settings.secondary_font.style }};
+    --font-weight-h2: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_2_uppercase %}
+    --text-transform-h2: uppercase;
+    {% else %}
+    --text-transform-h2: none;
+    {% endif %}
+
+    {% if settings.heading_3_family == 'main' %}
+    --font-family-h3: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h3: {{ settings.main_font.style }};
+    --font-weight-h3: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h3: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h3: {{ settings.secondary_font.style }};
+    --font-weight-h3: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_3_uppercase %}
+    --text-transform-h3: uppercase;
+    {% else %}
+    --text-transform-h3: none;
+    {% endif %}
+
+    {% if settings.heading_4_family == 'main' %}
+    --font-family-h4: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h4: {{ settings.main_font.style }};
+    --font-weight-h4: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h4: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h4: {{ settings.secondary_font.style }};
+    --font-weight-h4: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_4_uppercase %}
+    --text-transform-h4: uppercase;
+    {% else %}
+    --text-transform-h4: none;
+    {% endif %}
+
+    {% if settings.heading_5_family == 'main' %}
+    --font-family-h5: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h5: {{ settings.main_font.style }};
+    --font-weight-h5: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h5: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h5: {{ settings.secondary_font.style }};
+    --font-weight-h5: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_5_uppercase %}
+    --text-transform-h5: uppercase;
+    {% else %}
+    --text-transform-h5: none;
+    {% endif %}
+
+    {% if settings.heading_6_family == 'main' %}
+    --font-family-h6: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-h6: {{ settings.main_font.style }};
+    --font-weight-h6: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-h6: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-h6: {{ settings.secondary_font.style }};
+    --font-weight-h6: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    {% if settings.heading_6_uppercase %}
+    --text-transform-h6: uppercase;
+    {% else %}
+    --text-transform-h6: none;
+    {% endif %}
+
+    /* Body */
+    {% if settings.body_family == 'main' %}
+    --font-family-body: {{ settings.main_font.family }}, {{ settings.main_font.fallback_families }};
+    --font-style-body: {{ settings.main_font.style }};
+    --font-weight-body: {{ settings.main_font.weight }};
+    {% else %}
+    --font-family-body: {{ settings.secondary_font.family }}, {{ settings.secondary_font.fallback_families }};
+    --font-style-body: {{ settings.secondary_font.style }};
+    --font-weight-body: {{ settings.secondary_font.weight }};
+    {% endif %}
+
+    /* ------------------------------------------------------------ *\
+        Color Settings
+    \* ------------------------------------------------------------ */
+
+    {% if settings.colors_mode == 'light' %}
+    --color-foreground-main: {{ settings.colors_base_ink }};
+    --color-background-main: {{ settings.colors_base_reverse }};
+    --color-foreground-subdued: {{ settings.colors_base_subdued }};
+    --color-background-subdued: {{ settings.colors_base_light }};
+    {% else %}
+    --color-foreground-main: {{ settings.colors_base_reverse }};
+    --color-background-main: {{ settings.colors_base_ink }};
+    --color-foreground-subdued: {{ settings.colors_base_light }};
+    --color-background-subdued: {{ settings.colors_base_subdued }};
+    {% endif %}
+
+    --color-brand-primary: {{ settings.colors_brand_primary }};
+    --color-brand-secondary: {{ settings.colors_brand_secondary }};
+
+    {% if settings.colors_primary_foreground == 'ink' %}
+    --color-primary-foreground: {{ settings.colors_base_ink }};
+    {% else %}
+    --color-primary-foreground: {{ settings.colors_base_reverse }};
+    {% endif %}
+
+    {% if settings.colors_secondary_foreground == 'ink' %}
+    --color-secondary-foreground: {{ settings.colors_base_ink }};
+    {% else %}
+    --color-secondary-foreground: {{ settings.colors_base_reverse }};
+    {% endif %}
+
+    --color-base-ink: {{ settings.colors_base_ink }};
+    --color-base-subdued: {{ settings.colors_base_subdued }};
+    --color-base-neutral: {{ settings.colors_base_neutral }};
+    --color-base-light: {{ settings.colors_base_light }};
+    --color-base-reverse: {{ settings.colors_base_reverse }};
+  }
+{% endstyle %}

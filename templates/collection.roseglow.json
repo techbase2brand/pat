@@ -1,0 +1,286 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "24cc920e-7459-47b2-9c83-5d4a97662b54": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Roseglow caviar",
+        "id": "",
+        "bottom_heading": "eye stick",
+        "desktop_banner_image": "shopify://shop_images/Inset_Caviar.jpg",
+        "mobile_banner_image": "shopify://shop_images/Inset_Caviar.jpg",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "desktop_fallback_image": "shopify://shop_images/Inset_Caviar.jpg",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "mobile_fallback_image": "shopify://shop_images/Inset_Caviar_1.jpg",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": "<p></p>"
+      }
+    },
+    "e1c518cf-0953-4a8f-845d-e5561dac807d": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16684428689647__e1c518cf-0953-4a8f-845d-e5561dac807d-1666177881da118a67-0": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_1.png",
+            "variant_override": "42301664101",
+            "heading": "Kiss From A Rose",
+            "eyebrow": "",
+            "description": "Shimmering petal pink rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/roseglow-caviar-stick-eye-color"
+          }
+        },
+        "43dbd7d4-3d81-4de0-8566-ff8256709a57": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_2.png",
+            "variant_override": "43486650532079",
+            "heading": "Wild Rose",
+            "eyebrow": "",
+            "description": "Shimmering champagne rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        },
+        "5c98f7d9-3ecc-4b84-bcd3-6069cbcfecf4": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_3.png",
+            "variant_override": "43486650564847",
+            "heading": "Strike A Rose",
+            "eyebrow": "",
+            "description": "Shimmering terracotta rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        },
+        "f49a6adf-5aa1-4526-b399-1d790a37e505": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_4.png",
+            "variant_override": "43486650597615",
+            "heading": "Bed Of Roses",
+            "eyebrow": "",
+            "description": "Metallic pink rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        },
+        "13e98ace-53d4-45cf-8f63-ff1d2c7113d5": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_5.png",
+            "variant_override": "43486650630383",
+            "heading": "Forbidden Rose",
+            "eyebrow": "",
+            "description": "Shimmering copper rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        },
+        "77366859-46dc-4874-b343-e55baf9b8464": {
+          "type": "block",
+          "settings": {
+            "product": "roseglow-caviar-stick-eye-color",
+            "product_image_override": "shopify://shop_images/Swatch_6.png",
+            "variant_override": "43486650663151",
+            "heading": "Rose Thorn",
+            "eyebrow": "",
+            "description": "Shimmering plum rose",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428689647__e1c518cf-0953-4a8f-845d-e5561dac807d-1666177881da118a67-0",
+        "43dbd7d4-3d81-4de0-8566-ff8256709a57",
+        "5c98f7d9-3ecc-4b84-bcd3-6069cbcfecf4",
+        "f49a6adf-5aa1-4526-b399-1d790a37e505",
+        "13e98ace-53d4-45cf-8f63-ff1d2c7113d5",
+        "77366859-46dc-4874-b343-e55baf9b8464"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Find Your Perfect Shade</p>",
+        "section_cta_text": "",
+        "section_cta_url": "",
+        "show_horizontal_rule": true
+      }
+    },
+    "8bbdb9aa-2c38-420f-ae7c-0b442883eb54": {
+      "type": "section-featured-video-carousel",
+      "blocks": {
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-0": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_1_1.jpg",
+            "video_link": "https://www.youtube.com/embed/HcHGZmQGacE",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-1": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_2_1.jpg",
+            "video_link": "https://www.youtube.com/embed/wNgIyBGsdgs",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-2": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_3_1.jpg",
+            "video_link": "https://www.youtube.com/embed/jsUmLnOTZlA",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "b2305cf9-0e41-4b12-9c31-fbcb90d03266": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_4_1.jpg",
+            "video_link": "https://www.youtube.com/embed/87sH9wBjOL8",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "125dedc9-0b5e-4814-bc02-1fb8ed762fff": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_5_1.jpg",
+            "video_link": "https://www.youtube.com/embed/yeY6CWlMiWQ",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "ceccde98-1651-48a7-91dd-e9dc4963fe2f": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_6_1.jpg",
+            "video_link": "https://www.youtube.com/embed/c0sEacKAkYU",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        },
+        "6ad4518a-a81a-4a7a-a3cb-36ff5cfba7a9": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/Video_Banner_7_1.jpg",
+            "video_link": "https://www.youtube.com/embed/eTZdU-bGGS8",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        }
+      },
+      "block_order": [
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-0",
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-1",
+        "template--16684428689647__8bbdb9aa-2c38-420f-ae7c-0b442883eb54-1666177881ca75fb57-2",
+        "b2305cf9-0e41-4b12-9c31-fbcb90d03266",
+        "125dedc9-0b5e-4814-bc02-1fb8ed762fff",
+        "ceccde98-1651-48a7-91dd-e9dc4963fe2f",
+        "6ad4518a-a81a-4a7a-a3cb-36ff5cfba7a9"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Create A RoseGlow Look</p>"
+      }
+    },
+    "4acec5ba-5ea6-4f18-9b88-3befff7319ed": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_3.jpg",
+            "eyebrow": "",
+            "heading": "Translucent Loose Setting Powder",
+            "body": "Set your makeup with this cult-favorite powder featuring 16-hour staying power.",
+            "cta_url": "shopify://collections/translucent-setting-powder",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_FlawlessFace_a8135f23-344c-4d97-aeb6-822966906b27.jpg",
+            "eyebrow": "",
+            "heading": "Flawless Face",
+            "body": "Prime, perfect, conceal and set to create Laura’s signature look.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Lipsticks_4e825ff6-fe70-4979-bcd6-c4a5202c47d9.jpg",
+            "eyebrow": "",
+            "heading": "Lipstick",
+            "body": "Elevate your lip looks with long-lasting shades for every occasion.",
+            "cta_url": "shopify://collections/lipstick",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-0",
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-1",
+        "template--16665906413807__4acec5ba-5ea6-4f18-9b88-3befff7319ed-16656590189cce3bae-2"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "24cc920e-7459-47b2-9c83-5d4a97662b54",
+    "e1c518cf-0953-4a8f-845d-e5561dac807d",
+    "8bbdb9aa-2c38-420f-ae7c-0b442883eb54",
+    "4acec5ba-5ea6-4f18-9b88-3befff7319ed"
+  ]
+}

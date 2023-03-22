@@ -1,0 +1,177 @@
+<script src="{{ 'component-collection-filters.js' | asset_url }}" type="module" defer="defer"></script>
+<script src="{{ 'component-collection-filter-dropdown.js' | asset_url }}" type="module" defer="defer"></script>
+{%- liquid
+  render 'async-stylesheet', mod_url: 'component-collection-filters.css'
+  assign active_filter_values = collection.filters | map: 'active_values'
+  assign has_active_filters = false
+  for active_filter_value in active_filter_values
+    if active_filter_value.size > 0
+      assign has_active_filters = true
+      break
+    endif
+  endfor
+-%}
+<collection-filters cloak>
+{%- if collection.filters.size > 0 -%}
+  <form class="collection-filters" data-filters-form>
+    <div class="collection-filters__main container grid align-center">
+      <div class="collection-filters__list align-center">
+        <span class="s1">{{ 'sections.collection_template.filter_by_label' | t }}:</span>
+        {%- for filter in collection.filters -%}
+          {%- case filter.type -%}
+            {%- when 'boolean' or 'list' -%}
+              <collection-filter-dropdown class="collection-filters__list-item relative">
+                <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex">
+                  <span class="a1">{{ filter.label }}</span>
+                  {% render 'icon-arrow', direction: "down" %}
+                </button>
+                <div class="collection-filters__list-item__dropdown background-color-pale-pink grid">
+                  {%- for filter_value in filter.values -%}
+                    {%- capture filter_value_id -%}Filter-{{ filter.param_name }}-{{ forloop.index }}{%- endcapture -%}
+                    {% liquid
+                      assign filter_disabled = false
+                      if filter_value.count == 0 and filter_value.active == false
+                        assign filter_disabled = true
+                      endif
+                    %}
+                    {%- render 'form-radio-checkbox', disabled: filter_disabled, checked: filter_value.active, type: 'checkbox', id: filter_value_id, label: filter_value.label, name: filter_value.param_name, value: filter_value.value -%}
+                    {%- assign filter_value_id = nil -%}
+                  {%- endfor -%}
+                </div>
+              </collection-filter-dropdown>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      <div class="collection-filters__aside align-center">
+        <span class="b2 color-dark-gray">
+          {%- if collection.products_count == 1 -%}
+            {{ 'sections.collection_template.product_count.one' | t: product_count: collection.products_count }}
+          {%- else -%}
+            {{ 'sections.collection_template.product_count.other' | t: product_count: collection.products_count }}
+          {%- endif -%}
+        </span>
+        <div class="collection-filters__filter-toggle justify-end">
+          {% render 'button' mod_type: "button", mod_value_t: "sections.collection_template.filter_and_sort", mod_class: 'js-open-slideout inverted fluid button--icon-reverse', mod_icon: "filter", mod_attr: 'data-target="mobile-filters"' %}
+        </div>
+        <div class="collection-filters__sortby-wrapper align-center color-off-black">
+          <span class="s1">{{ 'sections.collection_template.sort_by_label' | t }}:</span>
+          {%- liquid
+            assign sort_by = collection.sort_by | default: collection.default_sort_by
+            assign sort_by_option = blank
+            for sort_option in collection.sort_options
+            unless sort_option.value contains 'title-ascending' or sort_option.value contains 'title-descending' or sort_option.value contains 'created-ascending' or sort_option.value contains 'created-descending'
+                if sort_by == sort_option.value
+                  assign sort_by_option = sort_option
+                endif
+              endunless
+            endfor
+          -%}
+          <collection-filter-dropdown class="collection-filters__list-item relative">
+            <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex">
+              <span class="a1">{{ sort_by_option.name }}</span>
+              {% render 'icon-arrow', direction: "down" %}
+            </button>
+            <div class="collection-filters__list-item__dropdown background-color-pale-pink grid">
+              {%- for sort_option in collection.sort_options -%}
+                {% unless sort_option.value contains 'title-ascending' or sort_option.value contains 'title-descending' or sort_option.value contains 'created-ascending' or sort_option.value contains 'created-descending' %}
+                  {%- capture filter_value_id -%}Sort-{{ sort_option.name }}-{{ forloop.index }}{%- endcapture -%}
+                  {% liquid
+                    assign filter_checked = false
+                    if sort_by == sort_option.value
+                      assign filter_checked = true
+                    endif
+                  %}
+                  {%- render 'form-radio-checkbox', checked: filter_checked, type: 'radio', id: filter_value_id, label: sort_option.name, name: 'sort_by', value: sort_option.value -%}
+                  {%- assign filter_value_id = nil -%}
+                {% endunless %}
+              {%- endfor -%}
+            </div>
+          </collection-filter-dropdown>
+        </div>
+      </div>
+    </div>
+
+    {%- if has_active_filters -%}
+      <div class="container">
+        <div class="collection-filters__active flex-wrap">
+          {%- for active_filter_value in active_filter_values -%}
+            {%- for filter_value in active_filter_value -%}
+              {% render 'collection-filter-tag', mod_active_filter: filter_value %}
+            {%- endfor -%}
+          {%- endfor -%}
+          <a data-clear-all href="{{ collection.url }}?sort_by={{ collection.sort_by }}" class="collection-filters__clear inline-flex align-center justify-center no-underline border-pewter-gradient-outline">{{ 'sections.collection_template.clear_all' | t }}</a>
+        </div>
+      </div>
+    {%- endif -%}
+  </form>
+
+  {%- capture collection_filter_mobile_content -%}
+    <form action="" data-filter-form-submitable class="flex collection-filters__slideout">
+      <div class="collection-filters__accordions">
+        <collection-filter-dropdown accordion class="collection-filters__list-item relative">
+          <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex">
+            <span class="a1">{{ 'sections.collection_template.sort_by_label' | t }}</span>
+            {% render 'icon-arrow', direction: "down" %}
+          </button>
+          <div class="collection-filters__list-item__dropdown grid">
+            {%- for sort_option in collection.sort_options -%}
+              {% unless sort_option.value contains 'title-ascending' or sort_option.value contains 'title-descending' or sort_option.value contains 'created-ascending' or sort_option.value contains 'created-descending' %}
+                {% liquid
+                  assign sort_by = collection.sort_by | default: collection.default_sort_by
+                  assign sort_by_active = false
+                  if sort_option.value == sort_by
+                    assign sort_by_active = true
+                  endif
+                %}
+                  {%- capture sort_by_id -%}sort-_by_{{ sort_option.value }}{%- endcapture -%}
+                  {%- render 'form-radio-checkbox', checked: sort_by_active, type: 'radio', id: sort_by_id, label: sort_option.name, name: 'sort_by', value: sort_option.value -%}
+                {%- assign filter_value_id = nil -%}
+              {% endunless %}
+            {%- endfor -%}
+          </div>
+
+        </collection-filter-dropdown>
+        {%- for filter in collection.filters -%}
+          {%- case filter.type -%}
+            {%- when 'boolean' or 'list' -%}
+              <collection-filter-dropdown accordion class="collection-filters__list-item relative">
+                <button type="button" data-toggle class="collection-filters__toggle color-off-black align-center inline-flex">
+                  <span class="a1">{{ filter.label }}</span>
+                  {% render 'icon-arrow', direction: "down" %}
+                </button>
+                <div class="collection-filters__list-item__dropdown grid">
+                  {%- for filter_value in filter.values -%}
+                    {%- capture filter_value_id -%}Mobile-Filter-{{ filter.param_name }}-{{ forloop.index }}{%- endcapture -%}
+                    {% liquid
+                      assign filter_disabled = false
+                      if filter_value.count == 0 and filter_value.active == false
+                        assign filter_disabled = true
+                      endif
+                    %}
+                    {%- render 'form-radio-checkbox', disabled: filter_disabled, checked: filter_value.active, type: 'checkbox', id: filter_value_id, label: filter_value.label, name: filter_value.param_name, value: filter_value.value -%}
+                    {%- assign filter_value_id = nil -%}
+                  {%- endfor -%}
+                </div>
+              </collection-filter-dropdown>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+      <div class="collection-filters__actions slideout-content__actions background-color-off-white grid">
+        {%- capture clear_all_href -%}{{ collection.url }}?sort_by={{ collection.sort_by }}{%- endcapture -%}
+        {% render 'button' mod_type: "link", mod_attr: 'data-clear-all', mod_href: clear_all_href, mod_value_t: "sections.collection_template.clear_all", mod_class: 'inverted fluid' %}
+        {% render 'button' mod_type: "submit", mod_value_t: "sections.collection_template.apply", mod_class: 'fluid' %}
+      </div>
+    </form>
+  {%- endcapture -%}
+  {% render "slideout", title_t: 'sections.collection_template.filter_and_sort', slideout_id: 'mobile-filters', content: collection_filter_mobile_content, mod_content_class: 'grid slideout-content--stick-actions collection-filters__slideout-content inset' %}
+{%- endif -%}
+</collection-filters>
+
+<script>
+  Array.from(document.querySelectorAll('#sort_by')).forEach((el) => {
+    el.addEventListener('change', function(e) {
+      var value = e.currentTarget.value;
+      window.location.href = "{{ collection.url }}?sort_by=" + value;
+    });
+  })
+</script>

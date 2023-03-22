@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "54c30a6a-91bd-4e18-911d-6cede7549ff2": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/Frame_13816_2.jpg",
+        "mobile_image": "shopify://shop_images/Hero_Short_Full-Width_1.jpg",
+        "eyebrow": "LIVE CHAT",
+        "heading": "Let’s Have a Chat!",
+        "body": "Talk with us in real time. Monday–Saturday 9am–11pm ET",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "light",
+        "bg_color": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "enable_sidebar": false,
+        "menu_title": "Customer service",
+        "menu": "page-sidebar"
+      }
+    },
+    "a574f1c7-a51a-449e-82a8-4510180934d9": {
+      "type": "section-image-with-text-2up",
+      "disabled": true,
+      "blocks": {
+        "template--16647458980079__a574f1c7-a51a-449e-82a8-4510180934d9-16651624586dc70c93-0": {
+          "type": "category",
+          "settings": {
+            "eyebrow": "",
+            "heading": "Chat with Customer Care Team",
+            "body": "From shipping to delivery to returns, our Customer Care Team is happy to assist.",
+            "block_button_url": "/?gs_open_chat",
+            "block_button_title": "Live Chat"
+          }
+        },
+        "template--16647458980079__a574f1c7-a51a-449e-82a8-4510180934d9-16651624586dc70c93-1": {
+          "type": "category",
+          "settings": {
+            "eyebrow": "",
+            "heading": "We email, too",
+            "body": "If you have product or order questions and can’t connect with a Live Chat agent, email us and we’ll happily address your concerns.",
+            "block_button_url": "mailto:contact_us@lauramercier.com",
+            "block_button_title": "Email Us"
+          }
+        }
+      },
+      "block_order": [
+        "template--16647458980079__a574f1c7-a51a-449e-82a8-4510180934d9-16651624586dc70c93-0",
+        "template--16647458980079__a574f1c7-a51a-449e-82a8-4510180934d9-16651624586dc70c93-1"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "button_title": "",
+        "button_link": "",
+        "color_theme": "light"
+      }
+    },
+    "03fb8e00-f742-4046-9fa1-8eb87feb0ded": {
+      "type": "section-live-chat-content",
+      "settings": {
+        "first_heading": "<p>Chat With <em>Customer Care Team</em></p>",
+        "first_subheading": "Questions about your order?",
+        "first_description": "From shipping to delivery to returns, our Customer Care Team is happy to assist. Simply have your order number ready and we’ll take care of your questions quickly and efficiently.",
+        "first_link_cta": "Live Chat",
+        "first_link_url": "/pages/live-chat?gs_open_chat",
+        "second_heading": "<p>We Email, <em>Too</em></p>",
+        "second_subheading": "And we’d love to hear from you!",
+        "second_description": "If you have product or order questions and can’t connect with a Live Chat agent, email us at contact_us@lauramercier.com and we’ll happily address your concerns.",
+        "second_link_cta": "Contact Us",
+        "second_link_url": "mailto:contact_us@lauramercier.com"
+      }
+    }
+  },
+  "order": [
+    "54c30a6a-91bd-4e18-911d-6cede7549ff2",
+    "main",
+    "a574f1c7-a51a-449e-82a8-4510180934d9",
+    "03fb8e00-f742-4046-9fa1-8eb87feb0ded"
+  ]
+}

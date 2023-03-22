@@ -1,0 +1,39 @@
+name: US-CA Staging Deploy
+
+on:
+  workflow_dispatch:
+    branches:
+      - staging
+    paths-ignore:
+      - 'templates/*.json'
+      - 'config/*_data.json'
+      - 'locales/en.default.json'
+      - 'locales/fr.json'
+
+jobs:
+  deploy:
+    name: Checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler: 'latest'
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+      - name: Deploy to US Staging theme
+        env:
+          SHOPIFY_FLAG_STORE: '${{ secrets.US_STORE_SHOPIFY_URL }}'
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.US_STORE_SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_THEME_ID: ${{ secrets.US_STORE_STAGING_THEME_ID }}
+        run: shopify theme push --verbose -t $SHOPIFY_FLAG_THEME_ID --nodelete
+      - name: Deploy to CA Staging theme
+        env:
+          SHOPIFY_FLAG_STORE: '${{ secrets.CA_STORE_SHOPIFY_URL }}'
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.CA_STORE_SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_FLAG_THEME_ID: ${{ secrets.CA_STORE_STAGING_THEME_ID }}
+        run: shopify theme push --verbose -t $SHOPIFY_FLAG_THEME_ID --nodelete

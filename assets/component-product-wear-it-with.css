@@ -1,0 +1,19 @@
+.product-wear-it-with {
+  padding-bottom: 82px;
+}
+
+.product-wear-it-with__items {
+  margin-top: 12px;
+  row-gap: 12px;
+}
+
+@media (min-width: 992px) {
+  .product-wear-it-with {
+    margin-top: 4px;
+    padding-bottom: 109px;
+  }
+
+  .product-wear-it-with__items {
+    margin-top: 24px;
+  }
+}

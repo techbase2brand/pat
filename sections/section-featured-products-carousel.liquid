@@ -1,0 +1,105 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-featured-products-carousel.css'
+-%}
+
+<section
+  class='featured-products-carousel background-color-off-white'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='container'>
+    {% if section.settings.heading != blank %}
+      <h2 class='h3 no-margin featured-products-carousel__heading'>{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class='featured-products-carousel__products'>
+      <simple-slider class='featured-products-carousel__slider' loop='true'>
+        <div class='featured-products-carousel__slider-header flex align-center justify-space-between{% if section.blocks.size < 5 %} no-carousel-controls{% endif %}'>
+          {% render 'simple-carousel-controls',
+            mod_render_slide_status: true,
+            mod_class: 'featured-products-carousel__slider-controls',
+            mod_loop_length: section.blocks.size
+          %}
+        </div>
+        <div class='featured-products-carousel__slider-items hide-scrollbars flex no-margin' data-slider-items>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign _product = block.settings.product
+              assign featured_variant = _product.selected_or_first_available_variant
+              assign using_block_level_varriant_override = false
+
+              if block.settings.variant_id != blank
+                assign using_block_level_varriant_override = true
+                assign variant_id = block.settings.variant_id | times: 1
+                for variant in _product.variants
+                  if variant.id == variant_id
+                    assign featured_variant = variant
+                    break
+                  endif
+                endfor
+              endif
+            -%}
+            <div class='featured-products-carousel__slider-item' data-slider-item>
+              {%- liquid
+                if using_block_level_varriant_override
+                  render 'product-card', product_card_product: _product, product_card_variant: featured_variant, use_variant: true
+                else
+                  render 'product-card', product_card_product: _product, product_card_variant: featured_variant
+                endif
+              -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </simple-slider>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.featured-products-carousel.name",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.featured-products-carousel.settings.heading.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.featured-products-carousel.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "id",
+          "label": "t:sections.featured-products-carousel.settings.id.label",
+          "info": "t:sections.featured-products-carousel.settings.id.info"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.featured-products-carousel.blocks.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "t:sections.featured-products-carousel.blocks.settings.variant_id.label",
+          "info": "t:sections.featured-products-carousel.blocks.settings.variant_id.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-products-carousel.name",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,153 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-mobilemenu-v2.css'
+-%}
+
+<mobile-menu
+  cloak
+  id='{{ section.settings.identifier }}'
+  class='mobilemenu-container js-mobilemenu background-color-off-white'
+>
+  <div class='mobilemenu__navigation'>
+    <ul class='list-unstyled'>
+      {% for link in section.settings.mobile_menu.links %}
+        <li>
+          <a
+            class='mobilemenu__navigation-link-n1 flex align-center justify-space-between extra-light {% if link.links.size > 0 %}n4{% else %} js-main-navigation-link n1{% endif %}'
+            href='{{ link.url }}'
+          >
+            {{ link.title | replace: '__', '' }}
+            {%- assign linkTitle = link.title | downcase -%}
+            {% if linkTitle contains 'virtual try' %}
+              <span class='mobilemenu__navigation-icon-virtual flex justify-center align-center'>
+                {% render 'icon-try-on' %}
+              </span>
+            {% elsif link.links.size == 0 %}
+              {% render 'icon-arrow' %}
+            {% endif %}
+          </a>
+          {% if link.links.size > 0 %}
+            <ul class='menu mobilemenu__dropdown-child list-unstyled'>
+              {% for child_link in link.links %}
+                <li>
+                  <a
+                    class='n1 mobilemenu__navigation-link-n1 flex align-center justify-space-between js-main-navigation-link extra-light'
+                    href='{{ child_link.url }}'
+                  >
+                    {{ child_link.title }}
+                    {% render 'icon-arrow' %}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <div class='mobilemenu__navigation--divided'></div>
+  </div>
+  <div class='mobilemenu__buttons'>
+    {% capture account_link %}
+      {%- if customer -%}
+        {{ pages[settings.account_overview_page].url | default: '/account' }}
+      {%- else -%}
+        {{ routes.account_login_url }}
+      {%- endif -%}
+    {% endcapture %}
+    <a href='{{ account_link }}' class='button--secondary with-icon a1'>
+      {% render 'icon-account' %}
+      <span>
+        {% if customer %}
+          {{ 'customer.account.welcome_back' | t }}
+        {% else %}
+          {{ 'customer.login_page.title' | t }}
+        {% endif %}
+      </span>
+    </a>
+  </div>
+  <div class='mobilemenu__footer background-color-light-tan'>
+    <nav aria-label='{{ 'accessibility.mobile_menu_footer_nav' | t }}'>
+      <ul class='list-unstyled'>
+        {% if section.settings.utility_menu != blank %}
+          {% for link in section.settings.utility_menu.links %}
+            <li class='mobilemenu__footer-link-container'>
+              <a class='a1 mobilemenu__footer-link color-off-black' href='{{ link.url }}'>
+                {{- link.title }}
+                {% render 'icon-arrow', direction: 'right' -%}
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+        {% if section.settings.enable_support_menu == true %}
+          <li class='mobilemenu__footer-link-container'>
+            <button
+              type='button'
+              role='button'
+              class='a1 mobilemenu__footer-link bold no-styles color-off-black js-open-slideout'
+              data-target='support-menu'
+            >
+              <span>{{ section.settings.support_menu_text }}</span> {% render 'icon-arrow', direction: 'right' %}
+            </button>
+          </li>
+        {% endif %}
+        {% if section.settings.enable_region_menu == true %}
+          <li class='mobilemenu__footer-link-container'>
+            {%- liquid
+              if shop.domain contains 'ca'
+                assign icon = 'icon-flag-ca'
+                assign lang = localization.language.name | capitalize | append: ' (CA)'
+              else
+                assign icon = 'icon-flag-us'
+                assign lang = 'English (US)'
+              endif
+              -%}
+            {% render 'button',
+              mod_type: 'button',
+              mod_value: lang,
+              mod_class: 'a1 mobilemenu__footer-link color-off-black no-styles no-styles js-open-slideout',
+              mod_icon: icon,
+              mod_attr: "data-target='lang-selector'"
+            %}
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</mobile-menu>
+
+{% schema %}
+{
+  "name": "Mobile Menu",
+  "tag": "section",
+  "class": "mobilemenu",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "mobile_menu",
+      "label": "t:sections.header.settings.mobile-menu.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_region_menu",
+      "label": "t:sections.announcement-bar.settings.enable-region-menu.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_support_menu",
+      "label": "t:sections.announcement-bar.settings.enable-support-menu.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "support_menu_text",
+      "label": "t:sections.announcement-bar.settings.support-button-text.label",
+      "default": "Support"
+    },
+    {
+      "type": "link_list",
+      "id": "utility_menu",
+      "label": "t:sections.announcement-bar.settings.utility-menu.label"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,99 @@
+{%- liquid
+  assign label_t = label_t | default: blank
+  assign label = label | default: blank
+  assign placeholder = placeholder | default: '-'
+  assign option_labels = option_labels
+  assign options = options
+  assign name = name
+  assign value = value
+  assign headers = headers | split: ','
+  assign type = type | default: 'colors'
+  assign id = id | default: ''
+-%}
+
+{%- if option_labels == blank -%}
+  {%- assign option_labels = options -%}
+{%- endif -%}
+
+<variant-dropdown cloak placeholder="{{ placeholder }}" shadowStylesheet="{{ 'dropdown-shadow.css' | asset_url }}" value="{{ value | handle }}" name="{{ name }}" >
+  <div slot="label">
+    {%- if label != blank -%}
+      {{ label }}
+    {%- elsif label_t != blank -%}
+      {{ label_t | t }}
+    {%- endif -%}
+  </div>
+
+  <div class="dropdown-icon" slot="icon">
+    {% render 'icon-arrow' %}
+  </div>
+
+  <div slot="dropdown-list">
+    <ul class="dropdown-options">
+    {% if type == 'colors' %}
+      {% for header in headers %}
+        {%- assign header_handle = header | handle -%}
+        <li class="dropdown-menu {{ header_handle }}">
+          <span class="dropdown-menu-title subheading uppercase letter-spacing color-off-black">{{ header }}</span>
+          <ul>
+            {% for variant in product.variants %}
+              {%- liquid
+                assign isVariantDisabled = false
+                assign not_in_a_group = 'products.product.not_in_a_group' | t | handle
+                if header_handle == not_in_a_group
+                  if variant.metafields.swatch.group1 != blank or variant.metafields.swatch.group2 != blank
+                    continue
+                  endif
+                else
+                  if variant.metafields.swatch.group1 != header and variant.metafields.swatch.group2 != header
+                    continue
+                  endif
+                endif
+
+                if variant.available != true
+                  assign isVariantDisabled = true
+                endif
+              -%}
+              <li>
+                <label class="dropdown-option variant{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}" data-value="{{ variant.title | handle }}" data-label="{{ option_labels[forloop.index0] }}">
+                  {%- render 'form-shade-selector', is_element_span: true, color: value, id: variant.id, disabled: isVariantDisabled, tooltip: value, size: swatch_size, variant: variant -%}
+                  <div class="dropdown-options--text">
+                    <span class="variant-title bold">{{ variant.title }}</span>
+                    {% if variant.metafields.swatch.description != blank %}
+                      <span class="swatch-separator color-dark-gray">•</span>
+                      <span class="swatch-description color-dark-gray">
+                        {{ variant.metafields.swatch.description }}
+                      </span>
+                    {% endif %}
+                  </div>
+                  <input type="radio" {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %} name="{{ name }}-{{ variant.id }}-{{ header_handle }}" data-variant-id="{{ variant.id }}" value="{{ variant.title | handle }}">
+                  <span class="checkmark">{% render 'icon-checkmark' %}</span>
+                </label>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    {% else %}
+      {% for option in options %}
+        {%- liquid
+          assign currentVariant = null
+          for variant in product.variants
+            if variant.title == option
+              assign currentVariant = variant
+            endif
+          endfor
+        -%}
+
+        <li>
+          <label class="dropdown-option" data-value="{{ option | handle }}" data-label="{{ option_labels[forloop.index0] }}">
+            <strong>{{ option_labels[forloop.index0] }}</strong>
+            <input hidden {% if currentVariant.id == product.selected_or_first_available_variant.id %}checked{% endif %} type="radio" name="{{ name }}" data-variant-id="{{ currentVariant.id }}" data-label="{{ option }}"" value="{{ option | handle }}">
+            <span class="checkmark">{% render 'icon-checkmark' %}</span>
+          </label>
+        </li>
+      {% endfor %}
+    {% endif %}
+    </ul>
+  </div>
+</variant-dropdown>

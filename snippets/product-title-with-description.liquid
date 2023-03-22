@@ -1,0 +1,7 @@
+<h1 data-product-title class='h3 product-header__product-title color-off-black'>{{ product.title }}</h1>
+
+{%- if product.metafields.product_information.summary != blank and is_quick_view == false -%}
+  <div class='product__description rte color-dark-gray'>
+    {{ product.metafields.product_information.summary }}
+  </div>
+{%- endif %}

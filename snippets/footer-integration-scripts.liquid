@@ -1,0 +1,16 @@
+{%- liquid
+  render 'vendor-integration-cordial'
+  render 'vendor-swipe-events-widget'
+
+  if settings.enable_nosto
+    render 'vendor-nosto-widget'
+  endif
+
+  if settings.enable_gorgias and page.template_suffix == 'live-chat'
+    render 'vendor-gorgias-widget'
+  endif
+
+  if settings.enable_ordergroove
+    render 'ordergroove_static_asset'
+  endif
+-%}

@@ -1,0 +1,283 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "8a1baa18-08d7-47f9-8ddb-db57f7304103": {
+      "type": "section-featured-video-carousel",
+      "blocks": {
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-0": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/1960_Youth_In_France.png",
+            "video_link": "",
+            "url": "",
+            "video_description": "Born in Provence, France, Laura has always been an artist at heart. At age 17, she enrolled in painting school in Paris but soon shifted her talents toward a new canvas, leaving paint brushes for makeup brushes. She attended the prestigious Carita Beauty Institute where her innate eye for makeup artistry flourished. Laura instantly excelled in her classes and was soon elevated to makeup artist and teacher at the institute.",
+            "color_theme": "light"
+          }
+        },
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-1": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/1980_Artistry_In_NYC_72ef3713-065f-4484-85c4-5d986f64d96f.jpg",
+            "video_link": "",
+            "url": "",
+            "video_description": "In the mid-1980s, Laura relocated to New York City to launch the American edition of the iconic Elle magazine. In addition to bringing American Elle to life, she created industry-defining looks for Allure, Vanity Fair, Glamour, W, InStyle and Vogue, where she was the go-to makeup artist for their high-profile covers and editorials. Her groundbreaking Flawless Face techniques effortlessly captured the natural beauty of her subjects and established her legacy for flawless artistry.",
+            "color_theme": "light"
+          }
+        },
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-2": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/1990_Flawless_Formulations.png",
+            "video_link": "",
+            "url": "",
+            "video_description": "While contributing to iconic editorial spreads and devising looks for celebrities like Mariah Carey, Celine Dion, Jennifer Lopez and Sarah Jessica Parker, Laura struggled to find the formulas, shades and textures she wanted to work with. She began experimenting and mixing her own formulations and created the products she desired for creating her signature Flawless Face complexion.",
+            "color_theme": "light"
+          }
+        },
+        "95f93f4a-ebdb-4982-b6eb-24046794666d": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/1996_Laura_Mercier_Cosmetics_Is_Born_Desktop.jpg",
+            "video_link": "",
+            "url": "",
+            "video_description": "Laura’s search to find the products she craved professionally uncovered a desire to help people everywhere—not just models and celebrities—enhance their natural beauty. In 1996, she launched her namesake brand, grounded in the belief that what makes you unique makes you beautiful. Inspired by the real needs of her clients, Laura’s products were instantly revered for their ease, versatility and natural-looking result.",
+            "color_theme": "light"
+          }
+        },
+        "b9b2c5fc-2f8e-49fa-ad8f-48879177667f": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/MicrosoftTeams-image_19.png",
+            "video_link": "",
+            "url": "",
+            "video_description": "For over two decades, Laura Mercier has consistently transformed the beauty industry with her award-winning innovations and cult-favorite formulations including Translucent Loose Setting Powder, Foundation Primer, Tinted Moisturizer SPF 20, Secret Camouflage Concealer and Caviar Stick Eye Color—each beloved across the world and staples in the kits of leading makeup artists everywhere.",
+            "color_theme": "light"
+          }
+        },
+        "a74fd47c-cf5d-4737-ba75-e009316ade0f": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/MicrosoftTeams-image_18.jpg",
+            "video_link": "",
+            "url": "",
+            "video_description": "Now, Laura continues to pioneer her iconic “Flawless Face” while inspiring people to celebrate their individuality. Through every product and innovation, she strives to empower you with tools and techniques that put your best and most confident face forward.",
+            "color_theme": "light"
+          }
+        },
+        "68e8cabc-f407-4768-aad8-a49f7320128c": {
+          "type": "slide",
+          "settings": {
+            "video_thumbnail": "shopify://shop_images/MicrosoftTeams-image_17.png",
+            "video_link": "https://www.youtube.com/embed/eTZdU-bGGS8",
+            "url": "",
+            "video_description": "",
+            "color_theme": "light"
+          }
+        }
+      },
+      "block_order": [
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-0",
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-1",
+        "template--16701310861551__8a1baa18-08d7-47f9-8ddb-db57f7304103-1667591745fd28083b-2",
+        "95f93f4a-ebdb-4982-b6eb-24046794666d",
+        "b9b2c5fc-2f8e-49fa-ad8f-48879177667f",
+        "a74fd47c-cf5d-4737-ba75-e009316ade0f",
+        "68e8cabc-f407-4768-aad8-a49f7320128c"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>About Laura</p>"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "630c8dd4-2137-4f2c-a8c0-4ed52c28a00d": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "eyebrow": "Laura’s Philosophy:",
+        "heading": "“What Makes You Unique Makes You Beautiful”",
+        "body": "",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    },
+    "e6580650-1536-4285-b0a6-1f9f167896df": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/Paris_Banner.jpg",
+        "eyebrow": "Je Ne Sais Quois",
+        "heading": "Paris",
+        "body": "Raised in Provence, Laura is intrinsically inspired by the classic French aesthetic: sophisticated yet effortless. That raw sensuality exudes confidence in one’s own skin.",
+        "section_link_text": "",
+        "section_link_url": "",
+        "section_bg_override": "",
+        "image_orientation": "left",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "9ca59c39-55a7-49bf-8b1d-f1fc9293c4dd": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/New_York_Banner.jpg",
+        "eyebrow": "American Ease",
+        "heading": "New York",
+        "body": "Laura is equally inspired by the energy of New York City and its classic American ease. Spirited and bold, simple and intuitive, with a pulse unlike anywhere else.",
+        "section_link_text": "",
+        "section_link_url": "",
+        "section_bg_override": "",
+        "image_orientation": "right",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "081c9203-741d-4542-b359-c0b3d2da8aff": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Flawless face",
+        "id": "",
+        "bottom_heading": "",
+        "desktop_banner_image": "shopify://shop_images/LM_HO22_HP_FlawlessFace_1320x504_17899167-fe3e-4cd0-8f6e-a74eaf944a17.jpg",
+        "mobile_banner_image": "shopify://shop_images/Mobile_Flawless-Face.jpg",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "cfe1fd45-0ee4-48e6-ba4c-a0928e471d6e": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16701310861551__cfe1fd45-0ee4-48e6-ba4c-a0928e471d6e-166722707794929a1a-0": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Prime_13732219-cfd8-44d1-b0cc-1b43d2aa3897.jpg",
+            "variant_override": "",
+            "heading": "Prime",
+            "eyebrow": "01",
+            "description": "Prep your skin with a smooth, even canvas for makeup application.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/primers"
+          }
+        },
+        "8c218684-22f5-418c-bfa5-f7347d6862cd": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Foundation_19d090b5-5c8f-4f98-80f9-cc9b8a20c145.jpg",
+            "variant_override": "",
+            "heading": "Even Skintone",
+            "eyebrow": "02",
+            "description": "Elevate your natural complexion with a flawless foundation.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/foundation"
+          }
+        },
+        "c560619d-bf95-4509-b2be-b04ed07f2451": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Conceal_c676272b-a49d-4228-8d3e-71240cb10fe1.jpg",
+            "variant_override": "",
+            "heading": "Conceal",
+            "eyebrow": "03",
+            "description": "Customize your coverage, conceal discoloration and camouflage imperfections.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/concealer"
+          }
+        },
+        "bc96fc01-32aa-4efa-9680-f2ed2099787f": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Set_7aab8cb7-6654-483e-81fe-a83d13a64e3b.jpg",
+            "variant_override": "",
+            "heading": "Set",
+            "eyebrow": "04",
+            "description": "Perfect your look and prolong makeup wear with Laura’s bestselling setting products.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/setting-products"
+          }
+        }
+      },
+      "block_order": [
+        "template--16701310861551__cfe1fd45-0ee4-48e6-ba4c-a0928e471d6e-166722707794929a1a-0",
+        "8c218684-22f5-418c-bfa5-f7347d6862cd",
+        "c560619d-bf95-4509-b2be-b04ed07f2451",
+        "bc96fc01-32aa-4efa-9680-f2ed2099787f"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "section_cta_text": "",
+        "section_cta_url": "",
+        "show_horizontal_rule": false
+      }
+    },
+    "a95f0feb-75bb-41c4-b92f-d4c0e17a58d6": {
+      "type": "section-image-with-text-square",
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/5050_Lauras_Artist_Banner.jpg",
+        "eyebrow": "Experts In Action",
+        "heading": "Meet Laura’s Artists",
+        "body": "Get to know our renowned collective of makeup artists and explore their go-to essentials.",
+        "section_link_text": "Learn More",
+        "section_link_url": "shopify://collections/lauras-artists",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "left",
+        "text_alignment": "center",
+        "color_theme": "light",
+        "background_color_override": ""
+      }
+    },
+    "19974aab-bf04-47ec-b0d6-abe0d01154c2": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "Laura’s Bestsellers",
+        "placement_id": "Laura’s Bestsellers"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "8a1baa18-08d7-47f9-8ddb-db57f7304103",
+    "product-grid",
+    "630c8dd4-2137-4f2c-a8c0-4ed52c28a00d",
+    "e6580650-1536-4285-b0a6-1f9f167896df",
+    "9ca59c39-55a7-49bf-8b1d-f1fc9293c4dd",
+    "081c9203-741d-4542-b359-c0b3d2da8aff",
+    "cfe1fd45-0ee4-48e6-ba4c-a0928e471d6e",
+    "a95f0feb-75bb-41c4-b92f-d4c0e17a58d6",
+    "19974aab-bf04-47ec-b0d6-abe0d01154c2"
+  ]
+}

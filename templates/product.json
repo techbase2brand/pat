@@ -1,0 +1,110 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "subtitle": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "ordergroove_offer": {
+          "type": "shopify://apps/ordergroove-subscriptions/blocks/pdp-offer-block/cf69fc68-e893-4d33-87e3-4e71e2f5822f",
+          "settings": {
+            "location": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "subtitle",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "ordergroove_offer",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "show_vendor": true,
+        "enable_video_looping": false
+      }
+    },
+    "503879e0-d411-4e0b-ad53-c0d187aedf6d": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "You May Also Like",
+        "placement_id": "testing-nosto-1"
+      }
+    },
+    "pdp-okendo-reviews": {
+      "type": "section-pdp-okendo-reviews",
+      "settings": {
+      }
+    },
+    "04d1f93d-5b40-49c2-8b9e-aaef930f3818": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "Recently Viewed",
+        "placement_id": "productpage-nosto-recently-viewed"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "503879e0-d411-4e0b-ad53-c0d187aedf6d",
+    "pdp-okendo-reviews",
+    "04d1f93d-5b40-49c2-8b9e-aaef930f3818"
+  ]
+}

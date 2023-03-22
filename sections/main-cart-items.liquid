@@ -1,0 +1,146 @@
+{% render 'async-stylesheet', mod_url: 'component-main-cart-items.css' %}
+{% render 'async-stylesheet', mod_url: 'component-quantity-input.css' %}
+{% render 'async-stylesheet', mod_url: 'component-cart-free-samples.css' %}
+
+{%- liquid
+  assign root_url = ''
+  unless localization.language.root_url == '/'
+    assign root_url = localization.language.root_url
+  endunless
+-%}
+
+<script src='{{ 'component-price-progress.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-main-cart.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-cart-line-item.js' | asset_url }}' type='module' defer='defer'></script>
+<script src='{{ 'component-cart-free-samples.js' | asset_url }}' type='module' defer='defer'></script>
+{%- capture counter_message -%}
+  {%- if cart.item_count -%}
+    <span class='italic'>
+      {%- if cart.item_count == 1 -%}
+        ({{ 'sections.cart.cart_count.one_html' | t: count: cart.item_count }})
+      {%- else -%}
+        ({{ 'sections.cart.cart_count.other_html' | t: count: cart.item_count }})
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+{%- endcapture -%}
+<main-cart>
+  <div class='main-cart__container background-color-pale-pink' id='cart' data-id='{{ section.id }}'>
+    <form action='{{ routes.cart_url }}' method='post' class='js-contents'>
+      <div class='main-cart__grid relative'>
+        <div class='main-cart__items grid'>
+          <h1 class='h3 color-off-black no-margin'>
+            {{ 'sections.cart.title' | t }}
+            {{ counter_message }}
+          </h1>
+          {%- if settings.gwp_progress -%}
+            <div class='main-cart__gwp'>
+              <price-progress
+                value='{{ cart.items_subtotal_price }}'
+                limit='{{ settings.gwp_progress_limit }}'
+                complete-label='{{ settings.gwp_complete_message }}'
+                label='{{ settings.gwp_message }}'
+              ></price-progress>
+            </div>
+          {%- endif -%}
+          {%- render 'cart-free-samples' -%}
+          {%- render 'cart-items', mod_shop_all_link: settings.continue_shopping_url -%}
+        </div>
+        <div class='main-cart__side grid background-color-light-tan'>
+          <div class='main-cart__sticky-cta background-color-light-tan js-main-cart-sticky-cta'>
+            <a
+              data-checkout-btn
+              class='fluid button js-checkout-button {% if cart == empty %} disabled{% endif %}'
+              href='{{- root_url -}}/checkout'
+            >
+              {{ 'sections.cart.checkout' | t }}
+            </a>
+          </div>
+          <div class='main-cart__side-wrapper grid js-main-cart-sticky-detect'>
+            <div>
+              <div class='main-cart__row grid align-center'>
+                <span class='b1--medium bold color-off-black'>{{ 'sections.cart.subtotal' | t }}</span>
+                <span
+                  class='b2 bold text-right color-off-black'
+                  data-cart-attribute='items_subtotal_price'
+                  data-format-currency
+                >
+                  {{- cart.items_subtotal_price | money -}}
+                </span>
+              </div>
+              <p class='no-margin b2 color-dark-gray'>
+                {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t }}
+              </p>
+            </div>
+
+            {%- if cart.total_discount != 0 -%}
+              <div class='main-cart__side-wrapper grid js-main-cart-sticky-detect'>
+                <div>
+                  <div class='main-cart__row grid align-center'>
+                    <span class='b1--medium bold color-off-black'>{{ 'sections.cart.discount' | t }}</span>
+                    <span
+                      class='b2 bold text-right color-off-black'
+                      data-cart-attribute='total_discount'
+                      data-format-currency
+                    >
+                      {{- cart.total_discount | money -}}
+                    </span>
+                  </div>
+              </div>
+            {%- endif -%}
+
+
+            {%- if cart.items_subtotal_price != cart.total_price -%}
+              <div class='main-cart__side-wrapper grid js-main-cart-sticky-detect'>
+                <div>
+                  <div class='main-cart__row grid align-center'>
+                    <span class='b1--medium bold color-off-black'>{{ 'sections.cart.total' | t }}</span>
+                    <span
+                      class='b2 bold text-right color-off-black'
+                      data-cart-attribute='total_price'
+                      data-format-currency
+                    >
+                      {{- cart.total_price | money -}}
+                    </span>
+                  </div>
+              </div>
+            {%- endif -%}
+
+            <span class="main-cart__promo-code">{{ 'sections.cart.promo_code' | t }}</span>
+
+            <div class='main-cart__side__cta grid'>
+              <a
+                class='main-cart__checkout-button fluid button button--dark js-checkout-button {% if cart == empty %} disabled{% endif %}'
+                href='{{- root_url -}}/checkout'
+              >
+                {{ 'sections.cart.checkout' | t }}
+                <span>{% render 'icon-lock' %}</span>
+              </a>
+            </div>
+            {%- capture continue_shopping -%}
+              <a
+                href='{{ settings.continue_shopping_url | default: routes.all_products_collection_url }}'
+                class='button inverted fluid'
+              >
+                {{ 'general.continue_shopping' | t }}
+              </a>
+            {%- endcapture -%}
+            {% render 'support-links',
+              mod_class: 'main-cart__side__support main-cart__section',
+              mod_addons: continue_shopping
+            %}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</main-cart>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+
+  ]
+}
+{% endschema %}

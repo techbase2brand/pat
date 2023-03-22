@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+      }
+    },
+    "5acc9f5b-120d-402c-90e8-a5ae18e4c85b": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "cart-reccs",
+        "heading": "You Might Also Like...",
+        "placement_id": "cartpage-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "5acc9f5b-120d-402c-90e8-a5ae18e4c85b"
+  ]
+}

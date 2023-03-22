@@ -1,0 +1,133 @@
+<script src="{{ 'component-megamenu.js' | asset_url }}" defer="defer" type="module"></script>
+
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-header.css'
+-%}
+
+<header class="header background-color-off-black js-main-header" megamenuIndex="-1" {% if section.settings.id != blank %} id='{{ section.settings.id }}' {% endif %}>
+  <div class="container header__nav--top align-center">
+    <div class="grid align-center header__nav__grid">
+      <div class="flex header-nav-col__search">
+        {%- if settings.enable_klevu -%}
+          <button data-instant-search-toggle {% if template == 'page.klevu-search-results' %}data-search-results-page{% endif %} class="color-off-white no-styles header-nav-col__search__toggle" aria-labelledby="header-search-label">
+            <span class="open-icon">{% render 'icon-search' %}</span>
+            <span class="close-icon">{% render 'icon-close' %}</span>
+            <span class="m-block" id="header-search-label">{{ settings.search_button_text }}</span>
+          </button>
+        {%- endif -%}
+      </div>
+      <div class="flex justify-center text-center header-nav-col__logo">
+        {% if template.name == "index" %} <h1 class="text-center header__logo-heading no-margin"> {% endif %}
+          <a href="{{ localization.language.root_url }}" class="header__heading-link link focus-inset" aria-label="{{ 'accessibility.home' | t }}">
+            {% render 'header-logo' %}
+            <span class="visually-hidden">{{ shop.name }}</span>
+          </a>
+        {% if template.name == "index" %} </h1> {% endif %}
+      </div>
+      <div class="header-nav-col__actions">
+        <nav aria-label="{{ 'accessibility.account_nav' | t }}">
+          <ul class="flex justify-end list-unstyled actions__nav-list color-off-white align-center">
+            {%- capture account_link -%}
+              {%- if customer -%}
+                {{ pages[settings.account_overview_page].url | default: '/account' }}
+              {%- else -%}
+                {{ routes.account_login_url }}
+              {%- endif -%}
+            {%- endcapture -%}
+            <li class="actions__nav-list-item s-block actions__account-link">
+              <a class="flex align-center color-off-white" href="{{ account_link }}" aria-label="{{ 'accessibility.account' | t }}">
+                {% render 'icon-account' %}
+                {% if customer %}<span class="n4 m-block"> {{ section.settings.welcome_back_text }}</span>{% endif %}
+              </a>
+            </li>
+            <li class="actions__nav-list-item actions__cart-link" data-cart-popup-anchor>
+              <a href="{{- routes.cart_url -}}" class="flex" aria-label="{{ 'cart.general.title' | t }}">
+                {% render 'icon-bag' %}
+                <span class="actions__cart-count flex justify-center align-center color-off-white n6{% if cart == empty %} hidden{% endif %}" data-header-cart-count>{{ cart.item_count }}</span>
+              </a>
+            </li>
+            <li class="actions__nav-list-item actions__open-mobile-menu m-none">
+              <button class="no-styles mobile-menu__trigger js-mobilemenu-trigger" aria-label="{{ 'accessibility.mobile_menu' | t }}">
+                <span class="mobile-menu__action mobile-menu__hamburger">{%- render 'icon-hamburger' -%}</span>
+                <span class="mobile-menu__action mobile-menu__close">{%- render 'icon-close' -%}</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    {%- if section.settings.menu != blank -%}
+      <div class="grid header__nav--bottom">
+        <nav class="bottom-nav__nav js-bottom-nav__nav col" aria-label="{{ 'accessibility.shop_menu' | t }}">
+          <ul class="flex bottom-nav__nav-list js-bottom-nav__nav-list align-center list-unstyled">
+            {%- for link in section.settings.menu.links -%}
+              <li class="bottom-nav__nav-list-item">
+                <a class="bottom-nav-list-item__link color-off-white {% if forloop.first %}header__nav--bottom-first-link flex align-center{% endif %} {% unless forloop.last %} js-mm-toggle {% endunless %} n4 normal js-main-navigation-link border-pewter-gradient-outline-hover" href="{{ link.url }}">
+                  {% if forloop.first and section.settings.first_item_icon == 'mirror' %}<span>{% render "icon-try-on" %}</span>{% endif %}{{ link.title }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+          <div role="button" class="header__nav--bottom-arrow js-arrow-right">
+            <div class="header__nav--bottom-arrow-mask background-color-off-black"></div>
+            {%- render 'icon-arrow', direction: 'right' -%}
+          </div>
+          <div role="button" class="header__nav--left-arrow hiden js-arrow-left">
+            <div class="header__nav--left-arrow-mask background-color-off-black"></div>
+            {%- render 'icon-arrow', direction: 'left' -%}
+          </div>
+        </nav>
+      </div>
+    {% endif %}
+</header>
+
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.header.settings.id.label",
+      "info": "t:sections.header.settings.id.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.labels.label"
+    },
+    {
+      "type": "text",
+      "id": "welcome_back_text",
+      "default": "Welcome Back!",
+      "label": "t:sections.header.settings.welcome-back-text.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.menus.label"
+    },
+    {
+      "type": "select",
+      "id": "first_item_icon",
+      "label": "t:sections.header.settings.first-item-icon.label",
+      "options": [
+        {
+          "value": "no_icon",
+          "label": "No Icon"
+        },
+        {
+          "value": "mirror",
+          "label": "Mirror"
+        }
+      ],
+      "default": "mirror"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    }
+  ]
+}
+{% endschema %}

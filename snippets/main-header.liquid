@@ -1,0 +1,37 @@
+<script src="{{ 'component-mainmenu.js' | asset_url }}" defer="defer" type="module"></script>
+<style>
+  :root {
+    --header-spacer: 142px;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --header-spacer: 164px;
+    }
+  }
+</style>
+
+<main-menu cloak>
+  <div class="main-header">
+    {%- liquid
+      section 'section-announcement-bar'
+      section 'section-header'
+    -%}
+  </div>
+  <div class="main-header-items">
+    <div class="backdrop js-backdrop"></div>
+    {%- liquid
+      section 'section-mobilemenu'
+      section 'section-megamenu-new-arrivals'
+      section 'section-megamenu-bestsellers'
+      section 'section-megamenu-makeup'
+      section 'section-megamenu-skin-body'
+      section 'section-megamenu-atelier-mercier'
+      section 'section-megamenu-face'
+      section 'section-megamenu-lips'
+      section 'section-megamenu-eyes'
+      section 'section-megamenu-skin'
+      section 'section-megamenu-body'
+    -%}
+  </div>
+</main-menu>

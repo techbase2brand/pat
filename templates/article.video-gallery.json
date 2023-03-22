@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "related-articles": {
+      "type": "section-related-video-articles",
+      "settings": {
+        "heading": "Related Looks",
+        "cta_title": "Explore Video Gallery",
+        "cta_url": "shopify://blogs/video-gallery"
+      }
+    }
+  },
+  "order": [
+    "related-articles"
+  ]
+}

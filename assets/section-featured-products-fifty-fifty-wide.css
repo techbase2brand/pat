@@ -1,0 +1,265 @@
+.featured-products-fifty-fifty-wide {
+  display: none;
+  position: relative;
+  flex-direction: column;
+}
+
+.featured-products-fifty-fifty-wide.active {
+  display: flex;
+}
+
+.featured-products-fifty-fifty-wide__image {
+  animation: fadeIn ease var(--duration-xlong);
+  -webkit-animation: fadeIn ease var(--duration-xlong);
+  -moz-animation: fadeIn ease var(--duration-xlong);
+  -o-animation: fadeIn ease var(--duration-xlong);
+  -ms-animation: fadeIn ease var(--duration-xlong);
+  height: 73.066vw;
+}
+
+.featured-products-fifty-fifty-wide__image adaptive-image {
+  height: 100%;
+}
+
+.featured-products-fifty-fifty-wide__middle {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  margin: 0 auto;
+  width: 21.2rem;
+  animation: fadeIn ease var(--duration-xlong);
+  -webkit-animation: fadeIn ease var(--duration-xlong);
+  -moz-animation: fadeIn ease var(--duration-xlong);
+  -o-animation: fadeIn ease var(--duration-xlong);
+  -ms-animation: fadeIn ease var(--duration-xlong);
+}
+
+.featured-products-fifty-fifty-wide__product {
+  padding: 0 var(--gutter);
+}
+
+.featured-products-fifty-fifty-wide__content {
+  text-align: center;
+  padding-bottom: 4rem;
+  animation: fadeIn ease var(--duration-xlong);
+  -webkit-animation: fadeIn ease var(--duration-xlong);
+  -moz-animation: fadeIn ease var(--duration-xlong);
+  -o-animation: fadeIn ease var(--duration-xlong);
+  -ms-animation: fadeIn ease var(--duration-xlong);
+}
+
+.featured-products-fifty-fifty-wide__nav {
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+.featured-products-fifty-fifty-wide
+  .arrow-nav-container
+  .arrow-nav-inner
+  ul
+  li
+  button {
+  width: 3rem;
+  height: 3rem;
+}
+
+.featured-products-fifty-fifty-wide
+  .arrow-nav-container
+  .arrow-nav-inner
+  ul
+  li
+  button
+  svg {
+  width: 0.6rem;
+}
+
+.featured-products-fifty-fifty-wide__subheading {
+  padding-bottom: 1.6rem;
+}
+
+.featured-products-fifty-fifty-wide__title,
+.featured-products-fifty-fifty-wide__body,
+.featured-products-fifty-fifty-wide__price {
+  padding-bottom: 1.6rem;
+}
+
+.featured-products-fifty-fifty-wide__title {
+  justify-content: center;
+}
+
+.featured-products-fifty-fifty-wide
+  [data-oke-star-rating].oke-star-rating__card {
+  padding-top: 0;
+  margin-bottom: 0;
+  margin-top: -0.3rem;
+  display: inline-flex;
+}
+
+.featured-products-fifty-fifty-wide__price .price {
+  justify-content: center;
+}
+
+.featured-products-fifty-fifty-wide__price .sale__message {
+  display: none;
+}
+
+.featured-products-fifty-fifty-wide__rates {
+  padding-bottom: 1.6rem;
+}
+
+.featured-products-fifty-fifty-wide__swatch {
+  margin-bottom: 1.6rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 0.8rem;
+  max-width: 28.5rem;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid;
+  border-image-slice: 1;
+  border-image-source: var(--color-gradient-pewter-outline);
+}
+
+.featured-products-fifty-fifty-wide__content
+  .product-card__details-head__details {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.featured-products-fifty-fifty-wide__content .swatch-line > span {
+  color: var(--color-off-black);
+}
+
+.featured-products-fifty-fifty-wide__dark
+  .arrow-nav-container
+  .arrow-nav-inner
+  ul
+  li,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__subheading,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__title,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__body,
+.featured-products-fifty-fifty-wide__dark .product-card__details-head__shades,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__content
+  .swatch-line
+  > span,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__price
+  .sale__message
+  p,
+.featured-products-fifty-fifty-wide__dark
+  .featured-products-fifty-fifty-wide__price
+  .price
+  span,
+.featured-products-fifty-fifty-wide__dark
+  [data-oke-star-rating]
+  .okeReviews
+  .oke-sr-count
+  .oke-sr-total-text {
+  color: var(--color-off-white);
+}
+
+.featured-products-fifty-fifty-wide__dark .oke-sr {
+  --oke-stars-foregroundColor: var(--color-tan);
+  --oke-stars-backgroundColor: var(--color-dark-gray);
+}
+
+.featured-products-fifty-fifty-wide__content .product-card__button {
+  opacity: 1 !important;
+}
+
+@media (min-width: 992px) {
+  .featured-products-fifty-fifty-wide {
+    height: 55rem;
+    flex-direction: row;
+  }
+
+  .featured-products-fifty-fifty-wide__image {
+    order: 1;
+    width: 50%;
+    height: auto;
+  }
+
+  .featured-products-fifty-fifty-wide__right
+    .featured-products-fifty-fifty-wide__image {
+    order: 3;
+  }
+
+  .featured-products-fifty-fifty-wide__product {
+    order: 2;
+    align-items: center;
+    display: flex;
+    padding-left: calc(var(--gutter) + 10%);
+    padding-top: var(--gutter);
+    padding-bottom: var(--gutter);
+    width: 50%;
+  }
+
+  .featured-products-fifty-fifty-wide__right
+    .featured-products-fifty-fifty-wide__product {
+    padding-right: calc(var(--gutter) + 10%);
+    padding-left: var(--gutter);
+  }
+
+  .featured-products-fifty-fifty-wide__middle {
+    position: absolute;
+    padding: 0;
+    width: 28%;
+    max-width: 40rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .featured-products-fifty-fifty-wide__content {
+    text-align: left;
+    padding-bottom: 0;
+    margin-right: auto;
+    max-width: 40.5rem;
+    min-width: 28.125vw;
+  }
+
+  .featured-products-fifty-fifty-wide__right
+    .featured-products-fifty-fifty-wide__content {
+    margin-left: auto;
+    margin-right: unset;
+  }
+
+  .featured-products-fifty-fifty-wide__nav {
+    justify-content: flex-start;
+    padding-bottom: 4rem;
+  }
+
+  .featured-products-fifty-fifty-wide__subheading,
+  .featured-products-fifty-fifty-wide__body,
+  .featured-products-fifty-fifty-wide__price {
+    padding-bottom: 2.4rem;
+  }
+
+  .featured-products-fifty-fifty-wide__title {
+    padding-bottom: 1.2rem;
+    justify-content: flex-start;
+  }
+
+  .featured-products-fifty-fifty-wide__swatch {
+    max-width: 34.5rem;
+  }
+
+  .featured-products-fifty-fifty-wide__price .price {
+    justify-content: flex-start;
+  }
+
+  .featured-products-fifty-fifty-wide__rates {
+    padding-bottom: 3.7rem;
+  }
+
+  .featured-products-fifty-fifty-wide__swatch {
+    margin-bottom: 2.4rem;
+    margin-left: unset;
+  }
+}

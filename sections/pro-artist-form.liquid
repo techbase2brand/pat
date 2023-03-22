@@ -1,0 +1,121 @@
+{% render 'async-stylesheet', mod_url: 'component-pro-artist-form.css' %}
+{%- capture pro_artist_form -%}
+  <div class="artist-form">
+    <div class="pro-artist-form">
+      <div class="pro-artist-form__intro grid">
+        {%- if section.settings.image != blank -%}
+          {%- render 'adaptive-image', mod_image: section.settings.image, mod_alt: section.settings.image.alt -%}
+        {%- endif -%}
+        {%- if section.settings.intro_title != blank -%}
+          <p class="s1 color-dark-gray no-margin">{{ section.settings.intro_title }}</p>
+        {%- endif -%}
+        {%- if section.settings.intro_content != blank -%}
+          <div class="pro-artist-form__content color-dark-gray no-margin">
+            {{ section.settings.intro_content }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- render "customer-fields", form_id: section.settings.form_id -%}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- liquid
+  render "slideout", title: section.settings.title, slideout_id: section.settings.slideout_id, content: pro_artist_form, mod_content_class: 'grid slideout-content--stick-actions inset'
+-%}
+
+<script>
+  CF.ready(function() {
+    // Find a CF form on the page with an ID of a34Kl0
+    var $myForm = document.querySelector('form[data-cf-form="{{ section.settings.form_id }}"]');
+    var cfForm = $myForm.cfForm;
+
+    $myForm.addEventListener('cf:form_submitted', function (event) {
+      const slideout = document.querySelector('[slideout-id="{{ section.settings.slideout_id }}"]')
+      setTimeout(() => {
+        slideout._close()
+      }, 1000)
+    })
+
+    var dateWrapper = $myForm.querySelectorAll('[data-cf-field-type="date"] .cf-select-wrap')
+    Array.from(dateWrapper).forEach((select, index) => {
+      const label = document.createElement('label')
+      if (index === 0) {
+        label.innerHTML = {{ 'customer.account.overview.edit_birthday.month' | t | json }};
+      }
+      if (index === 1) {
+        label.innerHTML = {{ 'customer.account.overview.edit_birthday.day' | t | json }};
+      }
+
+      select.append(label)
+    })
+
+    cfForm.beforeSave(() => {
+      {%- if section.settings.customer_tag != blank -%}
+        CF.customer.addTag({{ section.settings.customer_tag | json }});
+      {%- endif -%}
+
+      const dateField = cfForm.getFieldValue('new_date_field')
+
+      if (!!dateField) {
+        cfForm.setFieldValue('birthday_month', dateField.format('MMMM'))
+        cfForm.setFieldValue('birthday_day', dateField.format('D'))
+      }
+    })
+  });
+</script>
+{% schema %}
+{
+  "name": "Pro Artist Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "title",
+      "default": "Professionals • 40% Off"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "intro_title",
+      "label": "Subtitle",
+      "default": "Requirements"
+    },
+    {
+      "type": "textarea",
+      "id": "intro_content",
+      "label": "Richtext"
+    },
+    {
+      "type": "text",
+      "id": "slideout_id",
+      "label": "Slideout ID",
+      "info": "Use this ID as link target by prepenting a # to it to open the slideout"
+    },
+    {
+      "type": "text",
+      "id": "form_id",
+      "label": "Form ID",
+      "info": "Form ID form the Customer App",
+      "default": "lXt776"
+    },
+    {
+      "type": "text",
+      "id": "customer_tag",
+      "label": "Signup Tag for Customer",
+      "default": "em-artist-pending-approval",
+      "info": "One of pro-artist-pending-approval or em-artist-pending-approval tag is added to the customer account (admin view), depending on the form submitted"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pro Artist Form"
+    }
+  ]
+}
+{% endschema %}

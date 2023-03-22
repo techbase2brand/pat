@@ -1,0 +1,232 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-announcement-bar.css'
+
+  if section.settings.enable_support_menu == true
+    capture support_menu
+      render 'slideout-support-menu'
+    endcapture
+    render 'slideout', title: section.settings.support_button_text, slideout_id: 'support-menu', content: support_menu
+  endif
+-%}
+<announcement-bar
+  class='announcement-bar'
+  {% if section.settings.id != blank %}
+  id='{{ section.settings.id }}'
+  {% endif %}>
+  <simple-slider
+    autorotate='{%- if section.settings.autorotate == true -%}true{%- else -%}false{%- endif -%}'
+    autorotate-interval='{{ section.settings.autorotate_interval }}'
+    aria-label='{{ 'sections.header.announcement_bar' | t }}'
+    {%- if section.settings.autorotate == true -%}
+    loop='true'
+    {%- else -%}
+    false
+    {%- endif -%}>
+    <div class='container'>
+      <div class='grid announcement-bar__wrapper align-center'>
+        <div class='announcement-col__region m-block'>
+          {% if section.settings.enable_region_menu == true %}
+            <div class='flex align-center'>
+              {%- liquid
+                if shop.domain contains 'ca'
+                  assign lang = localization.language.name | capitalize | append: ' (CA)'
+                  render 'icon-flag-ca'
+                elsif shop.domain contains 'uk'
+                  assign lang = 'English (UK)'
+                  render 'icon-flag-uk'
+                else
+                  assign lang = 'English (US)'
+                  render 'icon-flag-us'
+                endif
+              -%}
+              {% render 'button'
+               , mod_value: lang,
+               mod_class: 'no-styles js-open-slideout',
+               mod_icon: 'icon-sort',
+               mod_attr: "data-target='lang-selector'" %}
+            </div>
+          {% endif %}
+        </div>
+        <div class='announcement-col__slider{% if section.blocks.size == 1 %} announcement-col__slider-single{% endif %}'>
+          {%- if section.blocks.size != 1 -%}
+            {% render 'button'
+             , mod_type: 'button',
+             mod_class: 'no-styles announcement-prev js-announcement-prev',
+             mod_icon: 'arrow-left',
+             mod_value: ' ',
+             mod_attr: 'data-slider-back',
+             mod_tab_index: '0',
+             mod_aria_label: 'Previous slide' %}
+          {%- endif -%}
+          <span class='js-announcement-status hidden' data-slider-status></span>
+          <div
+            class='js-announcement-carousel hide-scrollbars flex'
+            data-slider-items
+            tabindex='-1'>
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'announcement' -%}
+                <div
+                  class='announcement-bar__message js-message flex align-center justify-center'
+                  role='region'
+                  aria-label='{{ block.settings.text | escape }}'
+                  {{ block.shopify_attributes }}
+                  data-slider-item>
+                  <p class='announcement__message-text'>
+                    {{ block.settings.text | escape | truncate: 100, '...' }}
+                    {%- if block.settings.link != blank -%}
+                      <a
+                        href='{{ block.settings.link }}'
+                        class='announcement__message-link link focus-inset'
+                        aria-label='{{ block.settings.link_text }}'>
+                        {{ block.settings.link_text }}
+                      </a>
+                    {%- endif -%}
+                  </p>
+                </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+          {% if section.blocks.size != 1 %}
+            {%
+               render 'button' mod_type: "button",
+             mod_class: "no-styles announcement-next js-announcement-next",
+             mod_icon: "arrow",
+             mod_value: " ",
+             mod_attr: "data-slider-next",
+             mod_tab_index: "0",
+             mod_aria_label: "{{ 'accessibility.next_slide' | t }}" %}
+          {% endif %}
+        </div>
+        <div class='announcement-col__nav m-block'>
+          <nav aria-label='{{ 'accessibility.nav_right' | t }}'>
+            <ul class='list-unstyled'>
+              {% if section.settings.announcement_bar_menu != blank %}
+                {% for link in section.settings.announcement_bar_menu.links %}
+                  <li>
+                    <a href='{{ link.url }}' aria-label='{{ link.title }}'>{{ link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+              {% if section.settings.enable_support_menu == true %}
+                <li>
+                  {% render 'button'
+                   , mod_type: 'button',
+                   mod_class: 'no-styles js-open-slideout',
+                   mod_attr: "data-target='support-menu'",
+                   mod_value: section.settings.support_button_text,
+                   mod_icon: 'arrow-down',
+                   mod_tab_index: '0' %}
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </simple-slider>
+</announcement-bar>
+
+
+{% liquid
+  capture lang_selector
+    render 'slideout-country-lang-selector'
+  endcapture
+  render 'slideout', title_t: 'localization.title', slideout_id: 'lang-selector', content: lang_selector, mod_content_class: "lang-selector__content"
+  %}
+
+{% schema %}
+  {
+    "name": "t:sections.announcement-bar.name",
+    "class": "background-color-tan",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.announcement-bar.settings.menus.label"
+      },
+      {
+        "type": "text",
+        "id": "id",
+        "label": "t:sections.announcement-bar.settings.id.label",
+        "info": "t:sections.announcement-bar.settings.id.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_region_menu",
+        "label": "t:sections.announcement-bar.settings.enable-region-menu.label",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "region_menu",
+        "label": "t:sections.announcement-bar.settings.region-menu.label"
+      }, {
+        "type": "link_list",
+        "id": "announcement_bar_menu",
+        "label": "t:sections.announcement-bar.settings.utility-menu.label"
+      }, {
+        "type": "checkbox",
+        "id": "autorotate",
+        "label": "Auto-rotate"
+      }, {
+        "type": "range",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "s",
+        "default": 5,
+        "id": "autorotate_interval",
+        "label": "Change slides every"
+      }, {
+        "type": "checkbox",
+        "id": "enable_support_menu",
+        "label": "t:sections.announcement-bar.settings.enable-support-menu.label",
+        "default": true
+      }, {
+        "type": "text",
+        "id": "support_button_text",
+        "label": "t:sections.announcement-bar.settings.support-button-text.label",
+        "default": "Support"
+      }, {
+        "type": "link_list",
+        "id": "support_menu",
+        "label": "t:sections.announcement-bar.settings.support-button-text.label"
+      }, {
+        "type": "image_picker",
+        "id": "support_menu_image",
+        "label": "t:sections.announcement-bar.settings.support-menu-image.label"
+      }
+    ],
+    "max_blocks": 12,
+    "blocks": [
+      {
+        "type": "announcement",
+        "name": "t:sections.announcement-bar.blocks.announcement.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text",
+            "default": "Welcome to our store",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+          }, {
+            "type": "text",
+            "id": "link_text",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.link_text.label"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  }
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- liquid
+  assign _product = mod_product
+  assign mod_variant_id = mod_variant_id
+  assign featured_variant = mod_product.selected_or_first_available_variant
+  assign mod_outer_loop_index = mod_outer_loop_index
+  assign mod_inner_loop_index = mod_inner_loop_index
+  assign mod_inner_loop_first = mod_inner_loop_first
+  assign mod_inner_loop_index_prime = mod_inner_loop_index_prime
+
+  if mod_variant_id != blank
+    assign variant_id = mod_variant_id | times: 1
+    for variant in _product.variants
+      if variant.id == variant_id
+        assign featured_variant = variant
+        break
+      endif
+    endfor
+  endif
+
+  assign option_index = 'option' | append: '1'
+  for option in _product.options_with_values
+    assign downcased_option = option.name | downcase
+    if downcased_option contains 'color' or downcased_option contains 'colour'
+      assign option_index = 'option' | append: mod_inner_loop_index_prime
+    endif
+  endfor
+
+  assign value = featured_variant[option_index]
+
+  assign isVariantDisabled = false | default: false
+  if featured_variant.available != true
+    assign isVariantDisabled = true
+  endif
+-%}
+<div
+  data-value='{{ value | escape }}'
+  class='swatch-element color {{ value | handle }} {% if featured_variant.available %}available{% else %}soldout{% endif %}'
+>
+  <label for='{{ mod_outer_loop_index }}-swatch-{{ mod_inner_loop_index }}-{{ value | handle }}'>
+    <div class='color-select-container lg {% if isVariantDisabled == true %} disabled {% endif %} {% if mod_inner_loop_first %}selected{% endif %}'>
+      <div class='color-select-inner'>
+        <span data-tooltip='{{ value }}'>
+          <button
+            type='button'
+            value='{{ value }}'
+            aria-label='{{ value }}'
+            data-variant-id='{{ featured_variant.id }}'
+            style='background-color: {{ featured_variant.metafields.swatch.hex_code }}'
+            data-index='{{ mod_inner_loop_index }}'
+          >
+            {% if isVariantDisabled == true %} <div class='disabled-line'></div> {% endif %}
+          </button>
+        </span>
+      </div>
+    </div>
+    <input
+      id='{{ mod_outer_loop_index }}-swatch-{{ mod_inner_loop_index }}-{{ value | handle }}'
+      class='visually-hidden swatch-radio {{ value | handle }}'
+      type='radio'
+      name='option-{{ mod_inner_loop_index }}'
+      value='swatch-{{ mod_inner_loop_index }}-{{ value | escape }}'
+      {% if mod_inner_loop_first %}
+        checked
+      {% endif %}
+    >
+  </label>
+</div>

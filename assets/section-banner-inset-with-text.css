@@ -1,0 +1,36 @@
+.banner-inset-with-text {
+  margin: 0 0 5rem;
+}
+
+.banner-inset-with-text__container {
+  max-width: 100%;
+}
+
+.banner-inset-with-text__image-container {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.banner-inset-with-text__text-container {
+  padding: 2.5rem;
+}
+
+.banner-inset-with-text__body {
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .banner-inset-with-text__container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .banner-inset-with-text__text-container {
+    padding: 6rem;
+  }
+
+  .banner-inset-with-text {
+    margin: 0 0 6rem;
+  }
+}

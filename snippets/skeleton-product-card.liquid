@@ -1,0 +1,26 @@
+<template id="skeleton-product-card">
+  <a type="button" data-product-href class="full-unstyled-link product-card__wrapper grid">
+    <div class="product-card__media relative">
+      <adaptive-image class="product-card__media--primary" data-product-image-primary tabindex="0" data-image="" data-aspect-ratio="1" data-loading="lazy" data-sizes="416px, (min-width: 767px) 650px" data-object-fit="contain"></adaptive-image>
+      <adaptive-image class="product-card__media--secondary" data-product-image-secondary tabindex="0" data-image="" data-aspect-ratio="1" data-loading="lazy" data-sizes="416px, (min-width: 767px) 650px" data-object-fit="contain"></adaptive-image>
+    </div>
+    <div class="product-card__details">
+       <div class="product-card__details-main">
+          <span class="h4 color-off-black" data-product-title></span>
+          <p class="no-margin b2 color-dark-gray" data-product-description></p>
+       </div>
+       <div class="product-card__details-actions">
+          <div class="price flex align-center b2  grid-view  price--on-sale ">
+             <dl>
+                <div class="price__regular">
+                   <dd>
+                     From
+                      <span class="price-item price-item--regular color-off-black bold" data-product-price></span>
+                   </dd>
+                </div>
+             </dl>
+          </div>
+       </div>
+    </div>
+  </a>
+</template>

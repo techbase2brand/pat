@@ -1,0 +1,1138 @@
+{
+  "id": null,
+  "name": "Emerging Artist Form ",
+  "handle": "pro-artist-form-copy",
+  "theme_id": null,
+  "settings": {
+    "locales": {
+      "back": "Back",
+      "next": "Next",
+      "cancel": "Cancel",
+      "edit_link": "Edit account",
+      "fix_errors": "Please fix errors before continuing",
+      "is_invalid": "{{label}} is invalid",
+      "email_taken": "Email has already been taken",
+      "phone_taken": "Phone number has already been taken",
+      "server_error": "Could not save form, please try again later",
+      "step_counter": "Step {{current}} of {{total}}",
+      "verify_email": "Check your email for a verification link to activate your account.",
+      "not_available": "An error occurred while saving your account, please try again in a few minutes.",
+      "create_account": "Submit",
+      "update_account": "Submit",
+      "recaptcha_error": "Challenge verification failed, please try again",
+      "creating_account": "Saving...",
+      "updating_account": "Saving...",
+      "too_many_requests": "We are experiencing high traffic, please try again later.",
+      "reset_password_link": "Reset your password",
+      "invalid_email_domain": "Email contains an invalid domain name",
+      "reset_password_email_sent": "Check your inbox for a link to reset your password.",
+      "reset_password_too_many_attempts": "You tried to reset your password too many times. Please wait and try again later."
+    },
+    "customCSS": ".cf-field h4 {\n    margin: 0;\n}\n\n.cf-field {\n    padding: 0;\n}\n\n.cf-field-container[data-cf-field-type=\"group\"] {\n    padding: 0;\n}\n\n.cf-field[data-cf-field-type=\"group\"] {\n    padding: 0;\n    border: 0;\n    margin: 0;\n}",
+    "readGuestData": true,
+    "whitelistedTags": "pro-artist-pending-approval,em-artist-pending-approval",
+    "markRequiredFields": true,
+    "displayCancelButton": true,
+    "redirectAfterSubmit": false,
+    "goBackAfterSubmission": false,
+    "accountApprovalRequired": false,
+    "cancelButtonRedirectUrl": "/account/login",
+    "emailVerificationRequired": false,
+    "postSubmissionRedirectUrl": "/account",
+    "showSuccessStepAfterSubmit": true,
+    "goBackAfterCancelButtonClick": false
+  },
+  "install_locations": [
+
+  ],
+  "created_at": "2022-11-18T15:31:41Z",
+  "updated_at": "2022-11-18T15:32:15Z",
+  "revision_ids": [
+    "mLTgklO",
+    "OzT29kE",
+    "nRTlbql",
+    "akT2bX4",
+    "qYTYNqr",
+    "7kToN7g",
+    "kdT2R4X",
+    "X1TKwBd",
+    "8oT5NM3"
+  ],
+  "path": "/forms/Antby6",
+  "current_revision": {
+    "id": "mLTgklO",
+    "created_at": "2022-12-08T21:50:55Z",
+    "updated_at": "2022-12-08T21:50:55Z",
+    "embed_version": "4.12.0",
+    "published_at": null,
+    "fields": [
+      {
+        "id": 121773,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 0,
+        "type": "heading",
+        "stepId": 166120,
+        "default": "",
+        "label": "Account request sent heading",
+        "placeholder": null,
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h3 color-off-black no-margin",
+          "alignment": "center"
+        },
+        "settings": {
+          "size": "3",
+          "content": "Success!",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 109399,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 1,
+        "type": "paragraph",
+        "stepId": 166120,
+        "default": "",
+        "label": "Reviewing submission explanation",
+        "placeholder": null,
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12
+        },
+        "settings": {
+          "content": "<p style=\"text-align: center;\">The form has been successfully submitted.</p>",
+          "fontSize": 14,
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 184352,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 0,
+        "type": "group",
+        "stepId": 502745,
+        "default": "",
+        "label": "New group field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "grid artist-form__group"
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 173643,
+        "dataColumn": null,
+        "parentId": 184352,
+        "position": 0,
+        "type": "heading",
+        "stepId": 502745,
+        "default": "",
+        "label": "New heading field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h4 color-off-black no-margin",
+          "alignment": "left"
+        },
+        "settings": {
+          "size": "4",
+          "content": "Info",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 165759,
+        "dataColumn": {
+          "key": "first_name",
+          "label": "First name",
+          "dataType": "text"
+        },
+        "parentId": 184352,
+        "position": 1,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "First name",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "first_name",
+        "autotag": null
+      },
+      {
+        "id": 805008,
+        "dataColumn": {
+          "key": "last_name",
+          "label": "Last name",
+          "dataType": "text"
+        },
+        "parentId": 184352,
+        "position": 2,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Last name",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "last_name",
+        "autotag": null
+      },
+      {
+        "id": 305782,
+        "dataColumn": {
+          "key": "email",
+          "label": "Email address",
+          "dataType": "email"
+        },
+        "parentId": 184352,
+        "position": 3,
+        "type": "email",
+        "stepId": 502745,
+        "default": "",
+        "label": "Email address",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "operator": "is_valid_email",
+            "comparand": null,
+            "errorMessage": "Please provide a valid email address"
+          },
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "email_address",
+        "autotag": null
+      },
+      {
+        "id": 493009,
+        "dataColumn": {
+          "key": "default_address.phone",
+          "label": "Address phone number",
+          "dataType": "phone"
+        },
+        "parentId": 184352,
+        "position": 4,
+        "type": "phone",
+        "stepId": 502745,
+        "default": "",
+        "label": "Address phone number",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+          "defaultCountryCode": "US"
+        },
+        "validations": [
+          {
+            "operator": "is_valid",
+            "comparand": null,
+            "errorMessage": "Please provide a valid phone number"
+          }
+        ],
+        "sensitive": null,
+        "preset": "phone_number",
+        "autotag": null
+      },
+      {
+        "id": 191474,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 1,
+        "type": "group",
+        "stepId": 502745,
+        "default": "",
+        "label": "New group field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "grid artist-form__group"
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 172887,
+        "dataColumn": null,
+        "parentId": 191474,
+        "position": 0,
+        "type": "heading",
+        "stepId": 502745,
+        "default": "",
+        "label": "",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h4 color-off-black no-margin",
+          "alignment": "left"
+        },
+        "settings": {
+          "size": "4",
+          "content": "Location",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 957222,
+        "dataColumn": {
+          "key": "default_address.address1",
+          "label": "Address",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 1,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Address 1",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "address1",
+        "autotag": null
+      },
+      {
+        "id": 262193,
+        "dataColumn": {
+          "key": "default_address.address2",
+          "label": "Apartment, suite, etc. (optional)",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 2,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Address 2",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": "address2",
+        "autotag": null
+      },
+      {
+        "id": 203022,
+        "dataColumn": {
+          "key": "default_address.city",
+          "label": "City",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 3,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "City",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "city",
+        "autotag": null
+      },
+      {
+        "id": 193998,
+        "dataColumn": {
+          "key": "default_address.province",
+          "label": "State/Province",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 4,
+        "type": "dropdown",
+        "stepId": 502745,
+        "default": "",
+        "label": "State/Province",
+        "placeholder": "Select a state/province...",
+        "description": "",
+        "enum": [
+          {
+            "label": "",
+            "value": ""
+          }
+        ],
+        "appearance": {
+          "width": 6,
+          "cssClass": ""
+        },
+        "settings": {
+          "defaultCountry": "United States",
+          "isProvinceField": true
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "province",
+        "autotag": null
+      },
+      {
+        "id": 899147,
+        "dataColumn": {
+          "key": "default_address.zip",
+          "label": "Zip/Postal code",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 5,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Zip/Postal code",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 6,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "zip",
+        "autotag": null
+      },
+      {
+        "id": 125942,
+        "dataColumn": {
+          "key": "default_address.country",
+          "label": "Country",
+          "dataType": "text"
+        },
+        "parentId": 191474,
+        "position": 6,
+        "type": "dropdown",
+        "stepId": 502745,
+        "default": "",
+        "label": "Country",
+        "placeholder": "Select a country...",
+        "description": "",
+        "enum": [
+          {
+            "label": "",
+            "value": ""
+          }
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+          "isCountryField": true,
+          "useAllCountries": true
+        },
+        "validations": [
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "country",
+        "autotag": null
+      },
+      {
+        "id": 145545,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 2,
+        "type": "group",
+        "stepId": 502745,
+        "default": "",
+        "label": "New group field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "grid artist-form__group"
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 292569,
+        "dataColumn": null,
+        "parentId": 145545,
+        "position": 0,
+        "type": "heading",
+        "stepId": 502745,
+        "default": "",
+        "label": "",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h4 color-off-black no-margin",
+          "alignment": "left"
+        },
+        "settings": {
+          "size": "4",
+          "content": "When is your birthday?",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 688576,
+        "dataColumn": {
+          "key": "new_date_field",
+          "label": "New date field",
+          "dataType": "date"
+        },
+        "parentId": 145545,
+        "position": 1,
+        "type": "date",
+        "stepId": 502745,
+        "default": "today",
+        "label": "Birthday ",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+          "dateInput": "select",
+          "hideLabel": true,
+          "yearsBack": 100,
+          "dateFormat": "MMMM-DD-YYYY",
+          "yearsForward": 20,
+          "yearSortOrder": "descending"
+        },
+        "validations": [
+          {
+            "metadata": {
+              "mandatory": true,
+              "staticOperator": true
+            },
+            "operator": "is_valid",
+            "comparand": null,
+            "errorMessage": "Please specify a valid date"
+          }
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 212893,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 3,
+        "type": "group",
+        "stepId": 502745,
+        "default": "",
+        "label": "New group field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "grid artist-form__group"
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 152861,
+        "dataColumn": null,
+        "parentId": 212893,
+        "position": 0,
+        "type": "heading",
+        "stepId": 502745,
+        "default": "",
+        "label": "",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h4 color-off-black no-margin",
+          "alignment": "left"
+        },
+        "settings": {
+          "size": "4",
+          "content": "Social",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 782744,
+        "dataColumn": {
+          "key": "instagram_handle",
+          "label": "New single-line text field",
+          "dataType": "text"
+        },
+        "parentId": 212893,
+        "position": 1,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Instagram Handle",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 883993,
+        "dataColumn": {
+          "key": "link__notes",
+          "label": "Link & Notes",
+          "dataType": "single_line_text"
+        },
+        "parentId": 212893,
+        "position": 2,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Link & Notes",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 792116,
+        "dataColumn": null,
+        "parentId": null,
+        "position": 4,
+        "type": "group",
+        "stepId": 502745,
+        "default": "",
+        "label": "New group field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "grid artist-form__group"
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 208090,
+        "dataColumn": null,
+        "parentId": 792116,
+        "position": 0,
+        "type": "heading",
+        "stepId": 502745,
+        "default": "",
+        "label": "",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "h4 color-off-black no-margin",
+          "alignment": "left"
+        },
+        "settings": {
+          "size": "4",
+          "content": "Upload Documents\n",
+          "hideLabel": true,
+          "fontWeight": "normal"
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 150973,
+        "dataColumn": null,
+        "parentId": 792116,
+        "position": 1,
+        "type": "paragraph",
+        "stepId": 502745,
+        "default": "",
+        "label": "New paragraph field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12
+        },
+        "settings": {
+          "content": "<p>Students:</p>\n<ul>\n<li>Student ID</li>\n<li>\n<p>Makeup class syllabus</p>\n</li>\n</ul>\n<p>Assistants:</p>\n<ul>\n<li>Tear sheets with name and makeup assistant credit</li>\n<li>\n<p>Film or Television Experience: Crew list with name, date and assistant makeup artist credit</p>\n</li>\n</ul>",
+          "fontSize": 14,
+          "hideLabel": true
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 399280,
+        "dataColumn": {
+          "key": "upload_document_1",
+          "label": "New file upload field",
+          "dataType": "file"
+        },
+        "parentId": 792116,
+        "position": 2,
+        "type": "file",
+        "stepId": 502745,
+        "default": "",
+        "label": "New file upload field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+          {
+            "metadata": {
+              "mandatory": true,
+              "staticOperator": true,
+              "staticComparand": true
+            },
+            "operator": "less_than",
+            "comparand": 25600,
+            "errorMessage": "Please upload a file less than 25MB in size"
+          },
+          {
+            "metadata": {
+              "mandatory": true,
+              "staticOperator": true
+            },
+            "operator": "file_extension_not_blank",
+            "comparand": null,
+            "errorMessage": "Please upload a file with a valid file extension"
+          },
+          {
+            "operator": "file_extension_not_equals",
+            "comparand": ".exe,.dmg,.pkg,.sh,.bat,.cmd,.dll,.vbs,.vbe,.vb,.js,.jse,.jar,.py,.hta,.html,.htm,.tmp,.msi,.msp,.com,.ps1,.ps1xml,.ps2,.ps2xml,.psc1,.psc2,.lnk,.inf,.scf",
+            "errorMessage": "Please upload a non-executable file"
+          }
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 677763,
+        "dataColumn": {
+          "key": "upload_document_2",
+          "label": "New file upload field",
+          "dataType": "file"
+        },
+        "parentId": 792116,
+        "position": 3,
+        "type": "file",
+        "stepId": 502745,
+        "default": "",
+        "label": "New file upload field",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": ""
+        },
+        "settings": {
+          "hideLabel": true
+        },
+        "validations": [
+          {
+            "metadata": {
+              "mandatory": true,
+              "staticOperator": true,
+              "staticComparand": true
+            },
+            "operator": "less_than",
+            "comparand": 25600,
+            "errorMessage": "Please upload a file less than 25MB in size"
+          },
+          {
+            "metadata": {
+              "mandatory": true,
+              "staticOperator": true
+            },
+            "operator": "file_extension_not_blank",
+            "comparand": null,
+            "errorMessage": "Please upload a file with a valid file extension"
+          },
+          {
+            "operator": "file_extension_not_equals",
+            "comparand": ".exe,.dmg,.pkg,.sh,.bat,.cmd,.dll,.vbs,.vbe,.vb,.js,.jse,.jar,.py,.hta,.html,.htm,.tmp,.msi,.msp,.com,.ps1,.ps1xml,.ps2,.ps2xml,.psc1,.psc2,.lnk,.inf,.scf",
+            "errorMessage": "Please upload a non-executable file"
+          }
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 816731,
+        "dataColumn": {
+          "key": "birthday_day",
+          "label": "New single-line text field",
+          "dataType": "integer"
+        },
+        "parentId": null,
+        "position": 5,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Birthday Day",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "hidden"
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      },
+      {
+        "id": 161787,
+        "dataColumn": {
+          "key": "birthday_month",
+          "label": "New single-line text field",
+          "dataType": "single_line_text"
+        },
+        "parentId": null,
+        "position": 6,
+        "type": "text",
+        "stepId": 502745,
+        "default": "",
+        "label": "Birthday Month",
+        "placeholder": "",
+        "description": "",
+        "enum": [
+
+        ],
+        "appearance": {
+          "width": 12,
+          "cssClass": "hidden"
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": null,
+        "autotag": null
+      }
+    ],
+    "steps": [
+      {
+        "id": 502745,
+        "title": "Step 1",
+        "description": ""
+      },
+      {
+        "id": 166120,
+        "title": "Submission success",
+        "metadata": {
+          "isSuccessStep": true
+        },
+        "description": ""
+      }
+    ],
+    "rules": [
+
+    ]
+  }
+}

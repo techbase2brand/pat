@@ -1,0 +1,153 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "7dd2e3f4-4eb4-4827-af69-e63e49d12f42": {
+      "type": "section-comparison-slider-4up",
+      "blocks": {
+        "template--16729256919279__7dd2e3f4-4eb4-4827-af69-e63e49d12f42-16704247267e86b737-0": {
+          "type": "category",
+          "settings": {
+            "product": "translucent-loose-setting-powder",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "f62411b0-d53e-4095-96fb-72afa5adc878": {
+          "type": "category",
+          "settings": {
+            "product": "translucent-loose-setting-powder-ultra-blur",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "c5bd529b-ee5f-43c8-834d-9e446a36cca1": {
+          "type": "category",
+          "settings": {
+            "product": "translucent-loose-setting-powder-light-catcher",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "127b9a7d-aede-4f5f-830d-69bb7957fa97": {
+          "type": "category",
+          "settings": {
+            "product": "translucent-loose-setting-powder-tone-up",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256919279__7dd2e3f4-4eb4-4827-af69-e63e49d12f42-16704247267e86b737-0",
+        "f62411b0-d53e-4095-96fb-72afa5adc878",
+        "c5bd529b-ee5f-43c8-834d-9e446a36cca1",
+        "127b9a7d-aede-4f5f-830d-69bb7957fa97"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Find Your Perfect Setting Powder</p>",
+        "subheading": "",
+        "body": "Keep your look on lock all day long with our stay-put setting powders.",
+        "cta_text": "",
+        "cta_url": ""
+      }
+    },
+    "838d82e3-25e5-4f9a-8d07-ee3f436a0197": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Ultra-BLUR",
+        "id": "",
+        "bottom_heading": "",
+        "desktop_banner_image": "shopify://shop_images/TMBlush-Video_73378ac9-97c9-45e3-ba5a-c65bee797243.jpg",
+        "mobile_banner_image": "shopify://shop_images/TMBlush-Video_1_6a9f9d20-5587-4007-9112-16b8278518a4.jpg",
+        "desktop_background_video": "shopify://files/videos/LM_SU22_TLSPUB_Hero_20s_16x9 (1).mp4",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "Watch Now",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "45d959a0-1736-486a-bd0b-fe0f398d46fe": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-1_1_23ec9452-1e22-491b-a872-f2e7d2873404.jpg",
+            "eyebrow": "",
+            "heading": "Setting Powders and Sprays",
+            "body": "Lock in a look that stays put.",
+            "cta_url": "shopify://collections/setting-products",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Primers_e1785deb-23df-470a-a2cd-6d41821c6718.jpg",
+            "eyebrow": "",
+            "heading": "Primers",
+            "body": "Prep your Flawless Face with Laura’s first step for an all-day look that lasts.",
+            "cta_url": "shopify://collections/primers",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_FlawlessFace_a8135f23-344c-4d97-aeb6-822966906b27.jpg",
+            "eyebrow": "",
+            "heading": "Flawless Face",
+            "body": "Prime, perfect, conceal and set to create Laura’s signature look.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-0",
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-1",
+        "template--16665910673647__45d959a0-1736-486a-bd0b-fe0f398d46fe-16656605349e098071-2"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "7dd2e3f4-4eb4-4827-af69-e63e49d12f42",
+    "838d82e3-25e5-4f9a-8d07-ee3f436a0197",
+    "45d959a0-1736-486a-bd0b-fe0f398d46fe"
+  ]
+}

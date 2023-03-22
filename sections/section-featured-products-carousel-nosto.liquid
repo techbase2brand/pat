@@ -1,0 +1,27 @@
+{%- if section.settings.placement_id != blank -%}
+  {%- render 'featured-products-carousel-nosto', mod_id: section.settings.id, placement_id: section.settings.placement_id -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.featured-products-carousel-nosto.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-products-carousel-nosto.settings.id.label",
+      "info": "t:sections.featured-products-carousel-nosto.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "placement_id",
+      "label": "t:sections.featured-products-carousel-nosto.settings.placement_id.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-products-carousel-nosto.name"
+    }
+  ]
+}
+{% endschema %}

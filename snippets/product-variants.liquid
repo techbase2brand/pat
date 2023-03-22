@@ -1,0 +1,174 @@
+<script src='{{ 'component-shade-category-filter.js' | asset_url }}' defer='defer' type='module'></script>
+
+{%- liquid
+  assign swatch_size = swatch_size | default: blank
+  assign does_product_have_color_variant = does_product_have_color_variant | default: false
+  assign variant_type = variant_type | default: "none"
+  assign mod_selector_id = mod_selector_id | default: ""
+  assign mod_quick_view = mod_quick_view | default: false
+  assign all_swatch_groups = ""
+  assign all_sizes = ""
+
+  for variant in product.variants
+    assign swatchGroupOne = variant.metafields.swatch.group1 | append: ', ' | strip
+    assign swatchGroupTwo = variant.metafields.swatch.group2 | append: ', ' | strip
+    assign not_in_a_group = 'products.product.not_in_a_group' | t
+
+    if swatchGroupOne != ','
+      unless all_swatch_groups contains swatchGroupOne
+        assign all_swatch_groups = all_swatch_groups | append: swatchGroupOne
+      endunless
+    endif
+
+    if swatchGroupTwo != ','
+      unless all_swatch_groups contains swatchGroupTwo
+        assign all_swatch_groups = all_swatch_groups | append: swatchGroupTwo
+      endunless
+    endif
+
+    comment
+      #
+      # if the variant does not belong to a swatch group
+      #
+    endcomment
+
+    if swatchGroupOne == ',' and swatchGroupTwo == ','
+      unless all_swatch_groups contains not_in_a_group
+        assign all_swatch_groups = all_swatch_groups | append: not_in_a_group | append: ', ' | strip
+      endunless
+    endif
+
+    unless all_sizes contains variant.title
+      assign altered_variant = variant.title | append: ','
+      assign all_sizes = all_sizes | append: altered_variant
+    endunless
+  endfor
+-%}
+
+<product-variants variantId="{{ product.selected_or_first_available_variant.id }}" variantType="{% if variant_type == 'color' %}color{% elsif variant_type == 'size' %}size{% elsif variant_type == 'other' %}general-variants{% else %}none{% endif %}" product-id="{{ product.id }}" quickView="{{ mod_quick_view }}">
+
+  {% comment %} DO NOT DELETE - Need a selector that uses IDs instead of variant names {% endcomment %}
+
+  <select class="hidden-variants hidden">
+    {% for variant in product.variants %}
+      <option value="{{ variant.id }}">{{ variant.title }}</option>
+    {% endfor %}
+  </select>
+
+
+
+  {% if variant_type == "color" %}
+    {% liquid 
+        assign not_in_a_group = products.product.not_in_a_group | t
+
+        # if the product has variants that are not in a group
+
+        if all_swatch_groups contains not_in_a_group
+          # build the not in a group target 
+          assign target = not_in_a_group | append: ','
+          # remove the target from the string
+          assign all_swatch_groups = all_swatch_groups | remove: target
+          #  add the target back to the end of the string so its always last and All Shades is always  first
+          assign shade_categories = all_swatch_groups | prepend: 'All Shades,' | append: not_in_a_group | split: ','
+        else
+          assign shade_categories = all_swatch_groups | prepend: 'All Shades,' | split: ','
+        endif
+
+        assign first_shade_category = shade_categories | first
+    %}
+
+    <shade-category-filter>
+      {% if product.metafields.swatch.groups != false %}
+        <div class='shade-categories-dropdown'>
+          {%- render 'form-dropdown',
+            placeholder: 'All Shades',
+            name: 'shade_categories',
+            label_t: 'general.shades.filter_by',
+            label: product.metafields.swatch.filter_by_text,
+            options: shade_categories,
+            value: first_shade_category
+          -%}
+        </div>
+      {% endif %}
+
+      {% if product.available and product.variants.size > 1 %}
+        {% render 'swatch'
+          for product.options as swatch,
+          swatch_size: swatch_size,
+          variant: product.selected_or_first_available_variant,
+          mod_quick_view: mod_quick_view
+        %}
+      {% endif %}
+    </shade-category-filter>
+
+    <div class='selected-shade-dropdown'>
+      {% liquid 
+        assign not_in_a_group = products.product.not_in_a_group | t
+
+        # if the product has variants that are not in a group
+
+        if shade_categories contains not_in_a_group
+          # build the not in a group target 
+          assign target = not_in_a_group | append: ','
+          assign all_swatch_groups_extended = all_swatch_groups | append: target
+        else
+          assign all_swatch_groups_extended = all_swatch_groups
+        endif
+    %}
+      {%-
+        render "variant-dropdown",
+        placeholder: '-',
+        name: 'selected_shade',
+        label_t: 'general.shades.selected_shade',
+        label: product.metafields.swatch.selected_shade_label,
+        input_attributes: input_attributes,
+        options: shade_categories,
+        headers: all_swatch_groups_extended,
+      -%}
+    </div>
+  {% elsif variant_type == "size" %}
+    <div class="size-variants-container">
+      <ul id="{{ mod_selector_id }}" class="options-wrapper">
+        {%- for variant in product.variants %}
+          <li data-value='{{ variant.title }}'>
+            <div class='size-select-container {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}'>
+              <div class='size-selector-inner'>
+                <button value='{{ variant.title }}' data-variant-id='{{ variant.id }}' type='button'>
+                  {{ variant.title }}
+                </button>
+              </div>
+            </div>
+          </li>
+        {%- endfor %}
+      </ul>
+    </div>
+
+    {% assign all_sizes = all_sizes | split: ',' %}
+    <div class='selected-size-dropdown'>
+      {%-
+        render 'variant-dropdown',
+        placeholder: '-',
+        name: 'selected_size',
+        label_t: 'general.sizes.selected_size',
+        options: all_sizes | split: ",",
+        type: "sizes"
+      -%}
+    </div>
+
+  {% else %}
+
+  {% assign all_sizes = all_sizes | split: "," %}
+      <div class="general-variants-container relative" id="{{ mod_selector_id }}">
+        <div class="selected-variant-dropdown">
+          {%- render 'variant-dropdown',
+            placeholder: '-',
+            name: 'selected_variant',
+            label: product.metafields.swatch.selected_shade_label,
+            options: all_sizes | split: ",",
+            type: "sizes",
+          -%}
+          </div>
+        </div>
+
+  {% endif %}
+</product-variants>

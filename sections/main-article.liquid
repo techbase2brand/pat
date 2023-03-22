@@ -1,0 +1,71 @@
+{% render 'async-stylesheet', mod_url: 'section-main-article.css' %}
+
+{% assign divider = '<custom-product-grid>' %} 
+{% assign dividerClose = '</custom-product-grid>' %}
+{% assign text = article.content | split: divider %}
+
+
+<div class="single-article">
+    <div class="single-article__color-block"></div>
+    <div class="single-article__title-container text-center container">
+        <p class="blog-category s1 color-off-black no-margin">
+            {% if article.tags contains 'Makeup'  %}
+                <a href="/blogs/news/tagged/makeup">
+                    Makeup
+                </a>
+            {% elsif article.tags contains 'Skincare'  %}
+                <a href="/blogs/news/tagged/skincare">
+                    Skincare
+                </a>                
+            {% endif  %}
+        </p>
+        <h1 class="h2 color-off-black single-article__title">{{ article.title }}</h1>
+        <p class="date bold color-off-black">{{ article.published_at | date: '%B %d, %Y'}}</p>
+        <p class="single-article__excerpt color-dark-gray">
+            {{ article.excerpt }}
+        </p>
+    </div>
+    <div class="single-article__banner-container container">
+        <div class="single-article__banner">
+            {% render 'adaptive-image', mod_image: article.image, mod_alt: article.title %}
+        </div>
+    </div>
+    <div class="single-article__content-container container ">
+        <div class="single-article__inner">
+
+            {% comment %} first content section {% endcomment %}
+            {{text[0]}}
+
+            {% comment %} loop over rest of content {% endcomment %}
+            {% for currentText in text offset: 1 %}
+                {% assign x = forloop.index %}
+            
+            {% comment %} if current text is a divider, loop over once {% endcomment %}
+            {% for divider in currentText limit: 1 offset: x %}
+                {% assign newtext = text[x] | split: dividerClose %}
+                {% assign collectionHandle = newtext[0] %}                        
+                    {% if newtext[0] %}
+                        {% render 'article-product-grid', collectionHandle: collectionHandle %}
+                    {% endif %}
+                {% endfor %}
+
+                {% comment %} return content, but replace divider if there is one {% endcomment %}
+                {{currentText | replace: newtext[0], ""}}
+            {% endfor %}
+
+            
+            
+        </div>
+    </div>
+    <div class="single-article__footer container text-center">
+        <div class="single-article__inner">
+            {% render 'button', 
+                mod_type: "link"
+                mod_href: "/blogs/news"
+                mod_value: "Back to Blog", 
+                mod_icon: 'arrow',
+                mod_icon_position: "left"
+              %}
+        </div>
+    </div>
+</div>

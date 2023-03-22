@@ -1,0 +1,174 @@
+{{ 'section-featured-product-grid.css' | asset_url | stylesheet_tag }}
+
+<section
+  class='featured-product-grid container'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='featured-product-grid__header flex justify-space-between'>
+    {% if section.settings.heading != blank %}
+      <div>
+        <h2 class='h2 no-margin'>{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+    <div class='flex justify-end'>
+      {% if section.settings.section_cta_text != blank and section.settings.section_cta_url %}
+        {%- liquid
+          assign mod_value_handle = section.settings.section_cta_text | handleize
+          assign mod_class = ''
+          assign mod_attr = ''
+          assign mod_type = 'link'
+          if mod_value_handle == 'get-matched'
+            assign mod_class = 'js-open-slideout'
+            assign mod_attr = 'data-target="foundation-finder"'
+            assign mod_type = 'button'
+          endif
+        -%}
+        {% render 'button',
+          mod_type: mod_type,
+          mod_value: section.settings.section_cta_text,
+          mod_href: section.settings.section_cta_url,
+          mod_class: mod_class,
+          mod_attr: mod_attr
+        %}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_horizontal_rule %}
+    <hr class='featured-product-grid__hr'>
+  {% endif %}
+
+  <div class='featured-product-grid-tiles__container'>
+    {% for block in section.blocks %}
+      {%- liquid
+        assign variant_override = null
+        assign mod_using_variant = false
+
+        if block.settings.variant_override != blank
+          for variant in block.settings.product.variants
+            assign variant_id = variant.id | append: ''
+
+            if variant_id == block.settings.variant_override
+              assign variant_override = variant
+              assign mod_using_variant = true
+            endif
+          endfor
+        endif
+      -%}
+
+      {% render 'featured-product-grid-tile',
+        mod_product: block.settings.product,
+        mod_eyebrow: block.settings.eyebrow,
+        mod_heading: block.settings.heading,
+        mod_description: block.settings.description,
+        mod_image: block.settings.product_image_override,
+        mod_cta_text: block.settings.block_cta_text,
+        mod_cta_url: block.settings.block_cta_url,
+        mod_variant: variant_override,
+        mod_using_variant: mod_using_variant
+      %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.section-featured-product-grid.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.section-featured-product-grid.settings.id.label",
+      "info": "t:sections.section-featured-product-grid.settings.id.info"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:sections.section-featured-product-grid.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "section_cta_text",
+      "label": "t:sections.section-featured-product-grid.settings.section-cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "section_cta_url",
+      "label": "t:sections.section-featured-product-grid.settings.section-cta-url.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_horizontal_rule",
+      "label": "t:sections.section-featured-product-grid.settings.show-horizontal-rule.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "t:sections.section-featured-product-grid.blocks.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.product.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image_override",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.product-image-override.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.product-image-override.info"
+        },
+        {
+          "type": "text",
+          "id": "variant_override",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.variant-override.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.variant-override.info"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.heading.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.heading.info"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.eyebrow.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.eyebrow.info"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.description.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.description.info"
+        },
+        {
+          "type": "text",
+          "id": "block_cta_text",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.block-cta-text.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.block-cta-text.info"
+        },
+        {
+          "type": "url",
+          "id": "block_cta_url",
+          "label": "t:sections.section-featured-product-grid.blocks.settings.block-cta-url.label",
+          "info": "t:sections.section-featured-product-grid.blocks.settings.block-cta-url.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.section-featured-product-grid.name",
+      "blocks": [
+        {
+          "type": "block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

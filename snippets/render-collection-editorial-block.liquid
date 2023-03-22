@@ -1,0 +1,82 @@
+{% liquid
+  assign mod_title = mod_title | default: nil
+  assign mod_subtitle = mod_subtitle | default: nil
+  assign mod_body = mod_body | default: nil
+  assign mod_type = 'text_with_image'
+  assign mod_cta = mod_cta | default: nil
+  assign mod_link = mod_link | default: nil
+  assign mod_image = mod_image | default: nil
+  assign mod_mobile_image = mod_mobile_image | default: mod_image
+  assign mod_layout = mod_layout | default: 'Text with image 50/50'
+  assign mod_column_span = mod_column_span | default: 'span-half'
+  assign mod_color_scheme = mod_color_scheme | default: 'background-color-off-black color-off-white'
+
+  assign is_text_overlay = false
+  assign column_span = 'span-half'
+
+  case mod_column_span
+    when 'Single Tile'
+      assign column_span = 'span-single'
+    when 'Full Row'
+      assign column_span = 'span-full'
+  endcase
+
+  if mod_layout == 'Text with a background image'
+    assign mod_type = 'text_overlay'
+    assign is_text_overlay = true
+  endif
+%}
+
+{%- if mod_title != blank -%}
+<div class="ceb ceb--{{ column_span | default: 'span-half' }} ceb--{{ mod_type }} relative">
+  <div class="ceb-wrapper grid relative">
+    <div class="ceb__image {% if is_text_overlay %}inset{% else %}relative{% endif %}">
+      {%- assign media = mod_image -%}
+      {%- assign media_mobile = mod_mobile_image -%}
+
+      {%- render 'adaptive-image',
+        mod_image: media,
+        mod_loading: 'lazy',
+        mod_alt: mod_title
+        mod_sizes: '1000px',
+        bg: 'desktop-block'
+      -%}
+   {%- render 'adaptive-image',
+        mod_image: media_mobile,
+        mod_loading: 'lazy',
+        mod_alt: mod_title
+        mod_sizes: '650px, (min-width: 768px) 1620px',
+        bg: 'mobile-block'
+      -%}
+    </div>
+    <div class="ceb__content relative {% unless is_text_overlay %} {{ mod_color_scheme }}{% else %} color-off-white {% endunless %}">
+      <div class="ceb__content-wrap flex text-center">
+        <div class="ceb__text grid">
+          {%- if mod_subtitle != blank -%}
+            <p class="no-margin s1 uppercase">
+              {{ mod_subtitle }}
+            </p>
+            {%- endif -%}
+
+            {%- if mod_title != blank -%}
+            <h4 class="{% if is_text_overlay and column_span != 'span-single' %}h3{% else %}h4{% endif %} no-margin ceb__title">
+              {{ mod_title }}
+            </h4>
+            {%- endif -%}
+
+            {%- if mod_body != blank -%}
+            <p class="b2 no-margin">
+              {{ mod_body }}
+            </p>
+            {%- endif -%}
+        </div>
+        {%- if mod_cta != blank -%}
+        <div class="ceb__button flex justify-center">
+          {% render 'button' mod_href: mod_link, mod_type: "link", mod_theme: "dark", mod_value: mod_cta %}
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{%- endif -%}

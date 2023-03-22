@@ -1,0 +1,36 @@
+<div class="article-card">
+    <div class="article-card__inner">
+        
+        <a href="{{ article.url }}" class="article-card__link">
+            <div class="article-card__image">
+                {%- render 'adaptive-image',
+                mod_image: article.image,
+                mod_alt: article.image.alt,
+                mod_loading: 'eager'
+                -%}
+            </div>
+        </a>
+
+        <div class="article-card__content">
+            <div class="article-card__content-inner">
+
+                <p class="s1 no-margin article__category color-off-black">
+                    {% if article.tags contains 'Makeup'  %}
+                        <a href="/blogs/news/tagged/makeup">
+                            Makeup
+                        </a>
+                    {% elsif article.tags contains 'Skincare'  %}
+                        <a href="/blogs/news/tagged/skincare">
+                            Skincare
+                        </a>                
+                    {% endif  %}
+                </p>
+                <h3 class="article__title h4 color-off-black">{{ article.title }}</h3>
+                <p class="article__excerpt no-margin color-dark-gray">
+                    {{ article.excerpt }}
+                </p>
+                {% render 'button', mod_type: 'link' mod_href: article.url, mod_variant: "text-underline", mod_value: "Lorem Ipsum" %}
+            </div>
+        </div>
+    </div>
+</div>  

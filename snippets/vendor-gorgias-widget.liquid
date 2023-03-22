@@ -1,0 +1,30 @@
+<!-- Gorgias Chat Widget Start -->
+<script
+  id='gorgias-chat-widget-install-v2'
+  src='https://config.gorgias.chat/gorgias-chat-bundle-loader.js?applicationId=23833'
+  async
+></script>
+<!-- Gorgias Chat Widget End -->
+
+<script id='gorgias-chat-shopify-install'>
+  !(function (_) {
+    ;(_.SHOPIFY_PERMANENT_DOMAIN = '{{ shop.permanent_domain }}'),
+      (_.SHOPIFY_CUSTOMER_ID = '{{ customer.id }}'),
+      (_.SHOPIFY_CUSTOMER_EMAIL = '{{ customer.email }}')
+  })(window || {})
+</script>
+
+<!-- Remove 'Powered by Gorgias' branding -->
+<script>
+  const initGorgiasChatPromise = window.GorgiasChat
+    ? window.GorgiasChat.init()
+    : new Promise(function (resolve) {
+        window.addEventListener('gorgias-widget-loaded', function () {
+          resolve()
+        })
+      })
+
+  initGorgiasChatPromise.then(async () => {
+    GorgiasChat.hidePoweredBy(true)
+  })
+</script>

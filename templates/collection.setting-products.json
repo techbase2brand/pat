@@ -1,0 +1,161 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "becec10b-2537-4190-96e5-cdf1e6ffa2af": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "template--16665910608111__becec10b-2537-4190-96e5-cdf1e6ffa2af-166548939205ea052e-0": {
+          "type": "product",
+          "settings": {
+            "product": "translucent-pure-setting-spray-16hr",
+            "variant_id": ""
+          }
+        },
+        "template--16665910608111__becec10b-2537-4190-96e5-cdf1e6ffa2af-166548939205ea052e-1": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "translucent-pure-setting-spray-16hr-mini",
+            "variant_id": ""
+          }
+        },
+        "446a6ee8-b2f1-4386-9975-a380cb2cf6f6": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910608111__becec10b-2537-4190-96e5-cdf1e6ffa2af-166548939205ea052e-0",
+        "template--16665910608111__becec10b-2537-4190-96e5-cdf1e6ffa2af-166548939205ea052e-1",
+        "446a6ee8-b2f1-4386-9975-a380cb2cf6f6"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Setting Sprays",
+        "subheading": "",
+        "body": "",
+        "cta_text": "",
+        "cta_url": "",
+        "image": "shopify://shop_images/Setting_Spray_Banner.jpg",
+        "image_mobile": "shopify://shop_images/Setting_Spray_Banner_1.jpg",
+        "image_position": "left"
+      }
+    },
+    "a2cdbe54-713c-437f-b5f1-e9c55f998146": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "template--16665910608111__a2cdbe54-713c-437f-b5f1-e9c55f998146-166548939205ea052e-0": {
+          "type": "product",
+          "settings": {
+            "product": "secret-brightening-powder-for-under-eyes",
+            "variant_id": ""
+          }
+        },
+        "template--16665910608111__a2cdbe54-713c-437f-b5f1-e9c55f998146-166548939205ea052e-1": {
+          "type": "product",
+          "settings": {
+            "product": "secret-blurring-powder-for-under-eyes",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910608111__a2cdbe54-713c-437f-b5f1-e9c55f998146-166548939205ea052e-0",
+        "template--16665910608111__a2cdbe54-713c-437f-b5f1-e9c55f998146-166548939205ea052e-1"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Eye Powders",
+        "subheading": "",
+        "body": "",
+        "cta_text": "",
+        "cta_url": "",
+        "image": "shopify://shop_images/Setting_Powder_Banner.jpg",
+        "image_mobile": "shopify://shop_images/Setting_Powder_Banner_1.jpg",
+        "image_position": "left"
+      }
+    },
+    "6861d21c-5dcf-4829-b1b5-c1335c1c2faf": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_5.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer",
+            "body": "Nourish, rejuvenate and perfect skin, now in three finishes.",
+            "cta_url": "shopify://collections/tinted-moisturizer",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_FlawlessFace_a8135f23-344c-4d97-aeb6-822966906b27.jpg",
+            "eyebrow": "",
+            "heading": "Flawless Face",
+            "body": "Prime, perfect, conceal and set to create Laura’s signature look.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_3_5.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Collection",
+            "body": "Light up your look with  rose-inspired formulas and natural luminosity.",
+            "cta_url": "shopify://collections/roseglow",
+            "cta_text": "Shop Now"
+          }
+        },
+        "f7b2b38c-20fe-46d3-a193-ced7da48a851": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Primers_e1785deb-23df-470a-a2cd-6d41821c6718.jpg",
+            "eyebrow": "",
+            "heading": "Primers",
+            "body": "Prep your Flawless Face with Laura’s first step for an all-day look that lasts.",
+            "cta_url": "shopify://collections/primers",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-0",
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-1",
+        "template--16665910608111__6861d21c-5dcf-4829-b1b5-c1335c1c2faf-1665666495dc753032-2",
+        "f7b2b38c-20fe-46d3-a193-ced7da48a851"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "becec10b-2537-4190-96e5-cdf1e6ffa2af",
+    "a2cdbe54-713c-437f-b5f1-e9c55f998146",
+    "6861d21c-5dcf-4829-b1b5-c1335c1c2faf"
+  ]
+}

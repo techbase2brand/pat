@@ -1,0 +1,177 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-featured-products-with-image.css'
+
+  assign imageBlockClass = 'block'
+  if section.settings.image_mobile != blank
+    assign imageBlockClass = 'm-block'
+  endif
+-%}
+
+<section
+  class='featured-products-with-image flex'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='featured-products-with-image__image featured-products-with-image__image-{{ section.settings.image_position }}'>
+    <div class='{{ imageBlockClass }}'>
+      {%- render 'adaptive-image', mod_image: section.settings.image, mod_alt: section.settings.heading -%}
+    </div>
+    {%- if section.settings.image_mobile != blank -%}
+      <div class='block m-none'>
+        {%- render 'adaptive-image', mod_image: section.settings.image_mobile, mod_alt: section.settings.heading -%}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class='featured-products-with-image__products'>
+    <div class='featured-products-with-image__products-content flex flex-direction-column text-center color-off-black'>
+      {% if section.settings.subheading != blank %}
+        <h2 class='s1 no-margin'>{{ section.settings.subheading }}</h2>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 class='h2 no-margin'>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <p class='b2 color-dark-gray no-margin'>{{ section.settings.body }}</p>
+      {% endif %}
+      {% if section.settings.cta_text != blank and section.settings.cta_url != blank %}
+        <div class='featured-products-with-image__cta'>
+          {% render 'button',
+            mod_type: 'link',
+            mod_value: section.settings.cta_text,
+            mod_href: section.settings.cta_url
+          %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class='featured-products-with-image__products-grid '>
+      {%- liquid
+        for block in section.blocks
+          assign featured_variant = null
+          assign _product = block.settings.product
+
+          if block.settings.variant_id != blank
+            assign variant_id = block.settings.variant_id | times: 1
+            for variant in _product.variants
+              if variant.id == variant_id
+                assign featured_variant = variant
+                break
+              endif
+            endfor
+          endif
+
+          if featured_variant
+            render 'product-card', product_card_product: _product, product_card_variant: featured_variant, use_variant: true
+          else
+            render 'product-card', product_card_product: _product, product_card_variant: _product.selected_or_first_available_variant
+          endif
+        endfor
+      -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.featured-products-with-image.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.featured-products-with-image.settings.id.label",
+      "info": "t:sections.featured-products-with-image.settings.id.info"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "t:sections.featured-products-with-image.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.featured-products-with-image.settings.subheading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.featured-products-with-image.settings.body.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "t:sections.featured-products-with-image.settings.cta_text.label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.featured-products-with-image.settings.cta_url.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.featured-products-with-image.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:sections.featured-products-with-image.settings.image_mobile.label"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.featured-products-with-image.settings.image_position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured-products-with-image.settings.image_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured-products-with-image.settings.image_position.options__2.label"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.featured-products-with-image.blocks.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.featured-products-with-image.blocks.settings.product.label"
+        },
+        {
+          "type": "text",
+          "id": "variant_id",
+          "label": "t:sections.featured-products-with-image.blocks.settings.variant_id.label",
+          "info": "t:sections.featured-products-with-image.blocks.settings.variant_id.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured-products-with-image.name",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

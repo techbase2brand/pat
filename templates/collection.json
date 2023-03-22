@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "3fb8913b-2a78-46de-82e4-b0c0526fb592": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "We Know You'll Love...",
+        "placement_id": "categorypage-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "3fb8913b-2a78-46de-82e4-b0c0526fb592"
+  ]
+}

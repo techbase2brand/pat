@@ -1,0 +1,111 @@
+{%- liquid
+  assign mod_tile_image = mod_tile_image
+  assign mod_title = mod_title
+  assign mod_description = mod_description
+  assign mod_product = mod_product
+  assign target_url = mod_product.url
+  assign selected_variant = mod_product | default: mod_product.selected_or_first_available_variant
+  assign mod_has_variant_override = mod_has_variant_override
+-%}
+
+{% comment %}
+  if the section is using a variant override, we need to access the metafields from the variants product - the variant will not have the correct metafields
+{% endcomment %}
+
+{%- liquid
+  assign product_metafields = mod_product.metafields
+  assign size_options = mod_product.options_with_values | where: 'name', 'Size' | first
+  assign color_options = mod_product.options_with_values | where: 'name', 'Color' | first
+  assign variants = mod_product.variants
+  assign mod_using_variant = false
+
+  if mod_has_variant_override
+    assign product_metafields = mod_product.product.metafields
+    assign size_options = mod_product.product.options_with_values | where: 'name', 'Size' | first
+    assign color_options = mod_product.product.options_with_values | where: 'name', 'Color' | first
+    assign variants = mod_product.product.variants
+    assign mod_using_variant = true
+  endif
+-%}
+
+<div class='slider_block comparison-slider-3-4up-block__product-tile flex flex-direction-column' data-slider-item>
+  <div class='comparison-slider-3-4up-block__image'>
+    {% render 'adaptive-image', mod_image: mod_tile_image, mod_alt: mod_tile_image.alt, mod_aspect_ratio: 'square' %}
+  </div>
+
+  <h4 class='h4'>{{ mod_title }}</h4>
+
+  {%- render 'price',
+    product: mod_product,
+    show_badges: false,
+    price_class: 'price--large',
+    mod_using_variant: mod_using_variant
+  -%}
+
+  {% if mod_description != blank %}
+    <p class='b1 no-margin comparison-slider-3-4up-block__tile-description'>{{ mod_description }}</p>
+  {% endif -%}
+
+  {% if product_metafields.filter_category.finish.size > 0 %}
+    <div class='comparison-slider-3-4up-block__comparison-prop'>
+      <p class='b3 bold no-margin'>{{ 'products.product.finish' | t | capitalize }}</p>
+      <p class='b1 no-margin'>{{ product_metafields.filter_category.finish }}</p>
+    </div>
+  {% endif %}
+
+  {% if product_metafields.filter_category.coverage.size > 0 %}
+    <div class='comparison-slider-3-4up-block__comparison-prop'>
+      <p class='b3 bold no-margin'>{{ 'products.product.coverage' | t | capitalize }}</p>
+      <p class='b1 no-margin'>{{ product_metafields.filter_category.coverage }}</p>
+    </div>
+  {% endif %}
+
+  {% if product_metafields.product_information.spf.size > 0 %}
+    <div class='comparison-slider-3-4up-block__comparison-prop'>
+      <p class='b3 bold no-margin uppercase'>{{ 'products.product.spf' | t }}</p>
+      <p class='b1 no-margin'>{{ product_metafields.product_information.spf }}</p>
+    </div>
+  {% endif %}
+
+  {%- if color_options -%}
+    <div class='comparison-slider-3-4up-block__comparison-prop'>
+      <p class='b3 bold no-margin'>{{ 'products.product.shades' | t | capitalize }}</p>
+      <p class='b1 no-margin'>{{ variants.size }}</p>
+    </div>
+  {% endif %}
+
+  {%- if size_options -%}
+    <div class='comparison-slider-3-4up-block__comparison-prop'>
+      <p class='b3 bold no-margin'>{{ 'products.product.sizes' | t | capitalize }}</p>
+      <p class='b1 no-margin'>{{ variants.size }}</p>
+    </div>
+  {% endif %}
+
+  <div class='comparison-slider-3-4up-block__shade-button-container flex'>
+    {%- liquid
+      if mod_has_variant_override == true
+        render 'product-card-button', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url
+      else
+        if settings.quick_shop == true
+          if product_metafields.product_card.disable_quick_shop == true
+            render 'product-card-button', button_type: 'a', button_text_t: 'product_card.shop_now', href: target_url
+          elsif color_options
+            render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_shade', product_card_product: mod_product, selected_variant: selected_variant, button_action: 'quick-shop'
+          elsif size_options
+            render 'product-card-button', button_type: 'button', button_text_t: 'product_card.select_size', product_card_product: mod_product, selected_variant: selected_variant, button_action: 'quick-shop'
+          else
+            render 'product-card-button', button_type: 'button', button_text_t: 'product_card.add_to_bag', product_card_product: mod_product, selected_variant: selected_variant.selected_or_first_available_variant, button_action: 'add-to-cart', button_value: selected_variant.selected_or_first_available_variant.id
+          endif
+        else
+          if color_options
+            render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_shade', href: target_url
+          elsif size_options
+            render 'product-card-button', button_type: 'a', button_text_t: 'product_card.select_size', href: target_url
+          else
+            render 'product-card-button', button_type: 'a', button_text_t: 'product_card.add_to_bag', href: target_url
+          endif
+        endif
+      endif
+    -%}
+  </div>
+</div>

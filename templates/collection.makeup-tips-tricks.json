@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "c4b3815e-db24-4fd6-a8a4-c6859c1abb86": {
+      "type": "section-image-with-text-square",
+      "settings": {
+        "main_image": "shopify://shop_images/Video_Gallery_Banner.jpg",
+        "eyebrow": "",
+        "heading": "Video Gallery",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+        "section_link_text": "Learn More",
+        "section_link_url": "shopify://blogs/makeup",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "left",
+        "text_alignment": "center",
+        "color_theme": "dark",
+        "background_color_override": ""
+      }
+    },
+    "37e97900-b452-4f0c-b7c3-886be511ab50": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "heading": "Nosto",
+        "placement_id": "Nosto"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "c4b3815e-db24-4fd6-a8a4-c6859c1abb86",
+    "37e97900-b452-4f0c-b7c3-886be511ab50"
+  ]
+}

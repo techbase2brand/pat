@@ -1,0 +1,12 @@
+<a href="{{ mod_link }}" class="customer-quicklink color-off-white {{ mod_classes }}">
+  <img src="{{ mod_image | image_url: width: 400 }}" loading="lazy" alt="{{ mod_image.alt }}" width="400" height="auto" />
+  <div class="customer-quicklink-details">
+    <button class="button--text-icon">
+      <span class="h4">{{ mod_title }}</span>
+      <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.5 0L3 5L0.5 10L1.7729 8.51743C2.5896 7.56621 3.47164 6.69426 4.41022 5.91028L5.5 5L4.41022 4.08972C3.47164 3.30574 2.5896 2.43379 1.7729 1.48257L0.5 0Z" fill="currentColor"></path>
+      </svg>
+    </button>
+    <p class="b1 customer-quicklink-body">{{ mod_body }}</p>
+  </div>
+</a>

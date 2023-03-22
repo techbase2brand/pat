@@ -1,0 +1,20 @@
+{% layout false %}
+{%- capture searchResults -%}
+{% # theme-check-disable LiquidTag %}
+[{%- if search.performed -%}
+{%- if search.results.size > 0 -%}
+{%- if search.types contains 'product' -%}
+{%- for product in search.results -%}
+{%- for variant in product.variants -%}
+{
+"id": {{ variant.id }},
+"sku": "{{ variant.sku }}"
+}{% unless forloop.last %},{% endunless %}
+{%- endfor -%}
+{%- endfor -%}
+{%- endif -%}
+{%- endif -%}
+{%- endif -%}]
+{% # theme-check-enable LiquidTag %}
+{%- endcapture -%}
+{{- searchResults | strip_newlines -}}

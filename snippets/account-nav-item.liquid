@@ -1,0 +1,38 @@
+{%- assign mod_is_active = false -%}
+{%- assign mod_class = mod_class | default: blank -%}
+
+{%- if request.path == mod_href -%}
+  {%- assign mod_is_active = true -%}
+{%- endif -%}
+
+{%- liquid
+  assign page_url = content_for_header | split: '"pageurl":"' | last | split: '"' | first | split: request.host | last | replace: '\/', '/' | replace: '%20', ' ' | replace: '\u0026', '&'
+  if page_url contains 'orders'
+    if mod_class contains 'js-nav-item__order-history'
+      assign mod_is_active = true
+    elsif mod_class contains 'js-nav-item__overview'
+      assign mod_is_active = false
+    endif
+  endif
+-%}
+
+<li class="account-nav-item {{ mod_class }}">
+{%- if mod_is_active -%}
+  <a href="{{ mod_href }}" class="b1 button--text-icon account-nav-item__button">
+
+    <span>{{ mod_label_t | t }}</span>
+    <svg class="color-dark-gray" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.5 0L3 5L0.5 10L1.7729 8.51743C2.5896 7.56621 3.47164 6.69426 4.41022 5.91028L5.5 5L4.41022 4.08972C3.47164 3.30574 2.5896 2.43379 1.7729 1.48257L0.5 0Z" fill="currentColor"></path>
+    </svg>
+  </a>
+{%- elsif mod_class != blank -%}
+  <a href="{{ mod_href }}" class="b1  account-nav-item__button color-dark-gray">
+    <span>{{ mod_label_t | t }}</span>
+    <svg class="color-dark-gray hidden" width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.5 0L3 5L0.5 10L1.7729 8.51743C2.5896 7.56621 3.47164 6.69426 4.41022 5.91028L5.5 5L4.41022 4.08972C3.47164 3.30574 2.5896 2.43379 1.7729 1.48257L0.5 0Z" fill="currentColor"></path>
+    </svg>
+  </a>
+{%- else -%}
+  <a class="b1 color-dark-gray account-nav-item__link" href="{{ mod_href }}">{{ mod_label_t | t }}</a>
+{%- endif -%}
+</li>

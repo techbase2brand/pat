@@ -1,0 +1,194 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "815cfc27-8340-43d2-9df9-1775d0fc6dd9": {
+      "type": "section-comparison-slider-large-arch",
+      "blocks": {
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Blush_Color_Infusion_1_4b6486b7-73fe-4511-9157-560610705978.png",
+            "slide_product_image": "shopify://shop_images/Blush_Color_Infusion_1.webp",
+            "slide_heading": "Blush Color Infusion",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/blush-color-infusion"
+          }
+        },
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Tinted_Moisturizer_Blush_1_2f274262-4230-4be7-9881-240849e7f47f.png",
+            "slide_product_image": "shopify://shop_images/Tinted_Moisturizer_Blush_1.webp",
+            "slide_heading": "Tinted Moisturizer Blush",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/tinted-moisturizer-blush"
+          }
+        },
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/RoseGlow_Blush_Color_Infusion.png",
+            "slide_product_image": "shopify://shop_images/RoseGlow_Blush_Color_Fusion.webp",
+            "slide_heading": "RoseGlow Blush Color Infusion",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/roseglow-blush-color-infusion"
+          }
+        },
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-3": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "slide_heading": "Heading",
+            "slide_body": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-0",
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-1",
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-2",
+        "template--16729256198383__815cfc27-8340-43d2-9df9-1775d0fc6dd9-1670426866befcc9ff-3"
+      ],
+      "settings": {
+        "id": "",
+        "eyebrow": "THREE CHIC WAYS TO ADD A NATURAL FLUSH OF COLOR, EFFORTLESSLY.",
+        "heading": "Best in Blush",
+        "section_cta_text": "",
+        "section_cta_url": ""
+      }
+    },
+    "1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-0": {
+          "type": "product",
+          "settings": {
+            "product": "roseglow-highlighting-powder",
+            "variant_id": ""
+          }
+        },
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-1": {
+          "type": "product",
+          "settings": {
+            "product": "matte-radiance-baked-powder",
+            "variant_id": ""
+          }
+        },
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-2": {
+          "type": "product",
+          "settings": {
+            "product": "candleglow-sheer-perfecting-powder",
+            "variant_id": ""
+          }
+        },
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-3": {
+          "type": "product",
+          "settings": {
+            "product": "face-illuminator-highlighting-powder",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-0",
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-1",
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-2",
+        "template--16665900482799__1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2-16654903289942ada0-3"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Highlighters and Bronzers",
+        "subheading": "",
+        "body": "",
+        "cta_text": "",
+        "cta_url": "",
+        "image": "shopify://shop_images/Cheeck_Banner.jpg",
+        "image_mobile": "shopify://shop_images/Cheeck_Banner_1.jpg",
+        "image_position": "left"
+      }
+    },
+    "50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Lipsticks_4e825ff6-fe70-4979-bcd6-c4a5202c47d9.jpg",
+            "eyebrow": "",
+            "heading": "Lipstick",
+            "body": "Elevate your lip looks with long-lasting shades for every occasion.",
+            "cta_url": "shopify://collections/lipstick",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_FlawlessFace_a8135f23-344c-4d97-aeb6-822966906b27.jpg",
+            "eyebrow": "",
+            "heading": "Flawless Face",
+            "body": "Prime, perfect, conceal and set to create Laura’s signature look.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_3.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Collection",
+            "body": "Light up your look with  rose-inspired formulas and natural luminosity.",
+            "cta_url": "shopify://collections/roseglow",
+            "cta_text": "Shop Now"
+          }
+        },
+        "0932a33b-d2fd-4db0-9f42-76f2be23f917": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Concealer_9e79868b-fc5e-4204-b0b0-984b1c981cb9.jpg",
+            "eyebrow": "",
+            "heading": "Concealer",
+            "body": "Erase dark circles and discoloration to give skin a flawless look.",
+            "cta_url": "shopify://collections/concealer",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-0",
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-1",
+        "template--16665900482799__50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0-166565429236ff0e84-2",
+        "0932a33b-d2fd-4db0-9f42-76f2be23f917"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "815cfc27-8340-43d2-9df9-1775d0fc6dd9",
+    "1fa1dd8a-9939-4c6e-964d-7c1bf6d410e2",
+    "50c2e7c0-1ccf-4b55-a3a9-3c34b7d0b9d0"
+  ]
+}

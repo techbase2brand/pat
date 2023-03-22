@@ -1,0 +1,118 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-hero-banner.css'
+
+  assign mod_hero_image_override = mod_hero_image_override | default: blank
+  assign mod_mobile_hero_image_override = mod_mobile_hero_image_override | default: blank
+  assign mod_heading_override = mod_heading_override | default: blank
+  assign mod_eyebrow_override = mod_eyebrow_override | default: blank
+  assign mod_body_override = mod_body_override | default: blank
+  assign mod_desktop_align_override = mod_desktop_align_override | default: blank
+  assign mod_mobile_align_override = mod_mobile_align_override | default: blank
+  assign mod_text_color = mod_text_color | default: 'Light'
+  assign mod_bg_color = mod_bg_color | default: section.settings.bg_color
+
+  if section.settings.desktop_text_alignment == 'left' or mod_desktop_align_override == 'Left'
+    assign horizontal_align = 'hero-short-full-width__text-container--desktop-left'
+  else
+    assign horizontal_align = 'hero-short-full-width__text-container--desktop-center'
+  endif
+
+  if section.settings.mobile_text_alignment == 'bottom' or mod_mobile_align_override == 'Bottom'
+    assign vertical_align = 'hero-short-full-width__text-container--mobile-bottom'
+  else
+    assign vertical_align = 'hero-short-full-width__text-container--mobile-top'
+  endif
+
+  assign section_bg = blank
+
+  if mod_text_color == 'Dark'
+    assign section_bg = ' background-color-off-black'
+  else
+    assign section_bg = ' background-color-off-white'
+  endif
+
+  if mod_bg_color != 'rgba(0,0,0,0)'
+    assign section_bg = blank
+    assign section_bg_style = mod_bg_color
+  endif
+%}
+
+<section
+  class='hero-short-full-width flex {% if mod_mobile_hero_image_override != blank or section.settings.mobile_image != blank %}hero-short--has-mobile-image{% else %}{% endif %}{{ section_bg }}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+  {% if section_bg_style != blank %}
+    style='background-color: {{ section_bg_style }};'
+  {% endif %}
+>
+  {% if section.settings.mobile_image != blank or mod_mobile_hero_image_override != blank %}
+    <div class='fluid mobile-flex hero-short-mobile-image'>
+      {%- liquid
+        if mod_mobile_hero_image_override != blank
+          render 'adaptive-image', mod_image: mod_mobile_hero_image_override.value, mod_alt: mod_heading_override, mod_loading: 'lazy'
+        else
+          render 'adaptive-image', mod_image: section.settings.mobile_image, mod_alt: section.settings.mobile_image.alt, mod_loading: 'lazy'
+        endif
+      -%}
+    </div>
+  {% else %}
+    <div
+      class='fluid mobile-flex hero-short-mobile-image'
+      {% if mod_bg_color != blank %}
+        style='background-color: {{ mod_bg_color }};'
+      {% endif %}
+    ></div>
+  {% endif %}
+
+  {% if section.settings.desktop_image != blank or mod_hero_image_override != blank %}
+    <div class='fluid hero-short-desktop-image {% if section.settings.mobile_image != blank or mod_mobile_hero_image_override != blank %} desktop-flex {% endif %}'>
+      {%- liquid
+        if mod_hero_image_override != blank
+          render 'adaptive-image', mod_image: mod_hero_image_override.value, mod_alt: mod_heading_override, mod_loading: 'lazy'
+        else
+          render 'adaptive-image', mod_image: section.settings.desktop_image, mod_alt: section.settings.desktop_image.alt, mod_loading: 'lazy'
+        endif
+      -%}
+    </div>
+  {% else %}
+    <div
+      class='fluid hero-short-desktop-image desktop-flex'
+      {% if mod_bg_color != blank %}
+        style='background-color: {{ mod_bg_color }};'
+      {% endif %}
+    ></div>
+  {% endif %}
+
+  <div class='hero-short-full-width__text-container {{ horizontal_align }} {{ vertical_align }}'>
+    {%- if section.settings.eyebrow != blank or mod_eyebrow_override != blank -%}
+      <p class='no-margin s1 {% if section.settings.color_theme == 'dark' or mod_text_color == 'Dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+        {% if mod_eyebrow_override != blank %}
+          {{ mod_eyebrow_override }}
+        {% else %}
+          {{ section.settings.eyebrow }}
+        {% endif %}
+      </p>
+    {% endif %}
+
+    {%- if section.settings.heading != blank or mod_heading_override != blank -%}
+      <h2 class='h2 hero-short-full-width__h2 {% if section.settings.color_theme == 'dark' or mod_text_color == 'Dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+        {% if mod_heading_override != blank %}
+          {{ mod_heading_override }}
+        {% else %}
+          {{ section.settings.heading }}
+        {% endif %}
+      </h2>
+    {% endif %}
+
+    {%- if section.settings.body != blank or mod_body_override != blank -%}
+      <p class='no-margin {% if section.settings.color_theme == 'dark' or mod_text_color == 'Dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+        {% if mod_body_override != blank %}
+          {{ mod_body_override }}
+        {% else %}
+          {{ section.settings.body }}
+        {% endif %}
+      </p>
+    {% endif %}
+  </div>
+</section>

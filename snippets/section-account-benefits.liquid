@@ -1,0 +1,24 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'section-account-benefits.css'
+-%}
+
+<div class="account-benefits border-pewter-gradient-outline">
+  <div class="account-benefits-wrapper background-color-pale-pink color-off-black">
+    {%- if section.settings.title != blank -%}
+      <h3 class="text-center account-benefits-title color-off-black n4">{{ section.settings.title }}</h3>
+    {%- endif -%}
+
+    <div class="account-benefits-list">
+    {%- for benefit in section.blocks -%}
+      <div class="account-benefit">
+        <div class="account-benefit-icon">
+          <img src="{{ benefit.settings.icon | image_url: width: 80 }}" loading="lazy" alt="{{ benefit.settings.icon.alt }}" width="80" height="auto">
+        </div>
+        <div class="account-benefit-details">
+          {{ benefit.settings.text }}
+        </div>
+      </div>
+    {%- endfor -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{%- liquid
+  assign sidebar = sidebar | default: false
+  assign wrapperClass = 'page-main'
+  if sidebar == false
+    assign wrapperClass = wrapperClass | append: ' container'
+  endif
+-%}
+
+<div class='{{ wrapperClass }}'>
+  <div class='page-main-header'>
+    <div class='page-main-header-main'>
+      <h1 class='page-main-title color-off-black h2'>{{ page.title | escape }}</h1>
+    </div>
+  </div>
+  <div class='page-main-content'>
+    {{ page.content }}
+  </div>
+</div>

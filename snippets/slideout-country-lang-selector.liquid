@@ -1,0 +1,118 @@
+<script
+  src='{{ 'component-slideout.js' | asset_url }}'
+  defer='defer'
+  type='module'></script>
+<script
+  src='{{ 'custom-dropdown.js' | asset_url }}'
+  defer='defer'
+  type='module'></script>
+<script src='{{ 'component-lang-selector-dropdown.js' | asset_url }}' type='module'></script>
+
+{% render 'async-stylesheet', mod_url: 'component-lang-selector.css' %}
+{% render 'async-stylesheet', mod_url: 'custom-dropdown.css' %}
+
+<h3 class="lang-selector__title">{{ 'localization.subtitle_html' | t }}</h3>
+
+<lang-selector>
+
+  <div class="combo-container">
+    <label id="country-combobox-label" class="combo-label">{{ 'localization.country_label' | t }}</label>
+    <div class="combo-icon">
+      {% render 'icon-arrow' %}
+    </div>
+    <div class="combo js-select" data-is-country="true">
+      <div
+        aria-controls="country-combobox-box"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="country-combobox-label"
+        id="country-combox"
+        class="combo-input"
+        role="combobox"
+        tabindex="0"></div>
+      <div
+        class="combo-menu js-country-selector"
+        role="listbox"
+        id="country-combobox-box"
+        aria-labelledby="country-combobox-label"
+        tabindex="-1">
+        <div
+          role="option"
+          id="country-combox-0"
+          class="combo-option {% unless shop.domain contains 'ca' or shop.domain contains 'uk' %}option-current{% endunless %} js-combo-option"
+          aria-selected="{% if shop.domain contains 'ca' or shop.domain contains 'uk' %}false{% else %}true{% endif %}"
+          data-href="https://lauramercier.myshopify.com/">
+          {% render 'icon-flag-us' %}
+          {{- 'localization.united_states' | t -}}
+        </div>
+        <div
+          role="option"
+          id="country-combox-1"
+          class="combo-option {% if shop.domain contains 'ca' %}option-current{% endif %} js-combo-option"
+          aria-selected="{% if shop.domain contains 'ca' %}true{% else %}false{% endif %}"
+          data-href="https://lauramercier-ca.myshopify.com/">
+          {% render 'icon-flag-ca' %}
+          {{- 'localization.canada' | t -}}
+        </div>
+        <div
+          role="option"
+          id="country-combox-2"
+          class="combo-option {% if shop.domain contains 'uk' %}option-current{% endif %} js-combo-option"
+          aria-selected="{% if shop.domain contains 'uk' %}true{% else %}false{% endif %}"
+          data-href="https://laura-mercier-uk.myshopify.com/">
+          {% render 'icon-flag-uk' %}
+          {{- 'localization.united_kingdom' | t -}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="combo-container js-language-selector {% unless shop.domain contains 'ca' %}hidden{% endunless %}">
+    <label id="language-combobox-label" class="combo-label">{{ 'localization.language_label' | t }}</label>
+    <div class="combo-icon">
+      {% render 'icon-arrow' %}
+    </div>
+    <div class="combo js-select">
+      <div
+        aria-controls="lang-combobox-box"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="language-combobox-label"
+        id="language-combobox"
+        class="combo-input"
+        role="combobox"
+        tabindex="0"></div>
+      <div
+        class="combo-menu"
+        role="listbox"
+        id="lang-combobox-box"
+        aria-labelledby="language-combobox-label"
+        tabindex="-1">
+        {% form 'localization' %}
+          {% for language in localization.available_languages %}
+            <div
+              role="option"
+              id="language-combox-{{ forloop.index0 }}"
+              class="combo-option {% if language.iso_code == localization.language.iso_code %}option-current{% endif %} js-combo-option"
+              aria-selected="{% if language.iso_code == localization.language.iso_code %}true{% else %}false{% endif %}"
+              data-value="{{ language.iso_code }}">
+              {{- language.endonym_name | capitalize -}}
+            </div>
+          {% endfor %}
+          <input
+            class="js-lang"
+            type="hidden"
+            name="language_code"
+            value="{{ localization.language.iso_code }}">
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  <div class="lang-selector__bottom">
+    <button class="button lang-selector__button js-submit-localization">
+      {{ 'localization.apply' | t }}
+    </button>
+  </div>
+
+</lang-selector>

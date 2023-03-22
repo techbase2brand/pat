@@ -1,0 +1,6 @@
+{%- assign mod_url = mod_url | default: false -%}
+
+{%- if mod_url -%}
+  <link href="{{ mod_url | asset_url }}" rel="preload" as="style" onload="this.rel='stylesheet'">
+  <noscript>{{ mod_url | asset_url | stylesheet_tag }}</noscript>
+{%- endif -%}

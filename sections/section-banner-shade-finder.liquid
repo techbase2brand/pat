@@ -1,0 +1,235 @@
+{% render 'async-stylesheet', mod_url: 'section-banner-shade-finder.css' %}
+
+<style scoped>
+  .banner-shade-finder__bg-img {
+    background-image: url('{{ section.settings.mobile_background_image.src | image_url }}');
+  }
+  @media (min-width: 768px) {
+    .banner-shade-finder__bg-img {
+      background-image: url('{{ section.settings.desktop_background_image.src | image_url }}');
+    }
+  }
+</style>
+
+<section
+  class='
+    banner-shade-finder {% if section.settings.color_theme == 'light' %}
+    background-color-off-white {% else %} background-color-off-black{% endif %}
+    banner-shade-finder__bg-img
+  '
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='desktop-flex banner-shade-finder__image-container banner-shade-finder__image-container--first'>
+    <div class='banner-shade-finder__image-container--inner'>
+      {% render 'adaptive-image', mod_image: section.settings.image_one, mod_alt: section.settings.image_one.alt %}
+    </div>
+  </div>
+
+  <div class='desktop-flex banner-shade-finder__image-container banner-shade-finder__image-container--second'>
+    <div class='banner-shade-finder__image-container--inner'>
+      {% render 'adaptive-image', mod_image: section.settings.image_two, mod_alt: section.settings.image_two.alt %}
+    </div>
+  </div>
+
+  <div class='banner-shade-finder__text-container'>
+    {% if section.settings.eyebrow %}
+      <p class='
+          banner-shade-finder__sub-heading
+          text-center
+          s1 {% if section.settings.color_theme == 'light' %}
+          color-off-black {% else %} color-off-white{% endif %}
+        '>
+        {{ section.settings.eyebrow }}
+      </p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class='
+          banner-shade-finder__heading
+          text-center
+            h1 {% if section.settings.color_theme == 'light' %}
+            color-off-black {% else %} color-off-white{% endif %}
+        '>
+        {{ section.settings.heading }}
+      </h1>
+    {% endif %}
+
+    <div class='banner-shade-finder__mobile-image-container mobile-flex'>
+      <div class='banner-shade-finder__mobile-image-container--inner'>
+        {% render 'adaptive-image', mod_image: section.settings.image_one, mod_alt: section.settings.image_one.alt %}
+      </div>
+
+      <div class='banner-shade-finder__mobile-image-container--inner'>
+        {% render 'adaptive-image', mod_image: section.settings.image_two, mod_alt: section.settings.image_two.alt %}
+      </div>
+
+      <div class='banner-shade-finder__mobile-image-container--inner'>
+        {% render 'adaptive-image',
+          mod_image: section.settings.image_three,
+          mod_alt: section.settings.image_three.alt
+        %}
+      </div>
+
+      <div class='banner-shade-finder__mobile-image-container--inner'>
+        {% render 'adaptive-image',
+          mod_image: section.settings.image_three,
+          mod_alt: section.settings.image_three.alt
+        %}
+      </div>
+    </div>
+
+    <div class='flex flex-direction-column justify-center'>
+      {% if section.settings.description != blank %}
+        <p class='
+            banner-shade-finder__description
+            text-center
+            b2 {% if section.settings.color_theme == 'light' %}
+            color-off-black {% else %} color-off-white{% endif %}
+          '>
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      <div class='banner-shade-finder__button-container flex justify-center'>
+        {% if section.settings.primary_cta_url != blank and section.settings.primary_cta_text %}
+          {% render 'button',
+            mod_type: 'button',
+            mod_value: section.settings.primary_cta_text,
+            mod_theme: section.settings.color_theme,
+            mod_href: section.settings.primary_cta_url
+          %}
+        {% endif %}
+
+        {% if section.settings.secondary_cta_url != blank and section.settings.secondary_cta_text %}
+          {% render 'button',
+            mod_type: 'button',
+            mod_value: section.settings.secondary_cta_text,
+            mod_theme: section.settings.color_theme,
+            mod_href: section.settings.secondary_cta_url
+          %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class='desktop-flex banner-shade-finder__image-container banner-shade-finder__image-container--third'>
+    <div class='banner-shade-finder__image-container--inner'>
+      {% render 'adaptive-image', mod_image: section.settings.image_three, mod_alt: section.settings.image_three.alt %}
+    </div>
+  </div>
+
+  <div class='desktop-flex banner-shade-finder__image-container banner-shade-finder__image-container--last'>
+    <div class='banner-shade-finder__image-container--inner'>
+      {% render 'adaptive-image', mod_image: section.settings.image_four, mod_alt: section.settings.image_four.alt %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.banner-shade-finder.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.banner-shade-finder.settings.id.label",
+      "info": "t:sections.banner-shade-finder.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.banner-shade-finder.settings.eyebrow.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.banner-shade-finder.settings.heading.label",
+      "default": "Heading Lorem Ipsum"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "t:sections.banner-shade-finder.settings.description.label"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta_text",
+      "label": "t:sections.banner-shade-finder.settings.primary-cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "primary_cta_url",
+      "label": "t:sections.banner-shade-finder.settings.primary-cta-url.label"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "t:sections.banner-shade-finder.settings.secondary-cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "t:sections.banner-shade-finder.settings.secondary-cta-url.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background_image",
+      "label": "t:sections.banner-shade-finder.settings.desktop-background-image.label",
+      "info": "t:sections.banner-shade-finder.settings.desktop-background-image.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "t:sections.banner-shade-finder.settings.mobile-background-image.label",
+      "info": "t:sections.banner-shade-finder.settings.mobile-background-image.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_one",
+      "label": "t:sections.banner-shade-finder.settings.image-one.label",
+      "info": "t:sections.banner-shade-finder.settings.image-one.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_two",
+      "label": "t:sections.banner-shade-finder.settings.image-two.label",
+      "info": "t:sections.banner-shade-finder.settings.image-two.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_three",
+      "label": "t:sections.banner-shade-finder.settings.image-three.label",
+      "info": "t:sections.banner-shade-finder.settings.image-three.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_four",
+      "label": "t:sections.banner-shade-finder.settings.image-four.label",
+      "info": "t:sections.banner-shade-finder.settings.image-four.info"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.banner-shade-finder.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.banner-shade-finder.settings.color-theme.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.banner-shade-finder.settings.color-theme.options.dark"
+        }
+      ],
+      "default": "light"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner-shade-finder.name"
+    }
+  ]
+}
+{% endschema %}

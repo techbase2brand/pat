@@ -1,0 +1,71 @@
+{% comment %} @info
+This snippet is intended to house any Javascript variables
+that need to exist in the global scope. The examples include
+a reference to the theme's Shopify CDN and a reference
+to the cart object, that is used in the global Vuex store.
+{% endcomment %}
+
+{%- liquid
+  assign client_status = 'Not Client'
+  if customer.orders_count > 0
+    assign client_status = 'Client'
+  endif
+
+  assign login_status = 'Not Logged'
+  if customer.id
+    assign login_status = 'Logged'
+  endif
+
+  assign root_url = ''
+  unless localization.language.root_url == '/'
+    assign root_url = localization.language.root_url
+  endunless
+-%}
+
+<script>
+  const __GLOBAL__ = {
+    template: "{{template}}",
+    CDNAssets: "{{ 'test.jpg' | asset_url }}".replace(/test.jpg\?\d*/,''),
+    CDNFiles: "{{ 'test.jpg' | file_url }}".replace(/test.jpg\?\d*/,''),
+    domain: "{{ shop.permanent_domain }}",
+    secureURL: "{{ shop.secure_url }}",
+    shopHandle: "{{ shop.permanent_domain | replace: '.myshopify.com', '' }}",
+    storeName: "{{ shop.name }}",
+    storefrontToken: "{{ settings.storefront_token }}",
+    cart: {{ cart | json }},
+    routes: {
+      recommendationsUrl: "{{ routes.product_recommendations_url }}",
+      cartAddURL: '{{ routes.cart_add_url }}',
+      cartChangeURL: '{{ routes.cart_change_url }}',
+      cartUpdateURL: '{{ routes.cart_update_url }}',
+      rootUrl: '{{ root_url }}'
+    },
+    collection: {
+      {%- if collection -%}
+      tags: {{ collection.all_tags | json }},
+      types: {{ collection.all_types | json }},
+      title: {{ collection.title | json }},
+      {%- endif -%}
+      handle: '{{ collection.handle | default: false }}',
+      productsPerPage: {{ settings.products_per_page | default: 20 | times: 1 }},
+      total: {{ collection.all_products_count | default: 0 }}
+    },
+    language: "{{ request.locale.iso_code | upcase }}",
+    loginStatus: "{{ login_status }}",
+    clientStatus: "{{ client_status }}",
+    product: {
+      {%- if product -%}
+      tags: {{ product.tags | json }},
+      title: {{ product.title | json }},
+      {%- endif -%}
+      handle: '{{ product.handle | default: false }}',
+      formID: '',
+      optionConfig: {},
+      variants: {{ product.variants | json }},
+      options: {{ product.options | json }},
+      selectedOrFirstAvailableVariant: {{ product.selected_or_first_available_variant | json }},
+      media: {{ product.media | json }}
+
+    }
+  }
+</script>

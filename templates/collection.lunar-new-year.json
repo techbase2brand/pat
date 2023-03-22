@@ -1,0 +1,99 @@
+{
+  "sections": {
+    "410d62fb-65e7-46c5-9828-68fc8c2e9dbf": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/DESKTOP_2000X570_35853ee2-5d94-4c77-9db6-6e547b1365c6.png",
+        "eyebrow": "Limited Edition",
+        "heading": "Lunar New Year",
+        "body": "Celebrate the Year of the Rabbit!",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "dark",
+        "bg_color": ""
+      }
+    },
+    "583d1385-f59d-43a9-a535-8daf10238276": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-0": {
+          "type": "product",
+          "settings": {
+            "product": "translucent-loose-setting-powder-velour-puff-set-limited-edition",
+            "variant_id": ""
+          }
+        },
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-1": {
+          "type": "product",
+          "settings": {
+            "product": "blush-color-infusion-1",
+            "variant_id": ""
+          }
+        },
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-2": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "variant_id": ""
+          }
+        },
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-3": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-0",
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-1",
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-2",
+        "template--16757412724975__583d1385-f59d-43a9-a535-8daf10238276-1671633154a8d35117-3"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "subheading": "",
+        "body": "",
+        "cta_text": "",
+        "cta_url": "",
+        "image": "shopify://shop_images/LM_LNY23_Ingrid_C_Desktop_image_e1bcd1d2-58ac-4693-b517-3cef1a33b20a.jpg",
+        "image_position": "left"
+      }
+    },
+    "header": {
+      "type": "collection-hero",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "3fb8913b-2a78-46de-82e4-b0c0526fb592": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "We Know You'll Love...",
+        "placement_id": "categorypage-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "410d62fb-65e7-46c5-9828-68fc8c2e9dbf",
+    "583d1385-f59d-43a9-a535-8daf10238276",
+    "header",
+    "product-grid",
+    "3fb8913b-2a78-46de-82e4-b0c0526fb592"
+  ]
+}

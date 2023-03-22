@@ -1,0 +1,1226 @@
+{
+  "sections": {
+    "bb8bd4ec-aef6-4efe-90b6-6ce409e936f2": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16682004054255__bb8bd4ec-aef6-4efe-90b6-6ce409e936f2-1666020891bda917ad-0": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "product": "almond-coconut-milk-souffle-body-creme",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "db00b41a-070c-4e37-a2c1-4d4b9b0ef5f1": {
+          "type": "block",
+          "settings": {
+            "product": "glow-powder-brush",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "206897ca-8a74-4f5a-9058-1c2f3ce27d9f": {
+          "type": "block",
+          "settings": {
+            "product": "candleglow-sheer-perfecting-powder",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "72edb6b2-36bb-45c8-a550-8eea75616f95": {
+          "type": "block",
+          "settings": {
+            "product": "sample-3",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "bcd7eb7e-e677-4e6d-bacb-dd56cd161b5a": {
+          "type": "block",
+          "settings": {
+            "product": "pure-canvas-primer-illuminating-single-variant-product",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "cea7be41-1cf4-4488-8921-a94a5f532aa0": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "product": "alex-test-product-7",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "4e4a8502-4248-4f23-912a-b3392f2899ce": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "product": "alex-test-product-8",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "8aa044fe-e729-4dc7-8f83-d3b98a870461": {
+          "type": "block",
+          "disabled": true,
+          "settings": {
+            "product": "pure-canvas-primer-illuminating-test",
+            "variant_override": "43126898786543",
+            "heading": "",
+            "eyebrow": "Optional Eyebrow",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16682004054255__bb8bd4ec-aef6-4efe-90b6-6ce409e936f2-1666020891bda917ad-0",
+        "db00b41a-070c-4e37-a2c1-4d4b9b0ef5f1",
+        "206897ca-8a74-4f5a-9058-1c2f3ce27d9f",
+        "72edb6b2-36bb-45c8-a550-8eea75616f95",
+        "bcd7eb7e-e677-4e6d-bacb-dd56cd161b5a",
+        "cea7be41-1cf4-4488-8921-a94a5f532aa0",
+        "4e4a8502-4248-4f23-912a-b3392f2899ce",
+        "8aa044fe-e729-4dc7-8f83-d3b98a870461"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Heading <em>Here</em></p>",
+        "section_cta_text": "Action",
+        "section_cta_url": "shopify://pages/about-the-brand",
+        "show_horizontal_rule": true
+      }
+    },
+    "022ad1a5-20e3-498f-87ac-aca0287e265a": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16682004054255__022ad1a5-20e3-498f-87ac-aca0287e265a-16660213569ab4efe3-0": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/FEATURE_3.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://pages/current-offers"
+          }
+        },
+        "9803ffda-5b6b-4184-8a02-aade478a6f40": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/New3.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://pages/customer-service-contact-us"
+          }
+        },
+        "82963bc9-506f-4f01-bd72-811449f4566c": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Conceal.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://pages/current-offers"
+          }
+        },
+        "e29b0059-f508-43f8-bcb0-10e2fcb2aab9": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Img_4_5.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://products/alex-test-product-7"
+          }
+        },
+        "705269cd-3acb-4d31-8f7b-c5b4ce180039": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Img_4_6.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://blogs/makeup"
+          }
+        },
+        "623711c6-8b99-49b2-93b5-4e8f17a3b4a7": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/FEATURE.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://blogs/skincare"
+          }
+        },
+        "0e930cce-3c5b-487e-913c-f7b125ede027": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Img_3_7.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://products/blush-colour-infusion-sample"
+          }
+        },
+        "b302b2eb-c568-4b34-a176-359a885c276e": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Foundation.jpg",
+            "variant_override": "",
+            "heading": "Heading Lorem",
+            "eyebrow": "Optional Eyebrow",
+            "description": "Optional Body Text",
+            "block_cta_text": "Shop now",
+            "block_cta_url": "shopify://pages/customer-service-contact-us"
+          }
+        },
+        "852df0d9-acae-40d6-b8f0-6f01ce8edf5d": {
+          "type": "block",
+          "settings": {
+            "product": "sample-tinted-moisturizer-oil-free-natural-skin-perfector-spf-20",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "dea2ca22-8fcf-48ca-af14-1fdda23583eb": {
+          "type": "block",
+          "settings": {
+            "product": "sample-tinted-moisturizer-oil-free-natural-skin-perfector-spf-20",
+            "variant_override": "",
+            "heading": "",
+            "eyebrow": "",
+            "description": "",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16682004054255__022ad1a5-20e3-498f-87ac-aca0287e265a-16660213569ab4efe3-0",
+        "9803ffda-5b6b-4184-8a02-aade478a6f40",
+        "82963bc9-506f-4f01-bd72-811449f4566c",
+        "e29b0059-f508-43f8-bcb0-10e2fcb2aab9",
+        "705269cd-3acb-4d31-8f7b-c5b4ce180039",
+        "623711c6-8b99-49b2-93b5-4e8f17a3b4a7",
+        "0e930cce-3c5b-487e-913c-f7b125ede027",
+        "b302b2eb-c568-4b34-a176-359a885c276e",
+        "852df0d9-acae-40d6-b8f0-6f01ce8edf5d",
+        "dea2ca22-8fcf-48ca-af14-1fdda23583eb"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Featured Products Grid <em>Content</em></p>",
+        "section_cta_text": "Action",
+        "section_cta_url": "shopify://products/copy-of-alex-test-product-6",
+        "show_horizontal_rule": true
+      }
+    },
+    "16636063222a6f40de": {
+      "type": "section-full-width-slideshow",
+      "blocks": {
+        "16636063226d461f43-0": {
+          "type": "image_slide",
+          "settings": {
+            "first_desktop_image": "shopify://shop_images/slide-1-min_1.jpg",
+            "first_mobile_image": "shopify://shop_images/Img-min.jpg",
+            "slide_heading": "Lorem ipsum dolor sit",
+            "slide_subheading": "Optional Eyebrow Text",
+            "slide_description": "Optional Description Text",
+            "button_1_label": "Action 1",
+            "button_1_link": "/",
+            "button_2_label": "Action 2",
+            "button_2_link": "/",
+            "desktop_text_alignment": "center",
+            "color_scheme": "light",
+            "enable_arrow": true
+          }
+        },
+        "69619526-66b6-4e4f-b652-e796a79f428d": {
+          "type": "image_slide",
+          "settings": {
+            "first_desktop_image": "shopify://shop_images/image_949-min.jpg",
+            "first_mobile_image": "shopify://shop_images/image_949-min.jpg",
+            "second_desktop_image": "shopify://shop_images/image_949-min.jpg",
+            "second_mobile_image": "shopify://shop_images/image_949-min.jpg",
+            "slide_heading": "Lorem ipsum dolor sit",
+            "slide_subheading": "Optional Eyebrow Text",
+            "slide_description": "Optional description text",
+            "button_1_label": "Action 1",
+            "button_1_link": "/",
+            "button_2_label": "Action 2",
+            "button_2_link": "/",
+            "desktop_text_alignment": "center",
+            "color_scheme": "light",
+            "enable_arrow": true
+          }
+        },
+        "0f37d095-4280-41b9-962b-39396a30c471": {
+          "type": "image_slide",
+          "settings": {
+            "first_desktop_image": "shopify://shop_images/slide-1-min_1.jpg",
+            "first_mobile_image": "shopify://shop_images/Img-min.jpg",
+            "slide_heading": "Lorem ipsum dolor sit",
+            "slide_subheading": "Optional Eyebrow Text",
+            "slide_description": "Optional Description Text",
+            "button_1_label": "Action 1",
+            "button_1_link": "/",
+            "button_2_label": "",
+            "button_2_link": "",
+            "desktop_text_alignment": "left",
+            "color_scheme": "light",
+            "enable_arrow": true
+          }
+        },
+        "b94d0e1c-16c9-489e-879d-ea0d4bdf47f3": {
+          "type": "video_slide",
+          "settings": {
+            "desktop_background_video": "shopify://files/videos/Pexels Videos 1321208 (2).mp4",
+            "desktop_caption_src": "",
+            "desktop_caption_srclang": "en",
+            "desktop_caption_label": "english_captions",
+            "desktop_fallback_image": "shopify://shop_images/slide-1-min_1.jpg",
+            "mobile_background_video": "shopify://files/videos/video.mp4",
+            "mobile_caption_src": "",
+            "mobile_caption_srclang": "en",
+            "mobile_caption_label": "english_captions",
+            "mobile_fallback_image": "shopify://shop_images/Img-min.jpg",
+            "slide_heading": "Lorem ipsum dolor sit",
+            "slide_subheading": "Optional Eyebrow Text",
+            "slide_description": "Optional Description Text",
+            "button_1_label": "Action",
+            "button_1_link": "/",
+            "button_2_label": "",
+            "button_2_link": "",
+            "desktop_text_alignment": "center",
+            "color_scheme": "light",
+            "enable_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "16636063226d461f43-0",
+        "69619526-66b6-4e4f-b652-e796a79f428d",
+        "0f37d095-4280-41b9-962b-39396a30c471",
+        "b94d0e1c-16c9-489e-879d-ea0d4bdf47f3"
+      ],
+      "settings": {
+        "id": "",
+        "autorotate": false,
+        "autorotate_interval": 5,
+        "slideshow_description": ""
+      }
+    },
+    "16635941647a55e9cb": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/lm-bg-sample.jpg",
+        "eyebrow": "OPTIONAL EYEBROW",
+        "heading": "Heading Lorem Ipsum Dolor",
+        "body": "Optional Body Text",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "light",
+        "bg_color": ""
+      }
+    },
+    "16635941876a19c7bc": {
+      "type": "section-featured-categories-4up",
+      "blocks": {
+        "166359418768246057-0": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/bottom-col.jpg",
+            "eyebrow": "Shop",
+            "heading": "Face",
+            "category_link": "#"
+          }
+        },
+        "166359418768246057-1": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/bottom-col.jpg",
+            "eyebrow": "Shop",
+            "heading": "Lip",
+            "category_link": "#"
+          }
+        },
+        "166359418768246057-2": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/bottom-col.jpg",
+            "eyebrow": "Shop",
+            "heading": "Eye",
+            "category_link": "#"
+          }
+        },
+        "166359418768246057-3": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/bottom-col.jpg",
+            "eyebrow": "Shop",
+            "heading": "Body",
+            "category_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "166359418768246057-0",
+        "166359418768246057-1",
+        "166359418768246057-2",
+        "166359418768246057-3"
+      ],
+      "settings": {
+        "section_heading": "",
+        "id": ""
+      }
+    },
+    "1663594177a574eba9": {
+      "type": "section-featured-categories-3up",
+      "blocks": {
+        "16635941775c375d49-0": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_944.jpg",
+            "heading": "Heading Lore <em>Ipsum</em>",
+            "body": "Optional Body Text",
+            "collection_link": "#",
+            "collection_link_cta": "Action"
+          }
+        },
+        "16635941775c375d49-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_944.jpg",
+            "heading": "Heading Lore <em>Ipsum</em>",
+            "body": "Optional Body Text",
+            "collection_link": "#",
+            "collection_link_cta": "Action"
+          }
+        },
+        "16635941775c375d49-2": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_944.jpg",
+            "heading": "Heading Lore <em>Ipsum</em>",
+            "body": "Optional Body Text",
+            "collection_link": "#",
+            "collection_link_cta": "Action"
+          }
+        }
+      },
+      "block_order": [
+        "16635941775c375d49-0",
+        "16635941775c375d49-1",
+        "16635941775c375d49-2"
+      ],
+      "settings": {
+        "id": "",
+        "heading": ""
+      }
+    },
+    "1663594042fa62f550": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "background_image": "shopify://shop_images/banner-inset-with-text.jpg",
+        "eyebrow": "Optional Eyebrow",
+        "heading": "Heading  lorem ipsum",
+        "body": "Optional body copy lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "color_theme": "dark",
+        "text_size": "small"
+      }
+    },
+    "16635941917701a99f": {
+      "type": "section-image-with-text-2up",
+      "blocks": {
+        "16635941912d06b2f7-0": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_944.jpg",
+            "eyebrow": "Optional Eyebrow",
+            "heading": "Heading  lorem ipsum dolor",
+            "body": "Optional body copy lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "block_button_url": "#",
+            "block_button_title": "Action"
+          }
+        },
+        "16635941912d06b2f7-1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/image_944.jpg",
+            "eyebrow": "Optional eyeBrow",
+            "heading": "Heading  lorem ipsum dolor",
+            "body": "Optional body copy lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "block_button_url": "#",
+            "block_button_title": "Action"
+          }
+        }
+      },
+      "block_order": [
+        "16635941912d06b2f7-0",
+        "16635941912d06b2f7-1"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "",
+        "button_title": "",
+        "button_link": "",
+        "color_theme": "light"
+      }
+    },
+    "16636019130880cd3d": {
+      "type": "section-banner-artistry",
+      "settings": {
+        "id": "",
+        "background_image": "shopify://shop_images/artistry.png",
+        "eyebrow": "Optional Eyebrow",
+        "heading": "Artistry Banner",
+        "body": "Optional Body Text",
+        "cta_text": "Action",
+        "cta_url": "#",
+        "color_theme": "dark",
+        "image_1": "shopify://shop_images/bottom-col.jpg",
+        "image_2": "shopify://shop_images/bottom-col.jpg",
+        "image_3": "shopify://shop_images/bottom-col.jpg",
+        "image_4": "shopify://shop_images/right-col-image.jpg",
+        "image_5": "shopify://shop_images/image_944.jpg",
+        "image_6": "shopify://shop_images/bottom-col.jpg",
+        "image_7": "shopify://shop_images/image_944.jpg",
+        "image_8": "shopify://shop_images/top-image.jpg",
+        "image_9": "shopify://shop_images/image_944.jpg"
+      }
+    },
+    "166360716454bea800": {
+      "type": "section-featured-products-with-image",
+      "blocks": {
+        "166360716468a69761-0": {
+          "type": "product",
+          "settings": {
+            "product": "sample-tinted-moisturizer-oil-free-natural-skin-perfector-spf-20",
+            "variant_id": ""
+          }
+        },
+        "166360716468a69761-1": {
+          "type": "product",
+          "settings": {
+            "product": "caviar-stick-trio",
+            "variant_id": ""
+          }
+        },
+        "166360716468a69761-2": {
+          "type": "product",
+          "settings": {
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": ""
+          }
+        },
+        "166360716468a69761-3": {
+          "type": "product",
+          "settings": {
+            "product": "test-skincare-laura-mercier",
+            "variant_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "166360716468a69761-0",
+        "166360716468a69761-1",
+        "166360716468a69761-2",
+        "166360716468a69761-3"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "Heading Lorem <em>ipsum</em>",
+        "subheading": "Optional Eyebrow",
+        "body": "Optional Body Text",
+        "cta_text": "Action",
+        "cta_url": "shopify://collections/shop-all-new-arrivals",
+        "image": "shopify://shop_images/Rectangle_4018.png",
+        "image_mobile": "shopify://shop_images/Rectangle_4019.png",
+        "image_position": "left"
+      }
+    },
+    "16636925744a8ec6eb": {
+      "type": "section-image-with-text-tall",
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/Img.png",
+        "complimentary_image": "shopify://shop_images/Img_2341d47e-c4dd-49d7-ae51-7c0be3dc5a1a.png",
+        "eyebrow": "Eyebrow",
+        "heading": "Heading Lorem Ipsum Dolor Sit Amet",
+        "body": "Body text",
+        "section_link_text": "Link 1",
+        "section_link_url": "#",
+        "section_link_2_text": "Link 2",
+        "section_link_2_url": "#",
+        "image_orientation": "left",
+        "color_theme": "dark"
+      }
+    },
+    "image-text-collage": {
+      "type": "section-four-up-image-text-collage",
+      "blocks": {
+        "7b684939-729b-4622-b7e5-edcf6b3008c5": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_949-min_1.jpg",
+            "eyebrow": "",
+            "heading": "Block Heading",
+            "body": "",
+            "block_cta_text": "Action",
+            "block_cta_url": "shopify://products/copy-of-rouge-essentiel-cream-lipstick-3-image-version"
+          }
+        },
+        "21e99e38-7552-4ae8-8784-8a1b1fed8649": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/right-col-image.jpg",
+            "eyebrow": "",
+            "heading": "Block Heading",
+            "body": "",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://pages/contact"
+          }
+        },
+        "2232d147-a292-4edd-ac16-da8a677e01ae": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/bottom-col.jpg",
+            "eyebrow": "",
+            "heading": "Block Heading",
+            "body": "",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/rouge-essentiel-cream-lipstick-1-image-version"
+          }
+        },
+        "ebf5a069-ae94-4147-bde6-2684d3e48b0a": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/image_8903.jpg",
+            "eyebrow": "",
+            "heading": "Block Heading",
+            "body": "",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/copy-of-rouge-essentiel-cream-lipstick-3-image-version"
+          }
+        }
+      },
+      "block_order": [
+        "7b684939-729b-4622-b7e5-edcf6b3008c5",
+        "21e99e38-7552-4ae8-8784-8a1b1fed8649",
+        "2232d147-a292-4edd-ac16-da8a677e01ae",
+        "ebf5a069-ae94-4147-bde6-2684d3e48b0a"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "what's new"
+      }
+    },
+    "16639492248fa51ef1": {
+      "type": "section-hero-banner",
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/image_949-min_1.jpg",
+        "eyebrow": "Eyebrow",
+        "heading": "Heading Lorem Ipsum Dolor",
+        "body": "Body",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "bottom",
+        "color_theme": "light",
+        "bg_color": ""
+      }
+    },
+    "16642010253c0604e8": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "1664201025f36595f2-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img.png",
+            "eyebrow": "Optional Eyebrow",
+            "heading": "Heading Lorem Ipsum",
+            "body": "Body text lorem ipsum dolor is amet",
+            "cta_url": "shopify://products/alex-test-product-8",
+            "cta_text": "Text"
+          }
+        },
+        "1664201025f36595f2-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_92a93b68-d386-484d-8f30-27ef2d63008a.png",
+            "eyebrow": "test",
+            "heading": "Heading Lorem Ipsum",
+            "body": "This is a test",
+            "cta_url": "shopify://blogs/skincare/test-blog",
+            "cta_text": "test"
+          }
+        },
+        "1664201025f36595f2-2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "Heading Lorem Ipsum",
+            "body": "",
+            "cta_url": "",
+            "cta_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "1664201025f36595f2-0",
+        "1664201025f36595f2-1",
+        "1664201025f36595f2-2"
+      ],
+      "settings": {
+        "section_title": "Section title",
+        "id": ""
+      }
+    },
+    "16643781231f7ad0f6": {
+      "type": "section-hero-banner-two-images",
+      "settings": {
+        "id": "",
+        "first_image": "shopify://shop_images/Img_or_Autoplay_Video.jpg",
+        "second_image": "shopify://shop_images/artistry.png",
+        "eyebrow": "optional eyebrow",
+        "heading": "Heading lorem ipsum",
+        "body": "<p>this is a test</p>",
+        "primary_cta_url": "shopify://blogs/skincare",
+        "primary_cta_text": "Action",
+        "secondary_cta_url": "shopify://pages/customer-service-privacy-policy",
+        "secondary_cta_text": "Second",
+        "color_theme": "dark"
+      }
+    },
+    "166479144796f1eb05": {
+      "type": "section-comparison-slider-large-arch",
+      "blocks": {
+        "166479144762602e3b-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_FA20_TM_3W1_Bisque_BeforeAfter_2000x2000_1.jpg",
+            "slide_product_image": "shopify://shop_images/original_1.png",
+            "slide_heading": "Extra long heading",
+            "slide_body": "Body Copy",
+            "link_text": "Shop Now",
+            "link_url": "#"
+          }
+        },
+        "166479144762602e3b-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_FA20_TMOF_3W1_Bisque_BeforeAfter_SE_Zuyapa_2000x2000_2.jpg",
+            "slide_product_image": "shopify://shop_images/original_2.png",
+            "slide_heading": "Heading",
+            "slide_body": "Body Copy",
+            "link_text": "Shop Now",
+            "link_url": "#"
+          }
+        },
+        "166479144762602e3b-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_SP22_TMLR_4C1_Almond_BeforeAfter_3680x3680_R72_2.png",
+            "slide_product_image": "shopify://shop_images/original_3.png",
+            "slide_heading": "Heading",
+            "slide_body": "Body Copy",
+            "link_text": "Shop Now",
+            "link_url": "#"
+          }
+        },
+        "166479144762602e3b-3": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_92a93b68-d386-484d-8f30-27ef2d63008a.png",
+            "slide_product_image": "shopify://shop_images/original_2.png",
+            "slide_heading": "Heading",
+            "slide_body": "Body Copy",
+            "link_text": "Shop Now",
+            "link_url": "#"
+          }
+        }
+      },
+      "block_order": [
+        "166479144762602e3b-0",
+        "166479144762602e3b-1",
+        "166479144762602e3b-2",
+        "166479144762602e3b-3"
+      ],
+      "settings": {
+        "id": "",
+        "eyebrow": "Optional eyebrow",
+        "heading": "Compare <em>Module</em>",
+        "section_cta_text": "Learn More",
+        "section_cta_url": "#"
+      }
+    },
+    "b2753c2b-521d-4a73-8e40-17a755f43958": {
+      "type": "section-banner-shade-finder",
+      "settings": {
+        "id": "",
+        "eyebrow": "Optional Eyebrow",
+        "heading": "Heading Lorem Ipsum",
+        "description": "Optional Body Text",
+        "primary_cta_text": "Action",
+        "primary_cta_url": "#",
+        "secondary_cta_text": "Action",
+        "secondary_cta_url": "#",
+        "desktop_background_image": "shopify://shop_images/artistry.png",
+        "mobile_background_image": "shopify://shop_images/Mask_group.png",
+        "image_one": "shopify://shop_images/image_872.jpg",
+        "image_two": "shopify://shop_images/image_872.jpg",
+        "image_three": "shopify://shop_images/image_872.jpg",
+        "image_four": "shopify://shop_images/image_872.jpg",
+        "color_theme": "dark"
+      }
+    },
+    "1664647460da33682f": {
+      "type": "section-featured-products-fifty-fifty-wide",
+      "blocks": {
+        "16646474600f73cb27-0": {
+          "type": "product",
+          "settings": {
+            "theme": "light",
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": "43028796145903",
+            "subheading": "OPTIONAL EYEBROW",
+            "body": "Rouge Essentiel Silky Crème Lipstick fuses high-impact color with weightless decadence for the ultimate sensation in lip color.",
+            "shade_image": "shopify://shop_images/Group_13787.png",
+            "image": "shopify://shop_images/Img_92a93b68-d386-484d-8f30-27ef2d63008a.png",
+            "cta_title": "Action",
+            "cta_url": ""
+          }
+        },
+        "a3d0a414-1aa1-4e2c-8c56-d7e213236971": {
+          "type": "product",
+          "settings": {
+            "theme": "light",
+            "product": "alex-test-product-9",
+            "variant_id": "",
+            "subheading": "Heading Lorem Ipsum",
+            "body": "Optional Body Text",
+            "shade_image": "shopify://shop_images/Group_13787.png",
+            "image": "shopify://shop_images/split-section-image-min.jpg",
+            "cta_title": "Action",
+            "cta_url": ""
+          }
+        },
+        "48163918-abe4-45db-ab76-a2c9a05d54ad": {
+          "type": "product",
+          "settings": {
+            "theme": "light",
+            "product": "tinted-moisturizer-oil-free-natural-skin-perfector-spf-20-test",
+            "variant_id": "43359488934127",
+            "subheading": "EYEBROW",
+            "body": "Infused with oil-absorbing powders, 83% of consumers feel the formula balances even the oiliest of complexions, without feeling tight or over-drying.",
+            "shade_image": "shopify://shop_images/Group_13787.png",
+            "image": "shopify://shop_images/image-placeholder-min_1.jpg",
+            "cta_title": "Action",
+            "cta_url": "shopify://products/tinted-moisturizer-oil-free-natural-skin-perfector-spf-20-test"
+          }
+        }
+      },
+      "block_order": [
+        "16646474600f73cb27-0",
+        "a3d0a414-1aa1-4e2c-8c56-d7e213236971",
+        "48163918-abe4-45db-ab76-a2c9a05d54ad"
+      ],
+      "settings": {
+        "id": "",
+        "image_position": "right"
+      }
+    },
+    "b80f1df2-8f19-45b8-bd9a-c584d0930715": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/image_872.jpg",
+        "eyebrow": "Optional Eyebrow text",
+        "heading": "Heading Lorem Ipsum Dolor Sit Amet",
+        "body": "Optional body text",
+        "section_link_text": "Action",
+        "section_link_url": "/",
+        "section_bg_override": "",
+        "image_orientation": "left",
+        "color_theme": "dark",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "ace06fa3-7c80-4ae5-9c71-a199bfd9f47f": {
+      "type": "section-comparison-slider-3up",
+      "blocks": {
+        "template--16729257640175__ace06fa3-7c80-4ae5-9c71-a199bfd9f47f-16704301827f1386b4-0": {
+          "type": "category",
+          "settings": {
+            "product": "angled-cheek-contour-brush",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "4239b448-8815-4e27-866f-4cbbb7dae298": {
+          "type": "category",
+          "settings": {
+            "product": "all-over-eye-color-brush",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "482c2d19-5495-4373-83a4-98b3f6b2d56b": {
+          "type": "category",
+          "settings": {
+            "product": "an-artists-gift-brush-collection",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "683ba7eb-b220-4b3d-bd36-1a814a5bed7a": {
+          "type": "category",
+          "settings": {
+            "product": "artist-eyelash-curler",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729257640175__ace06fa3-7c80-4ae5-9c71-a199bfd9f47f-16704301827f1386b4-0",
+        "4239b448-8815-4e27-866f-4cbbb7dae298",
+        "482c2d19-5495-4373-83a4-98b3f6b2d56b",
+        "683ba7eb-b220-4b3d-bd36-1a814a5bed7a"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p><em>Compare</em></p><p><em>Module</em></p>",
+        "subheading": "Subheading Lorem",
+        "body": "Body copy, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "cta_text": "Learn More",
+        "cta_url": "shopify://blogs/video-gallery"
+      }
+    },
+    "27067e34-0f79-4b52-88ed-763c0f6de4aa": {
+      "type": "section-comparison-slider-4up",
+      "blocks": {
+        "template--16729257640175__27067e34-0f79-4b52-88ed-763c0f6de4aa-1670430071f3b75b9d-0": {
+          "type": "category",
+          "settings": {
+            "product": "all-over-eye-color-brush",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "2c2379e0-75d3-4823-a86c-68cd2bb9e4dd": {
+          "type": "category",
+          "settings": {
+            "product": "caviar-volume-panoramic-mascara",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "bb58ec48-7990-4c6d-8cd5-936b756e536f": {
+          "type": "category",
+          "settings": {
+            "product": "ambre-vanille-souffle-body-creme",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "047a19ba-09b6-45cf-a1d4-df40f6179e41": {
+          "type": "category",
+          "settings": {
+            "product": "cheek-color-brush",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729257640175__27067e34-0f79-4b52-88ed-763c0f6de4aa-1670430071f3b75b9d-0",
+        "2c2379e0-75d3-4823-a86c-68cd2bb9e4dd",
+        "bb58ec48-7990-4c6d-8cd5-936b756e536f",
+        "047a19ba-09b6-45cf-a1d4-df40f6179e41"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p><em>Compare Module</em></p>",
+        "subheading": "Subheading Lorem",
+        "body": "Body copy, ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "cta_text": "Learn More",
+        "cta_url": "shopify://blogs/video-gallery/summer-eye-shadow-look-pink-eye-shadow-tutorial"
+      }
+    },
+    "e56becd7-6eae-44ab-ae73-48eb1c86b866": {
+      "type": "section-featured-products-tall-with-swatches",
+      "blocks": {
+        "template--16569314476271__e56becd7-6eae-44ab-ae73-48eb1c86b866-16652511555e03cb2b-0": {
+          "type": "product",
+          "settings": {
+            "theme": "dark",
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": "43028795654383",
+            "product_name": "",
+            "shade_name": "",
+            "shade_complimentary_color": ""
+          }
+        },
+        "b020cc33-6809-4e6a-a890-122777b4ac66": {
+          "type": "product",
+          "settings": {
+            "theme": "dark",
+            "product": "tinted-moisturizer-oil-free-natural-skin-perfector-spf-20-test",
+            "variant_id": "43359488835823",
+            "product_name": "Tinted Moisturizer Oil Free Natural Skin Perfector",
+            "shade_name": "0W1 Pearl - SPF 20",
+            "image": "shopify://shop_images/top-image.jpg",
+            "shade_complimentary_color": "#6d0d19"
+          }
+        },
+        "7ca0a012-240b-41ff-b456-b388aa0afde4": {
+          "type": "product",
+          "settings": {
+            "theme": "light",
+            "product": "rouge-essentiel-cream-lipstick-1-image-version",
+            "variant_id": "",
+            "product_name": "",
+            "shade_name": "",
+            "shade_complimentary_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16569314476271__e56becd7-6eae-44ab-ae73-48eb1c86b866-16652511555e03cb2b-0",
+        "b020cc33-6809-4e6a-a890-122777b4ac66",
+        "7ca0a012-240b-41ff-b456-b388aa0afde4"
+      ],
+      "settings": {
+        "id": "",
+        "image_position": "left",
+        "bg_image": "shopify://shop_images/Img_2341d47e-c4dd-49d7-ae51-7c0be3dc5a1a.png",
+        "heading": "Heading <em>Dolor</em>",
+        "body": "Optional Body Text"
+      }
+    },
+    "d62baea4-57cc-4930-bbc2-669939404827": {
+      "type": "section-image-with-text-square",
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/arch-image.png",
+        "eyebrow": "Optional Eyebrow",
+        "heading": "Heading Lorem Ipsum Dolor Sit Amet",
+        "body": "Body Text",
+        "section_link_text": "Action",
+        "section_link_url": "#",
+        "section_link_2_text": "Action",
+        "section_link_2_url": "#",
+        "image_orientation": "right",
+        "text_alignment": "center",
+        "color_theme": "light",
+        "background_color_override": "#f4e3e2"
+      }
+    },
+    "a6b4c81c-f790-4ab7-baf8-c4eaf2e71cf7": {
+      "type": "section-featured-products-carousel",
+      "blocks": {
+        "f5cc255c-e04f-46cd-896c-f3134c275f70": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": "43028795654383"
+          }
+        },
+        "template--16669271359727__a6b4c81c-f790-4ab7-baf8-c4eaf2e71cf7-166560387970ebb733-0": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "test-skincare-laura-mercier",
+            "variant_id": ""
+          }
+        },
+        "317cf954-552f-4deb-9806-2fb85e2c25df": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "pure-canvas-primer-illuminating-test",
+            "variant_id": ""
+          }
+        },
+        "1263d4c7-1deb-4a2e-8e53-8d412ac7966a": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "sample-tinted-moisturizer-oil-free-natural-skin-perfector-spf-20",
+            "variant_id": ""
+          }
+        },
+        "93e24119-969f-475f-a747-97aa974ddf0d": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "test-skincare-laura-mercier",
+            "variant_id": ""
+          }
+        },
+        "35cb997e-9be5-49bb-a618-7a4c7530e54f": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": "43028795654383"
+          }
+        },
+        "8ee167a3-d4cf-4925-988a-3628c31a2705": {
+          "type": "product",
+          "settings": {
+            "id": "",
+            "product": "rouge-essentiel-cream-lipstick-test",
+            "variant_id": "43028795949295"
+          }
+        }
+      },
+      "block_order": [
+        "f5cc255c-e04f-46cd-896c-f3134c275f70",
+        "template--16669271359727__a6b4c81c-f790-4ab7-baf8-c4eaf2e71cf7-166560387970ebb733-0",
+        "317cf954-552f-4deb-9806-2fb85e2c25df",
+        "1263d4c7-1deb-4a2e-8e53-8d412ac7966a",
+        "93e24119-969f-475f-a747-97aa974ddf0d",
+        "35cb997e-9be5-49bb-a618-7a4c7530e54f",
+        "8ee167a3-d4cf-4925-988a-3628c31a2705"
+      ],
+      "settings": {
+        "heading": "Heading  <em>dolor sit</em> amet Sed Do"
+      }
+    },
+    "8385fdf8-30ed-4304-8965-3117ccff823a": {
+      "type": "section-banner-large-arch",
+      "blocks": {
+        "9dd7cc91-77db-43c7-bbbf-ad07804d43c6": {
+          "type": "col_block",
+          "settings": {
+            "heading": "Heading 1",
+            "subheading": "Optinal subheading",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, temporibus ducimus. Inventore odio voluptates maxime ipsa, sequi numquam harum, dolore provident cumque molestias rerum minima. Cum autem repellendus odit totam.",
+            "cta_button_text": "",
+            "cta_button_url": ""
+          }
+        },
+        "32da5450-7578-48d1-8199-176146a36109": {
+          "type": "col_block",
+          "settings": {
+            "heading": "Heading 2",
+            "subheading": "optional subheading",
+            "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, temporibus ducimus. Inventore odio voluptates maxime ipsa, sequi numquam harum, dolore provident cumque molestias rerum minima. Cum autem repellendus odit totam.",
+            "cta_button_text": "",
+            "cta_button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "9dd7cc91-77db-43c7-bbbf-ad07804d43c6",
+        "32da5450-7578-48d1-8199-176146a36109"
+      ],
+      "settings": {
+        "id": "",
+        "eyebrow_text": "Eyebrow Text",
+        "heading_line_1": "Heading Line 1",
+        "heading_line_2": "Heading Line 2",
+        "arch_image": "shopify://shop_images/5050_Left_Banner_1.jpg",
+        "arch_video": "shopify://files/videos/video.mp4"
+      }
+    }
+  },
+  "order": [
+    "bb8bd4ec-aef6-4efe-90b6-6ce409e936f2",
+    "022ad1a5-20e3-498f-87ac-aca0287e265a",
+    "16636063222a6f40de",
+    "16635941647a55e9cb",
+    "16635941876a19c7bc",
+    "1663594177a574eba9",
+    "1663594042fa62f550",
+    "16635941917701a99f",
+    "16636019130880cd3d",
+    "166360716454bea800",
+    "16636925744a8ec6eb",
+    "image-text-collage",
+    "16639492248fa51ef1",
+    "16642010253c0604e8",
+    "16643781231f7ad0f6",
+    "166479144796f1eb05",
+    "b2753c2b-521d-4a73-8e40-17a755f43958",
+    "1664647460da33682f",
+    "b80f1df2-8f19-45b8-bd9a-c584d0930715",
+    "ace06fa3-7c80-4ae5-9c71-a199bfd9f47f",
+    "27067e34-0f79-4b52-88ed-763c0f6de4aa",
+    "e56becd7-6eae-44ab-ae73-48eb1c86b866",
+    "d62baea4-57cc-4930-bbc2-669939404827",
+    "a6b4c81c-f790-4ab7-baf8-c4eaf2e71cf7",
+    "8385fdf8-30ed-4304-8965-3117ccff823a"
+  ]
+}

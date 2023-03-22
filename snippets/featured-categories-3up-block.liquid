@@ -1,0 +1,69 @@
+<script src='{{ 'section-featured-categories-3up.js' | asset_url }}' defer='defer' type='module'></script>
+
+{%- liquid
+  assign mod_block = mod_block
+  assign mod_class = mod_class
+  assign mod_section_heading = mod_section_heading | default: blank
+  assign mod_attr = mod_attr | default: false
+-%}
+
+<div
+  class='featured-collection-three-up__block {{ mod_class }}'
+  {% if mod_attr %}
+    {{ mod_attr }}
+  {% endif %}
+>
+  {% if mod_block.settings.image == blank %}
+    {% if mod_block.settings.collection_link == blank %}
+      <div class='featured-collection-three-up__collection-placeholder-image background-color-off-black'></div>
+      {% else %}
+      <a
+        href='{{ mod_block.settings.collection_link }}'
+        class='background-color-off-black featured-collection-three-up__collection-placeholder-image'
+      ></a>
+    {% endif %}
+  {% endif %}
+
+    {% if mod_block.settings.collection_link != blank %}
+      <a
+        href='{{ mod_block.settings.collection_link }}'
+        class='background-color-off-black featured-collection-three-up__collection-placeholder-image block'
+      >
+    {% endif %}
+
+      {%- render 'adaptive-image',
+        mod_image: mod_block.settings.image,
+        mod_alt: mod_block.settings.image.alt,
+        mod_aspect_ratio: 'square',
+        bg: 'js-featured-collection-three-up-image featured-collection-three-up__collection-image block'
+      -%}
+
+    {% if mod_block.settings.collection_link != blank %}
+      </a>
+    {% endif %}
+
+  {% if mod_block.settings.heading != blank %}
+    {% if mod_section_heading == blank %}
+      <h2 class='featured-collection-three-up__collection-title h3 text-center no-margin'>
+        {{ mod_block.settings.heading }}
+      </h2>
+    {% else %}
+      <h3 class='featured-collection-three-up__collection-title h3 text-center no-margin'>
+        {{ mod_block.settings.heading }}
+      </h3>
+    {% endif %}
+  {% endif %}
+  {% if mod_block.settings.body != blank %}
+    <p class='featured-collection-three-up__collection-subtitle b2 text-center no-margin'>
+      {{ mod_block.settings.body }}
+    </p>
+  {% endif %}
+
+  {% if mod_block.settings.collection_link != blank %}
+    <div class='flex justify-center'>
+      <a href='{{ mod_block.settings.collection_link }}' class='button--text-underline'>
+        {{- mod_block.settings.collection_link_cta -}}
+      </a>
+    </div>
+  {% endif %}
+</div>

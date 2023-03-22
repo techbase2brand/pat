@@ -1,0 +1,127 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "ee708dbc-c3d2-4341-a2f4-ebd91ad68be2": {
+      "type": "section-comparison-slider-3up",
+      "blocks": {
+        "template--16729256362223__ee708dbc-c3d2-4341-a2f4-ebd91ad68be2-1670425832349e5a2f-0": {
+          "type": "category",
+          "settings": {
+            "product": "flawless-lumiere-foundation",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "2a03d5a7-08cc-4f85-8ec2-23eeb02a98b3": {
+          "type": "category",
+          "settings": {
+            "product": "smooth-finish-foundation-powder",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "7ab4ffd7-578c-4fd7-81be-9fe739cf397e": {
+          "type": "category",
+          "settings": {
+            "product": "flawless-fusion-ultra-longwear-foundation",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256362223__ee708dbc-c3d2-4341-a2f4-ebd91ad68be2-1670425832349e5a2f-0",
+        "2a03d5a7-08cc-4f85-8ec2-23eeb02a98b3",
+        "7ab4ffd7-578c-4fd7-81be-9fe739cf397e"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Find Your Perfect Foundation</p>",
+        "subheading": "",
+        "body": "Explore liquid and powder foundation formulas in natural, matte or luminous finishes.",
+        "cta_text": "",
+        "cta_url": ""
+      }
+    },
+    "19629961-83b9-4b60-8dc9-6bf44272c55b": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_6.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer",
+            "body": "Nourish, rejuvenate and perfect skin, now in three finishes.",
+            "cta_url": "shopify://collections/tinted-moisturizer",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_6.jpg",
+            "eyebrow": "",
+            "heading": "Translucent Loose Setting Powder",
+            "body": "Set your makeup with this cult-favorite powder featuring 16-hour staying power.",
+            "cta_url": "shopify://collections/translucent-setting-powder",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Concealer_9e79868b-fc5e-4204-b0b0-984b1c981cb9.jpg",
+            "eyebrow": "",
+            "heading": "Concealer",
+            "body": "Erase dark circles and discoloration to give skin a flawless look.",
+            "cta_url": "shopify://collections/concealer",
+            "cta_text": "Shop Now"
+          }
+        },
+        "e7878d60-1340-480b-ad74-655909808d43": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_4_5.jpg",
+            "eyebrow": "",
+            "heading": "Blush",
+            "body": "Add a natural, effortless flush of color.",
+            "cta_url": "shopify://collections/cheek",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-0",
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-1",
+        "template--16665906315503__19629961-83b9-4b60-8dc9-6bf44272c55b-1665667839f0ccb842-2",
+        "e7878d60-1340-480b-ad74-655909808d43"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "ee708dbc-c3d2-4341-a2f4-ebd91ad68be2",
+    "19629961-83b9-4b60-8dc9-6bf44272c55b"
+  ]
+}

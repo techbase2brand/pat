@@ -1,0 +1,29 @@
+findation-button {
+  position: relative;
+  display: block;
+}
+
+#findation-button-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#findation-button-iframe {
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  z-index: 2;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#findation-widget-button {
+  display: none;
+}
+
+findation-button .button-findation-open:disabled {
+  border: none;
+}

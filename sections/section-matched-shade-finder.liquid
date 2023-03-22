@@ -1,0 +1,30 @@
+<script src='{{ 'component-matched-shade-finder.js' | asset_url }}' type='module' defer='defer'></script>
+
+{%- capture matched_shade_finder_contents -%}
+  <matched-shade-finder
+    api-key="{{ settings.perfect_corp_api_key }}"
+    widget-id="{{ settings.perfect_corp_matched_widget_id }}"
+    language="{{ settings.perfect_corp_language }}"
+    privacy-policy="{{ settings.perfect_corp_privacy_policy_url }}"
+    {% if settings.perfect_corp_enable_kiss_detect %}
+    enable-kiss-detect="true"
+    {% endif %}
+  >
+    <div id="YMK-module"></div>
+  </matched-shade-finder>
+{%- endcapture -%}
+{%- capture matched_shade_finder_title -%}
+  {{ 'general.shades.matched_shade_finder' | t }}
+{%- endcapture -%}
+{% render "slideout", type: 'modal', title: matched_shade_finder_title, slideout_id: 'foundation-finder', content: matched_shade_finder_contents %}
+
+{% schema %}
+{
+  "name": "t:sections.matched-shade-finder.name",
+  "presets": [
+    {
+      "name": "t:sections.matched-shade-finder.name"
+    }
+  ]
+}
+{% endschema %}

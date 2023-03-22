@@ -1,0 +1,337 @@
+.page-store-locator .h2 * {
+  margin: 0;
+  font-weight: var(--font-weight);
+  font-size: var(--font-scale-h2);
+}
+
+.page-store-locator {
+  padding: 2.5rem;
+}
+
+.page-store-locator .page-main-header {
+  padding-bottom: 2.4rem;
+}
+
+.page-store-locator .page-main-title {
+  text-align: center;
+}
+
+.page-store-locator #stockist-widget .stockist-query-entry {
+  min-height: 5.8rem;
+}
+
+.page-store-locator #stockist-widget .stockist-result-list ul {
+  margin-right: 0;
+  z-index: 0;
+}
+
+.page-store-locator #stockist-widget .stockist-result-list ul > li {
+  border: none;
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 2px);
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-list-result
+  .stockist-result-distance {
+  top: 4rem;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-query-entry
+  .stockist-search-field {
+  border: 1px solid var(--color-light-tan);
+  height: 100%;
+  background: transparent;
+  padding: 2rem 1.2rem;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-query-entry
+  .stockist-search-button
+  button {
+  height: 100%;
+  background-color: var(--color-off-black);
+  width: 8rem;
+  min-height: 5.8rem;
+  border-radius: 0;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-list-result
+  .stockist-result-name {
+  /* b1 styles */
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-family: var(--font-mont);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-result
+  > div.stockist-result-name
+  + div.stockist-result-address,
+.page-store-locator .stockist-result-phone,
+.page-store-locator .stockist-result-distance-text {
+  /* b2 styles */
+  margin-top: 6px;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-family: var(--font-mont);
+  font-weight: 400;
+  letter-spacing: -0.02rem;
+}
+
+.page-store-locator #stockist-widget .stockist-search-filter-checkbox label {
+  font-size: 1.2rem;
+  line-height: 1.17;
+  font-family: var(--font-mont);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.page-store-locator .stockist-result-notes {
+  font-size: 1.3rem;
+  line-height: 20px;
+  font-family: var(--font-mont);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-off-black);
+}
+
+.page-store-locator .stockist-result-phone a {
+  text-decoration: none;
+}
+
+.page-store-locator #stockist-widget .stockist-list-result > div {
+  margin-top: 6px;
+}
+
+/* hiding the widget attribution 😉 */
+.page-store-locator .stockist-powered-by-link {
+  display: none;
+}
+
+/* styles from the .hide-scrollbars class */
+.page-store-locator .stockist-result-list {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  scrollbar-height: none; /* Firefox */
+}
+
+/* styles from the .hide-scrollbars class */
+.page-store-locator .stockist-result-list::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  height: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+  display: none;
+}
+
+.page-store-locator li.stockist-result.stockist-list-result.stockist-selected {
+  background-color: var(--color-off-white);
+  border-radius: 1.6rem;
+  position: relative;
+  box-shadow: 0px 0px 200px rgba(221, 189, 172, 0.5);
+}
+
+.page-store-locator
+  li.stockist-result.stockist-list-result.stockist-selected::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: var(--color-gradient-pewter-outline);
+  content: '';
+  z-index: -1;
+  border-radius: 1.6rem;
+}
+
+.page-store-locator #stockist-widget .stockist-search-filter-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2.5rem;
+  margin-top: 6rem;
+}
+
+.page-store-locator #stockist-widget .stockist-search-filter-checkbox label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  color: var(--color-off-black);
+}
+
+.page-store-locator #stockist-widget .stockist-search-filter-checkbox input {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  accent-color: transparent;
+  margin: 0 1.2rem 0 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-search-filter-checkbox
+  input:before {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: var(--color-gradient-pewter-outline);
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-search-filter-checkbox
+  input:after {
+  content: '';
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-search-filter-checkbox
+  input:checked:before {
+  background-color: var(--color-off-black);
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-search-filter-checkbox
+  input:checked::after {
+  display: block;
+}
+
+@media (min-width: 767px) {
+  .page-store-locator {
+    padding: 6rem;
+  }
+
+  .page-store-locator .page-main-title {
+    width: 33.33%;
+  }
+
+  .page-store-locator
+    #stockist-widget
+    .stockist-horizontal
+    .stockist-side-panel {
+    width: 33.33%;
+  }
+
+  .page-store-locator #stockist-widget .stockist-horizontal {
+    overflow: visible;
+  }
+
+  .page-store-locator #stockist-widget .stockist-map {
+    width: calc(66.66% - 6rem);
+    left: unset;
+    top: -10.1rem;
+  }
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-map
+  .leaflet-popup-content-wrapper {
+  padding: 2rem;
+  border-radius: 1.6rem;
+  position: relative;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-map
+  .leaflet-popup-content-wrapper::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  background: var(--color-gradient-pewter-outline);
+  content: '';
+  z-index: -1;
+  border-radius: 1.6rem;
+}
+
+.page-store-locator #stockist-widget .stockist-map .leaflet-popup-content {
+  margin: 0;
+}
+
+.page-store-locator #stockist-widget .stockist-map .stockist-result-name {
+  /* h4 font styles  */
+  font-size: var(--font-scale-h4);
+  font-weight: var(--font-weight-h4, var(--font-weight));
+  font-family: var(--font-canela);
+}
+
+.page-store-locator #stockist-widget .stockist-map .stockist-result-address,
+.page-store-locator #stockist-widget .stockist-map .stockist-result-notes {
+  /* b2 font styles */
+  font-size: 1.2rem;
+  line-height: 2rem;
+  font-family: var(--font-mont);
+  font-weight: 400;
+  letter-spacing: -0.02rem;
+}
+
+.page-store-locator
+  #stockist-widget
+  .stockist-map
+  .stockist-result-directions-link
+  a,
+.page-store-locator #stockist-widget .stockist-map .stockist-result-phone a,
+.page-store-locator #stockist-widget .stockist-map .stockist-result-filter,
+.page-store-locator #stockist-widget .stockist-map .stockist-result-details {
+  /* f1 styles */
+  font-size: 1.3rem;
+  line-height: 20px;
+  font-family: var(--font-mont);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-off-black);
+}
+
+.page-store-locator
+  #stockist-widget
+  .leaflet-container
+  a.leaflet-popup-close-button {
+  top: 2.5rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  font-size: 2rem;
+  color: var(--color-off-black);
+  font-weight: unset;
+}

@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "4990e410-873c-4638-be3c-07caa858ef39": {
+      "type": "section-image-with-text-tall",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/5050_Left_Banner_1.jpg",
+        "complimentary_image": "shopify://shop_images/Right_5050_Swatch.jpg",
+        "eyebrow": "",
+        "heading": "Find Your Flawless Foundation",
+        "body": "Discover a perfect-for-you shade in seconds.",
+        "section_link_text": "Get Matched",
+        "section_link_url": "shopify://collections/find-your-match",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "left",
+        "color_theme": "dark"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "4990e410-873c-4638-be3c-07caa858ef39"
+  ]
+}

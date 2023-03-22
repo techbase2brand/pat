@@ -1,0 +1,41 @@
+{%- liquid
+  assign enable_cordial = settings.enable_cordial | default: blank
+  assign cordial_vendor_id = settings.cordial_vendor_id | default: blank
+  assign script_url = settings.script_url | default: blank
+  assign account_key = settings.account_key | default: blank
+  assign track_url = settings.track_url | default: blank
+  assign connect_url = settings.connect_url | default: blank
+  assign cookie_domain = settings.cookie_domain | default: blank
+-%}
+
+{%- if enable_cordial -%}
+  <script>
+    ;(function (C, O, R, D, I, A, L) {
+      ;(C.CordialObject = I),
+        (C[I] =
+          C[I] ||
+          function () {
+            ;(C[I].q = C[I].q || []).push(arguments)
+          })
+      ;(C[I].l = 1 * new Date()), (C[I].q = []), (A = O.createElement(R))
+      ;(L = O.getElementsByTagName(R)[0]), (A.async = 1), (A.src = D), L.parentNode.insertBefore(A, L)
+    })(window, document, 'script', '{{ script_url }}', 'crdl')
+
+    crdl('connect', '{{ account_key }}', {
+      trackUrl: '{{ track_url }}',
+      connectUrl: '{{ connect_url }}',
+      cookieDomain: '{{ cookie_domain }}',
+      cookieLife: 365,
+    })
+  </script>
+
+  {% comment %} START Lightbox Javascript {% endcomment %}
+
+  <script
+    async
+    type='text/javascript'
+    src='https://www.lightboxcdn.com/vendor/{{ cordial_vendor_id }}/lightbox_inline.js'
+  ></script>
+
+  {% comment %} END Lightbox Javascript {% endcomment %}
+{%- endif -%}

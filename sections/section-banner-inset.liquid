@@ -1,0 +1,437 @@
+{% render 'async-stylesheet', mod_url: 'section-banner-inset.css' %}
+
+<section
+  class='banner-inset__container {% if section.settings.color_scheme == "dark" %} background-color-off-black {% endif %}'
+  tabindex='0'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+
+{%- liquid
+  comment
+    This section supports two media types over two breakpoints. It must have either a desktop video or image. It can have a mobile video/image and desktop video/image or any other combination of the four options. If a video is present, that will take precedence over an image for that breakpoint. Ex. Desktop video and image are populated: video shows on desktop and desktop image shows on mobile.
+
+    Below are the possible rendering options for entered content:
+      only desktop video
+      only desktop image
+      desktop image & desktop video
+
+      desktop video & mobile image
+      desktop video & mobile video
+      desktop image & mobile image
+      desktop image & mobile video
+  endcomment
+
+  assign only_desktop_video = false
+  assign only_desktop_image = false
+  assign only_desktop_image_and_video = false
+
+  assign has_mobile_video = false
+  assign has_mobile_image = false
+
+  assign has_desktop_video = false
+  assign has_desktop_image = false
+
+  if section.settings.mobile_background_video != nil
+    assign has_mobile_video = true
+    assign mobile_video_poster = section.settings.mobile_fallback_image | image_url: width: 1024
+  endif
+
+  if section.settings.desktop_background_video != nil
+    assign has_desktop_video = true
+    assign desktop_video_poster = section.settings.desktop_fallback_image | image_url: width: 1024
+  endif
+
+  if  section.settings.mobile_banner_image != nil
+    assign has_mobile_image = true
+  endif
+
+  if section.settings.desktop_banner_image != nil
+    assign has_desktop_image = true
+  endif
+
+  if has_desktop_image and has_desktop_video == false and has_mobile_video == false and has_mobile_image == false
+    assign only_desktop_image = true
+  endif
+
+  if has_desktop_image and has_desktop_video and has_mobile_video == false and has_mobile_image == false
+    assign only_desktop_image_and_video = true
+  endif
+
+  if has_desktop_image == false and has_desktop_video and has_mobile_video == false and has_mobile_image == false
+    assign only_desktop_video = true
+  endif
+-%}
+
+  <div class='banner-inset__heading--top container {% if section.settings.desktop_heading_text_alignment == 'center' %}text-center{% else %} text-left{% endif %}'>
+    <h2 class='h1 no-margin uppercase heading-top__title {% if section.settings.color_scheme == "light" %} color-off-black {% else %} color-off-white {% endif %}'>
+      {{ section.settings.top_heading }}
+    </h2>
+  </div>
+
+  <div class='banner-inset__banner-container container'>
+    <div class='banner-inset__banner'>
+      <div class='banner-inset__heading--bottom {% if section.settings.desktop_heading_text_alignment == 'center' %}text-center{% else %} text-left{% endif %}'>
+        <h2 class='h1 no-margin uppercase {% if section.settings.color_scheme == "light" %} color-off-white {% else %} color-off-black {% endif %}'>
+          {{ section.settings.bottom_heading }}
+        </h2>
+      </div>
+
+      {% comment %}
+        if the two required fields of desktop image and desktop video are populated: show desktop video on desktop and desktop image on mobile
+      {% endcomment %}
+      {% if only_desktop_image_and_video %}
+        <div class='mobile-image m-none'>
+          {%- render 'adaptive-image',
+            mod_image: section.settings.desktop_banner_image,
+            mod_alt: section.settings.desktop_banner_image.alt,
+            mod_loading: 'eager'
+          -%}
+        </div>
+
+        <div class='desktop-video m-block'>
+          {% render 'adaptive-video',
+            mod_type: 'video',
+            mod_video: section.settings.desktop_background_video,
+            mod_alt: section.settings.content_heading,
+            mod_caption_src: section.settings.desktop_caption_src,
+            mod_caption_srclang: section.settings.desktop_caption_srclang,
+            mod_caption_label: section.settings.desktop_caption_label,
+            mod_poster_image: desktop_video_poster,
+            mod_custom_controls: true,
+            mod_autoplay: true,
+            mod_loop: true,
+            mod_plays_inline: true,
+            mod_encode: true
+          %}
+        </div>
+      {% endif %}
+
+      {% liquid 
+        # if only desktop video is populated: show desktop video on desktop and mobile
+        if only_desktop_video
+          render 'adaptive-video', mod_type: 'video', mod_video: section.settings.desktop_background_video, mod_alt: section.settings.content_heading, mod_caption_src: section.settings.desktop_caption_src, mod_caption_srclang: section.settings.desktop_caption_srclang, mod_caption_label: section.settings.desktop_caption_label, mod_poster_image: desktop_video_poster, mod_custom_controls: true, mod_autoplay: true, mod_loop: true, mod_plays_inline: true, mod_encode: true
+        endif
+
+        #  if only desktop image is populated: show desktop image on desktop and mobile
+        if only_desktop_image
+          render 'adaptive-image', mod_image: section.settings.desktop_banner_image, mod_alt: section.settings.desktop_banner_image.alt, mod_loading: 'eager'
+        endif
+      %}
+
+      {% comment %}
+        if fields for mobile content are entered
+      {% endcomment %}
+      {% if only_desktop_image == false and only_desktop_image_and_video == false and only_desktop_video == false %}
+        {% comment %}
+          if mobile video is entered - show mobile video on mobile only
+        {% endcomment %}
+        {% if has_mobile_video %}
+          <div class='mobile-video m-none'>
+            {% render 'adaptive-video',
+              mod_type: 'video',
+              mod_video: section.settings.mobile_background_video,
+              mod_caption_src: section.settings.mobile_caption_src,
+              mod_caption_srclang: section.settings.mobile_caption_srclang,
+              mod_caption_label: section.settings.mobile_caption_label,
+              mod_alt: section.settings.content_heading,
+              mod_poster_image: mobile_video_poster,
+              mod_custom_controls: true,
+              mod_autoplay: true,
+              mod_loop: true,
+              mod_plays_inline: true,
+              mod_encode: true
+            %}
+          </div>
+        {% endif %}
+
+        {% comment %}
+          if mobile video is not entered - show mobile image on mobile only
+        {% endcomment %}
+        {% unless has_mobile_video %}
+          <div class='mobile-image m-none'>
+            {%- render 'adaptive-image',
+              mod_image: section.settings.mobile_banner_image,
+              mod_alt: section.settings.mobile_banner_image.alt,
+              mod_loading: 'eager'
+            -%}
+          </div>
+        {% endunless %}
+
+        {% comment %}
+          if desktop video is entered - show desktop video on desktop
+        {% endcomment %}
+        {% if has_desktop_video %}
+          <div class='desktop-video m-block'>
+            {% render 'adaptive-video',
+              mod_type: 'video',
+              mod_video: section.settings.desktop_background_video,
+              mod_alt: section.settings.content_heading,
+              mod_caption_src: section.settings.desktop_caption_src,
+              mod_caption_srclang: section.settings.desktop_caption_srclang,
+              mod_caption_label: section.settings.desktop_caption_label,
+              mod_poster_image: desktop_video_poster,
+              mod_custom_controls: true,
+              mod_autoplay: true,
+              mod_loop: true,
+              mod_plays_inline: true,
+              mod_encode: true
+            %}
+          </div>
+        {% endif %}
+
+        {% comment %}
+          if desktop video is not entered (desktop image must be) - show desktop image on desktop
+        {% endcomment %}
+        {% unless has_desktop_video %}
+          <div class='desktop-image m-block'>
+            {%- render 'adaptive-image',
+              mod_image: section.settings.desktop_banner_image,
+              mod_alt: section.settings.desktop_banner_image.alt,
+              mod_loading: 'eager'
+            -%}
+          </div>
+        {% endunless %}
+      {% endif %}
+
+      <div class='banner__content {% if section.settings.color_scheme == "light" %} color-off-white mobile-dark {% else %} color-off-black mobile-light {% endif %} {% if section.settings.desktop_body_text_alignment == 'center' %}text-center{% endif %}'>
+        {% if section.settings.content_subheading != blank %}
+          <p class='subheading uppercase letter-spacing sans'>{{ section.settings.content_subheading }}</p>
+        {% endif %}
+
+        {% if section.settings.content_heading != blank %}
+          <h3 class='no-margin heading'>{{ section.settings.content_heading }}</h3>
+        {% endif %}
+
+        {% if section.settings.content_body != blank %}
+          <p class='banner-content-body'>{{ section.settings.content_body }}</p>
+        {% endif %}
+
+        {%- liquid
+          if section.settings.content_button_text != blank and section.settings.content_button_url != blank
+            if section.settings.color_scheme == 'light'
+              assign button_theme = 'dark'
+            else
+              assign button_theme = 'light'
+            endif
+
+            render 'button', mod_value: section.settings.content_button_text, mod_type: 'link', mod_href: section.settings.content_button_url, mod_theme: button_theme, mod_is_external: section.settings.content_button_external
+          endif
+        -%}
+      </div>
+    </div>
+
+    {% unless section.settings.secondary_heading == blank and section.settings.secondary_body == blank %}
+      <div class='banner-inset__footer-container text-center'>
+        {% if section.settings.secondary_heading != blank %}
+          <h4 class='b1--medium sans footer__heading {% if section.settings.color_scheme == "light" %} color-off-black {% else %} color-off-white {% endif %}'>
+            {{ section.settings.secondary_heading }}
+          </h4>
+        {% endif %}
+
+        {% if section.settings.secondary_body != blank %}
+          <div class='secondary-description {% if section.settings.color_scheme == "light" %} color-off-black {% else %} color-off-white {% endif %}'>
+            {{ section.settings.secondary_body }}
+          </div>
+        {% endif %}
+      </div>
+    {% endunless %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.banner-inset.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "top_heading",
+      "label": "t:sections.banner-inset.settings.top-heading.label",
+      "default": "Top Heading"
+    },
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.banner-inset.settings.id.label",
+      "info": "t:sections.banner-inset.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "bottom_heading",
+      "label": "t:sections.banner-inset.settings.bottom-heading.label",
+      "default": "Bottom Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_banner_image",
+      "label": "t:sections.banner-inset.settings.desktop-banner-image.label",
+      "info": "t:sections.banner-inset.settings.desktop-banner-image.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "t:sections.banner-inset.settings.mobile-banner-image.label"
+    },
+    {
+      "type": "video",
+      "id": "desktop_background_video",
+      "label": "t:sections.banner-inset.settings.desktop-background-video-url.label",
+      "info": "t:sections.banner-inset.settings.desktop-background-video-url.info"
+    },
+    {
+      "type": "text",
+      "id": "desktop_caption_src",
+      "label": "t:sections.banner-inset.settings.desktop-caption-src.label",
+      "info": "t:sections.banner-inset.settings.desktop-caption-src.info"
+    },
+    {
+      "type": "text",
+      "id": "desktop_caption_srclang",
+      "label": "t:sections.banner-inset.settings.desktop-caption-srclang.label",
+      "info": "t:sections.banner-inset.settings.desktop-caption-srclang.info",
+      "default": "en"
+    },
+    {
+      "type": "text",
+      "id": "desktop_caption_label",
+      "label": "t:sections.banner-inset.settings.desktop-caption-label.label",
+      "info": "t:sections.banner-inset.settings.desktop-caption-label.info",
+      "default": "english_captions"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_fallback_image",
+      "label": "t:sections.banner-inset.settings.desktop-fallback-image.label"
+    },
+    {
+      "type": "video",
+      "id": "mobile_background_video",
+      "label": "t:sections.banner-inset.settings.mobile-background-video-url.label"
+    },
+    {
+      "type": "text",
+      "id": "mobile_caption_src",
+      "label": "t:sections.banner-inset.settings.mobile-caption-src.label",
+      "info": "t:sections.banner-inset.settings.mobile-caption-src.info"
+    },
+    {
+      "type": "text",
+      "id": "mobile_caption_srclang",
+      "label": "t:sections.banner-inset.settings.mobile-caption-srclang.label",
+      "info": "t:sections.banner-inset.settings.mobile-caption-srclang.info",
+      "default": "en"
+    },
+    {
+      "type": "text",
+      "id": "mobile_caption_label",
+      "label": "t:sections.banner-inset.settings.mobile-caption-label.label",
+      "info": "t:sections.banner-inset.settings.mobile-caption-label.info",
+      "default": "english_captions"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_fallback_image",
+      "label": "t:sections.banner-inset.settings.mobile-fallback-image.label"
+    },
+    {
+      "type": "text",
+      "id": "content_subheading",
+      "label": "t:sections.banner-inset.settings.content-subheading.label"
+    },
+    {
+      "type": "text",
+      "id": "content_heading",
+      "label": "t:sections.banner-inset.settings.content-heading.label"
+    },
+    {
+      "type": "text",
+      "id": "content_body",
+      "label": "t:sections.banner-inset.settings.content-body.label"
+    },
+    {
+      "type": "text",
+      "id": "content_button_text",
+      "label": "t:sections.banner-inset.settings.content-button-text.label"
+    },
+    {
+      "type": "url",
+      "id": "content_button_url",
+      "label": "t:sections.banner-inset.settings.content-button-url.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "content_button_external",
+      "label": "t:sections.banner-inset.settings.content-button-external.label",
+      "info": "t:sections.banner-inset.settings.content-button-external.info"
+    },
+    {
+      "type": "radio",
+      "id": "desktop_heading_text_alignment",
+      "label": "t:sections.banner-inset.settings.desktop-heading-text-alignment.label",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.banner-inset.settings.desktop-heading-text-alignment.options.center"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.banner-inset.settings.desktop-heading-text-alignment.options.left"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "radio",
+      "id": "desktop_body_text_alignment",
+      "label": "t:sections.banner-inset.settings.desktop-body-text-alignment.label",
+      "options": [
+        {
+          "value": "center",
+          "label": "t:sections.banner-inset.settings.desktop-body-text-alignment.options.center"
+        },
+        {
+          "value": "left",
+          "label": "t:sections.banner-inset.settings.desktop-body-text-alignment.options.left"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "radio",
+      "id": "color_scheme",
+      "label": "t:sections.banner-inset.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.banner-inset.settings.color-theme.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.banner-inset.settings.color-theme.options.dark"
+        }
+      ],
+      "default": "light"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.banner-inset.settings.beneath-banner-label.label"
+    },
+    {
+      "type": "text",
+      "id": "secondary_heading",
+      "label": "t:sections.banner-inset.settings.secondary-heading.label"
+    },
+    {
+      "type": "richtext",
+      "id": "secondary_body",
+      "label": "t:sections.banner-inset.settings.secondary-body.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner-inset.name"
+    }
+  ]
+}
+{% endschema %}

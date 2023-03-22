@@ -1,0 +1,47 @@
+{%- liquid
+  assign label_t = label_t | default: blank
+  assign label = label | default: blank
+  assign placeholder = placeholder | default: '-'
+  assign option_labels = option_labels
+  assign options = options
+  assign name = name
+  assign value = value
+  assign handle_value = value | handle | strip | default: blank
+-%}
+
+{%- if option_labels == blank -%}
+  {%- assign option_labels = options -%}
+{%- endif -%}
+
+
+<simple-dropdown cloak placeholder="{{ placeholder }}" shadowStylesheet="{{ 'dropdown-shadow.css' | asset_url }}" value="{{ value | handle }}" name="{{ name }}">
+  <div slot="label">
+    {%- if label != blank -%}
+      {{ label }}
+    {%- elsif label_t != blank -%}
+      {{ label_t | t }}
+    {%- endif -%}
+  </div>
+
+  <div class="dropdown-icon" slot="icon">
+    {% render 'icon-arrow' %}
+  </div>
+
+  <div slot="dropdown-list">
+    <ul class="dropdown-options">
+    {% for option in options %}
+
+    {% assign option_handle_value = option | handle | strip %}
+
+      <li>
+        <label class="dropdown-option {% if handle_value == option_handle_value %} selected {% endif %}" data-value="{{ option | handle }}" data-label="{{ option_labels[forloop.index0] }}">
+          <strong>{{ option_labels[forloop.index0] }}</strong>
+          <input hidden type="radio" name="{{ name }}" value="{{ option | handle }}">
+          <span class="checkmark">{% render 'icon-checkmark' %}</span>
+        </label>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</simple-dropdown>
+

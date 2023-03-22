@@ -1,0 +1,203 @@
+.inset-two-up-module-with-image {
+  padding: 0 0 5rem;
+  display: grid;
+}
+
+.related-video-articles {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.inset-two-up-module-with-image adaptive-image {
+  width: 100%;
+}
+
+.inset-two-up-module-with-image__grid {
+  gap: calc(var(--gutter) / 2);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.inset-two-up-module-with-image__heading {
+  grid-column: span 12;
+  margin-bottom: 2.8rem;
+}
+
+.inset-2up-img__block {
+  grid-column: span 12;
+
+  flex-direction: column;
+}
+
+.inset-2up-img__block-image-container,
+.inset-2up-img__block-text-container {
+  width: 100%;
+}
+
+.inset-2up-img__block-image-container {
+  aspect-ratio: 1;
+}
+
+.inset-2up-img__block-image-container--no-image {
+  background-color: rgba(250, 244, 239, 1);
+}
+
+.inset-2up-img__block-text-container p {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+}
+
+.inset-2up-img__block-text-container .s1 {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.inset-2up-img__block-text-container .b2 {
+  margin-bottom: 0;
+}
+
+.inset-2up-img__block-button {
+  margin-top: 4rem;
+  margin-bottom: 5.6rem;
+}
+
+.inset-2up-img__block-text p:first-of-type {
+  font-family: var(--font-canela);
+  font-size: var(--font-scale-h4);
+  font-weight: var(--font-weight);
+}
+
+.inset-2up-img__block-text p:last-of-type {
+  margin-bottom: 0;
+}
+
+.inset-two-up-module-with-image__cta {
+  margin-top: 4.8rem;
+}
+
+.inset-two-up-module-with-image__grid .button span {
+  width: max-content;
+}
+
+.related-video-articles .inset-two-up-module-with-image__cta {
+  margin: 30px auto 0;
+}
+
+.article-video-card .inset-two-up-module-with-image__block-image-container {
+  aspect-ratio: unset;
+  background-color: transparent;
+}
+
+.article-video-card .inset-two-up-module-with-image__block-text-container .h4 {
+  padding-top: 8px;
+}
+
+.article-video-card .inset-two-up-module-with-image__block-image-container a {
+  position: relative;
+}
+
+.article-video-card .icon-video-play {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.article-video-card .inset-two-up-module-with-image__block-button {
+  margin: 1.5rem auto 2rem;
+}
+
+@media (min-width: 768px) {
+  .inset-two-up-module-with-image {
+    padding: 0 0 6rem;
+  }
+
+  .inset-2up-img__block {
+    grid-column: span 6;
+    flex-direction: row;
+    gap: calc(var(--gutter) / 2);
+  }
+
+  .inset-2up-img__block-text-container {
+    justify-content: space-evenly;
+  }
+
+  .inset-2up-img__block-image-container,
+  .inset-2up-img__block-text-container {
+    width: 50%;
+  }
+
+  .inset-2up-img__block-text-container .s1 {
+    margin: 0;
+  }
+
+  .inset-2up-img__block-text-container .h4 {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .inset-2up-img__block-button {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .inset-two-up-module-with-image__heading {
+    margin-bottom: 0;
+  }
+
+  .inset-two-up-module-with-image__cta {
+    margin-top: 3rem;
+  }
+
+  .related-video-articles {
+    display: block;
+  }
+
+  .related-video-articles .inset-two-up-module-with-image__heading {
+    margin-bottom: 30px;
+  }
+
+  .related-video-articles .inset-two-up-module-with-image__cta {
+    margin-left: unset;
+    margin-right: unset;
+  }
+
+  .article-video-card {
+    flex-direction: column;
+  }
+
+  .article-video-card .inset-two-up-module-with-image__block-image-container {
+    width: 100%;
+  }
+
+  .article-video-card .inset-two-up-module-with-image__block-text-container {
+    width: 100%;
+  }
+
+  .article-video-card
+    .inset-two-up-module-with-image__block-text-container
+    .h4 {
+    padding-top: 0;
+  }
+
+  .article-video-card .inset-two-up-module-with-image__block-button {
+    margin-top: 1rem;
+    margin-left: unset;
+    margin-right: unset;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .article-video-card {
+    flex-direction: row;
+  }
+
+  .article-video-card .inset-two-up-module-with-image__block-image-container {
+    width: 61.5%;
+    min-width: 61.5%;
+  }
+
+  .article-video-card .inset-two-up-module-with-image__block-text-container {
+    width: 38.5%;
+  }
+}

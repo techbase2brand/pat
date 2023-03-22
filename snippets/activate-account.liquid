@@ -1,0 +1,85 @@
+<div class='container text-center fluid customer activate'>
+  <div class='customer-form customer-form--activate'>
+    <div>
+      <div class='grid'>
+        <div>
+          <h1 tabindex='-1' class='h2 customer-form-title'>
+            {{ 'customer.activate_account.title' | t }}
+          </h1>
+          <p class='login-subtext color-dark-gray no-margin'>
+            {{ 'customer.activate_account.subtext' | t }}
+          </p>
+        </div>
+      </div>
+
+      {%- form 'activate_customer_password' -%}
+        <div class='grid customer-form-grid'>
+          {%- if form.errors -%}
+            <div class='text-left color-error-red'>
+              <p class='form__message' tabindex='-1' autofocus>
+                <span class='visually-hidden'>{{ 'accessibility.error' | t }} </span>
+                <small>{{ 'templates.contact.form.error_heading' | t }}</small>
+              </p>
+              <p>
+                {{ form.errors | default_errors }}
+              </p>
+            </div>
+          {%- endif -%}
+
+          <div>
+            {%- capture input_attributes -%}
+              name="customer[password]" autocomplete="new-password"
+              {% if form.errors contains 'form' %}
+                aria-invalid="true"
+                aria-describedby="password-error"
+              {% endif %}
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.activate_account.password',
+              type: 'password',
+              input_attributes: input_attributes,
+              required: true
+              mod_id: 'password'
+            -%}
+            {%- assign input_attributes = null -%}
+          </div>
+
+          <div>
+            {%- capture input_attributes -%}
+              name="customer[password_confirmation]" autocomplete="new-password"
+              {% if form.errors contains 'password' %}
+                aria-invalid="true"
+                aria-describedby="password_confirmation-error"
+              {% endif %}
+            {%- endcapture -%}
+            {%- render 'form-input',
+              label: 'customer.activate_account.password_confirm',
+              type: 'password',
+              input_attributes: input_attributes,
+              required: true
+              mod_id: 'password_confirmation'
+            -%}
+            {%- assign input_attributes = null -%}
+          </div>
+
+          <div>
+            {%
+              render 'button',
+              mod_type: "submit",
+              mod_value_t: 'customer.activate_account.submit',
+              mod_class: 'fluid',
+            %}
+          </div>
+          <div>
+            {% render 'button',
+              mod_value_t: 'customer.activate_account.cancel',
+              mod_variant: 'text-underline',
+              mod_name: 'decline',
+              mod_class: 'cursor-pointer',
+            %}
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>

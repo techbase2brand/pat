@@ -1,0 +1,154 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "cbcdf084-51bb-431d-a134-f5657d20a3b2": {
+      "type": "section-hero-banner",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "Professional Makeup Artists Program",
+        "body": "As a professional makeup artist, Laura is passionate about nurturing the artistry community. Her Professional Makeup Artist Program helps make her iconic products, tools and techniques accessible to emerging and working artists. If you are an eligible artist, we invite you to apply.",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "light",
+        "bg_color": ""
+      }
+    },
+    "714d0912-02ae-472e-b27b-ee4ea55c0542": {
+      "type": "section-image-with-text-wide",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/LM_Left_Hero_Banner_0ef65725-7697-4da7-8711-e276a8837e94.jpg",
+        "mobile_main_image": "shopify://shop_images/LM_Left_Hero_Banner_0ef65725-7697-4da7-8711-e276a8837e94.jpg",
+        "eyebrow": "",
+        "heading": "“The immediate, positive impact that makeup has on someone’s life is my favorite thing about being a makeup artist.”",
+        "body": "Laura Mercier",
+        "section_link_text": "",
+        "section_link_url": "",
+        "section_bg_override": "",
+        "image_orientation": "left",
+        "color_theme": "dark",
+        "desktop_text_alignment": "center"
+      }
+    },
+    "7fbee98c-f1b5-48a2-b6ad-a266aa2df048": {
+      "type": "section-image-with-text-tall",
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/LM_Left_Hero_Banner.jpg",
+        "complimentary_image": "shopify://shop_images/Hero_Swatch_245d5be9-d0ea-4362-8e16-8402a3700ec9.png",
+        "eyebrow": "",
+        "heading": "Professional Makeup Artists Program",
+        "body": "As a professional makeup artist, Laura is passionate about nurturing the artistry community. Her Professional Makeup Artist Program helps make her iconic products, tools and techniques accessible to emerging and working artists. If you are an eligible artist, we invite you to apply.",
+        "section_link_text": "",
+        "section_link_url": "",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "right",
+        "color_theme": "light"
+      }
+    },
+    "341de091-27cc-440e-9a90-0188647f45a8": {
+      "type": "section-banner-inset-with-text",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "“The immediate, positive impact that makeup has on someone’s life is my favorite thing about being a makeup artist.”",
+        "body": "Laura Mercier",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    },
+    "87221465-82e2-472a-88c2-95e265bdbe49": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/5050_Banner_1.jpg",
+        "eyebrow": "Professional Artists",
+        "heading": "40% Off",
+        "body": "Actively working as a lead makeup artist for editorial, TV and Film.",
+        "section_link_text": "Apply Now",
+        "section_link_url": "#pro-artists",
+        "section_bg_override": "#f3e9e2",
+        "image_orientation": "right",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "d4ca3f7f-487f-4260-9c51-de791462b21f": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/5050_Banner_2.jpg",
+        "eyebrow": "Emerging Artists",
+        "heading": "25% Off",
+        "body": "Currently enrolled as a student in an accredited makeup school or working as an assistant makeup artist.",
+        "section_link_text": "Apply Now",
+        "section_link_url": "#em-artists",
+        "section_bg_override": "#f3e9e2",
+        "image_orientation": "left",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "2c0d872a-c1c5-46cc-8963-0dad2652d7bd": {
+      "type": "page",
+      "settings": {
+        "page": "professional-makeup-artist-program"
+      }
+    },
+    "ed64c984-42b7-42f5-930d-4afacbc88897": {
+      "type": "pro-artist-form",
+      "settings": {
+        "title": "Emerging Artists • 25% Off",
+        "intro_title": "Requirements",
+        "intro_content": "",
+        "slideout_id": "em-artists",
+        "form_id": "Antby6",
+        "customer_tag": "em-artist-pending-approval"
+      }
+    },
+    "64489bb1-b967-4756-bfc0-668d9f885e66": {
+      "type": "pro-artist-form",
+      "settings": {
+        "title": "Professionals • 40% Off",
+        "image": "shopify://shop_images/image_958.png",
+        "intro_title": "Requirements",
+        "intro_content": "",
+        "slideout_id": "pro-artists",
+        "form_id": "lXt776",
+        "customer_tag": "pro-artist-pending-approval"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "cbcdf084-51bb-431d-a134-f5657d20a3b2",
+    "714d0912-02ae-472e-b27b-ee4ea55c0542",
+    "7fbee98c-f1b5-48a2-b6ad-a266aa2df048",
+    "341de091-27cc-440e-9a90-0188647f45a8",
+    "87221465-82e2-472a-88c2-95e265bdbe49",
+    "d4ca3f7f-487f-4260-9c51-de791462b21f",
+    "2c0d872a-c1c5-46cc-8963-0dad2652d7bd",
+    "ed64c984-42b7-42f5-930d-4afacbc88897",
+    "64489bb1-b967-4756-bfc0-668d9f885e66"
+  ]
+}

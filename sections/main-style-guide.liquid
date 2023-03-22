@@ -1,0 +1,351 @@
+{%- liquid
+  render 'async-stylesheet', mod_url: 'page-style-guide.css'
+  render 'async-stylesheet', mod_url: 'component-product-variants.css'
+-%}
+
+<section class="style-guide">
+  <div class="container">
+    <h1 class="text-center">{{ page.title | escape }}</h1>
+  </div>
+  <div class="container">
+    <div class="box">
+
+      <h2>Colors</h2>
+      <h3>Primary</h3>
+      <div class="grid style-guide-grid">
+        <div>
+          <div class="swatch background-color-off-black"></div>
+          <div class="title">
+            <h4>Off-Black</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-dark-gray"></div>
+          <div class="title">
+            <h4>Dark Gray</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-off-white"></div>
+          <div class="title">
+            <h4>Off-White</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch border-pewter-gradient-outline"></div>
+          <div class="title">
+            <h4>Pewter Gradient Outline</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-gradient-pewter"></div>
+          <div class="title">
+            <h4>Pewter Gradient Fill</h4>
+          </div>
+        </div>
+      </div>
+      <div class="grid style-guide-grid">
+        <div>
+          <div class="swatch background-color-tan "></div>
+          <div class="title">
+            <h4>Tan</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-light-tan"></div>
+          <div class="title">
+            <h4>Light Tan</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-pink"></div>
+          <div class="title">
+            <h4>Pink</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-pale-pink"></div>
+          <div class="title">
+            <h4>Pale Pink</h4>
+          </div>
+        </div>
+
+        <div>
+          <div class="swatch background-color-error-red"></div>
+          <div class="title">
+            <h4>Error Red</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="box">
+      <h2>Typography</h2>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod feugiat dolor vitae consequat. Ut pharetra ante leo, vel tristique turpis efficitur a. Nunc a turpis a tellus tempor fringilla ac in turpis. Aliquam eu congue ex, vitae maximus turpis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam et vestibulum orci, fringilla sollicitudin metus. Phasellus nisl magna, finibus et mi vitae, condimentum laoreet tortor. Maecenas nibh elit, scelerisque sit amet condimentum convallis, porttitor et tellus. Etiam sapien purus, vulputate sit amet sodales vitae, fringilla ac ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam velit est, mattis id cursus non, malesuada id nulla. Cras massa lectus, gravida at viverra nec, dictum ac nisi.
+      </p>
+      <h1>This is an h1</h1>
+      <h2>This is an h2</h2>
+      <h3>This is an h3</h3>
+      <h4>This is an h4</h4>
+
+      <a href="#">A linßk</a>
+
+      <br>
+      <p>A p tag</p>
+      <ul>
+        <li>
+          List item 1
+        </li>
+        <li>
+          List item 2
+        </li>
+        <li>
+          List item 3
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="box">
+      <h2>Buttons</h2>
+      <div class="grid style-guide-grid">
+
+        <div>
+          <h4>Button Primary Dark</h4>
+          {% render 'button' mod_type: "button", mod_value: "Shop now" %}
+
+          <h4>Themed Buttons</h4>
+          {% render 'button' mod_type: "button", mod_value: "No Theme Button" %}
+
+          {% render 'button' mod_type: "button", mod_value: "Light Theme Button", mod_theme: 'light' %}
+
+          {% render 'button' mod_type: "button", mod_value: "Dark Theme Button", mod_theme: 'dark' %}
+
+          {% render 'button' mod_type: "submit", mod_class: "js-open-slideout", mod_value: "Example with data attributes", mod_theme: 'dark', mod_attr: "data-slide-target='email-signup'" %}
+        </div>
+
+        <div>
+          <h4>Button Primary Dark (disabled)</h4>
+          {% render 'button' mod_type: "button", mod_value: "Shop now", mod_disabled: true %}
+        </div>
+
+        <div>
+          <h4>Button Secondary</h4>
+          {% render 'button' mod_type: "button", mod_variant: "secondary", mod_value: "Shop now" %}
+        </div>
+
+        <div>
+          <h4>Button Secondary (disabled)</h4>
+          {% render 'button' mod_type: "button", mod_variant: "secondary", mod_value: "Shop now", mod_disabled: true %}
+        </div>
+
+        <div>
+          <h4>Button text underline</h4>
+          {% render 'button' mod_type: "link", mod_href: "#", mod_variant: "text-underline basic", mod_value: "Shop now" %}
+        </div>
+
+        <div>
+
+          <h4>Themed Button text underline</h4>
+          {% render 'button' mod_type: "link", mod_href: "#", mod_variant: "text-underline", mod_value: "Dark Theme Underline Button", mod_theme: 'dark' %}
+
+          {% render 'button' mod_type: "link", mod_href: "#", mod_variant: "text-underline", mod_value: "Light Theme Underline Button", mod_theme: 'light' %}
+        </div>
+
+        <div>
+          <h4>Button text underline (disabled)</h4>
+          {% render 'button' mod_type: "link", mod_href: "#", mod_variant: "text-underline", mod_value: "Shop now", mod_disabled: true %}
+        </div>
+
+        <div>
+          <h4>Button With Icon</h4>
+          {% render 'button' mod_variant: "text-icon", mod_value: "Shop now", mod_icon: "arrow" %}
+        </div>
+
+        <div>
+          <h4>Button With Icon (disabled)</h4>
+          {% render 'button' mod_variant: "text-icon", mod_value: "Button with icon (disabled)", mod_icon: "arrow", mod_disabled: true %}
+        </div>
+
+        <div>
+          <h4>Button Text Underline with icon</h4>
+          {% render 'button' mod_variant: "text-icon text-underline", mod_value: "Button with icon & Underline", mod_icon: "arrow" %}
+        </div>
+
+        <div>
+          <h4>Button Text Underline with icon (disabled)</h4>
+          {% render 'button' mod_value: "Button with icon & Underline", mod_icon: "arrow", mod_disabled: true, mod_variant: "text-icon text-underline" %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="box">
+
+      <h2>Forms</h2>
+
+      <!-- Default Forms-->
+      <h3>Default form fields</h3>
+      <div class="grid style-guide-grid">
+        <div>
+          {%- render 'form-input', type: 'text' -%}
+        </div>
+        <div>
+          <div class="input-container label-stuck-on-top with-label js-input-container">
+            <label class="active">Label <span>*</span></label>
+            <input type="text" placeholder="With placeholder text" />
+          </div>
+        </div>
+        <div>
+          <div class="input-container label-stuck-on-top disabled with-label js-input-container">
+            <label class="active">Label <span>*</span></label>
+            <input type="text" disabled placeholder="Disabled" />
+          </div>
+        </div>
+        <div>
+          <div class="input-container label-stuck-on-top error with-label js-input-container">
+            <label class="active">Placeholder Text <span>*</span></label>
+            <input type="text" placeholder="With error" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Form field with icons -->
+      <h3>Form field with icons</h3>
+      <div class="grid style-guide-grid">
+        <div>
+          {%- render 'form-input-with-icon', type: 'text' -%}
+        </div>
+        <div>
+          {%- render 'form-input-with-icon', type: 'text', background: true -%}
+        </div>
+      </div>
+
+      <!-- Dropdown -->
+      <h3>Dropdown</h3>
+      <div class="grid mb-40 style-guide-grid--half">
+        <div>
+          {%- render 'form-dropdown' -%}
+        </div>
+      </div>
+
+
+      <!-- Radio -->
+      <h3>Radio buttons</h3>
+      <div class="grid style-guide-grid">
+        <div>
+          {%- render 'form-radio-checkbox', type: 'radio', label: 'Unchecked' -%}
+        </div>
+        <div>
+          <div class="radio-container">
+            <label>
+              <input type="radio" checked="checked" />
+              <span class="checkmark"></span>
+              <span class="text">Checked</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="radio-container disabled">
+            <label>
+              <input type="radio" disabled="disabled" />
+              <span class="checkmark"></span>
+              <span class="text">Disabled</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Checkboxes -->
+      <h3>Checkboxes</h3>
+      <div class="grid style-guide-grid">
+        <div>
+          {%- render 'form-radio-checkbox', type: 'checkbox', label: 'Unchecked' -%}
+        </div>
+        <div>
+          <div class="checkbox-container">
+            <label>
+              <input type="checkbox" checked="checked">
+              <span class="checkmark"></span>
+              <span class="text">Checked</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="checkbox-container disabled">
+            <label>
+              <input type="checkbox" disabled="disabled">
+              <span class="checkmark"></span>
+              <span class="text">Disabled</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="grid style-guide-grid">
+        <div>
+          <h4>Quantity selector</h4>
+          {%- render 'form-quantity-selector' -%}
+        </div>
+        <div>
+          <h4>Quantity selector - disabled</h4>
+          <div class="qty-select-container disabled">
+            <div class="qty-select-inner">
+              <button>{% render 'icon-minus' %}</button>
+              <input type="text" value="1" disabled="disabled">
+              <button>{% render 'icon-plus' %}</button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>Shade selector</h4>
+          <div class="grid shade-selector-grid">
+            <div>
+              {%- render 'form-shade-selector', color: '#d9a972', disabled: false, tooltip: "2W1 Natural" -%}
+            </div>
+            <div>
+              {%- render 'form-shade-selector', color: '#d9a972', disabled: true, tooltip: "2W1 Natural" -%}
+            </div>
+            <div>
+              {%- render 'form-shade-selector', color: '#d9a972', disabled: false, tooltip: '2W1 Natural' -%}
+            </div>
+            <div>
+              <div class="color-select-container selected">
+                <div class="color-select-inner">
+                  <button></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>Size selector</h4>
+          {% render 'form-size-selector' %}
+        </div>
+      </div>
+      <div class="grid mb-40 style-guide-grid">
+        <div>
+          <h4 style="margin-bottom: 0;">Carousel Arrows</h4>
+          <p style="color: var(--color-red);"><small>Needs to be moved into component</small></p>
+          {%- render 'carousel-arrows' -%}
+        </div>
+        <div>
+          <h4>Selling Fast Badge</h4>
+          {%- render 'selling-fast' -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

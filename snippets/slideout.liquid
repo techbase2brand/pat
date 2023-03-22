@@ -1,0 +1,38 @@
+{%- liquid
+  assign title = title
+  assign title_t = title_t | default: blank
+  assign slideout_id = slideout_id
+  assign css_target = css_target
+  assign content = content
+  assign type = type | default: 'slideout'
+  assign mod_content_class = mod_content_class
+-%}
+
+<slide-panel
+  cloak
+  type='{{ type }}'
+  data-css-target='{{ css_target }}'
+  slideout-id='{{ slideout_id }}'
+  open='false'
+  position='right'
+  shadowStylesheet='{{ 'slideout-shadow.css' | asset_url }}'
+  aria-hidden='true'
+>
+  {% if title %}
+    <h1>{{ title }}</h1>
+  {% endif %}
+  {%- if type == 'slideout' -%}
+    <h2 slot='title' class='h4 slide-panel__title no-margin color-off-black normal'>
+      {%- if title_t != blank -%}
+        {{ title_t | t }}
+      {%- else -%}
+        {{ title }}
+      {%- endif -%}
+    </h2>
+  {%- else -%}
+    <h2 slot='title' class='n1 slide-panel__title no-margin color-off-black normal'>{{ title }}</h2>
+  {%- endif -%}
+  <span slot='content' class='{{ mod_content_class }}'>
+    {{ content }}
+  </span>
+</slide-panel>

@@ -1,0 +1,517 @@
+{
+  "sections": {
+    "352ae28b-8a30-4126-a5be-df45e7123626": {
+      "type": "section-image-with-text-tall",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/LM_LNY23_HP_BANNER_MOBILE_NoCopy.jpg",
+        "eyebrow": "THE YEAR OF THE RABBIT",
+        "heading": "Lunar New Year Collection",
+        "body": "A limited-edition collection to spread luck, elegance and beauty",
+        "section_link_text": "SHOP NOW",
+        "section_link_url": "shopify://collections/lunar-new-year",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "right",
+        "color_theme": "dark"
+      }
+    },
+    "08377031-f958-4ff2-9ace-f06c57baa7b8": {
+      "type": "section-hero-banner",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "desktop_image": "shopify://shop_images/Hero_Desktop_Full_Bleed-2.jpg",
+        "mobile_image": "shopify://shop_images/Hero_Mobile_Full_Bleed.jpg",
+        "eyebrow": "HOLIDAY IS HERE",
+        "heading": "WRAPPED WITH LOVE",
+        "body": "",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "bottom",
+        "color_theme": "dark",
+        "bg_color": ""
+      }
+    },
+    "a1a61248-b9a1-44ca-bce3-0d0dbb9bb299": {
+      "type": "section-full-width-slideshow",
+      "blocks": {
+        "template--16729257312495__a1a61248-b9a1-44ca-bce3-0d0dbb9bb299-166983609455f5217e-0": {
+          "type": "image_slide",
+          "settings": {
+            "first_desktop_image": "shopify://shop_images/LM_SP23_HP_NYE_Banner_TLSP_D.jpg",
+            "first_mobile_image": "shopify://shop_images/LM_SP23_HP_NYE_Banner_TLSP_M.jpg",
+            "slide_heading": "#1 setting powder*",
+            "slide_subheading": "",
+            "slide_description": "",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "shopify://collections/translucent-setting-powder",
+            "button_2_label": "",
+            "button_2_link": "",
+            "desktop_text_alignment": "left",
+            "color_scheme": "dark",
+            "enable_arrow": true
+          }
+        }
+      },
+      "block_order": [
+        "template--16729257312495__a1a61248-b9a1-44ca-bce3-0d0dbb9bb299-166983609455f5217e-0"
+      ],
+      "settings": {
+        "id": "",
+        "autorotate": false,
+        "autorotate_interval": 5,
+        "slideshow_description": ""
+      }
+    },
+    "32bbd1cf-354e-4d33-bc78-d355da7dc7d9": {
+      "type": "section-image-with-text-square",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "main_image": "shopify://shop_images/LM_HO22_HP_Hero_660x660_a055b5b7-97be-4df4-ac96-2b45d10a379c.jpg",
+        "eyebrow": "Limited-Edition",
+        "heading": "Wrapped with Love Collection",
+        "body": "",
+        "section_link_text": "Shop Now",
+        "section_link_url": "shopify://collections/holiday-collection",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "right",
+        "text_alignment": "center",
+        "color_theme": "light",
+        "background_color_override": "#f4e3e2"
+      }
+    },
+    "40fda593-c671-4cbe-aa4b-1e15575ef535": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_8f484983-b65b-4540-9268-390d95656d6d.jpg",
+            "eyebrow": "",
+            "heading": "More of Mercier",
+            "body": "Discover the world of Laura Mercier with immersive beauty rooms, interactive quizzes and more.",
+            "cta_url": "https://virtualstore.lauramercier.com/worldofbeauty",
+            "cta_text": "Explore Now"
+          }
+        },
+        "1f7d735c-c5c5-44d9-988f-40a42bd6a7b9": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_LuxeIndulgence_Coconut_Lifestyle_HP_600x600_bf5bf860-78e5-4cca-b762-1ba0decc112a.jpg",
+            "eyebrow": "",
+            "heading": "Wrapped With Love Holiday Collection",
+            "body": "Celebrate the holidays with our giftable collection of bestsellers and limited-edition products.",
+            "cta_url": "shopify://collections/holiday-collection",
+            "cta_text": "Shop Gifts"
+          }
+        },
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-0": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_edc523f0-bfae-4948-a9ec-3909bfa2c8d3.jpg",
+            "eyebrow": "",
+            "heading": "Your Perfect Foundation Shade",
+            "body": "Discover your true-to-you foundation shade",
+            "cta_url": "shopify://collections/find-your-match",
+            "cta_text": "Get Matched"
+          }
+        },
+        "b01ec0eb-9ac1-4f83-bd85-0ed889b73418": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-3_3.jpg",
+            "eyebrow": "",
+            "heading": "Find Your Tinted Moisturizer Shade",
+            "body": "Take our quiz and discover your perfect shade match in our cult-favorite Tinted Moisturizer.",
+            "cta_url": "shopify://pages/tm-quiz-landing-page",
+            "cta_text": "Take The Quiz"
+          }
+        },
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-4.jpg",
+            "eyebrow": "",
+            "heading": "Find Fresh Favorites",
+            "body": "Experiment with new shades anytime, anywhere with Virtual Try-On.",
+            "cta_url": "shopify://collections/discover-virtual-try-on",
+            "cta_text": "Try On Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-1",
+        "1f7d735c-c5c5-44d9-988f-40a42bd6a7b9",
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-0",
+        "b01ec0eb-9ac1-4f83-bd85-0ed889b73418",
+        "template--16648159461615__40fda593-c671-4cbe-aa4b-1e15575ef535-166549523346ea665f-2"
+      ],
+      "settings": {
+        "section_title": "Exclusively at LauraMercier.com",
+        "id": ""
+      }
+    },
+    "2ec50a04-e662-4946-85c9-cac8497911f6": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "test",
+        "heading": "Trending Now",
+        "placement_id": "frontpage-nosto-1"
+      }
+    },
+    "990e5468-1945-4fbb-946c-4d33abed4b9d": {
+      "type": "section-four-up-image-text-collage",
+      "blocks": {
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-0": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/LM_HO22_HP_WhatsNew_PetalSoftLip_572x442_8a73b2a5-0a37-4e51-8694-fa0dbe6f8761.jpg",
+            "eyebrow": "",
+            "heading": "Petal Soft Lipstick Crayon",
+            "body": "The best of both worlds: Soft Matte Color with 24HR of lip softening hydration.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/petal-soft-lipstick-crayon"
+          }
+        },
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-1": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/LM_HO22_HP_WhatsNew_UltraBlur_635x357_d8d20b5e-54ea-4597-a5be-c8ed7b768ce1.jpg",
+            "eyebrow": "",
+            "heading": "Ultra-Blur Setting Powder",
+            "body": "The cult-favorite Translucent Loose Setting Powder, now talc-free with 16-hour ultra-blurring power.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/translucent-loose-setting-powder-ultra-blur"
+          }
+        },
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-2": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/MicrosoftTeams-image_13.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer Blush",
+            "body": "Everything you love about Tinted Moisturizer for 12 hours of hydration in a new weightless cream cheek formula.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/tinted-moisturizer-blush"
+          }
+        },
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-3": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Img-4_2.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Blush Color Infusion",
+            "body": "10 hours of glowing, buildable cheek color. Infused with Laura’s RoseGlow Pearl Blend designed to flatter all skin tones.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://products/roseglow-blush-color-infusion"
+          }
+        }
+      },
+      "block_order": [
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-0",
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-1",
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-2",
+        "template--16697967870191__990e5468-1945-4fbb-946c-4d33abed4b9d-1666904968b1eb02c8-3"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "What's new"
+      }
+    },
+    "bea7d2e2-5691-46af-bdac-bc5465a8bc8c": {
+      "type": "section-featured-categories-4up",
+      "blocks": {
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-0": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Face.jpg",
+            "eyebrow": "Shop",
+            "heading": "Face",
+            "category_link": "shopify://collections/face"
+          }
+        },
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-1": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Lip.jpg",
+            "eyebrow": "Shop",
+            "heading": "Lips",
+            "category_link": "shopify://collections/all-lips"
+          }
+        },
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-2": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/LM_FA21_Social_CSEC_TX_03_R300_1__600x900_7ce91710-11dd-4b7a-9677-6af60de86988.jpg",
+            "eyebrow": "Shop",
+            "heading": "Eyes",
+            "category_link": "shopify://collections/all-eyes"
+          }
+        },
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-3": {
+          "type": "category",
+          "settings": {
+            "category_image": "shopify://shop_images/Body.jpg",
+            "eyebrow": "SHOP",
+            "heading": "Body",
+            "category_link": "shopify://collections/all-body"
+          }
+        }
+      },
+      "block_order": [
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-0",
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-1",
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-2",
+        "template--16648159461615__bea7d2e2-5691-46af-bdac-bc5465a8bc8c-16654952335abb4fc7-3"
+      ],
+      "settings": {
+        "section_heading": "Shop by Category",
+        "id": ""
+      }
+    },
+    "57455f96-1f58-4589-a3a6-ea43bf3c519b": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "flawless face",
+        "id": "",
+        "bottom_heading": "",
+        "desktop_banner_image": "shopify://shop_images/LM_HO22_HP_FlawlessFace_1320x504_17899167-fe3e-4cd0-8f6e-a74eaf944a17.jpg",
+        "mobile_banner_image": "shopify://shop_images/MicrosoftTeams-image_12.jpg",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "25863c6e-9d94-4c4a-9be8-aba317d8b357": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16697967870191__25863c6e-9d94-4c4a-9be8-aba317d8b357-1667506174645555ac-0": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Prime_817ef480-1e4e-4f26-9db4-3977e72327f8.jpg",
+            "variant_override": "",
+            "heading": "Prime",
+            "eyebrow": "01",
+            "description": "Prep your skin with a smooth, even canvas for makeup application.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/primers"
+          }
+        },
+        "5aad16e0-19ad-4f75-b8c4-2177e93d9d67": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Foundation_7f998e91-eea2-45d2-a401-41926c2dcacc.jpg",
+            "variant_override": "",
+            "heading": "Even Skintone",
+            "eyebrow": "02",
+            "description": "Elevate your natural complexion with a flawless foundation.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/foundation"
+          }
+        },
+        "bd2a5525-f21f-4a6e-ac52-d3cca950aa98": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Conceal_451238e6-3369-4685-babb-1dd07ec61c3a.jpg",
+            "variant_override": "",
+            "heading": "Conceal",
+            "eyebrow": "03",
+            "description": "Customize your coverage, conceal discoloration and camouflage imperfections.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/concealer"
+          }
+        },
+        "1ca624d8-d904-491a-802b-265f86de20c3": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "product_image_override": "shopify://shop_images/Set_5cc61248-b7ac-40b8-8d3b-37327ffeab9b.jpg",
+            "variant_override": "",
+            "heading": "Set",
+            "eyebrow": "04",
+            "description": "Perfect your look and prolong makeup wear with Laura’s bestselling setting products.",
+            "block_cta_text": "Shop Now",
+            "block_cta_url": "shopify://collections/translucent-setting-powder"
+          }
+        }
+      },
+      "block_order": [
+        "template--16697967870191__25863c6e-9d94-4c4a-9be8-aba317d8b357-1667506174645555ac-0",
+        "5aad16e0-19ad-4f75-b8c4-2177e93d9d67",
+        "bd2a5525-f21f-4a6e-ac52-d3cca950aa98",
+        "1ca624d8-d904-491a-802b-265f86de20c3"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p></p>",
+        "section_cta_text": "",
+        "section_cta_url": "",
+        "show_horizontal_rule": false
+      }
+    },
+    "28a51637-36ba-4088-b828-70715a847b4a": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "Recommended for You",
+        "placement_id": "testing-nosto-1"
+      }
+    },
+    "88ce2ba1-0319-48c0-a77e-8410c20e387b": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-1_3.jpg",
+            "eyebrow": "",
+            "heading": "Try On Shades, Virtually",
+            "body": "Find your perfect shade all from home using Virtual Try-On.",
+            "cta_url": "shopify://collections/discover-virtual-try-on",
+            "cta_text": "Try On Now"
+          }
+        },
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_SU22_TLSPUB_PDP_Hero_Model_2000x2000_R72.jpg",
+            "eyebrow": "",
+            "heading": "Four Steps to Flawless",
+            "body": "Embrace your individual beauty and the four-part techniques that made Laura famous.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Get Flawless"
+          }
+        },
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-0": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "slide_image": "shopify://shop_images/Inset_Banner_1_2.jpg",
+            "eyebrow": "",
+            "heading": "Find Your Perfect Foundation Shade",
+            "body": "Discover a true-to-you foundation with our expert shade matching technology.",
+            "cta_url": "shopify://collections/find-your-match",
+            "cta_text": "Get Matched"
+          }
+        }
+      },
+      "block_order": [
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-2",
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-1",
+        "template--16648159461615__88ce2ba1-0319-48c0-a77e-8410c20e387b-166549523346ea665f-0"
+      ],
+      "settings": {
+        "section_title": "Artistry",
+        "id": ""
+      }
+    },
+    "0ad25a7e-f317-4dd7-84cd-3617ee1b16dc": {
+      "type": "pro-artist-form",
+      "disabled": true,
+      "settings": {
+        "title": "Professionals • 40% Off",
+        "image": "shopify://shop_images/image_958.png",
+        "intro_title": "Requirements",
+        "intro_content": "Please provide at least two forms of the following credentials dated within the last two years:\n<ul>\n<li>Agency Representation: Please provide link to agency website</li>\n<li>Film or Television Experience: Crew list with name, date and makeup artist credit</li>\n<li>Tear sheets with name, date and makeup artist credit</li>\n<li>Copy of Union Card</li>\n<li>Certificate of graduation (makeup artistry)</li>\n</ul>",
+        "slideout_id": "pro-artist",
+        "form_id": "lXt776",
+        "customer_tag": "em-artist-pending-approval"
+      }
+    },
+    "329795ac-f86e-42aa-b567-83c1c0df3224": {
+      "type": "section-hero-banner",
+      "disabled": true,
+      "settings": {
+        "id": "",
+        "eyebrow": "*Based on #1 US rank by NPD Group Inc. in prestige retail, YTD April 2021",
+        "heading": "",
+        "body": "",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "top",
+        "color_theme": "light",
+        "bg_color": ""
+      }
+    },
+    "e1210483-dff2-419d-af5f-77d7aa5602a8": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "",
+        "body": "*Based on #1 US rank by NPD Group Inc. in prestige retail, Year End 2021",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    },
+    "2eb7af5f-3015-407f-9789-3661130a4dfd": {
+      "type": "section-full-width-slideshow",
+      "blocks": {
+        "template--16757413544175__2eb7af5f-3015-407f-9789-3661130a4dfd-1672369670c807cd63-0": {
+          "type": "image_slide",
+          "disabled": true,
+          "settings": {
+            "first_desktop_image": "shopify://shop_images/LM_HO22_LNY_HP_Desktop_No_Copy.jpg",
+            "first_mobile_image": "shopify://shop_images/LM_LNY23_HP_BANNER_MOBILE_NoCopy.jpg",
+            "slide_heading": "<c> Lunar New Year Collection </c>",
+            "slide_subheading": "",
+            "slide_description": "",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "shopify://collections/lunar-new-year",
+            "button_2_label": "",
+            "button_2_link": "",
+            "desktop_text_alignment": "left",
+            "color_scheme": "light",
+            "enable_arrow": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16757413544175__2eb7af5f-3015-407f-9789-3661130a4dfd-1672369670c807cd63-0"
+      ],
+      "settings": {
+        "id": "",
+        "autorotate": false,
+        "autorotate_interval": 5,
+        "slideshow_description": ""
+      }
+    }
+  },
+  "order": [
+    "352ae28b-8a30-4126-a5be-df45e7123626",
+    "08377031-f958-4ff2-9ace-f06c57baa7b8",
+    "a1a61248-b9a1-44ca-bce3-0d0dbb9bb299",
+    "32bbd1cf-354e-4d33-bc78-d355da7dc7d9",
+    "40fda593-c671-4cbe-aa4b-1e15575ef535",
+    "2ec50a04-e662-4946-85c9-cac8497911f6",
+    "990e5468-1945-4fbb-946c-4d33abed4b9d",
+    "bea7d2e2-5691-46af-bdac-bc5465a8bc8c",
+    "57455f96-1f58-4589-a3a6-ea43bf3c519b",
+    "25863c6e-9d94-4c4a-9be8-aba317d8b357",
+    "28a51637-36ba-4088-b828-70715a847b4a",
+    "88ce2ba1-0319-48c0-a77e-8410c20e387b",
+    "0ad25a7e-f317-4dd7-84cd-3617ee1b16dc",
+    "329795ac-f86e-42aa-b567-83c1c0df3224",
+    "e1210483-dff2-419d-af5f-77d7aa5602a8",
+    "2eb7af5f-3015-407f-9789-3661130a4dfd"
+  ]
+}

@@ -1,0 +1,25 @@
+{%- unless product.metafields.reviews.display -%}
+  {% render 'async-stylesheet', mod_url: 'section-okendo-reviews-widget.css' %}
+
+  <div id='okendo-reviews'></div>
+  <section class='okendo-reviews-widget background-color-off-white'>
+    <div class='container'>
+      <h2 class='h2 okendo-reviews-widget__title no-margin color-off-black'>
+        {{ 'products.product.okendo_reviews_widget_title' | t }}
+      </h2>
+      {% if product != blank %}
+        {% capture product_data_attribute %}data-oke-reviews-product-id="shopify-{{ product.id }}"{% endcapture %}
+      {% endif %}
+      {% if shop.metafields.okendo.ReviewsWidgetStyles != blank %}
+        {{ shop.metafields.okendo.ReviewsWidgetStyles }}
+      {% endif %}
+      <div data-oke-widget {{ product_data_attribute }}>{{ product.metafields.okendo.ReviewsWidgetSnippet }}</div>
+    </div>
+  </section>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "t:sections.pdp-okendo-reviews.name"
+}
+{% endschema %}

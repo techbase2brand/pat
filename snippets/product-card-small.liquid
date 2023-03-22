@@ -1,0 +1,50 @@
+{%- liquid
+  assign imgObj = product_card_product.featured_image
+  if product_card_variant.image
+    assign imgObj = product_card_variant.image
+  endif
+
+  assign color_options = product_card_product.options_with_values | where: 'name', 'Color' | first
+  assign size_options = product_card_product.options_with_values | where: 'name', 'Size' | first
+  assign color_option_name = 'option' | append: color_options.position
+  assign size_option_name = 'option' | append: size_options.position
+-%}
+<product-card-small class="flex align-center cart-popup__item align-start background-color-off-white" product-handle="{{ product_card_product.handle }}">
+  <a href="{{ product_card_product.url }}" class="cart-popup__item-image">
+    <img src="{{ imgObj | image_url: width: 152 }}" alt="{{ product_card_product.title | escape }}" width="152" height="152" loading="lazy" />
+  </a>
+  <div class="cart-popup__item-details">
+    <a href="{{ product_card_product.url }}" class="b2 color-off-black bold no-margin no-underline">{{ product_card_product.title | escape }}</a>
+    {%- if product_card_variant[color_option_name] -%}
+      <div class='swatch-line no-margin flex align-center'>
+        {%- render 'form-shade-selector',
+          color: product_card_variant[color_option_name],
+          id: product_card_variant.id,
+          disabled: false,
+          variant: product_card_variant
+        -%}
+        <span class='b2 color-dark-gray no-margin'>{{ product_card_variant[color_option_name] }}</span>
+      </div>
+    {%- elsif size_options -%}
+      <div class='b2 color-dark-gray no-margin'>{{ product_card_variant[size_option_name] }}</div>
+    {%- endif -%}
+
+    <div class="flex cart-popup__item-price-line align-center justify-space-between">
+      {% render 'product-card-button',
+        button_type: 'button',
+        button_text_t: 'products.product.add_to_bag',
+        product_card_product: product_card_product,
+        selected_variant: product_card_variant,
+        button_action: 'add-to-cart',
+        button_value: product_card_variant.id,
+        mod_variant: 'text-underline'
+      %}
+      <div class="flex cart-popup__item-price product-card-small__price">
+        {%- if product_card_variant.compare_at_price > product_card_variant.price -%}
+          <del class='color-dark-gray no-margin b2'>{{ product_card_variant.compare_at_price | money }}</del>
+        {%- endif -%}
+        <ins class='color-off-black no-margin b2'>{{ product_card_variant.price | money }}</ins>
+      </div>
+    </div>
+  </div>
+</product-card-small>

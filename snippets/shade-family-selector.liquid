@@ -1,0 +1,8 @@
+{% liquid
+  assign label_t = label_t | default: 'customer.register.shade_family'
+  assign name = name | default: 'shade_family'
+  assign input_attributes = input_attributes | default: nil
+  assign shade_families = settings.shade_families | default: "Medium, Deep, Medium Deep, Light Medium, Light, Fair, Very Fair" | split: ','
+  assign mod_value = customer.metafields.customer_fields.shade_family.value | default: customer.metafields.customer_fields.data["shade_family"]
+  render 'form-dropdown', value: mod_value, name: name, label_t: label_t, input_attributes: input_attributes, options: shade_families
+%}

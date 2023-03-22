@@ -1,0 +1,35 @@
+{%- liquid
+  assign mod_class = mod_class | default: ''
+  assign mod_loop_length = mod_loop_length | default: '3'
+  assign mod_button_bg_color = mod_button_bg_color | default: 'background-color-light-tan'
+  assign mod_render_slide_status = mod_render_slide_status
+  assign mod_slide_status_class = mod_slide_status_class   
+-%}
+
+<div class='simple-carousel-controls flex align-center {{ mod_class }}'>
+  <button
+    type='button'
+    data-slider-back
+    class='flex cursor-pointer justify-center align-center {{ mod_button_bg_color }}'
+    aria-label="{{ 'accessibility.scroll_previous' | t }}"
+  >
+    {% render 'icon-arrow', direction: 'left' %}
+  </button>
+
+  {% if mod_render_slide_status == true %}
+    <span
+      data-slider-status
+      class='b1--strong color-off-black  {{ mod_slide_status_class }}'
+      >01 / {{ mod_loop_length -}}
+    </span>
+  {% endif %}
+
+  <button
+    type='button'
+    data-slider-next
+    class='flex cursor-pointer justify-center align-center {{ mod_button_bg_color }}'
+    aria-label="{{ 'accessibility.scroll_next' | t }}"
+  >
+    {% render 'icon-arrow', direction: 'right' %}
+  </button>
+</div>

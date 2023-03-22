@@ -1,0 +1,674 @@
+{
+  "general": {
+    "shades": {
+      "selected_shade": "Selected Shades",
+      "all_shades": "All Shades",
+      "filter_by": "Filter By Shade Ranges",
+      "find_my_shade": "Find My Shade",
+      "virtual_try_on": "Virtual Try On",
+      "matched_shade_finder": "Matched Shade Finder"
+    },
+    "sizes": {
+      "selected_size": "Selected Size"
+    },
+    "password_page": {
+      "login_form_heading": "Enter store using password:",
+      "login_password_button": "Enter using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_error": "Wrong password!",
+      "login_form_submit": "Enter",
+      "modal": "Password modal",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\" class=\"link underlined-link\">Log in here</a>",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}",
+      "email_us": "Email us",
+      "welcome": "Welcome to"
+    },
+    "social": {
+      "alt_text": {
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
+      },
+      "links": {
+        "twitter": "Twitter",
+        "facebook": "Facebook",
+        "pinterest": "Pinterest",
+        "instagram": "Instagram",
+        "tumblr": "Tumblr",
+        "snapchat": "Snapchat",
+        "youtube": "YouTube",
+        "vimeo": "Vimeo",
+        "tiktok": "TikTok"
+      }
+    },
+    "continue_shopping": "Continue Shopping",
+    "pagination": {
+      "label": "Pagination",
+      "page": "Page {{ number }}",
+      "next": "Next page",
+      "previous": "Previous page"
+    },
+    "search": {
+      "search": "Search",
+      "search_suggesions": "Search Suggestions"
+    },
+    "cart": {
+      "view": "View my cart ({{ count }})",
+      "item_added": "Item added to your cart"
+    },
+    "share": {
+      "copy_to_clipboard": "Copy link",
+      "share": "Share",
+      "share_url": "Link",
+      "success_message": "Link copied to clipboard!"
+    }
+  },
+  "product_card": {
+    "bestseller": "Bestseller",
+    "is_new": "New",
+    "selling_fast": "Selling Fast",
+    "shade_qty": "Shades",
+    "sizes_qty": "Sizes",
+    "select_shade": "Select Shade",
+    "select_size": "Select Size",
+    "add_to_bag": "Add to bag",
+    "shop_now": "Shop Now",
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "slideout": {
+    "quick_shop": "Quick Shop",
+    "view_full_details": "View Full Details"
+  },
+  "date_formats": {
+    "month_year": "%B %Y"
+  },
+  "video": {
+    "error_message": "Sorry, your browser doesn't support embedded videos."
+  },
+  "newsletter": {
+    "label": "Your email",
+    "success": "Thanks for subscribing",
+    "sign_up_text": "Sign Up",
+    "select_shade_family": "Select Your Shade Family",
+    "all_shades": "All Shades",
+    "sms_optin": "Sign up to receive text & SMS updates"
+  },
+  "accessibility": {
+    "pause_video": "Pause video",
+    "play_video": "Play video",
+    "skip_to_text": "Skip to content",
+    "skip_gallery": "Skip gallery",
+    "skip_to_product_info": "Skip to product information",
+    "close": "Close",
+    "unit_price_separator": "per",
+    "vendor": "Vendor:",
+    "error": "Error",
+    "plus": "Increase",
+    "minus": "Decrease",
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window.",
+      "external": "Opens external website."
+    },
+    "of": "of",
+    "next_slide": "Slide right",
+    "previous_slide": "Slide left",
+    "loading": "Loading...",
+    "account": "Account",
+    "scroll_previous": "Scroll to previous",
+    "scroll_next": "Scroll to next",
+    "nav_right": "Right-side navigation menu",
+    "account_nav": "Cart and account navigation",
+    "mobile_menu_footer_nav": "Footer navigation",
+    "home": "Home",
+    "phone_tooltip": "More info about how to change your phone number",
+    "shop_menu": "Shop menu",
+    "account_menu": "Account menu",
+    "mobile_menu": "Toggle mobile menu",
+    "open_accordion": "Open accordion",
+    "close_accordion": "Close accordion",
+    "cart_remove_fail": "Failed to remove item",
+    "cart_quantity_fail": "Failed to remove item",
+    "something_went_wrong": "Something went wrong",
+    "items_container": " Items container",
+    "carousel": "Carousel",
+    "icon_virtual_try_on": "Virtual Try On",
+    "icon_auto_delivery": "Auto Delivery"
+  },
+  "blogs": {
+    "article": {
+      "blog": "Blog",
+      "read_more_title": "Read more: {{ title }}",
+      "read_more": "Read more",
+      "comments": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      },
+      "moderated": "Please note, comments need to be approved before they are published.",
+      "comment_form_title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Comment",
+      "post": "Post comment",
+      "back_to_blog": "Back to blog",
+      "share": "Share this article",
+      "success": "Your comment was posted successfully! Thank you!",
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
+      "watch_now": "Watch Now"
+    }
+  },
+  "onboarding": {
+    "product_title": "Example product title",
+    "collection_title": "Your collection's name"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to bag",
+      "add_to_bag": "Add to Bag",
+      "selling_fast": "Selling Fast",
+      "description": "Description",
+      "details": "Details",
+      "on_sale": "Sale",
+      "product_variants": "Product variants",
+      "finish": "finish",
+      "coverage": "coverage",
+      "spf": "spf",
+      "shades": "shades",
+      "sizes": "sizes",
+      "media": {
+        "open_featured_media": "Open featured media in gallery view",
+        "open_media": "Open media {{ index }} in gallery view",
+        "play_model": "Play 3D Viewer",
+        "play_video": "Play video"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "input_label": "Quantity for {{ product }}",
+        "increase": "Increase quantity for {{ product }}",
+        "decrease": "Decrease quantity for {{ product }}"
+      },
+      "pickup_availability": {
+        "view_store_info": "View store information",
+        "check_other_stores": "Check availability at other stores",
+        "pick_up_available": "Pickup available",
+        "pick_up_available_at_html": "Pickup available at <span class=\"color-foreground\">{{ location_name }}</span>",
+        "pick_up_unavailable_at_html": "Pickup currently unavailable at <span class=\"color-foreground\">{{ location_name }}</span>",
+        "unavailable": "Couldn't load pickup availability",
+        "refresh": "Refresh"
+      },
+      "price": {
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Regular price",
+        "sale_price": "Sale price",
+        "unit_price": "Unit price"
+      },
+      "share": "Share this product",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "vendor": "Vendor",
+      "video_exit_message": "{{ title }} opens full screen video in same window.",
+      "xr_button": "View in your space",
+      "xr_button_label": "View in your space, loads item in augmented reality window",
+      "okendo_reviews_widget_title": "Reviews & Questions",
+      "out_of_stock": "Out of stock",
+      "get_notified": "Get Notified",
+      "coming_soon": "Coming Soon",
+      "wear_it_with": "Wear it With",
+      "not_in_a_group": "Other"
+    },
+    "modal": {
+      "label": "Media gallery"
+    },
+    "grid": {
+      "hide_filters": "Hide Filters",
+      "hide_collection_grid": "Hide Collection Grid"
+    }
+  },
+  "templates": {
+    "404": {
+      "title": "Page not found",
+      "subheading": "Oops",
+      "description": "The page you are looking for may have been removed or is temporarily unavailable."
+    },
+    "search": {
+      "no_results": "No results found for “{{ terms }}”. Check the spelling or use a different word or phrase.",
+      "page": "Page",
+      "results_with_count": {
+        "one": "{{ count }} result found for “{{ terms }}”",
+        "other": "{{ count }} results found for “{{ terms }}”"
+      },
+      "title": "Search results"
+    },
+    "cart": {
+      "cart": "Cart",
+      "free": "Free",
+      "free_samples": {
+        "one": "add {{ count }} free sample!",
+        "other": "add {{ count }} free samples!"
+      },
+      "free_samples_no_limits": "add free samples!",
+      "free_samples_body": {
+        "one": "You are eligible for 1 sample with your purchase. Samples are not guaranteed and available while supplies last.",
+        "other": "You are eligible for {{ count }} samples with your purchase. Samples are not guaranteed and available while supplies last."
+      }
+    },
+    "contact": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone number",
+        "comment": "Comment",
+        "send": "Send",
+        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
+        "error_heading": "Please adjust the following:"
+      }
+    },
+    "collection": {
+      "load_more": "Load More",
+      "pagination_status": "Showing {{ showing }} of {{ total_count }} Items"
+    },
+    "klevu_search": {
+      "pagination_status": "Showing %s of %s Items",
+      "productList": {
+        "one": "%s Product",
+        "other": "%s Products"
+      },
+      "contentList": {
+        "one": "%s Result",
+        "other": "%s Results"
+      }
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Announcement",
+      "announcement_bar": "Announcement Bar",
+      "menu": "Menu",
+      "back": "Back"
+    },
+    "cart": {
+      "title": "Your Shopping Bag",
+      "in_bag": "In Your Bag",
+      "remove_title": "Remove {{ title }}",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total",
+      "new_subtotal": "New subtotal",
+      "note": "Order special instructions",
+      "checkout": "Secure Checkout",
+      "empty": "Your cart is empty",
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add [quantity] of this item to your cart.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
+      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
+      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+      "update": "Update",
+      "cart_count": {
+        "one_html": "<span data-cart-attribute=\"item_count\">{{ count }}</span> item",
+        "other_html": "<span data-cart-attribute=\"item_count\">{{ count }}</span> items"
+      },
+      "have_account": "Have an account?",
+      "login": "Login",
+      "need_help": "Need help with your order?",
+      "contact_us": "Contact us",
+      "chat": "Chat with Customer Service",
+      "live_chat": "Live Chat",
+      "chat_timing": "9AM - 11PM ET (Mon - Sat)",
+      "terms_conditions_html": "By checking out, I agree to the Terms of Use and acknowledge that I have read the Privacy Policy",
+      "promo_code": "Have a promo code? Continue to checkout to redeem."
+    },
+    "footer": {
+      "social_placeholder": "Follow us on social media!",
+      "payment": "Payment methods",
+      "copyright_text": "© Laura Mercier"
+    },
+    "featured_blog": {
+      "view_all": "View all",
+      "onboarding_title": "Blog post",
+      "onboarding_content": "Give your customers a summary of your blog post"
+    },
+    "featured_collection": {
+      "view_all": "View all",
+      "view_all_label": "View all products in the {{ collection_name }} collection"
+    },
+    "collection_list": {
+      "view_all": "View all"
+    },
+    "collection_template": {
+      "apply": "Apply",
+      "clear": "Clear",
+      "clear_all": "Clear all",
+      "empty": "No products found",
+      "from": "From",
+      "filter_and_sort": "Filter & sort",
+      "filter_by_label": "Filter by",
+      "filter_button": "Filter",
+      "filters_selected": {
+        "one": "{{ count }} selected",
+        "other": "{{ count }} selected"
+      },
+      "max_price": "The highest price is {{ price }}",
+      "product_count": {
+        "one": "{{ product_count }} Product",
+        "other": "{{ product_count }} Products"
+      },
+      "reset": "Reset",
+      "sort_button": "Sort",
+      "sort_by_label": "Sort by",
+      "title": "Collection",
+      "to": "To",
+      "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" data-clear-all href=\"{{ link }}\">clear all</a>",
+      "no_results": {
+        "title": "No Results Found",
+        "body": "Optional Body Text"
+      }
+    },
+    "featured-products-tall-with-swatches": {
+      "shade_name": "in {{ shade_name }}"
+    }
+  },
+  "localization": {
+    "country_label": "Country",
+    "language_label": "Language",
+    "update_language": "Update language",
+    "update_country": "Update country/region",
+    "title": "Country Selector",
+    "subtitle_html": "Where are <em>you</em> doing your makeup?",
+    "apply": "Apply",
+    "united_states": "United States",
+    "canada": "Canada",
+    "united_kingdom": "United Kingdom"
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "edit": "Edit",
+      "details": "Welcome to the Beauty Station, your place to explore and discover personalized product recommendations, wishlists, exclusives, and plenty more.",
+      "view_addresses": "View addresses",
+      "return": "Return to Account details",
+      "welcome_back": "Welcome Back!",
+      "overview": {
+        "name": "Name",
+        "email": "Email",
+        "birthday": "Birthday",
+        "phone": "Phone Number",
+        "shade_family": "Shade Family",
+        "change_password": "Change Password",
+        "reset_password": {
+          "action": "Reset Password",
+          "title": "Reset Password",
+          "body": "We will send a link to reset your password to your email and logout from the current session. Follow the directions in the email to reset your password. If you can't find the email check your spam folder.",
+          "close": "Close",
+          "confirm": "Confirm"
+        },
+        "edit_birthday": {
+          "title": "Edit your Birthday",
+          "form_label": "When is your birthday?",
+          "month": "Month",
+          "day": "Day"
+        },
+        "edit_shade": {
+          "title": "Edit your Shade Family",
+          "cancel": "Cancel",
+          "update": "Save",
+          "copy_html": "I agree that Laura Mercier Cosmetics may collect my personal information – including contact information, payment, demographic or behavioral characteristics, technical computer, website usage and social network information, or other categories permitted by our Privacy Policy – for the purposes of order fulfillment, marketing communications, account maintenance, website personalization & improvement, or other purposes permitted by our Privacy Policy. By visiting LauraMercier.com and by submitting my information, I agree with the Privacy Policy and the website’s Terms & Conditions."
+        }
+      },
+      "phone_tooltip": {
+        "heading": "Edit your phone number",
+        "body": "If you'd like to edit your phone number, please reach out to Customer Service:",
+        "hours": "9AM - 11PM ET (Mon - Sat)",
+        "chat_text": "Live Chat",
+        "tooltip_url": "/"
+      },
+      "nav": {
+        "overview": "Overview",
+        "saved-addresses": "Saved Addresses",
+        "order-history": "Order History",
+        "subscriptions": "Subscriptions",
+        "logout_html": "Not You? <span>Log Out</span>"
+      }
+    },
+    "account_fallback": "Account",
+    "activate_account": {
+      "title": "Activate account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Activate account",
+      "cancel": "Decline invitation"
+    },
+    "addresses": {
+      "title": "Saved Addresses",
+      "default": "Default Address",
+      "add_new": "Add a new address",
+      "edit_address": "Edit address",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "company": "Company",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "city": "City",
+      "country": "Country/region",
+      "province": "Province",
+      "zip": "Postal/ZIP code",
+      "phone": "Phone",
+      "set_default": "Make this my Default Address",
+      "add": "Add address",
+      "update": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?"
+    },
+    "login": {
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Submit"
+    },
+    "log_in": "Log in",
+    "log_out": "Log out",
+    "sign_up": "Sign up",
+    "login_page": {
+      "cancel": "Cancel",
+      "create_account": "Create Account",
+      "email": "Email",
+      "forgot_password": "Forgot your password?",
+      "guest_continue": "Continue",
+      "guest_title": "Continue as a guest",
+      "password": "Password",
+      "title": "Login",
+      "description_start": "Bonjour! Thanks for visiting our website. All past customers, please ensure you create an account via the link below to see previous transactions. Please live chat with",
+      "customer_care": "Customer Care",
+      "description_end": "if you have questions.",
+      "sign_in": "Sign in",
+      "submit": "Submit"
+    },
+    "order": {
+      "shipped": "Shipped",
+      "contact": "Contact",
+      "payment_method": "Payment Method",
+      "details": "Order Details",
+      "return_cta": "Return to Order History",
+      "title": "Order {{ name }}",
+      "date_html": "Placed on {{ date }}",
+      "cancelled": "Cancelled",
+      "cancelled_html": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at_html": "Fulfilled {{ date }}",
+      "track_shipment": "Track shipment",
+      "tracking_url": "Tracking link",
+      "tracking_company": "Carrier",
+      "tracking_number": "Tracking number",
+      "subtotal": "Subtotal"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number_title": "Order number",
+      "Total": "Total",
+      "order_number": "Order",
+      "order_with_number": "Order {{ number }}",
+      "order_number_link": "Order number {{ number }}",
+      "date": "Date",
+      "payment_status": "Payment status",
+      "fulfillment_status": "Fulfillment status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet.",
+      "link": "Link to order",
+      "view_details": "View Details",
+      "pagination": "Showing {{ visible_count }} of {{ items }} orders"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "subtext": "We will send you an email to reset your password",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "register": {
+      "title": "Create Account",
+      "subtext": "The world of Laura Mercier is waiting for you! Create an account for a unique beauty and skincare experience.",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "submit": "Create",
+      "shade_family": "Your Shade Family",
+      "sms": "Sign up to receive text & SMS updates",
+      "accepts_marketing": "Please sign me up for emails from Laura Mercier.",
+      "sms_note_html": "By subscribing to Laura Mercier Cosmetics you consent to receive recurring automated promotional and personalized marketing messages (e.g. cart reminders) at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help or STOP to opt-out. Message and data rates may apply. View <a href=\"/pages/customer-service-terms\" class=\"link underlined-link\">Terms of Use</a> and <a href=\"/pages/customer-service-privacy-policy\" class=\"link underlined-link\">Privacy Policy</a>",
+      "accepts_marketing_note_html": "I agree that Laura Mercier may collect my personal information for the purposes permitted by our Privacy Policy. By visiting LauraMercier.com and by submitting my information, I agree with the <a href=\"/pages/customer-service-privacy-policy\" class=\"link underlined-link\">Privacy Policy</a> and the website <a href=\"/pages/customer-service-terms\" class=\"link underlined-link\">Terms & Conditions</a>.",
+      "login": "Already have an account? Login",
+      "phone_error_taken_html": "Phone number is already taken. Visit our <a href=\"/pages/frequently-asked-questions/#q13\">FAQ</a> page for more details.",
+      "phone_error_invalid_html": "Please enter a phone number with a valid country code, ex. +1"
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Reset password",
+      "return": "Back to Log In"
+    },
+    "subscriptions": {
+      "title": "My Subscriptions"
+    }
+  },
+  "standard_forms": {
+    "email_label": "Email Address",
+    "first_name_label": "First Name",
+    "last_name_label": "Last Name",
+    "phone_label": "Phone Number",
+    "opt_in_label": "By subscribing to Laura Mercier Cosmetics you consent to receive recurring automated promotional and personalized marketing messages (e.g. cart reminders) at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help or STOP to opt-out. Message and data rates may apply. View Terms of Use & Privacy Policy."
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "note": "Add a note to your order",
+      "removed_item_html": "Removed <span class=\"cart__removed-product-details\">({{ quantity }}) {{ link }}</span> from your cart.",
+      "remove_title": "Remove {{ title }}",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "shipping_and_taxes": "Shipping & Taxes",
+      "savings": "Savings",
+      "taxes_and_shipping_at_checkout": "(Calculated at checkout)",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
+      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
+      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "update": "Update",
+      "checkout": "Proceed to Checkout",
+      "empty": "Your cart is currently empty.",
+      "cookies_required": "Enable cookies to use the shopping cart",
+      "continue_shopping": "Continue shopping",
+      "cart_error": "There was an error while updating your cart. Please try again.",
+      "promo_gift_card_only_html": "Add <strong>{{ count }}</strong> pillows to get {{ percent }}% off",
+      "promo_message_html": "Add <strong>{{ count }} more</strong> pillows to get {{ percent }}% off",
+      "promo_message_one_html": "Add <strong>1 more</strong> pillow to get {{ percent }}% off",
+      "savings_calculator": "Savings Calculator",
+      "hide_details": "Hide Details",
+      "show_details": "Show Details",
+      "buy_more_save_more": "Currently <strong>saving {{ saving }}</strong>. Buy more to save more!",
+      "final_sale": "Final Sale. Item not valid with discount",
+      "upsell_title": "Add {{ count }} more pillows for {{ percent }}% off",
+      "upsell_title_one": "Add 1 more pillow for {{ percent }}% off",
+      "upsell_desc": "Save {{ percent }}% on orders of {{ count }} pillows or more !",
+      "order_summary": "Order Summary",
+      "add_more": "Add +",
+      "max_qty": "Sorry, only {{ max }} items are allowed per order."
+    },
+    "label": {
+      "discounted_total": "Discounted total",
+      "product": "Product",
+      "price": "Price",
+      "price_column": "See Price column for discount details.",
+      "product_details": "Product details",
+      "quantity": "Quantity",
+      "qty": "Qty",
+      "regular_total": "Regular total",
+      "remove": "Remove {{ product }}",
+      "total": "Total",
+      "update": "Update"
+    },
+    "popup": {
+      "continue": "Continue Shopping",
+      "subtotal": "Subtotal",
+      "view_cart": "View Cart",
+      "checkout": "Checkout",
+      "items": "Items",
+      "added_to_cart": "Added to Bag!",
+      "cart_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      },
+      "upsell_title": "You Might Like",
+      "add_to_bad": "Add to Bag",
+      "product_details": "Product details",
+      "quantity": "Qty",
+      "quantity_label": "Quantity: {{ quantity_count }}"
+    },
+    "gift_note": {
+      "label": "Add a gift note",
+      "placeholder": "Type your gift note here..."
+    }
+  },
+  "gift_cards": {
+    "instructions": "Instructions lorem ipsum dolor ait amet here.  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ",
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Your gift card",
+      "gift_card_code": "Gift card code",
+      "shop_link": "Continue shopping",
+      "remaining_html": "Remaining {{ balance }}",
+      "add_to_apple_wallet": "Add to Apple Wallet",
+      "qr_image_alt": "QR code — scan to redeem gift card",
+      "copy_code": "Copy Code",
+      "expired": "Expired",
+      "copy_code_success": "Code copied successfully",
+      "print_gift_card": "Print"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "marketing": {
+        "accept_marketing_checkbox_label": "Please sign me up for emails from Laura Mercier. I agree that Laura Mercier may collect my personal information for the purposes permitted by our Privacy Policy. By visiting LauraMercier.com and by submitting my information, I agree with the Privacy Policy and the website Terms & Conditions.",
+        "accept_sms_checkbox_label": "Sign up to receive text & SMS updates."
+      }
+    }
+  }
+}

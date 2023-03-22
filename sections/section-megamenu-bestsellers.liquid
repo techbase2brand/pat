@@ -1,0 +1,59 @@
+<section-megamenu id="megamenu-2" class="megamenu background-color-pale-pink">
+  {% render 'megamenu-component' %}
+</section-megamenu>
+
+{% schema %}
+{
+  "name": "Megamenu - Bestsellers",
+  "tag": "section",
+  "class": "megamenu-section megamenu__bestseller",
+  "settings": [
+    {
+      "type": "text",
+      "id": "menu_title",
+      "default": "Best Sellers",
+      "label": "Menu Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu_col",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "navigation_menu",
+          "label": "Select Menu"
+        }
+      ]
+    },
+    {
+      "type": "feature_col",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "url",
+          "id": "feature_link",
+          "label": "Feature link"
+        },
+        {
+          "type": "image_picker",
+          "id": "feature_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}

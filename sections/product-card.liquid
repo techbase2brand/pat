@@ -1,0 +1,15 @@
+{%- liquid
+  assign featured_variant = nil
+  for variant in product.variants
+    if variant.metafields.product_card.featured_variant
+      assign featured_variant = variant
+      break
+    endif
+  endfor
+
+  if featured_variant
+    render 'product-card', product_card_product: product, product_card_variant: featured_variant, use_variant: true
+  else
+    render 'product-card', product_card_product: product, product_card_variant: product.selected_or_first_available_variant
+  endif
+-%}

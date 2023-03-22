@@ -1,0 +1,123 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "10f7a506-e8b3-4c70-87ae-d557ae6de6de": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Setting",
+        "bottom_heading": "Masterclass",
+        "desktop_banner_image": "shopify://shop_images/Inset_Banner.jpg",
+        "mobile_banner_image": "shopify://shop_images/Inset_Banner_1_b454aa55-e4cd-4333-ab43-0316d93c03ba.jpg",
+        "desktop_fallback_image": "shopify://shop_images/Inset_Banner.jpg",
+        "mobile_fallback_image": "shopify://shop_images/Inset_Banner_1_b454aa55-e4cd-4333-ab43-0316d93c03ba.jpg",
+        "content_subheading": "",
+        "content_heading": "Learn to set makeup like a pro with expert artist, Tayaba Jafri.",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "left",
+        "desktop_body_text_alignment": "left",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "54c0f4bf-801d-4252-b30f-3e68e713e608": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "heading": "Shop the Event",
+        "placement_id": "live-stream-nosto-1"
+      }
+    },
+    "bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_8.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Collection",
+            "body": "Learn to create a look with the NEW RoseGlow Collection's universally flattering shades.",
+            "cta_url": "shopify://blogs/makeup",
+            "cta_text": "Watch Now"
+          }
+        },
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_8.jpg",
+            "eyebrow": "",
+            "heading": "Amanda Diaz Livestream",
+            "body": "Discover how Amanda Diaz gets her lit-from-within glow.",
+            "cta_url": "",
+            "cta_text": "Watch Now"
+          }
+        },
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_3_8.jpg",
+            "eyebrow": "",
+            "heading": "Translucent Loose Setting Powder",
+            "body": "Learn how to acheive a luminous, light-creating look.",
+            "cta_url": "shopify://blogs/makeup",
+            "cta_text": "Watch Now"
+          }
+        },
+        "741a21ef-a6be-4a1a-9be6-d7f393288cab": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_4_7.jpg",
+            "eyebrow": "",
+            "heading": "NEW RoseGlow Collection",
+            "body": "Learn how to use this versatile and universally flattering collection.",
+            "cta_url": "",
+            "cta_text": "Watch Now"
+          }
+        },
+        "1614676d-65cc-4121-8551-900dfe15fffa": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_5.jpg",
+            "eyebrow": "",
+            "heading": "2 Zoom Ready Looks",
+            "body": "Learn the secret to get more from your makeup.",
+            "cta_url": "shopify://blogs/makeup",
+            "cta_text": "Watch Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-0",
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-1",
+        "template--16697966788847__bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c-1666956447ce4118de-2",
+        "741a21ef-a6be-4a1a-9be6-d7f393288cab",
+        "1614676d-65cc-4121-8551-900dfe15fffa"
+      ],
+      "settings": {
+        "section_title": "Never Miss a Livestream"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "10f7a506-e8b3-4c70-87ae-d557ae6de6de",
+    "54c0f4bf-801d-4252-b30f-3e68e713e608",
+    "bd9d6663-42a8-4e57-8e66-cfa2b72f8b6c"
+  ]
+}

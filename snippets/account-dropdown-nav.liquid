@@ -1,0 +1,60 @@
+{%- assign active_value = nil -%}
+
+{%- capture menu_labels -%}
+  {{ 'customer.account.nav.overview' | t }},{{ 'customer.account.nav.saved-addresses' | t }},{{ 'customer.account.nav.order-history' | t }},{{ 'customer.account.nav.subscriptions' | t }},{{ 'customer.account.nav.logout_html' | t }},
+{%- endcapture -%}
+{%- assign menu_labels = menu_labels | split: ',' -%}
+
+{% liquid
+  assign secret_key = settings.ordergroove_secret_key
+  assign customer_id = customer.id
+  assign timestamp = "now" | date: "%s"
+  assign signature = customer_id | append: "|" | append: timestamp | hmac_sha256: secret_key
+  assign subscription_url = "/apps/subscriptions/manage/?customer=" | append: customer.id | append: "&customer_signature=" | append: signature | append: "&customer_timestamp=" | append: timestamp
+%}
+
+<div class="account-dropdown-nav">
+  {%- render 'form-dropdown', name: 'account_nav', label_t: 'customer.account.title', options: menu_labels, value: active_value -%}
+</div>
+
+<script>
+  Array.from(document.querySelectorAll('simple-dropdown[name="account_nav"]')).forEach((el) => {
+    // Set current value based on page url
+    if(window.location.href.includes('#orders')) {
+      el.setAttribute('value', 'order-history');
+    } else if (window.location.pathname === '/account') {
+      el.setAttribute('value', 'overview');
+    } else if (window.location.pathname === '/account/addresses/') {
+      el.setAttribute('value', 'saved-addresses');
+    }
+
+    // Listen for changes
+    el.addEventListener('nativeItemSelected', function(e) {
+      var value = e.target.value;
+      let nextPath = window.location.pathname
+      switch (value) {
+        case 'overview':
+          nextPath = '/account';
+          break;
+        case 'saved-addresses':
+          nextPath = '{{ routes.account_addresses_url }}/';
+          break;
+        case 'order-history':
+          nextPath = '{{ routes.account_url }}?view=orders';
+          break;
+        case 'subscriptions':
+          nextPath = '{{ subscription_url }}';
+          break;
+        case 'not-you-span-log-out-span':
+          nextPath = '{{ routes.account_logout_url }}';
+          break;
+      }
+      
+      if (nextPath === window.location.pathname) {
+        return
+      }
+
+      window.location.href = nextPath
+    });
+  })
+</script>

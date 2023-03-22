@@ -1,0 +1,173 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "50317e17-49ef-4153-91e7-4ff06af0d111": {
+      "type": "section-comparison-slider-large-arch",
+      "blocks": {
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Petal_Soft_2.png",
+            "slide_product_image": "shopify://shop_images/Petal_Soft_3.png",
+            "slide_heading": "Petal Soft Lipstick Crayon",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/petal-soft-lipstick-crayon"
+          }
+        },
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Rouge_Essentiel_2.png",
+            "slide_product_image": "shopify://shop_images/Rouge_Essentiel_3.png",
+            "slide_heading": "Rouge Essentiel Silky Crème Lipstick",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/rouge-essentiel"
+          }
+        },
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Velour_Extreme_2.png",
+            "slide_product_image": "shopify://shop_images/Velour_Extreme_3.png",
+            "slide_heading": "Velour Extreme Matte Lipstick",
+            "slide_body": "",
+            "link_text": "Shop Now",
+            "link_url": "shopify://products/velour-extreme-matte-lipstick"
+          }
+        },
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-3": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "slide_heading": "Heading",
+            "slide_body": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-0",
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-1",
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-2",
+        "template--16729256493295__50317e17-49ef-4153-91e7-4ff06af0d111-1670427357e46224ff-3"
+      ],
+      "settings": {
+        "id": "",
+        "eyebrow": "",
+        "heading": "Lipsticks For Every Look",
+        "section_cta_text": "",
+        "section_cta_url": ""
+      }
+    },
+    "d47d6a1b-7d3b-458d-8c42-82d697dd9989": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Petal Soft",
+        "id": "",
+        "bottom_heading": "Lipstick Crayon",
+        "desktop_banner_image": "shopify://shop_images/Video_Banner_4.jpg",
+        "mobile_banner_image": "shopify://shop_images/Video_2.jpg",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "desktop_fallback_image": "shopify://shop_images/Video_Banner_4.jpg",
+        "mobile_background_video": "shopify://files/videos/Pexels Videos 1321208 (2).mp4",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "mobile_fallback_image": "shopify://shop_images/Video_2.jpg",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "Watch Now",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_1_1.jpg",
+            "eyebrow": "",
+            "heading": "Blush",
+            "body": "Add a natural, effortless flush of color.",
+            "cta_url": "shopify://collections/cheek",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_1.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer",
+            "body": "Nourish, rejuvenate and perfect skin, now in three finishes.",
+            "cta_url": "shopify://collections/tinted-moisturizer",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_Primers_e1785deb-23df-470a-a2cd-6d41821c6718.jpg",
+            "eyebrow": "",
+            "heading": "Primers",
+            "body": "Prep your Flawless Face with Laura’s first step for an all-day look that lasts.",
+            "cta_url": "shopify://collections/primers",
+            "cta_text": "Shop Now"
+          }
+        },
+        "ad2e35c5-9660-4038-b3b0-5f3d79ad1363": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_4_1.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Collection",
+            "body": "Light up your look with rose-inspired formulas and natural luminosity.",
+            "cta_url": "shopify://collections/roseglow",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-0",
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-1",
+        "template--16665906381039__7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d-166565740318ed905a-2",
+        "ad2e35c5-9660-4038-b3b0-5f3d79ad1363"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "50317e17-49ef-4153-91e7-4ff06af0d111",
+    "d47d6a1b-7d3b-458d-8c42-82d697dd9989",
+    "7fa6fd18-95ec-49f4-a6e8-42ecf2b0563d"
+  ]
+}

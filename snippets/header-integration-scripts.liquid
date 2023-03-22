@@ -1,0 +1,33 @@
+{%- liquid
+  if settings.enable_klevu
+    comment
+      Start klevu-snippets DO NOT EDIT
+    endcomment
+    render 'vendor-klevu-core-search-results'
+    if template == 'page.klevu-search-results'
+      render 'vendor-klevu-search-results'
+    endif
+    render 'vendor-klevu-add-to-cart'
+    render 'vendor-klevu-common-js'
+    comment
+      End klevu-snippets DO NOT EDIT
+    endcomment
+  endif
+
+  if settings.enable_gtm
+    render 'vendor-gtm-tag'
+  endif
+
+  if settings.enable_afterpay
+    render 'vendor-afterpay'
+  endif
+
+  if settings.enable_onelink_edge
+   render 'vendor-transperfect'
+  endif
+
+  if settings.enable_one_trust
+    render 'vendor-one-trust'
+  endif
+-%}
+

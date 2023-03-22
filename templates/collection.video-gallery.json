@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "b94c30d6-cbac-45cd-9001-66508c8bd90c": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Video",
+        "bottom_heading": "Gallery",
+        "desktop_banner_image": "shopify://shop_images/LM_Video-Gallery_Hero.jpg",
+        "mobile_banner_image": "shopify://shop_images/LM_Video-Gallery_Hero_1.jpg",
+        "desktop_fallback_image": "shopify://shop_images/LM_Video-Gallery_Hero.jpg",
+        "mobile_fallback_image": "shopify://shop_images/LM_Video-Gallery_Hero_1.jpg",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "15d6fb0d-5a9d-433c-9568-a60dfd468b11": {
+      "type": "section-image-with-text-square",
+      "settings": {
+        "main_image": "shopify://shop_images/Inset_5050_Banner.jpg",
+        "eyebrow": "",
+        "heading": "Makeup & Skincare Tips & Tricks",
+        "body": "Learn Laura’s groundbreaking techniques with help from our artistry experts.",
+        "section_link_text": "Learn More",
+        "section_link_url": "shopify://collections/lauras-artists",
+        "section_link_2_text": "",
+        "section_link_2_url": "",
+        "image_orientation": "left",
+        "text_alignment": "center",
+        "color_theme": "light",
+        "background_color_override": "#e4cebe"
+      }
+    },
+    "f93a1ab9-eb9c-4bfe-9cb4-50b18a554103": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "heading": "Bestsellers",
+        "placement_id": "video-gallery-nosto-1"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "b94c30d6-cbac-45cd-9001-66508c8bd90c",
+    "15d6fb0d-5a9d-433c-9568-a60dfd468b11",
+    "f93a1ab9-eb9c-4bfe-9cb4-50b18a554103"
+  ]
+}

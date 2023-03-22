@@ -1,0 +1,123 @@
+.dropdown-options {
+  list-style-type: none;
+  padding: 0 12px;
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.dropdown-options .dropdown-option {
+  color: var(--color-off-black);
+  padding: 10px 15px;
+  text-decoration: none;
+  display: flex;
+  border-radius: 130px;
+  width: 100%;
+  border: 1px solid transparent;
+  text-align: left;
+  background-color: transparent;
+  -moz-transition: 0.25s;
+  -o-transition: 0.25s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.dropdown-options .dropdown-option:hover,
+.dropdown-options .dropdown-option.selected {
+  cursor: pointer;
+  background-color: var(--color-pale-pink);
+  box-shadow: 4px 4px 12px rgba(210, 178, 154, 0.4), -4px -4px 12px #fffbf7;
+}
+
+.dropdown-options .dropdown-option input:checked ~ .checkmark {
+  display: block;
+}
+
+.dropdown-option.variant input {
+  opacity: 0;
+}
+
+.dropdown-options .dropdown-option .checkmark {
+  flex: 1;
+  text-align: right;
+  display: none;
+}
+
+.dropdown-icon {
+  pointer-events: none;
+  position: absolute;
+  width: 7px;
+  top: 50%;
+  right: 0;
+}
+
+.dropdown-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: rotate(90deg);
+}
+
+[open='true'] > .dropdown-icon svg {
+  transform: rotate(270deg);
+}
+
+/* variant dropdown */
+
+.dropdown-menu ul li {
+  list-style: none;
+}
+
+.dropdown-menu-title {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-light-tan);
+  display: block;
+}
+
+.swatch-separator {
+  display: none;
+}
+
+.dropdown-menu .variant-title {
+  line-height: 18px;
+}
+
+.dropdown-options__variant .swatch-description {
+  line-height: 15px;
+}
+
+.color-select-inner {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+}
+
+.dropdown-options ul {
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.dropdown-option.variant {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.dropdown-options--text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.dropdown-options__variant {
+  display: flex;
+  flex-direction: column;
+}
+
+.swatch-separator {
+  display: none;
+}

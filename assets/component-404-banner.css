@@ -1,0 +1,41 @@
+.not-found-banner {
+  padding: calc(var(--gutter) * 2) 0;
+  margin-bottom: calc(var(--gutter) * 2);
+}
+
+.not-found-banner__content {
+  padding: 0 calc(var(--gutter) * 1.5);
+}
+
+.not-found__banner-title {
+  padding: 0 0 calc(var(--gutter) / 1.5);
+}
+
+.not-found__subheading {
+  margin: 0 0 calc(var(--gutter) / 4);
+}
+
+.not-found__banner-image {
+  margin-bottom: calc(var(--gutter) / 1.5);
+}
+
+.not-found__description {
+  margin-bottom: calc(var(--gutter) / 1.5);
+}
+
+.not-found__description p {
+  margin: 0;
+}
+
+@media (min-width: 992px) {
+  .not-found-banner {
+    padding: var(--gutter) 0;
+    margin-bottom: var(--gutter);
+  }
+
+  .not-found-banner__content {
+    max-width: 870px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "4c6aed53-3f79-4e4d-87c9-cc9d8da53362": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "Tayaba",
+        "bottom_heading": "Jafri",
+        "desktop_banner_image": "shopify://shop_images/Inset_Banner_1.jpg",
+        "mobile_banner_image": "shopify://shop_images/Inset_Banner_1_1.jpg",
+        "desktop_fallback_image": "shopify://shop_images/Inset_Banner_1.jpg",
+        "mobile_fallback_image": "shopify://shop_images/Inset_Banner_1_1.jpg",
+        "content_subheading": "Global beauty director",
+        "content_heading": "",
+        "content_body": "Tayaba has been working side by side with Laura Mercier for close to 20 years. As Laura’s artistry expert, Tayaba brings to life Laura’s beauty philosophy and timeless techniques to audiences all over the globe. Whether it is directing beauty looks for campaign photoshoots, advising on product formulations or educating makeup artists, Tayaba’s vision is to make artistry effortless for our clients around the world. Tayaba’s creative vision and makeup artistry has been seen on the runways of Paris and New York Fashion Weeks. She has collaborated with prominent photographers for magazines such as Harper’s Bazaar, InStyle, Elle Canada, Allure Russia, Marie Claire Japan and L’Offiiciel Singapore. Tayaba lives in Toronto, Canada.",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "left",
+        "desktop_body_text_alignment": "left",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "583e98a6-6040-4ddf-92d1-b6c213fd854e": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "heading": "Tayaba’s Must-Haves",
+        "placement_id": "lauras-artist-nosto-1"
+      }
+    },
+    "caa056df-9f79-42d8-bb5b-df9f2ce996ca": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "JERRY",
+        "bottom_heading": "JOHNSON",
+        "desktop_banner_image": "shopify://shop_images/Inset_Banner_2.jpg",
+        "mobile_banner_image": "shopify://shop_images/Inset_Banner_2_1.jpg",
+        "desktop_fallback_image": "shopify://shop_images/Inset_Banner_2.jpg",
+        "mobile_fallback_image": "shopify://shop_images/Inset_Banner_2_1.jpg",
+        "content_subheading": "Senior Manager for Artistry & Artistry Content",
+        "content_heading": "",
+        "content_body": "Jerry is known for his ability to create understated makeup looks that showcase beautiful skin. His larger-than-life personality and artistry-driven eye make him a favorite among editors and clients alike. Jerry has collaborated with online publications such as Pop Sugar, Brydie and InStyle.com and his work has been seen on celebrities such as Paris Hilton and Courtney Love. Jerry also assists on set for Laura Mercier's Digital, social and advertising campaigns.",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "left",
+        "desktop_body_text_alignment": "left",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": ""
+      }
+    },
+    "23758c95-517f-4013-aa95-da5c34c6a6cd": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "heading": "Jerry's Must Haves",
+        "placement_id": "lauras-artist-nosto-2"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "4c6aed53-3f79-4e4d-87c9-cc9d8da53362",
+    "583e98a6-6040-4ddf-92d1-b6c213fd854e",
+    "caa056df-9f79-42d8-bb5b-df9f2ce996ca",
+    "23758c95-517f-4013-aa95-da5c34c6a6cd"
+  ]
+}

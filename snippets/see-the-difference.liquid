@@ -1,0 +1,148 @@
+{%- if product.metafields.see_the_difference.enable_see_the_difference -%}
+  {%- liquid
+    render 'async-stylesheet', mod_url: 'component-see-the-difference.css'
+    render 'async-stylesheet', mod_url: 'image-comparison-slider.css'
+
+    assign shadeList = 'All' | split: ','
+    assign variantList = '' | split: ''
+    assign featuredVariant = blank
+    for variant in product.variants
+      unless variant.metafields.see_the_difference.disable
+        if variant.metafields.product_information.skin_tone != blank
+          unless variant.metafields.see_the_difference.see_the_difference_image_before == blank or variant.metafields.see_the_difference.see_the_difference_image_after == blank
+            assign shadeList = shadeList | concat: variant.metafields.product_information.skin_tone.value
+            assign _variant = variant | where: 'title', variant.title
+            assign variantList = variantList | concat: _variant
+          endunless
+        endif
+      endunless
+    endfor
+    assign shadeList = shadeList | uniq | compact
+
+    if variantList.size > 0
+      assign featuredVariant = variantList[0]
+    endif
+
+    assign aspectRatio = 0.85
+  -%}
+  {%- if featuredVariant != blank -%}
+    <script
+      src="{{ 'component-see-the-difference.js' | asset_url }}"
+      type="module"
+      defer="defer"></script>
+    <script
+      src="{{ 'component-image-comparison-slider.js' | asset_url }}"
+      type="module"
+      defer="defer"></script>
+    <see-the-difference class="see-the-difference flex justify-center align-center background-color-pale-pink">
+      {%- assign imgUrl = featuredVariant.metafields.see_the_difference.see_the_difference_image | image_url: width: 1024 -%}
+      {%- assign beforeImgUrl = featuredVariant.metafields.see_the_difference.see_the_difference_image_before | image_url: width: 1024 -%}
+      {%- assign afterImgUrl = featuredVariant.metafields.see_the_difference.see_the_difference_image_after | image_url: width: 1024 -%}
+      <div class="see-the-difference__images_wrapper">
+        <image-compare class="image-compare" label-text="Screen Reader Label Text">
+          <img
+            slot="image-1"
+            class="see-the-difference__image_before"
+            alt="{{ featuredVariant.option1 }}, before image comparison slider"
+            src="{{ beforeImgUrl }}" />
+          <img
+            slot="image-2"
+            class="see-the-difference__image_after"
+            alt="{{ featuredVariant.option1 }}, after image comparison slider"
+            src="{{ afterImgUrl }}" />
+        </image-compare>
+      </div>
+      <div class="see-the-difference__content text-center">
+        {%- if product.metafields.see_the_difference.eyebrow != blank -%}
+          <h2 class="s1 extra-light see-the-difference__content-eyebrow color-off-black no-margin uppercase extra-bold">{{ product.metafields.see_the_difference.eyebrow }}</h2>
+        {%- endif -%}
+        {%- if product.metafields.see_the_difference.heading != blank -%}
+          <h2 class="h2 extra-light see-the-difference__content-heading color-off-black no-margin">{{ product.metafields.see_the_difference.heading }}</h2>
+        {%- endif -%}
+        {%- if product.metafields.see_the_difference.body != blank -%}
+          <div class="b2 color-dark-gray see-the-difference__content-body">{{ product.metafields.see_the_difference.body }}</div>
+        {%- endif -%}
+
+        {%- if product.metafields.see_the_difference.cta_title != blank and product.metafields.see_the_difference.cta_url != blank -%}
+          {%- render 'button' mod_type: "link",
+            mod_value: product.metafields.see_the_difference.cta_title,
+            mod_href: product.metafields.see_the_difference.cta_url,
+            mod_class: "see-the-difference__content-cta"
+          -%}
+        {%- endif -%}
+
+        <div class="see-the-difference__matches text-left">
+          {%- if product.metafields.see_the_difference.matches_title != blank -%}
+            <h2 class="h3 see-the-difference__matches-title color-off-black no-margin">{{ product.metafields.see_the_difference.matches_title }}</h2>
+          {%- endif -%}
+
+          <div class="see-the-difference__matches-shades">
+            <h2 class="f2 color-dark-gray no-margin">
+              {%- if product.metafields.swatch.filter_by_text != blank -%}
+                {{ product.metafields.swatch.filter_by_text }}
+              {%- else -%}
+                {{ 'general.shades.filter_by' | t }}
+              {%- endif -%}
+            </h2>
+            <div class="see-the-difference__matches-shades-dropdown">
+              {%- render 'form-dropdown'
+                , value: shadeList[0],
+                name: 'see_the_difference_shades',
+                options: shadeList -%}
+            </div>
+          </div>
+
+          <simple-slider class='see-the-difference__matches-slider' loop='true'>
+            <div class='see-the-difference__matches-slider-header flex align-center justify-space-between'>
+              {% render 'simple-carousel-controls', mod_render_slide_status: true, mod_class: 'see-the-difference__matches-slider-controls' %}
+            </div>
+            <div class='see-the-difference__matches-items hide-scrollbars flex' data-slider-items>
+              {% for _variant in variantList %}
+                {%- liquid
+                  assign cls = ''
+                  if _variant == featuredVariant
+                    assign cls = ' active'
+                  endif
+
+                  assign imgUrl = _variant.metafields.see_the_difference.see_the_difference_image | image_url: width: 1024
+                  assign beforeImgUrl = _variant.metafields.see_the_difference.see_the_difference_image_before | image_url: width: 1024
+                  assign afterImgUrl = _variant.metafields.see_the_difference.see_the_difference_image_after | image_url: width: 1024
+                -%}
+                <div
+                  class='see-the-difference__matches-item{{ cls }}'
+                  data-skin-tone="{{ _variant.metafields.product_information.skin_tone.value | json | escape }}"
+                  data-image="{{ imgUrl }}"
+                  data-before-image="{{ beforeImgUrl }}"
+                  data-after-image="{{ afterImgUrl }}"
+                  data-aspect-ratio="{{ aspectRatio }}"
+                  data-title="{{ _variant.metafields.swatch.description | escape }}"
+                  data-slider-item>
+                  <div class='see-the-difference__matches-item-block background-color-off-white'>
+                    <div class='see-the-difference__matches-item-image'>
+                      {%- assign variantImages = product.images | where: "alt", _variant.featured_media.alt -%}
+                      {%- liquid
+                        if _variant.metafields.swatch.image
+                          assign color_swatch_img = _variant.metafields.swatch.image | image_url: width: 1024
+                        else
+                          assign color_swatch_img = variantImages[1].src | image_url
+                        endif
+                      -%}
+                      {%- render 'adaptive-image', mod_image: color_swatch_img, mod_alt: _variant.metafields.swatch.description -%}
+                    </div>
+                    <div class='see-the-difference__matches-item-details flex justify-center align-center'>
+                      <div class='see-the-difference__matches-item-hexcode' style="background-color: {{ _variant.metafields.swatch.hex_code }}">
+                        <div style="background-color: {{ _variant.metafields.swatch.hex_code }}"></div>
+                        <div style="background-color: {{ _variant.metafields.swatch.hex_code }}"></div>
+                      </div>
+                      <p class='b3 no-margin color-dark-gray see-the-difference__matches-item-label'>{{ _variant.title }}</p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </simple-slider>
+        </div>
+      </div>
+    </see-the-difference>
+  {%- endif -%}
+{%- endif -%}

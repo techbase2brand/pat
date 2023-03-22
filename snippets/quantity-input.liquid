@@ -1,0 +1,35 @@
+{% comment %}
+  Renders a quantity editor for given line item from the cart.
+
+  Parameters:
+    - item: Cart Line Item ##https://shopify.dev/api/liquid/objects#line_item
+{% endcomment %}
+<quantity-input class="quantity-input border-pewter-gradient-outline flex" value="{{ item.quantity }}">
+  <button class="quantity-input__button cursor-pointer flex align-center justify-center js-minus" name="minus" type="button">
+    <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+    {% render 'icon-minus' %}
+  </button>
+  <input class="quantity-input__input color-off-black b2 bold"
+    type="number"
+    name="updates[]"
+    value="{{ item.quantity }}"
+    min="0"
+    {% unless item.variant.inventory_policy == 'continue' %}
+      max="{{ item.variant.inventory_quantity }}"
+    {% endunless %}
+    aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+    id="Quantity-{{ item.index | plus: 1 }}"
+    data-index="{{ item.index | plus: 1 }}"
+  >
+  {% assign isLastItem = item.variant.inventory_quantity | minus: item.quantity %}
+  <button class="quantity-input__button cursor-pointer flex align-center justify-center js-plus" 
+    name="plus" 
+    type="button"
+    {% if item.variant.inventory_policy != 'continue' and isLastItem <= 0 %}
+      disabled
+    {% endif %}
+  >
+    <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+    {% render 'icon-plus' %}
+  </button>
+</quantity-input>

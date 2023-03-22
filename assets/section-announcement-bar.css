@@ -1,0 +1,110 @@
+.announcement-bar {
+  position: relative;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  z-index: var(--z-index-flyout);
+  display: block;
+}
+
+.announcement-bar .announcement-bar__wrapper {
+  grid-template-columns: 1fr;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__region button {
+  padding-left: 12px;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__slider {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__slider-single {
+  justify-content: center;
+}
+
+.announcement-carousel {
+  flex: 1;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__slider button {
+  transition: all 0.2s ease-in-out;
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__slider
+  .announcement__message-text {
+  margin: 0;
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__slider
+  .announcement__message-text
+  a {
+  margin-left: 0.8rem;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__nav nav ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.announcement-bar .announcement-bar__wrapper .announcement-col__nav nav ul li {
+  margin-right: 3rem;
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__nav
+  nav
+  ul
+  li
+  a {
+  text-decoration: none;
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__nav
+  nav
+  ul
+  li
+  button {
+  color: var(--color-off-black);
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__nav
+  nav
+  ul
+  li:last-child {
+  margin-right: 0px;
+}
+
+.announcement-bar__message {
+  scroll-snap-align: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.announcement-bar
+  .announcement-bar__wrapper
+  .announcement-col__nav
+  nav
+  ul
+  button.no-styles
+  svg:first-child {
+  margin-right: 0px;
+}
+
+@media (min-width: 992px) {
+  .announcement-bar .announcement-bar__wrapper {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}

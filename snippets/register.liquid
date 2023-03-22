@@ -1,0 +1,253 @@
+{% render 'async-stylesheet', mod_url: 'customer.css' %}
+
+<div class="container text-center fluid customer login">
+  <div class="customer-form customer-form--register" id="register">
+    <div class="grid customer-form-grid">
+      <div>
+        <h1 class="customer-form-title h2 color-off-black">
+          {{ 'customer.register.title' | t }}
+        </h1>
+        <p class="customer-form-subtext color-dark-gray">
+          {{ 'customer.register.subtext' | t }}
+        </p>
+      </div>
+    </div>
+    {%- capture return_url -%}
+      {{- pages[settings.account_overview_page].url | default: '/account' -}}
+    {%- endcapture -%}
+    {%- form 'create_customer', action: '', data-cf-view: '', rv-cf-custom-form: '', data-cf-form-id: settings.register_form_id -%}
+      <div class="grid customer-form-grid">
+        {%- if form.errors -%}
+          <div>
+            <small class="form__message color-error-red" tabindex="-1" autofocus>
+              <svg aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-error" />
+              </svg>
+              {{ 'templates.contact.form.error_heading' | t }}
+            </small>
+            <ul class="form__message-list">
+              {%- for field in form.errors -%}
+                <li>
+                  <small class="form__message color-error-red" >
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      <a href="#RegisterForm-{{ field }}">
+                        {{ form.errors.translated_fields[field] | capitalize }}
+                        {{ form.errors.messages[field] }}
+                      </a>
+                    {%- endif -%}
+                  </small>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        <input type="hidden" name="redirect_url" value="{{ return_url }}" />
+        <div>
+          {%- capture input_attributes -%}
+            type="text"
+            name="customer[first_name]"
+            id="RegisterForm-FirstName"
+            {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+            autocomplete="given-name"
+          {%- endcapture -%}
+          {%- render 'form-input',
+            label: 'customer.register.first_name',
+            type: 'text',
+            input_attributes: input_attributes,
+            required: true,
+            mod_id: 'register-first-name' -%}
+          {%- assign input_attributes = nil -%}
+        </div>
+
+        <div>
+          {%- capture input_attributes -%}
+            type="text"
+            name="customer[last_name]"
+            id="RegisterForm-LastName"
+            {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+            autocomplete="family-name"
+          {%- endcapture -%}
+          {%- render 'form-input',
+            label: 'customer.register.last_name',
+            type: 'text',
+            input_attributes: input_attributes,
+            required: true,
+            mod_id: 'register-last-name' -%}
+          {%- assign input_attributes = nil -%}
+        </div>
+
+        <div>
+          {%- capture input_attributes -%}
+            type="email"
+            name="customer[email]"
+            id="RegisterForm-email"
+            {% if form.email %} value="{{ form.email }}"{% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-email-error"
+            {% endif %}
+          {%- endcapture -%}
+          {%- render 'form-input',
+            label: 'customer.register.email',
+            type: 'email',
+            input_attributes: input_attributes,
+            required: true,
+            mod_id: 'register-email' -%}
+          {%- assign input_attributes = nil -%}
+
+          {%- if form.errors contains 'email' -%}
+            <small id="RegisterForm-email-error" class="text-left form__message color-error-red">
+              <svg aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-error" />
+              </svg>
+              {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.
+            </small>
+          {%- endif -%}
+        </div>
+
+        <div>
+          {%- capture input_attributes -%}
+            type="text"
+            name="customer[phone]"
+            id="RegisterForm-Phonenumber"
+          {%- endcapture -%}
+          {%- render 'form-input',
+            name: 'customer[phone]',
+            label: 'customer.register.phone',
+            type: 'text',
+            input_attributes: input_attributes,
+            mod_id: 'register-phone' -%}
+          {%- assign input_attributes = nil -%}
+        </div>
+
+        <div>
+          {%- capture input_attributes -%}
+            type="password"
+            name="customer[password]"
+            id="RegisterForm-password"
+            aria-required="true"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+          {%- endcapture -%}
+          {%- render 'form-input',
+            label: 'customer.register.password',
+            type: 'password',
+            input_attributes: input_attributes,
+            required: true,
+            mod_id: 'register-password' -%}
+          {%- assign input_attributes = nil -%}
+
+          {%- if form.errors contains 'password' -%}
+            <small id="RegisterForm-password-error" class="text-left form__message color-error-red">
+              <svg aria-hidden="true" focusable="false" role="presentation">
+                <use href="#icon-error" />
+              </svg>
+              {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
+            </small>
+          {%- endif -%}
+        </div>
+
+        <div>
+          {%- capture input_attributes -%}
+            name="customer[shade_family]"
+            id="RegisterForm-Shadefamily"
+            {% if form.note.shadefamily != blank %}value="{{ customer.metafields.customer_fields.shade_family.value | default: customer.metafields.customer_fields.data["shade_family"] }}"{% endif %}
+          {%- endcapture -%}
+          {%- render 'shade-family-selector', label_t: "customer.register.shade_family", name: "customer[shade_family]", input_attributes: input_attributes -%}
+          {%- assign input_attributes = nil -%}
+        </div>
+
+        {% if show_sms %}
+          <div>
+            {%- render 'form-radio-checkbox', type: 'checkbox', id: 'RegisterForm-acceptsSMS-account-register' , label_t: 'customer.register.sms', name: 'accepts_sms_marketing', value: true -%}
+            <script>
+              const mainPhoneField = document.querySelector('#register-phone')
+              const mainPhoneFieldLabel = document.querySelector('[for="register-phone"]')
+              document.querySelector('#RegisterForm-acceptsSMS-account-register').addEventListener('change', function() {
+                if (this.checked) {
+                  CF.customer.addTag(this.name)
+                  mainPhoneField.setAttribute('required', 'true')
+
+                  const requiredElement = document.createElement('span')
+                  requiredElement.innerHTML = '*'
+                  mainPhoneFieldLabel.append(requiredElement)
+                } else {
+                  CF.customer.removeTag(this.name)
+                  mainPhoneField.removeAttribute('required')
+                  mainPhoneFieldLabel.querySelector('span').remove()
+                }
+              });
+            </script>
+            <p class="text-left color-dark-gray checkbox-text sans">
+
+                {{ 'customer.register.sms_note_html' | t }}
+
+            </p>
+          </div>
+        {% endif %}
+
+        <div>
+          {%- render 'form-radio-checkbox', type: 'checkbox', id: 'RegisterForm-acceptsMarketing-account-register' , label_t: 'customer.register.accepts_marketing', name: 'customer[accepts_marketing]', value: false -%}
+          <script>
+            document.querySelector('#RegisterForm-acceptsMarketing-account-register').addEventListener('change', function() {
+              this.value = !!this.checked
+            });
+          </script>
+          <p class="text-left color-dark-gray checkbox-text sans">
+
+              {{ 'customer.register.accepts_marketing_note_html' | t }}
+          </p>
+        </div>
+
+        <div>
+          <button class="button fluid">
+            {{ 'customer.register.title' | t }}
+          </button>
+        </div>
+
+        <div>
+          <a class="button--text-underline" href="{{ routes.account_login_url }}">
+            {{ 'customer.register.login' | t }}
+          </a>
+        </div>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+  const customErrorMessages = {
+    phone: {
+      "has already been taken": `{{ 'customer.register.phone_error_taken_html' | t }}`,
+      "is invalid": `{{ 'customer.register.phone_error_invalid_html' | t }}`,
+    },
+  }
+
+  document.addEventListener("cf:customer_save_failed", (event) => {
+    const errors = Object.entries(event.detail.errors).map(([inputField, errorMessages]) => [
+      inputField,
+      customErrorMessages[inputField][errorMessages[0]] ?? errorMessages[0]
+    ])
+    const form = document.getElementById("create_customer")
+    errors.forEach(([inputField, errorMessage]) => {
+      const field = form.querySelector(`[name="customer[${inputField}]"]`)
+      const errorLine =
+        field.parentNode.parentNode.querySelector(".error-line") || document.createElement("span")
+      if (field) {
+        errorLine.innerHTML = errorMessage
+        errorLine.setAttribute("class", "error-line color-error-red b1")
+        field.parentNode.classList.add("error")
+        field.parentNode.parentNode.append(errorLine)
+        field.focus()
+      }
+    })
+  })
+</script>

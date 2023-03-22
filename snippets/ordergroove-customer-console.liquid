@@ -1,0 +1,26 @@
+{% render 'async-stylesheet', mod_url: 'customer.css' %}
+{% render 'async-stylesheet', mod_url: 'ordergroove-customer-console.css' %}
+
+{%- capture mod_title -%}{{ 'customer.subscriptions.title' | t }}{%- endcapture -%}
+{%- capture mod_content -%}
+<div class="customer-account-wrapper customer-order-wrapper background-color-off-white">
+  <div class="container no-padding">
+    {{ mod_proxy_content }}
+  </div>
+</div>
+{%- endcapture -%}
+
+
+<div class="ordergroove-customer-console">
+  {% render 'account-content', mod_title: mod_title, mod_content: mod_content %}
+</div>
+
+<script>
+  const sidebarLink = document.querySelector('.subscriptions-link');
+  if (sidebarLink) {
+    sidebarLink.querySelector('a').classList.add('button--text-icon')
+    sidebarLink.querySelector('svg').classList.remove('hidden')
+  }
+
+  document.querySelector('[name="account_nav"]').setAttribute('value', 'subscriptions')
+</script>

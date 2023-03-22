@@ -1,0 +1,24 @@
+{%- liquid
+  assign mod_title = mod_title | default: nil
+  assign mod_title_aside = mod_title_aside | default: nil
+  assign mod_body = mod_body | default: nil
+  assign mod_content = mod_content | default: nil
+  assign mod_disable_nav = mod_disable_nav | default: false
+  assign mod_class = mod_class | default: false
+-%}
+
+<section class="account background-color-pale-pink">
+  <div class="account-grid">
+    {%- liquid
+      unless mod_disable_nav == true
+        render 'account-dropdown-nav'
+      endunless
+
+      render 'account-main', mod_title: mod_title, mod_title_aside: mod_title_aside, mod_body: mod_body, mod_content: mod_content, mod_class: mod_class
+
+      unless mod_disable_nav == true
+        render 'account-nav'
+      endunless
+    -%}
+  </div>
+</section>

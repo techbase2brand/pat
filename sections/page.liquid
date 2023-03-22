@@ -1,0 +1,41 @@
+{% render 'async-stylesheet', mod_url: 'section-main-page.css' %}
+{% render 'async-stylesheet', mod_url: 'component-rte.css' %}
+
+<div class="page-width page-width--narrow">
+  <div class="container page-contents">
+    {%- if section.settings.page.title != blank -%}
+      <h2 class="page-title no-margin text-center">
+        {{ section.settings.page.title | escape }}
+      </h2>
+    {%- endif -%}
+    <div class="rte">
+      {%- if section.settings.page.content != blank -%}
+      {{ section.settings.page.content }}
+      {%- else -%}
+      <div class="page-placeholder-wrapper placeholder">
+        {{ 'page' | placeholder_svg_tag: 'page-placeholder' }}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.page.name",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "page",
+      "id": "page",
+      "label": "t:sections.page.settings.page.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.page.presets.name"
+    }
+  ]
+}
+{% endschema %}

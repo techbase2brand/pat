@@ -1,0 +1,94 @@
+.laura-skin-perfection {
+  padding: calc(var(--gutter) * 2) 0;
+}
+
+.laura-skin-perfection__title-container {
+  margin-bottom: var(--gutter);
+}
+
+.skin-perfection-content-grid__col-center {
+  padding: var(--gutter) 0;
+}
+
+.laura-skin-perfection__content-grid p:last-child {
+  margin-bottom: 0px;
+}
+
+.skin-perfection_side-image adaptive-image {
+  margin: 0 auto calc(var(--gutter) / 4);
+  max-width: 180px;
+}
+
+.skin-perfection-content__center-image adaptive-image {
+  border-radius: 370px 370px 0px 0px;
+  filter: drop-shadow(0px 0px 200px rgba(221, 189, 172, 0.5));
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .laura-skin-perfection {
+    padding: var(--gutter) 0;
+  }
+
+  .laura-skin-perfection__title-container {
+    margin-bottom: 0px;
+  }
+
+  .laura-skin-perfection__content-grid.with-images {
+    position: relative;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .laura-skin-perfection__content-grid.with-images
+    .skin-perfection_side-image
+    .adaptive-image-container {
+    margin: calc(var(--gutter) / 2) auto calc(var(--gutter) / 4);
+  }
+
+  .laura-skin-perfection__content-grid.with-images
+    .skin-perfection-content-grid__col-left,
+  .laura-skin-perfection__content-grid.with-images
+    .skin-perfection-content-grid__col-right {
+    margin-top: 0;
+  }
+
+  .laura-skin-perfection__content-grid.no-section-title
+    .skin-perfection-content-grid__col-center {
+    top: 0;
+    margin-bottom: 0;
+  }
+
+  .laura-skin-perfection__content-grid.no-section-title
+    .skin-perfection-content-grid__col-right,
+  .laura-skin-perfection__content-grid.no-section-title
+    .skin-perfection-content-grid__col-left {
+    margin-top: 0;
+  }
+
+  .skin-perfection-content-grid__col-left,
+  .skin-perfection-content-grid__col-right {
+    margin-top: var(--gutter);
+  }
+
+  .laura-skin-perfection__content-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skin-perfection-content-grid__col-center {
+    padding: 0 var(--gutter);
+    position: relative;
+    top: -60px;
+  }
+
+  .skin-perfection_side-image .adaptive-image-container {
+    display: flex;
+    align-items: flex-end;
+    margin: calc(var(--gutter) / 2) auto calc(var(--gutter) / 4);
+  }
+
+  .skin-perfection_side-image adaptive-image {
+    flex: 1;
+    max-height: 180px;
+    max-width: 180px;
+  }
+}

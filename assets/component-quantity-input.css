@@ -1,0 +1,58 @@
+.quantity-input {
+  height: 36px;
+  border-radius: 32px;
+}
+
+.quantity-input__input {
+  border: none;
+  width: 40px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-off-white);
+}
+
+.quantity-input__button {
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  background: none;
+  border: none;
+  background-color: var(--color-off-white);
+}
+
+.quantity-input__button:disabled {
+  background-color: var(--color-off-white);
+  border: none;
+}
+
+.quantity-input__button:disabled svg {
+  stroke: var(--color-off-black-with-opacity);
+}
+
+.quantity-input .quantity-input__button:first-child {
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+}
+.quantity-input .quantity-input__button:last-child {
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+}
+
+.quantity-input__button svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  stroke: var(--color-off-black);
+}
+
+.quantity-input__input::-webkit-outer-spin-button,
+.quantity-input__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.quantity-input__input[type='number'] {
+  -moz-appearance: textfield;
+}

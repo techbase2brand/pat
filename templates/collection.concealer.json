@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "467682ae-de2f-4a33-83ba-ce8c8ff6ea4a": {
+      "type": "section-comparison-slider-4up",
+      "blocks": {
+        "template--16729256231151__467682ae-de2f-4a33-83ba-ce8c8ff6ea4a-167042664679319752-0": {
+          "type": "category",
+          "settings": {
+            "product": "secret-camouflage-concealer-duo",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "d0e2f897-5563-4ed5-a52f-e00cd78b097e": {
+          "type": "category",
+          "settings": {
+            "product": "flawless-fusion-ultra-longwear-concealer",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "1ddcb024-2454-4512-be54-a8d9936a84c0": {
+          "type": "category",
+          "settings": {
+            "product": "secret-camouflage",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "6a73de1f-21f1-4cab-9dce-53e30d3ddcd4": {
+          "type": "category",
+          "settings": {
+            "product": "secret-concealer",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256231151__467682ae-de2f-4a33-83ba-ce8c8ff6ea4a-167042664679319752-0",
+        "d0e2f897-5563-4ed5-a52f-e00cd78b097e",
+        "1ddcb024-2454-4512-be54-a8d9936a84c0",
+        "6a73de1f-21f1-4cab-9dce-53e30d3ddcd4"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Choose Your Concealer</p>",
+        "subheading": "",
+        "body": "Erase imperfections with comfortable concealers that look and feel like skin.",
+        "cta_text": "",
+        "cta_url": ""
+      }
+    },
+    "5b92f9b3-72e0-4980-96f0-b811cc66872a": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/LM_HO22_CLP_DiscoverMore_FlawlessFace_a8135f23-344c-4d97-aeb6-822966906b27.jpg",
+            "eyebrow": "",
+            "heading": "Flawless Face",
+            "body": "Prime, perfect, conceal and set to create Laura’s signature look.",
+            "cta_url": "shopify://collections/flawless-face",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_2_2.jpg",
+            "eyebrow": "",
+            "heading": "Foundation",
+            "body": "Create a seamless canvas with the color, coverage and finish of your choice.",
+            "cta_url": "shopify://collections/foundation",
+            "cta_text": "Shop Now"
+          }
+        },
+        "452d318a-c0c4-4e1e-9a0b-71070edcb376": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_3_2.jpg",
+            "eyebrow": "",
+            "heading": "Blush",
+            "body": "Add a natural, effortless flush of color.",
+            "cta_url": "shopify://collections/cheek",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img_4_2.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer",
+            "body": "Nourish, rejuvenate and perfect skin, now in three finishes.",
+            "cta_url": "shopify://collections/tinted-moisturizer",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-0",
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-1",
+        "452d318a-c0c4-4e1e-9a0b-71070edcb376",
+        "template--16665906249967__5b92f9b3-72e0-4980-96f0-b811cc66872a-1665658157369f3f55-2"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "467682ae-de2f-4a33-83ba-ce8c8ff6ea4a",
+    "5b92f9b3-72e0-4980-96f0-b811cc66872a"
+  ]
+}

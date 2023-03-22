@@ -1,0 +1,25 @@
+<script src='{{ 'component-slideout.js' | asset_url }}' defer='defer' type='module'></script>
+
+<div class='slideout__support-menu-container'>
+  {%- liquid
+    if section.settings.support_menu_image != blank
+      render 'adaptive-image', mod_image: section.settings.support_menu_image, mod_alt: section.settings.support_menu_image.alt
+    endif
+  %}
+  {% if section.settings.support_menu != blank %}
+    <ul class='list-unstyled'>
+      {% for link in section.settings.support_menu.links %}
+        <li>
+          {% for child_link in link.links %}
+            <a
+              class='h3 {% if forloop.first %}slideout__support-menu-link_first{% endif %} slideout__support-menu-link'
+              href='{{ child_link.url }}'
+            >
+              {{- child_link.title -}}
+            </a>
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

@@ -1,0 +1,53 @@
+{{ 'section-anchor-links.css' | asset_url | stylesheet_tag }}
+
+<section class='background-color-off-white section-anchor-links'>
+  <div class='flex section-anchor-links__div hide-scrollbars'>
+    {% for block in section.blocks %}
+      {% assign _b = block.settings %}
+
+      {% render 'button',
+        mod_type: 'link',
+        mod_href: _b.link_destination,
+        mod_variant: 'text-underline',
+        mod_value: _b.link_title,
+        mod_theme: 'light',
+        mod_class: 'anchor-link section-anchor-links__a'
+      %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.anchor-links.name",
+  "blocks": [
+    {
+      "type": "block",
+      "name": "t:sections.anchor-links.blocks.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "t:sections.anchor-links.blocks.settings.link-title.label"
+        },
+        {
+          "type": "text",
+          "id": "link_destination",
+          "label": "t:sections.anchor-links.blocks.settings.link-destination.label",
+          "info": "t:sections.anchor-links.blocks.settings.link-destination.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.section-featured-product-grid.name",
+      "blocks": [
+        {
+          "type": "block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

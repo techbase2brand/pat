@@ -1,0 +1,69 @@
+{% comment %}
+  Renders a responsive image. The following input sources are supported:
+    - Shopify Image object
+    - Shopify Media object
+    - Direct image URL
+
+  Parameters:
+    - image: can be either a Shopify Image object, a Shopify Media object with media_type of "image", or a URL string
+    - aspect_ratio:
+      A decimal representing ratio of width to height for use in responsive sizing. This is only necessary when the
+      image parameter is a URL string, otherwise this value will be gleaned from the Shopify object
+    - alt:
+      alternative text for SEO and screen readers. The component will try to retrieve it from the Image/Media object
+      if excluded from props
+
+  Example Usage (with Shopify Image object):
+  {%- render 'adaptive-image',
+    mod_image: product.images[0],
+    mod_alt: 'Description of the image'
+  -%}
+{% endcomment %}
+
+{%- liquid
+  assign mod_image = mod_image | default: blank
+  assign mod_alt = mod_alt | default: blank
+  assign mod_sizes = mod_sizes | default: blank
+  assign mod_loading = mod_loading | default: blank
+  assign mod_aspect_ratio = mod_aspect_ratio | default: mod_image.aspect_ratio | default: blank
+  assign icon = icon | default: blank
+  assign bg = bg | default: blank
+  assign tab_index = tab_index | default: 0
+  assign mod_object_fit = mod_object_fit | default: blank
+  assign mod_attr = mod_attr | default: false
+
+  assign mod_abort_render = false
+  if mod_image == blank
+    assign mod_abort_render = true
+  endif
+  if mod_image.media_type != blank and mod_image.media_type != 'image'
+    assign mod_abort_render = true
+  endif
+-%}
+
+{%- unless mod_abort_render -%}
+  <adaptive-image
+    class='{{ bg }}'
+    tabindex='{{ tab_index }}'
+    data-image='{{ mod_image | json | base64_encode }}'
+    data-aspect-ratio='{{ mod_aspect_ratio }}'
+    data-alt='{{ mod_alt }}'
+    data-loading='{{ mod_loading }}'
+    data-sizes='{{ mod_sizes }}'
+    data-object-fit='{{ mod_object_fit }}'
+    {% if mod_attr %}
+      {{ mod_attr }}
+    {% endif %}
+  >
+  </adaptive-image>
+
+  {% unless product.gift_card? %}
+    {%- if icon == 'plus-mag' -%}
+      <span class='adaptive-image__icon flex align-center justify-center'>
+        {%- render 'icon-plus-magnifying-glass' -%}
+      </span>
+    {%- endif -%}
+  {%- endunless -%}
+
+
+{%- endunless -%}

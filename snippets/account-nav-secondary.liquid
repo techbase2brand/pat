@@ -1,0 +1,38 @@
+<div class="account-nav-secondary">
+  <nav class="account-nav-list">
+    <h2 class="account-nav-secondary__title s1 color-off-black">{{ settings.services_menu_label }}</h2>
+
+    <div class="account-nav-secondary-blocks">
+      {%- if settings.wishlist_enabled -%}
+        <div class="account-nav-link-block">
+          <h3 class="account-nav-link-block__title flex align-center b2--medium color-off-black sans">{{ settings.wishlist_menu_label }}</h3>
+          <p class="b3 color-dark-gray">{{ settings.wishlist_menu_content }}</p>
+          <a href="{{ settings.wishlist_menu_link }}" class="button--text-underline">{{ settings.wishlist_menu_cta }}</a>
+        </div>
+      {%- endif -%}
+
+      {%- if settings.consultation_enabled -%}
+        <div class="account-nav-link-block">
+          <h3 class="account-nav-link-block__title flex align-center b2--medium color-off-black sans">{{ settings.consultation_menu_label }}</h3>
+          <p class="b3 color-dark-gray">{{ settings.consultation_menu_content }}</p>
+          <a href="{{ settings.consultation_menu_link }}" class="button--text-underline">{{ settings.consultation_menu_cta }}</a>
+        </div>
+      {%- endif -%}
+
+      {% if settings.customer_service_contact_us_url != blank %}
+        <div class="account-nav-link-block">
+          <h3 class="account-nav-link-block__title flex align-center b2--medium sans color-off-black"><span>{% render 'icon-question-circle' %}</span>{{ settings.customer_service_contact_us_text }}</h3>
+          <a href="{{ settings.customer_service_contact_us_url }}" class="b3 color-dark-gray">{{ settings.customer_service_contact_us_url_text }}</a>
+        </div>
+      {%- endif -%}
+
+      {% if settings.customer_service_live_chat_url != blank %}
+        <div class="account-nav-link-block">
+          <h3 class="account-nav-link-block__title flex align-center b2--medium sans color-off-black"><span>{% render 'icon-support-chat' %}</span>{{ settings.customer_service_live_chat_text }}</h3>
+          <p class="no-margin sans color-dark-gray">{{ settings.customer_service_live_chat_timing }}</p>
+          <a href="{{ settings.customer_service_live_chat_url }}" class="b3 color-dark-gray">{{ settings.customer_service_live_chat_url_text }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,14 @@
+{%- assign align = align | default: "" -%}
+{%- assign justify = justify | default: "" -%}
+{%- assign current = current | default: "01" -%}
+{%- assign length = length | default: "" -%}
+
+<div class="arrow-nav-container">
+  <div class="arrow-nav-inner">
+    <ul class="{%- if align != blank -%}align-{{align}}{%- endif -%} {%- if justify != blank -%}justify-{{justify}}{%- endif -%}">
+      <li><button class="no-styles prev" aria-label="{{ 'accessibility.scroll_previous' | t }}">{% render 'icon-arrow' %}</button></li>
+      <li class="slide-count"><p>{{ current }} / {{ length }}</p></li>
+      <li><button class="no-styles next" aria-label="{{ 'accessibility.scroll_next' | t }}">{% render 'icon-arrow' %}</button></li>
+    </ul>
+  </div>
+</div>

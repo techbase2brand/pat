@@ -1,0 +1,31 @@
+<div class='inset-two-up-module-with-image__block flex article-video-card'>
+  <div class='inset-two-up-module-with-image__block-image-container'>
+    <a class='fluid full-unstyled-link' href='{{ _article.url }}'>
+      {%- render 'adaptive-image', mod_image: _article.image, mod_alt: _article.title, mod_aspect_ratio: 1.7857 -%}
+      <div class='icon-video-play'>
+        {%- render 'icon-play' -%}
+      </div>
+    </a>
+  </div>
+
+  <div class='inset-two-up-module-with-image__block-text-container flex justify-space-between align-start flex-direction-column'>
+    <div>
+      <p class='h4 color-off-black'>{{ _article.title }}</p>
+
+      {% if _article.excerpt != blank %}
+        <div class='inset-two-up-module-with-image__block-text b2 color-dark-gray'>
+          {{ _article.excerpt }}
+        </div>
+      {% endif %}
+    </div>
+
+    {%- assign ctaTitle = 'blogs.article.watch_now' | t -%}
+    {% render 'button',
+      mod_type: 'link',
+      mod_value: ctaTitle,
+      mod_href: _article.url,
+      mod_variant: 'text-underline',
+      mod_class: 'inset-two-up-module-with-image__block-button'
+    %}
+  </div>
+</div>

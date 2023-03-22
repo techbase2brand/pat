@@ -1,0 +1,121 @@
+
+{%- assign media = section.settings.image | image_url: width: 1920 -%}
+{%- assign media_mobile = section.settings.mobile_mage | default: section.settings.image | image_url: width: 1440 -%}
+
+{%-
+  render 'render-collection-editorial-block',
+    mod_title: section.settings.title,
+    mod_subtitle: section.settings.subtitle,
+    mod_body: section.settings.body,
+    mod_cta: section.settings.cta,
+    mod_link: section.settings.link,
+    mod_image: media,
+    mod_mobile_image: media_mobile,
+    mod_layout: section.settings.layout,
+    mod_column_span: section.settings.column_span,
+    mod_color_scheme: section.settings.color_scheme
+-%}
+{% schema %}
+{
+  "name": "Editorial Block",
+  "class": "grid container ceb-container",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Content"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "CTA"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_mage",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        {
+          "value": "background-color-off-black color-off-white",
+          "label": "Off Black"
+        },
+        {
+          "value": "background-color-pink color-off-black",
+          "label": "Pink"
+        },
+        {
+          "value": "background-color-tan color-off-black",
+          "label": "Tan"
+        }
+      ],
+      "default": "background-color-off-black color-off-white"
+    },
+    {
+      "type": "select",
+      "id": "column_span",
+      "label": "Width",
+      "options": [
+        {
+          "value": "Single Tile",
+          "label": "Single Tile"
+        },
+        {
+          "value": "Two Tiles",
+          "label": "Two Tiles"
+        },
+        {
+          "value": "Full Row",
+          "label": "Full Row"
+        }
+      ],
+      "default": "Full Row"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "Text with a background image",
+          "label": "Text with a background image"
+        },
+        {
+          "value": "Text with image 50/50",
+          "label": "Text with image 50/50"
+        }
+      ],
+      "default": "Text with image 50/50"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Block"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,49 @@
+<div>
+  <p class="b2">{{ 'customer.account.overview.edit_birthday.form_label' | t }}</p>
+  <div class="edit-birthday-form__fields">
+    <div class="edit-birthday-form__month">
+      {%- capture input_attributes -%}
+        name="birthday_month"
+        id="Customer-BirthdayMonth"
+        value="{{ customer.metafields.customer_fields.birthday_month.value | default: customer.metafields.customer_fields.data["birthday_month"] }}"
+      {%- endcapture -%}
+      {%- assign birthday_month = customer.metafields.customer_fields.birthday_month.value | default: customer.metafields.customer_fields.data["birthday_month"] -%}
+      {%- render 'form-dropdown', value: birthday_month, placeholder: '-', name: 'birthday_month', label_t: 'customer.account.overview.edit_birthday.month', input_attributes: input_attributes, options: [] -%}
+      <script>
+        (function () {
+          let d = new Date(2000,0);
+          let months = [];
+          for (let i=0; i<12; i++) {
+            months.push(`
+              <li>
+                <label class="dropdown-option" data-value="${d.toLocaleString('default',{month:'long'}).toLowerCase()}" data-label="${d.toLocaleString('default',{month:'long'})}">
+                  <strong>${d.toLocaleString('default',{month:'long'})}</strong>
+                  <input hidden type="radio" name="birthday_month" value="${d.toLocaleString('default',{month:'long'}).toLowerCase()}">
+                  <span class="checkmark">{% render 'icon-checkmark' %}</span>
+                </label>
+              </li>
+            `);
+            d.setMonth(i + 1);
+          };
+
+          document.querySelector('[name="birthday_month"] .dropdown-options').innerHTML = months.join("");
+        })()
+      </script>
+    </div>
+    <div class="edit-birthday-form__year">
+      {%- capture input_attributes -%}
+        name="birthday_day"
+        id="Customer-BirthdayDay"
+        value="{{ customer.metafields.customer_fields.birthday_day.value | default: customer.metafields.customer_fields.data["birthday_day"] }}"
+      {%- endcapture -%}
+      {%- assign birthday_day = customer.metafields.customer_fields.birthday_day.value | default: customer.metafields.customer_fields.data["birthday_day"] -%}
+      {%- capture days_count -%}
+        {%- for i in (1..31) -%}
+          {{ i }}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- assign days_count = days_count | split: ',' -%}
+      {%- render 'form-dropdown', placeholder: '-', value: birthday_day, name: 'birthday_day', label_t: 'customer.account.overview.edit_birthday.day', input_attributes: input_attributes, options: days_count -%}
+    </div>
+  </div>
+</div>

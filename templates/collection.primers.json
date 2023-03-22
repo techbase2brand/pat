@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "410356c6-f49d-4ccb-b5dc-c30ce6ca9511": {
+      "type": "section-comparison-slider-4up",
+      "blocks": {
+        "template--16729256722671__410356c6-f49d-4ccb-b5dc-c30ce6ca9511-16704260316e091372-0": {
+          "type": "category",
+          "settings": {
+            "product": "pure-canvas-primer-blurring",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "bb1b5634-e8be-4b7d-922c-f0e96418f754": {
+          "type": "category",
+          "settings": {
+            "product": "pure-canvas-primer-illuminating",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "7d77a5ab-4dcc-4259-b07e-fffa78c2974f": {
+          "type": "category",
+          "settings": {
+            "product": "pure-canvas-primer-hydrating",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "37162c25-7f8b-4e29-9643-a9622135f49b": {
+          "type": "category",
+          "settings": {
+            "product": "pure-canvas-primer-protecting-spf-30",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        },
+        "88fb6ac7-b839-47c6-a0db-a8538292d898": {
+          "type": "category",
+          "settings": {
+            "product": "pure-canvas-primer-perfecting",
+            "variant_override": "",
+            "product_title_override": "",
+            "product_description_override": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16729256722671__410356c6-f49d-4ccb-b5dc-c30ce6ca9511-16704260316e091372-0",
+        "bb1b5634-e8be-4b7d-922c-f0e96418f754",
+        "7d77a5ab-4dcc-4259-b07e-fffa78c2974f",
+        "37162c25-7f8b-4e29-9643-a9622135f49b",
+        "88fb6ac7-b839-47c6-a0db-a8538292d898"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p>Pick Your Perfect Primer</p>",
+        "subheading": "",
+        "body": "The first step to Laura’s Flawless Face: prep your look with our intuitive range ofprimers created for every skin type and effect.",
+        "cta_text": "",
+        "cta_url": ""
+      }
+    },
+    "ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee": {
+      "type": "section-featured-content-carousel",
+      "blocks": {
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-0": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-1_34d8332e-78a3-4837-8444-f1bb0ad87140.jpg",
+            "eyebrow": "",
+            "heading": "Foundation",
+            "body": "Create a seamless canvas with the color, coverage and finish of your choice.",
+            "cta_url": "shopify://collections/foundation",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-1": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-2_1_7c5ac213-deea-420a-afe4-c8697b48b305.jpg",
+            "eyebrow": "",
+            "heading": "Setting Powders and Sprays",
+            "body": "Lock in a look that stays put.",
+            "cta_url": "shopify://collections/setting-products",
+            "cta_text": "Shop Now"
+          }
+        },
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-2": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-3_1_21a88e6c-fb5c-4bf6-a3ab-7f61c3a0b1f9.jpg",
+            "eyebrow": "",
+            "heading": "RoseGlow Collection",
+            "body": "Light up your look with  rose-inspired formulas and natural luminosity.",
+            "cta_url": "shopify://collections/roseglow",
+            "cta_text": "Shop Now"
+          }
+        },
+        "9cc0d04a-8540-4bb0-b52c-6815db7a0c96": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/Img-4_95890daf-20ac-4ced-a32a-2aa3889b0c4f.jpg",
+            "eyebrow": "",
+            "heading": "Tinted Moisturizer",
+            "body": "Nourish, rejuvenate and perfect skin, now in three finishes.",
+            "cta_url": "shopify://collections/tinted-moisturizer",
+            "cta_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-0",
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-1",
+        "template--16661873885423__ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee-1665655230ef9ef7c0-2",
+        "9cc0d04a-8540-4bb0-b52c-6815db7a0c96"
+      ],
+      "settings": {
+        "section_title": "Discover More",
+        "id": ""
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "410356c6-f49d-4ccb-b5dc-c30ce6ca9511",
+    "ddea2ad7-3d8c-4f27-b3e3-2335bcee73ee"
+  ]
+}

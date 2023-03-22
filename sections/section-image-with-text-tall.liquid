@@ -1,0 +1,203 @@
+{% render 'async-stylesheet', mod_url: 'section-image-with-text-tall.css' %}
+
+<section
+  class='tall-split-section {% if section.settings.image_orientation == 'left' %}tall-split-section--orientation-left{% else %}tall-split-section--orientation-right{% endif %} {% if section.settings.color_theme == 'dark' %}tall-split-section--theme-dark{% else %}tall-split-section--theme-light{% endif %}'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='grid tall-split-section__container'>
+    <div class='tall-split-section__image-container no-padding'>
+      {%- liquid
+        if section.settings.main_image != blank
+          render 'adaptive-image', mod_image: section.settings.main_image, mod_alt: section.settings.main_image.alt, mod_loading: 'lazy'
+        endif
+      %}
+    </div>
+    <div class='tall-split-section__content-container flex align-center no-padding {% if section.settings.color_theme == 'dark' %}background-color-off-black{% else %}background-color-off-white{% endif %}'>
+      <div class='content-container__inner'>
+        {% if section.settings.subheading_image %}
+          <div class='tall-split-section__subheading-image-container'>
+            {%- render 'adaptive-image',
+              mod_image: section.settings.subheading_image,
+              mod_alt: section.settings.subheading_image.alt,
+              bg: 'tall-split-section__subheading-image'
+            -%}
+          </div>
+        {% endif %}
+
+        {% if section.settings.eyebrow != blank %}
+          <p class='tall-split-section__subheading s1 text-center no-margin uppercase {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+            {{ section.settings.eyebrow }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.complimentary_image %}
+          <div class='tall-split-section__detail-image-container background-color-off-tan'>
+            {%- render 'adaptive-image',
+              mod_image: section.settings.complimentary_image,
+              mod_alt: section.settings.complimentary_image.alt,
+              bg: 'detail-image__image'
+            -%}
+            <div class='text-center tall-split-section__title-container'>
+              <h2 class='tall-split-section__title no-margin {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+                {{ section.settings.heading }}
+              </h2>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class='tall-split-section__text-container'>
+          {% if section.settings.heading and section.settings.complimentary_image == blank %}
+            <div class='text-center tall-split-section__title-container'>
+              <h2 class='tall-split-section__title no-margin {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+                {{ section.settings.heading }}
+              </h2>
+            </div>
+          {% endif %}
+
+          {% if section.settings.body != blank %}
+            <p class='tall-split-section__description text-center  {% if section.settings.color_theme == 'dark' %}color-off-white{% else %}color-off-black{% endif %}'>
+              {{ section.settings.body }}
+            </p>
+          {% endif %}
+
+          {% if section.settings.section_link_text != blank %}
+            <div class='text-center tall-split-section__primary-link'>
+              <a
+                href='{{ section.settings.section_link_url }}'
+                class='{% if section.settings.color_theme == 'dark' %}button button--white{% else %}button{% endif %}'
+              >
+                {{- section.settings.section_link_text -}}
+              </a>
+            </div>
+          {% endif %}
+
+          {% if section.settings.section_link_2_text != blank %}
+            <div class='text-center tall-split-section__secondary-link'>
+              <a
+                href='{{ section.settings.section_link_2_url }}'
+                class='{% if section.settings.color_theme == 'dark' %}button--text-underline light{% else %}button--text-underline{% endif %}'
+              >
+                {{- section.settings.section_link_2_text -}}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.image-with-text-tall.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.image-with-text-tall.settings.id.label",
+      "info": "t:sections.image-with-text-tall.settings.id.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "t:sections.image-with-text-tall.settings.main-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "complimentary_image",
+      "label": "t:sections.image-with-text-tall.settings.complimentary-image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "subheading_image",
+      "label": "t:sections.image-with-text-tall.settings.subheading-image.label",
+      "info": "t:sections.image-with-text-tall.settings.subheading-image.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-with-text-tall.settings.text-settings.label"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.image-with-text-tall.settings.eyebrow.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.image-with-text-tall.settings.heading.label"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.image-with-text-tall.settings.body.label"
+    },
+    {
+      "type": "text",
+      "id": "section_link_text",
+      "label": "t:sections.image-with-text-tall.settings.primary-cta-title.label"
+    },
+    {
+      "type": "url",
+      "id": "section_link_url",
+      "label": "t:sections.image-with-text-tall.settings.primary-cta-url.label"
+    },
+    {
+      "type": "text",
+      "id": "section_link_2_text",
+      "label": "t:sections.image-with-text-tall.settings.secondary-cta-title.label"
+    },
+    {
+      "type": "url",
+      "id": "section_link_2_url",
+      "label": "t:sections.image-with-text-tall.settings.primary-cta-url.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.image-with-text-tall.settings.layout-settings.label"
+    },
+    {
+      "type": "radio",
+      "id": "image_orientation",
+      "label": "t:sections.image-with-text-tall.settings.image-position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.image-with-text-tall.settings.image-position.options.left"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.image-with-text-tall.settings.image-position.options.right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "radio",
+      "id": "color_theme",
+      "label": "t:sections.image-with-text-tall.settings.color-theme.label",
+      "options": [
+        {
+          "value": "light",
+          "label": "t:sections.image-with-text-tall.settings.color-theme.options.light"
+        },
+        {
+          "value": "dark",
+          "label": "t:sections.image-with-text-tall.settings.color-theme.options.dark"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.image-with-text-tall.name",
+      "settings": {
+        "heading": "Heading Lorem Ipsum Dolor Sit Amet"
+      }
+    }
+  ]
+}
+{% endschema %}

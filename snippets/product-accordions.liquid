@@ -1,0 +1,35 @@
+{%- assign product = product | default: blank -%}
+{%- assign accordionCount = product.metafields.content_accordions.accordion_title | size -%}
+{%- assign detailsTitle = 'products.product.details' | t -%}
+
+<div class="product-accordions-container">
+  <!-- Details - product description -->
+  {%- if product.description != blank -%}
+    {%- render 'accordion',
+      accordion_title: detailsTitle,
+      accordion_content: product.description,
+      default_status_open: true
+    -%}
+  {%- endif -%}
+
+  <!-- Custom Accordions -->
+  {%- unless accordionCount == 0 -%}
+    {% for accordion in product.metafields.content_accordions.accordion_title %}
+      {%- if product.metafields.content_accordions.accordion_text[forloop.index0] != blank -%}
+        {%- liquid
+          assign title = product.metafields.content_accordions.accordion_title[forloop.index0]
+          assign title_handle = title | handleize
+          assign mod_prevent_translation = false
+          if title_handle contains 'ingredient'
+            assign mod_prevent_translation = true
+          endif
+        -%}
+        {%- render 'accordion',
+          accordion_title: title,
+          accordion_content: product.metafields.content_accordions.accordion_text[forloop.index0],
+          mod_prevent_translation: mod_prevent_translation
+        -%}
+      {% endif %}
+    {% endfor %}
+  {%- endunless -%}
+</div>

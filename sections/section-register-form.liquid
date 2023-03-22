@@ -1,0 +1,26 @@
+{% render 'register', show_sms: section.settings.show_sms_checkbox %}
+
+{% schema %}
+{
+  "name": "t:sections.register.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_sms_checkbox",
+      "label": "t:sections.register.settings.sms",
+      "default": true
+    }
+  ],
+  "blocks": [
+
+  ],
+  "presets": [
+    {
+      "name": "Registration Form"
+    }
+  ],
+  "templates": [
+    "customers/register"
+  ]
+}
+{% endschema %}

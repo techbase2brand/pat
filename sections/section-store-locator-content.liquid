@@ -1,0 +1,35 @@
+{%- liquid
+  assign sidebar = sidebar | default: false
+  assign wrapperClass = 'page-main page-store-locator'
+  if sidebar == false
+    assign wrapperClass = wrapperClass | append: ' container'
+  endif
+-%}
+
+{{ 'page-store-locator.css' | asset_url | stylesheet_tag }}
+
+<div class='{{ wrapperClass }}'>
+  <div class='page-main-header'>
+    <div class='page-main-header-main'>
+      <h1 class='page-main-title color-off-black h2 no-margin'>
+        {{ section.settings.heading }}
+      </h1>
+    </div>
+  </div>
+  <div class='page-main-content'>
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.store-locator-content.name",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "t:sections.store-locator-content.settings.heading.label"
+    }
+  ]
+}
+{% endschema %}

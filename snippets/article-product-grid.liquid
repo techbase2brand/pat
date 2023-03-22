@@ -1,0 +1,19 @@
+{% assign collectionHandle = collectionHandle | default: blank %}
+
+<div class="article__product-grid">
+    <div class="row">
+        {% for product in collections[collectionHandle].products limit: 4 %}
+            <div class="article-product flex align-center">
+                <div class="article-product__image">
+                    {% render 'adaptive-image', mod_image: product.featured_image, mod_alt: product.title %}
+                </div>
+                <div class="article-product__content">
+                    <div class="article-product__content-inner">
+                        <h4 class="sans b1 bold no-margin">{{ product.title }}</h4>
+                        <p class="no-margin"><a href="{{ product.url }}">Shop Now</a></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>      

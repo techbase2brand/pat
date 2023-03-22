@@ -1,0 +1,165 @@
+{
+  "id": null,
+  "name": "Signup Form",
+  "handle": "signup-form-1",
+  "theme_id": null,
+  "settings": {
+    "locales": {
+      "back": "Back",
+      "next": "Next",
+      "cancel": "Cancel",
+      "edit_link": "Edit account",
+      "fix_errors": "Please fix errors before continuing",
+      "is_invalid": "{{label}} is invalid",
+      "email_taken": "Email has already been taken",
+      "phone_taken": "Phone number has already been taken",
+      "server_error": "Could not save form, please try again later",
+      "step_counter": "Step {{current}} of {{total}}",
+      "verify_email": "Check your email for a verification link to activate your account.",
+      "not_available": "An error occurred while saving your account, please try again in a few minutes.",
+      "create_account": "Create account",
+      "update_account": "Update account",
+      "recaptcha_error": "Challenge verification failed, please try again",
+      "creating_account": "Creating account...",
+      "updating_account": "Updating account...",
+      "too_many_requests": "We are experiencing high traffic, please try again later.",
+      "reset_password_link": "Reset your password",
+      "invalid_email_domain": "Email contains an invalid domain name",
+      "reset_password_email_sent": "Check your inbox for a link to reset your password.",
+      "reset_password_too_many_attempts": "You tried to reset your password too many times. Please wait and try again later."
+    },
+    "whitelistedTags": "accepts_sms_marketing",
+    "markRequiredFields": true,
+    "displayCancelButton": true,
+    "goBackAfterSubmission": false,
+    "cancelButtonRedirectUrl": "/account/login",
+    "postSubmissionRedirectUrl": "/account",
+    "goBackAfterCancelButtonClick": false
+  },
+  "install_locations": [
+
+  ],
+  "created_at": "2022-10-20T13:43:11Z",
+  "updated_at": "2022-11-15T12:37:39Z",
+  "revision_ids": [
+    "Z6TaM5O",
+    "boTp34M",
+    "06Ta68M"
+  ],
+  "path": "/forms/Qrtl98",
+  "current_revision": {
+    "id": "Z6TaM5O",
+    "created_at": "2022-11-15T12:37:42Z",
+    "updated_at": "2022-11-15T12:37:42Z",
+    "embed_version": "4.12.0",
+    "published_at": null,
+    "fields": [
+      {
+        "id": 145709,
+        "dataColumn": {
+          "key": "first_name",
+          "label": "First name",
+          "dataType": "text"
+        },
+        "parentId": null,
+        "position": 0,
+        "type": "text",
+        "stepId": 260466,
+        "default": "",
+        "label": "First name",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": "first_name",
+        "autotag": null
+      },
+      {
+        "id": 188302,
+        "dataColumn": {
+          "key": "last_name",
+          "label": "Last name",
+          "dataType": "text"
+        },
+        "parentId": null,
+        "position": 1,
+        "type": "text",
+        "stepId": 260466,
+        "default": "",
+        "label": "Last name",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12
+        },
+        "settings": {
+        },
+        "validations": [
+
+        ],
+        "sensitive": null,
+        "preset": "last_name",
+        "autotag": null
+      },
+      {
+        "id": 163554,
+        "dataColumn": {
+          "key": "email",
+          "label": "Email address",
+          "dataType": "email"
+        },
+        "parentId": null,
+        "position": 2,
+        "type": "email",
+        "stepId": 260466,
+        "default": "",
+        "label": "Email address",
+        "placeholder": "",
+        "description": null,
+        "enum": null,
+        "appearance": {
+          "width": 12
+        },
+        "settings": {
+        },
+        "validations": [
+          {
+            "operator": "is_valid_email",
+            "comparand": null,
+            "errorMessage": "Please provide a valid email address"
+          },
+          {
+            "metadata": {
+              "hiddenInApp": true
+            },
+            "operator": "not_blank",
+            "comparand": "",
+            "errorMessage": "Must not be blank"
+          }
+        ],
+        "sensitive": null,
+        "preset": "email_address",
+        "autotag": null
+      }
+    ],
+    "steps": [
+      {
+        "id": 260466,
+        "title": "Step 1",
+        "description": ""
+      }
+    ],
+    "rules": [
+
+    ]
+  }
+}

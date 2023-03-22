@@ -1,0 +1,88 @@
+{% render 'async-stylesheet', mod_url: 'component-404-banner.css' %}
+
+<section class="not-found-banner background-color-light-tan">
+
+  <div class="not-found-banner__content">
+    <div class="not-found__banner-title text-center color-off-black container">
+      <p class="subheading sans uppercase letter-spacing not-found__subheading">{{ section.settings.subheading }}</p>
+      <h1 class="no-margin extra-light">{{ section.settings.heading }}</h1>
+    </div>
+
+    <div class="not-found__banner-image">
+      {% render 'adaptive-image', mod_image: section.settings.banner_image, mod_alt: section.settings.heading, mod_loading: 'eager' %}
+    </div>
+
+    {% unless section.settings.banner_description == blank %}
+    <div class="not-found__description text-center color-dark-gray">
+      {{ section.settings.banner_description }}
+    </div>
+    {% endunless %}
+    
+
+    {% unless section.settings.banner_button_url == blank and section.settings.banner_button_text == blank %}
+    <div class="banner__button text-center">
+      {%
+        render 'button',
+        mod_type: 'link',
+        mod_href: section.settings.banner_button_url,
+        mod_theme: 'light',
+        mod_value: section.settings.banner_button_text
+      %}
+    </div>
+    {% endunless %}
+
+  </div>
+
+</section>
+
+
+
+{% schema %}
+{
+  "name": "404 Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Settings"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "richtext",
+      "id": "banner_description",
+      "label": "Banner Description"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Banner Button Text"
+    },
+    {
+      "type": "url",
+      "id": "banner_button_url",
+      "label": "Banner Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "404 Banner"
+    }
+  ],
+  "templates": [
+    "404"
+  ]
+}
+{% endschema %}

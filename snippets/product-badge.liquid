@@ -1,0 +1,23 @@
+{%- liquid
+    assign product_badge = blank | default: blank
+    for tag in product.tags
+     if tag contains '__New'
+       assign product_badge = "New"
+     elsif tag contains '__Sale'
+       assign product_badge = "Sale"
+     elsif tag contains '__Bestseller'
+       assign product_badge = "Bestseller"
+     elsif tag contains '__Pre-Sale'
+       assign product_badge = "Pre-Sale"
+     elsif tag contains '__badge'
+       assign product_badge = tag | replace: "__badge ", ""
+     endif
+   endfor
+-%}
+
+
+  {% if product_badge != blank %}
+    <div class="product-header-actions">
+        <span class="product-header-action__new color-off-black bold">{{ product_badge }}!</span>
+    </div>
+{% endif %}

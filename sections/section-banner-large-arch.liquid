@@ -1,0 +1,156 @@
+{% render 'async-stylesheet', mod_url: 'section-banner-large-arch.css' %}
+
+<section
+  class='banner-large-arch'
+  {% if section.settings.id != blank %}
+    id='{{ section.settings.id }}'
+  {% endif %}
+>
+  <div class='banner-large-arch__title-container container text-center {% if section.settings.heading_line_2 != blank %} pull-up {% endif %}'>
+    <p class='subheading letter-spacing uppercase color-off-black eyebrow__text'>{{ section.settings.eyebrow_text }}</p>
+    <h2 class='banner-large-arch__title no-margin h1 color-off-black'>
+      {{ section.settings.heading_line_1 }}
+
+      {% if section.settings.heading_line_2 != blank %}
+        <span>{{ section.settings.heading_line_2 }}</span>
+      {% endif %}
+    </h2>
+  </div>
+
+  <div class='banner-large-arch__content-container align-center container'>
+    <div class='banner-large-arch__image-block banner-large-arch__col'>
+      {% if section.settings.arch_video == null %}
+        {%- render 'adaptive-image',
+          mod_image: section.settings.arch_image,
+          mod_alt: section.settings.arch_image.alt,
+          mod_loading: 'eager'
+        -%}
+      {% else %}
+        {% render 'adaptive-video',
+          mod_type: 'video',
+          mod_video: section.settings.arch_video,
+          mod_alt: section.settings.arch_image.alt,
+          mod_autoplay: true,
+          mod_loop: true,
+          mod_custom_controls: true,
+          mod_plays_inline: true,
+          mod_poster_image: section.settings.arch_image,
+          mod_disabled_controls: true,
+          mod_border_radius: true
+        %}
+      {% endif %}
+    </div>
+
+    {% for block in section.blocks %}
+      <div class='banner-large-arch__content-block banner-large-arch__col text-center col-{{ forloop.index0 }} '>
+        <div class='image__container'>
+          {%- render 'adaptive-image',
+            mod_image: block.settings.thumbnail,
+            mod_alt: block.settings.thumbnail.alt,
+            mod_loading: 'eager',
+            mod_inline_style: "border-radius: '370px 370px 0px 0px';"
+          -%}
+        </div>
+        <h3 class='no-margin color-off-black h4'>{{ block.settings.heading }}</h3>
+        <p class='subheading color-off-black'>{{ block.settings.subheading }}</p>
+        <p class='color-off-black'>{{ block.settings.body }}</p>
+        {% if block.settings.cta_button_url contains "#cordial-popup--" %}
+          {% assign mod_class = block.settings.cta_button_url | replace: "#", "" %}
+        {% endif %}
+        {% render 'button',
+          mod_type: 'link',
+          mod_href: block.settings.cta_button_url,
+          mod_variant: 'text-underline',
+          mod_value: block.settings.cta_button_text,
+          mod_class: mod_class,
+        %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.banner-large-arch.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.banner-large-arch.settings.id.label",
+      "info": "t:sections.banner-large-arch.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "t:sections.banner-large-arch.settings.eyebrow-text.label",
+      "default": "Eyebrow Text"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "t:sections.banner-large-arch.settings.heading-line-1.label",
+      "default": "Heading Line 1"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "t:sections.banner-large-arch.settings.heading-line-2.label",
+      "default": "Heading Line 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "arch_image",
+      "label": "t:sections.banner-large-arch.settings.arch-image.label"
+    },
+    {
+      "type": "video",
+      "id": "arch_video",
+      "label": "t:sections.banner-large-arch.settings.arch-video.label"
+    }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "col_block",
+      "name": "Column Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumbnail",
+          "label": "t:sections.banner-large-arch.settings.block-thumbnail.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.banner-large-arch.settings.block-heading.label"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.banner-large-arch.settings.block-subheading.label"
+        },
+        {
+          "type": "text",
+          "id": "body",
+          "label": "t:sections.banner-large-arch.settings.block-body.label"
+        },
+        {
+          "type": "text",
+          "id": "cta_button_text",
+          "label": "t:sections.banner-large-arch.settings.block-cta-button-text.label"
+        },
+        {
+          "type": "url",
+          "id": "cta_button_url",
+          "label": "t:sections.banner-large-arch.settings.block-cta-button-url.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.banner-large-arch.name"
+    }
+  ]
+}
+{% endschema %}

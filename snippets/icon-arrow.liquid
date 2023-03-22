@@ -1,0 +1,23 @@
+{%- assign direction = direction | default: 'right' -%}
+
+{%- case direction -%}
+  {%- when 'right' -%}
+  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.5 0L3 5L0.5 10L1.7729 8.51743C2.5896 7.56621 3.47164 6.69426 4.41022 5.91028L5.5 5L4.41022 4.08972C3.47164 3.30574 2.5896 2.43379 1.7729 1.48257L0.5 0Z" fill="#3E2B2E"/>
+  </svg>
+
+  {%- when 'left' -%}
+  <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.5 0L3 5L5.5 10L4.2271 8.51743C3.4104 7.56621 2.52836 6.69426 1.58978 5.91028L0.5 5L1.58978 4.08972C2.52836 3.30574 3.4104 2.43379 4.2271 1.48257L5.5 0Z" fill="#3E2B2E"/>
+  </svg> 
+
+  {%- when 'down' -%}
+  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 0.5L5 3L10 0.500002L8.51743 1.7729C7.56621 2.5896 6.69426 3.47164 5.91028 4.41022L5 5.5L4.08972 4.41022C3.30574 3.47164 2.43379 2.5896 1.48257 1.7729L0 0.5Z" fill="#3E2B2E"/>
+  </svg>
+    
+  {%- when 'up' -%}
+  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 5.5L5 3L0 5.5L1.48257 4.2271C2.43379 3.4104 3.30574 2.52836 4.08972 1.58978L5 0.500001L5.91028 1.58978C6.69426 2.52836 7.56621 3.4104 8.51743 4.2271L10 5.5Z" fill="#3E2B2E"/>
+  </svg>    
+{%- endcase -%}

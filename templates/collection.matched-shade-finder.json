@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-hero",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "page_size": "16",
+        "hide_filters": false,
+        "hide_collection_grid": false
+      }
+    },
+    "18f93cc8-6832-4a38-a93c-12b945e9edc1": {
+      "type": "section-image-with-text-wide",
+      "settings": {
+        "id": "",
+        "desktop_main_image": "shopify://shop_images/50_50_Short_Full-Width_BG.jpg",
+        "complimentary_image": "shopify://shop_images/50_50_Short_Full-Width_FG_30b17992-a2d6-4ecb-a677-29ca40d68da1.png",
+        "eyebrow": "Foundation Finder",
+        "heading": "Find Your Match",
+        "body": "Discover your true-to-you foundation shade and refine your results by coverage, finish and formula.",
+        "section_link_text": "Get Matched",
+        "section_link_url": "#foundation-finder",
+        "section_bg_override": "#f3e9e2",
+        "image_orientation": "right",
+        "color_theme": "light",
+        "desktop_text_alignment": "left"
+      }
+    },
+    "a31694e4-643a-47bc-aedc-477bad514237": {
+      "type": "section-banner-inset",
+      "settings": {
+        "top_heading": "",
+        "id": "",
+        "bottom_heading": "",
+        "desktop_banner_image": "shopify://shop_images/Inset_Banner_1_2.jpg",
+        "mobile_banner_image": "shopify://shop_images/Inset_Banner_1_3.jpg",
+        "desktop_caption_src": "",
+        "desktop_caption_srclang": "en",
+        "desktop_caption_label": "english_captions",
+        "desktop_fallback_image": "shopify://shop_images/Inset_Banner_1_2.jpg",
+        "mobile_caption_src": "",
+        "mobile_caption_srclang": "en",
+        "mobile_caption_label": "english_captions",
+        "mobile_fallback_image": "shopify://shop_images/Inset_Banner_1_3.jpg",
+        "content_subheading": "",
+        "content_heading": "",
+        "content_body": "",
+        "content_button_text": "",
+        "content_button_url": "",
+        "desktop_heading_text_alignment": "center",
+        "desktop_body_text_alignment": "center",
+        "color_scheme": "light",
+        "secondary_heading": "",
+        "secondary_body": "<p></p>"
+      }
+    },
+    "1f89c26c-278e-4fcf-8834-62d6a7e2efe7": {
+      "type": "section-featured-product-grid",
+      "blocks": {
+        "template--16688500506863__1f89c26c-278e-4fcf-8834-62d6a7e2efe7-1666356110c4d547e0-0": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "variant_override": "",
+            "heading": "Be Camera Ready",
+            "eyebrow": "01",
+            "description": "Get your most accurate results with a bare-faced, no-makeup look and natural lighting.",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "3d117f64-f952-49f3-a875-2b86f9282ff9": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "variant_override": "",
+            "heading": "Look Straight Ahead",
+            "eyebrow": "02",
+            "description": "Position your face inside the circle and look straight ahead so we can capture your skin tone.",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "d0b850f2-985b-42d4-a645-9cef626fcfcd": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "variant_override": "",
+            "heading": "Find Your Match",
+            "eyebrow": "03",
+            "description": "Reveal your perfect shade and finish recommendations.",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        },
+        "bd61d2d3-52d2-4688-a27b-0f7be6cd5c61": {
+          "type": "block",
+          "settings": {
+            "product": "",
+            "variant_override": "",
+            "heading": "Explore More",
+            "eyebrow": "04",
+            "description": "Filter and fine-tune your matches by preferred coverage, finish and undertone.",
+            "block_cta_text": "",
+            "block_cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16688500506863__1f89c26c-278e-4fcf-8834-62d6a7e2efe7-1666356110c4d547e0-0",
+        "3d117f64-f952-49f3-a875-2b86f9282ff9",
+        "d0b850f2-985b-42d4-a645-9cef626fcfcd",
+        "bd61d2d3-52d2-4688-a27b-0f7be6cd5c61"
+      ],
+      "settings": {
+        "id": "",
+        "heading": "<p> How It <em>Works</em></p>",
+        "section_cta_text": "Get Matched",
+        "section_cta_url": "shopify://blogs/makeup",
+        "show_horizontal_rule": true
+      }
+    },
+    "17ed317f-4355-4df5-b66a-cdb3d3eb6d08": {
+      "type": "section-featured-products-carousel-nosto",
+      "settings": {
+        "id": "",
+        "heading": "Nosto",
+        "placement_id": "nosto"
+      }
+    },
+    "b90464fa-0bb4-4ffe-aa1d-0195b638a7ea": {
+      "type": "section-banner-inset-with-text",
+      "settings": {
+        "id": "",
+        "background_image": "shopify://shop_images/Inset_Banner_2_2.jpg",
+        "eyebrow": "",
+        "heading": "Our Shade Match Promise",
+        "body": "If you're unhappy with your purchase, return it\nfree within 30 days for a full refund.",
+        "color_theme": "light",
+        "text_size": "small"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "product-grid",
+    "18f93cc8-6832-4a38-a93c-12b945e9edc1",
+    "a31694e4-643a-47bc-aedc-477bad514237",
+    "1f89c26c-278e-4fcf-8834-62d6a7e2efe7",
+    "17ed317f-4355-4df5-b66a-cdb3d3eb6d08",
+    "b90464fa-0bb4-4ffe-aa1d-0195b638a7ea"
+  ]
+}

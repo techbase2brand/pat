@@ -1,0 +1,85 @@
+[data-oke-star-rating].oke-star-rating__card {
+  padding-top: 20px;
+  margin-bottom: -8px;
+}
+
+[data-oke-star-rating] .okeReviews * {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  letter-spacing: -0.02em;
+  font-family: var(--font-mont);
+  font-weight: 600;
+  color: var(--color-off-black);
+}
+
+[data-oke-star-rating].oke-star-rating__card .okeReviews * {
+  font-size: 1.2rem;
+  line-height: 1.9rem;
+  letter-spacing: -0.02em;
+  font-family: var(--font-mont);
+  font-weight: 400;
+  color: var(--color-dark-gray);
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-stars {
+  margin-right: 4px;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-stars svg {
+  height: 13px;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-count-number {
+  position: relative;
+  margin-right: 4px;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-count-number::after {
+  content: '•';
+  position: absolute;
+  right: -8px;
+}
+
+[data-oke-star-rating].oke-star-rating__card
+  .okeReviews
+  .oke-sr-count
+  .oke-sr-count-number {
+  display: none;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-label-text {
+  display: none;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-total-text {
+  position: relative;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-total-text::before,
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-total-text::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-off-white);
+  width: 4px;
+  height: 100%;
+  top: 1px;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-total-text::before {
+  left: 4px;
+}
+
+[data-oke-star-rating] .okeReviews .oke-sr-count .oke-sr-total-text::after {
+  right: 0px;
+}
+
+[data-oke-star-rating].oke-star-rating__card
+  .okeReviews
+  .oke-sr-count
+  .oke-sr-total-text::before,
+[data-oke-star-rating].oke-star-rating__card
+  .okeReviews
+  .oke-sr-count
+  .oke-sr-total-text::after {
+  content: unset;
+}

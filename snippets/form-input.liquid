@@ -1,0 +1,18 @@
+{%- liquid
+  assign type = type | default: 'text'
+  assign input_attributes = input_attributes | default: ''
+  assign required = required | default: false
+  assign value = defaultValue | default: blank
+  assign name = name | default: blank
+-%}
+
+<floating-input class="js-input-container input-container animate-label">
+  <label class="b2" for="{{ mod_id }}">{{ label | t }} {% if required %}<span>*</span>{% endif %}</label>
+  <input class="b2"
+    id="{{ mod_id }}"
+    {% if value != blank %}value="{{ value }}"{% endif %}
+    {% if name != blank %}name="{{ name }}"{% endif %}
+    type="{{ type }}"
+    {{ input_attributes }}
+    {% if required %}required{% endif %} />
+</floating-input>

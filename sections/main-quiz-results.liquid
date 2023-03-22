@@ -1,0 +1,92 @@
+{% render 'async-stylesheet', mod_url: 'section-main-quiz-results.css' %}
+
+{% comment %} source: https://freakdesign.com.au/blogs/news/get-the-url-querystring-values-with-liquid-in-shopify {% endcomment %}
+
+{% comment %} Best I could find as far as pulling query parameters from a url using just liquid {% endcomment %}
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{% assign pageSku = contentForQuerystring | split: '"pageurl":"' | last | split: '"' | first | split: '.myshopify.com' | last |
+  replace: '\/', '/' |
+  replace: '%20', ' ' |
+  replace: '\u0026', '&' |
+  split: '&' |
+  first |
+  split: 'sku=' |
+  last
+%}
+
+{%- liquid
+  for sku in page.metafields.quiz_results.sku
+    if sku == pageSku
+      assign productMetafield = page.metafields.quiz_results.product[forloop.index0]
+    endif
+  endfor
+
+  assign productHandle = productMetafield | split: ':' | first
+  assign variantId = productMetafield | split: ':' | last
+  assign productToShow = all_products[productHandle]
+
+  for el in productToShow.variants
+    assign compare1 = el.id | plus: 0
+    assign compare2 = variantId | plus: 0
+    if compare1 == compare2
+      assign variantToShow = el
+    endif
+  endfor
+  -%}
+
+<div class="flex justify-center">
+  <div class="quiz-results">
+    <h1 class="s1">{{ section.settings.eyebrow }}</h1>
+    <h2 class="quiz-results__title">{{ section.settings.title }}</h2>
+    <p class="quiz-results__paragraph">{{ section.settings.paragraph }}</p>
+    <div class="quiz-results__product">
+      {% render 'product-card', product_card_product: productToShow, product_card_variant: variantToShow, quiz_results: true, use_variant: true %}
+    </div>
+    {% if section.settings.cta_url != blank and section.settings.cta_text != blank %}
+      <a class="button--text-underline" href="{{ section.settings.cta_url }}">{{ section.settings.cta_text }}</a>
+    {% endif %}
+  </div>
+  <div class='absolute quiz-results__border-mobile'>
+    {% render 'svg-mobile-quiz-border' %}
+  </div>
+</div>
+
+<style>
+  .quiz-results {
+    --quiz-results-border-image: url({{ 'svg-quiz-border.svg' | asset_url }});
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.main-quiz-results.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.main-quiz-results.settings.eyebrow"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "t:sections.main-quiz-results.settings.title"
+    },
+    {
+      "type": "text",
+      "id": "paragraph",
+      "label": "t:sections.main-quiz-results.settings.paragraph"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "t:sections.main-quiz-results.settings.cta_text"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "t:sections.main-quiz-results.settings.cta_url"
+    }
+  ]
+}
+{% endschema %}

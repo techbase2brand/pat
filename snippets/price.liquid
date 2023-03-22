@@ -1,0 +1,139 @@
+{% comment %}
+  Renders a list of product's price (regular, sale)
+
+  Accepts:
+  - product: {Object} Product Liquid object (optional)
+  - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+  - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
+  - price_class: {String} Adds a price class to the price element (optional)
+
+  Usage:
+  {% render 'price', product: product %}
+{% endcomment %}
+
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+    if variant
+      assign target = variant
+    endif
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign available = target.available | default: false, allow_false: true
+  assign money_price = price | money
+  assign grid_view = grid_view | default: false, allow_false: true
+  assign mod_show_discount_description = mod_show_discount_description | default: false
+  assign mod_using_variant = mod_using_variant
+  assign mod_dark_theme = mod_dark_theme
+  assign mod_has_dark_bg = mod_has_dark_bg
+
+  if mod_using_variant
+    if target == product
+      assign money_price = money_price
+    endif
+  elsif target == product and product.price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+-%}
+
+<div class='
+  price
+  {% if price_class %} {{ price_class }}{% endif %}
+  {% if grid_view %} grid-view {% endif %}
+  {% if available == false %} price--sold-out {% endif %}
+  {% if compare_at_price > price %} price--on-sale {% endif %}
+  {% if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif %}
+'>
+  <div class="flex align-center b2">
+    <dl>
+      {%- comment -%}
+        Explanation of description list:
+          - div.price__regular: Displayed when there are no variants on sale
+          - div.price__sale: Displayed when a variant is a sale
+          - div.price__availability: Displayed when the product is sold out
+      {%- endcomment -%}
+      <div class='price__regular'>
+        <dt>
+          <span class='visually-hidden visually-hidden--inline'>{{ 'products.product.price.regular_price' | t }}</span>
+        </dt>
+        <dd
+          {% if show_badges == false %}
+            class='price__last'
+          {% endif %}
+        >
+          <span class='price-item price-item--regular color-off-black bold'>
+            {{ money_price }}
+          </span>
+        </dd>
+      </div>
+
+      <div class='price__sale flex {% if compare_at_price == blank or compare_at_price <= product.price %}hidden{% endif %}'>
+        <dt class='price__compare'>
+          <span class='visually-hidden visually-hidden--inline'>{{ 'products.product.price.regular_price' | t }}</span>
+        </dt>
+
+        {% unless product == target and product.price_varies %}
+          <dd class='price__compare'>
+            <s class='price-item price-item--regular color-dark-gray {% if mod_has_dark_bg == true %} color-off-white {% else %} color-dark-gray {% endif %}'>
+              {{ compare_at_price | money }}
+            </s>
+          </dd>
+        {% endunless %}
+
+        <dt>
+          <span class='visually-hidden visually-hidden--inline'>{{ 'products.product.price.sale_price' | t }}</span>
+        </dt>
+        <dd
+          {% if show_badges == false %}
+            class='price__last'
+          {% endif %}
+        >
+          <span class='price-item price-item--sale color-off-black bold'>
+            {{ money_price }}
+          </span>
+        </dd>
+      </div>
+      <small class='unit-price b3{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}'>
+        <dt class='visually-hidden'>{{ 'products.product.price.unit_price' | t }}</dt>
+        <dd
+          {% if show_badges == false %}
+            class='price__last'
+          {% endif %}
+        >
+          <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+          <span aria-hidden='true'>/</span>
+          <span class='visually-hidden'>&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+          <span>
+            {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+          </span>
+        </dd>
+      </small>
+    </dl>
+    {%- if show_badges -%}
+      <span class='badge price__badge-sale hidden color-{{ settings.sale_badge_color_scheme }}' aria-hidden='true'>
+        {{ 'products.product.on_sale' | t }}
+      </span>
+
+      <span
+        class='badge price__badge-sold-out hidden color-{{ settings.sold_out_badge_color_scheme }}'
+        aria-hidden='true'
+      >
+        {{ 'products.product.sold_out' | t }}
+      </span>
+    {%- endif -%}
+  </div>
+  {% if product.metafields.discounts.discount_description != blank and mod_show_discount_description %}
+    <div class='sale__message'>
+      <p class='color-off-black bold no-margin b2'>
+        {{ product.metafields.discounts.discount_description }}
+      </p>
+    </div>
+  {% endif %}
+</div>

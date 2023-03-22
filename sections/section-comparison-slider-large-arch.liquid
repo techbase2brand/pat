@@ -1,0 +1,189 @@
+{% render 'async-stylesheet', mod_url: 'section-comparison-slider-large-arch.css' %}
+
+{% assign cta_defined = false %}
+
+{% if section.settings.section_cta_text != blank and section.settings.section_cta_url != blank %}
+  {% assign cta_defined = true %}
+{% endif %}
+
+<section class='section-model-comparison'>
+  <div class='container'>
+    <div class='section-model-comparison__title-container {% if cta_defined == false %} section-model-comparison__title-container--no-button {% endif %}'>
+      {% if section.settings.eyebrow != blank %}
+        <p class='s1 color-off-black no-margin'>
+          {{ section.settings.eyebrow }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class='h2 color-off-black no-margin'>{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {%- liquid
+        if section.settings.section_cta_url contains "#cordial-popup--"
+          assign mod_class = section.settings.section_cta_url | replace: "#", ""
+        endif
+        if cta_defined
+          render 'button', mod_type: 'link', mod_value: section.settings.section_cta_text, mod_variant: 'text-underline', mod_href: section.settings.section_cta_url, mod_class: mod_class
+        endif
+      %}
+    </div>
+
+    <div class='section-model-comparison__slider-container'>
+      <simple-slider class='relative'>
+        <div class='section-model-comparision__slider-controls-container'>
+          {% render 'simple-carousel-controls', mod_render_slide_status: true %}
+        </div>
+
+        <div class='hide-scrollbars flex' data-slider-items>
+          {% for block in section.blocks %}
+            <div
+              class='slider_block section-model-comparision__slide-tile '
+              data-slider-item
+            >
+              <div class='section-model-comparison-slide__inner'>
+                <div
+                  class='section-model-comparision__slide-image'
+                  style="background-image:url('{{ block.settings.slide_image.src | image_url }}');"
+                ></div>
+
+                <div class='section-model-comparison__slide-relative-container relative'>
+                  {% if block.settings.slide_heading != blank %}
+                    {% assign long_heading = false %}
+                    {% if block.settings.slide_heading.size > 25 %}
+                      {% assign long_heading = true %}
+                    {% endif %}
+                    {% comment %} the section-model-comparison__slide-headline--long class applies a more strict max width to long headings {% endcomment %}
+                    <h3 class='section-model-comparison__slide-headline {% if long_heading %} section-model-comparison__slide-headline--long {% endif %} h3 no-margin'>
+                      {{ block.settings.slide_heading }}
+                    </h3>
+                  {% endif %}
+
+                  {% if block.settings.slide_body != blank %}
+                    <p class='section-model-comparison__slide-p b1 no-margin'>
+                      {{ block.settings.slide_body }}
+                    </p>
+                  {% endif %}
+
+                  {% if block.settings.slide_product_image != blank %}
+                    <div class='section-model-comparison__slide-product-image'>
+                      {%- render 'adaptive-image',
+                        mod_image: block.settings.slide_product_image,
+                        mod_loading: 'lazy',
+                        mod_alt: block.settings.slide_product_image.alt
+                      -%}
+                    </div>
+                  {% endif %}
+
+                  {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+                    <div class='section-model-comparison__slide-button-container'>
+                      {% render 'button',
+                        mod_type: 'link',
+                        mod_class: 'fluid button-light-tan bold',
+                        mod_value: block.settings.link_text,
+                        mod_variant: 'secondary',
+                        mod_href: block.settings.link_url
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </simple-slider>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.section-comparison-slider-large-arch.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "id",
+      "label": "t:sections.section-comparison-slider-large-arch.settings.id.label",
+      "info": "t:sections.section-comparison-slider-large-arch.settings.id.info"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:sections.section-comparison-slider-large-arch.settings.eyebrow.label"
+    },
+    {
+      "type": "html",
+      "id": "heading",
+      "label": "t:sections.section-comparison-slider-large-arch.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "section_cta_text",
+      "label": "t:sections.section-comparison-slider-large-arch.settings.section-cta-text.label"
+    },
+    {
+      "type": "url",
+      "id": "section_cta_url",
+      "label": "t:sections.section-comparison-slider-large-arch.settings.section-cta-url.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-image.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_product_image",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-product-image.label"
+        },
+        {
+          "type": "text",
+          "id": "slide_heading",
+          "default": "Heading",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-heading.label"
+        },
+        {
+          "type": "textarea",
+          "id": "slide_body",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-body-text.label"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-cta-text.label"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "t:sections.section-comparison-slider-large-arch.blocks.settings.slide-cta-url.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.section-comparison-slider-large-arch.name",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
